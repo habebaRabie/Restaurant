@@ -2,16 +2,17 @@ Restaurant
 =============
 In this repo, we have created an API for a website makes it easy for restaurants to manege their work.
 In this website there are many features like the following
-* Soon
+
+> Soon
 
 
 ## API Documentation
 
-Soon
+> Soon
 
 ## Database schema
 
-Soon
+> Soon
 
 ## Build with 
 * [Composer 2.1.5](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-composer-on-ubuntu-20-04)
