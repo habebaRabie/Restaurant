@@ -16,3 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes(); //helper function that generates all auth routes 
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
