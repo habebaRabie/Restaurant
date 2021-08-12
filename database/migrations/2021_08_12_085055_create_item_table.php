@@ -19,12 +19,14 @@ class CreateItemTable extends Migration
             $table->unsignedBigInteger('order_id');
             $table->unsignedBigInteger('category_id');
             $table->unsignedSmallInteger('rating');
+            $table->decimal('price');      
             
-
-
-            $table->decimal('price');       
+            $table -> integer('offer');
+            $table -> date('offer_end_date');
 
             $table->timestamps();
+            $table->foreign('order_id')->references('id')->on('order')->onDelete('cascade');
+            $table->foreign('category_id')->references('id')->on('category')->onDelete('cascade');
         });
     }
 

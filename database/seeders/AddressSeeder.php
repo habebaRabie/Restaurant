@@ -14,9 +14,10 @@ class AddressSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('address') ->insert([
-            'user_id'=>3,
-            'location' => 'dammietta',
+        DB::table('address')->insert([
+            'user_id'=>1,
+            "location" => "Cairo",
         ]);
+            
     }
 }

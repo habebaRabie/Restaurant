@@ -17,6 +17,7 @@ class CreatePromoTable extends Migration
             $table->id();
             $table -> string('code');
             $table -> decimal('value');
+            $table -> date('end_date');
             
             $table->timestamps();
         });
