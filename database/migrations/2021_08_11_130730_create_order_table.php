@@ -19,6 +19,8 @@ class CreateOrderTable extends Migration
             $table->decimal('price');
             $table->string('type_of_delivery');
             $table->timestamps();
+            $table->decimal('rating');
+            $table -> string('Feedback');
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
