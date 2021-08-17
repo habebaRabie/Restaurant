@@ -17,7 +17,7 @@ class CreateAdminTable extends Migration
             $table->id();
             $table->string('username');
             $table->string('password');
-            $table->string('type');
+            $table->boolean('superadmin')->default(0);
             $table->timestamps();
         });
     }

@@ -16,8 +16,8 @@ class CreateItemfeedbackTable extends Migration
         Schema::create('itemfeedback', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->string('feedback');
-            $table->decimal('rating');
+            $table->string('feedback')->default(" ");
+            $table->decimal('rating')->nullable();
             $table->unsignedBigInteger('item_id');
             $table->timestamps();
 

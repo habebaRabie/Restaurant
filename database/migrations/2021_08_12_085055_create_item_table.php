@@ -15,14 +15,14 @@ class CreateItemTable extends Migration
     {
         Schema::create('item', function (Blueprint $table) {
             $table->id();
-            $table->string('item_name' , 100);
-            $table->unsignedBigInteger('order_id');
+            $table->string('item_name');
+            
             $table->unsignedBigInteger('category_id');
-            $table->unsignedSmallInteger('rating');
+            $table->unsignedSmallInteger('rating')->default(0);
             $table->decimal('price');      
             
-            $table -> integer('offer');
-            $table -> date('offer_end_date');
+            $table -> decimal('offer')->nullable();
+            $table -> date('offer_end_date')->nullable();
 
             $table->timestamps();
             $table->foreign('order_id')->references('id')->on('order')->onDelete('cascade');
