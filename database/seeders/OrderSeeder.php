@@ -13,10 +13,8 @@ class OrderSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('order')->insert([
-            'user_id' => 1,
-            'type_of_delivery' => "Take Away",
-            'price'=>20.2,
-        ]);
+        
+       
+        
     }
 }

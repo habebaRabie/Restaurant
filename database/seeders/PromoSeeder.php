@@ -13,13 +13,7 @@ class PromoSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('promo')->insert([
-            'code' => Str::random(10),
-            'value' => 20.0,
-            'end_date'=>date("2022/12/12"),
-            'created_at'=>date("y/m/d H:i:s")
-
-        ]);
+        
            
     }
 }

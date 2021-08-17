@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Seeder;
+use Faker\Factory as Faker;
 
 class ItemSeeder extends Seeder
 {
@@ -13,16 +14,21 @@ class ItemSeeder extends Seeder
      */
     public function run()
     {
+        $faker = Faker::create();
+        $faker->addProvider(new \FakerRestaurant\Provider\en_US\Restaurant($faker));
+        for ($x = 0; $x <= 10; $x++)
+        {
         DB::table('item')->insert([
 
-            'item_name' => "margreta pizza",
-            'order_id' => 1,
+            'item_name' => $faker->foodName(),
+            'order_id' => null,
             'category_id'=>1,
-            'rating'=>5,
-            'price'=>20.2,
-            'offer'=>10,
-            'offer_end_date'=>date('2021/8/11')
+            'rating'=>rand(0 , 5),
+            'price'=>rand(0 , 200),
+            'offer'=>null,
+            'offer_end_date'=>null
 
         ]);
+    }
     }
 }

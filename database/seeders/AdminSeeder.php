@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Faker\Factory as Faker;
 class AdminSeeder extends Seeder
 {
     /**
@@ -14,11 +15,26 @@ class AdminSeeder extends Seeder
      */
     public function run()
     {
+        $faker = Faker::create();
+        
+        for ($x = 0; $x <= 10; $x++)
+        {
+        $value =mt_rand(0 , 1);
+        if($value == 1)
+        {
+            $result = true;
+        }
+        else{
+            $result = false;
+        }
         DB::table('admin')->insert([
-            'username' => Str::random(10),
+            'username' => $faker->email,
            
-            'password' => Hash::make('password'),
-            'type' => "Super Admin"
+            'password' => Hash::make($faker->password(8)),
+            'superadmin' => $result
+
+
         ]);
+    }
     }
 }
