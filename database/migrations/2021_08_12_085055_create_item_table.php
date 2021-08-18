@@ -25,7 +25,7 @@ class CreateItemTable extends Migration
             $table -> date('offer_end_date')->nullable();
 
             $table->timestamps();
-            $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
+           
             $table->foreign('category_id')->references('id')->on('category')->onDelete('cascade');
         });
     }
