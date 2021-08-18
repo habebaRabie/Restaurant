@@ -14,10 +14,10 @@ class CreateCartitemsTable extends Migration
     public function up()
     {
         Schema::create('cartitems', function (Blueprint $table) {
-            $table->id();
+            $table->primary(['cart_id', 'item_id']);
             $table->unsignedBigInteger('cart_id');
             $table->unsignedBigInteger('item_id');
-            $table->timestamps();
+            $table->unsignedBigInteger('quantity');
 
             $table->foreign('cart_id')->references('id')->on('carts')->onDelete('cascade');
             $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
