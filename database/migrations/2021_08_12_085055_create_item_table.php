@@ -13,7 +13,7 @@ class CreateItemTable extends Migration
      */
     public function up()
     {
-        Schema::create('item', function (Blueprint $table) {
+        Schema::create('items', function (Blueprint $table) {
             $table->id();
             $table->string('item_name');
             
@@ -25,7 +25,7 @@ class CreateItemTable extends Migration
             $table -> date('offer_end_date')->nullable();
 
             $table->timestamps();
-            $table->foreign('order_id')->references('id')->on('order')->onDelete('cascade');
+            $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
             $table->foreign('category_id')->references('id')->on('category')->onDelete('cascade');
         });
     }

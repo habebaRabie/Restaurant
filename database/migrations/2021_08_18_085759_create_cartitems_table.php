@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateItemfeedbackTable extends Migration
+class CreateCartitemsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,16 @@ class CreateItemfeedbackTable extends Migration
      */
     public function up()
     {
-        Schema::create('itemfeedback', function (Blueprint $table) {
+        Schema::create('cartitems', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->string('feedback')->default(" ");
-            $table->decimal('rating')->nullable();
+            $table->unsignedBigInteger('cart_id');
             $table->unsignedBigInteger('item_id');
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('cart_id')->references('id')->on('cart')->onDelete('cascade');
             $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
+
+
         });
     }
 
@@ -33,6 +33,6 @@ class CreateItemfeedbackTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('itemfeedback');
+        Schema::dropIfExists('cartitems');
     }
 }

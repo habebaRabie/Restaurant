@@ -18,7 +18,7 @@ class ItemSeeder extends Seeder
         $faker->addProvider(new \FakerRestaurant\Provider\en_US\Restaurant($faker));
         for ($x = 0; $x <= 10; $x++)
         {
-        DB::table('item')->insert([
+        DB::table('items')->insert([
 
             'item_name' => $faker->foodName(),
             'order_id' => null,
