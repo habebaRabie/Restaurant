@@ -16,17 +16,17 @@ class ItemSeeder extends Seeder
     {
         $faker = Faker::create();
         $faker->addProvider(new \FakerRestaurant\Provider\en_US\Restaurant($faker));
-        for ($x = 0; $x <= 10; $x++)
+        for ($x = 0; $x <= 3; $x++)
         {
         DB::table('items')->insert([
 
             'item_name' => $faker->foodName(),
-            'order_id' => null,
             'category_id'=>1,
             'rating'=>rand(0 , 5),
-            'price'=>rand(0 , 200),
-            'offer'=>null,
-            'offer_end_date'=>null
+            'price'=>rand(100 , 200),
+            'offer'=>rand(50,99),
+            'offer_end_date'=>date("2022/1/1"),
+            
 
         ]);
     }

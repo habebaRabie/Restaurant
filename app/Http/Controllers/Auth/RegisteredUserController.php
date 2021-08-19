@@ -20,7 +20,8 @@ class RegisteredUserController extends Controller
      */
     public function create()
     {
-        return view('auth.register');
+       // return view('auth.register');
+       return response()->json(['message' => 'this is the register form view']);
     }
 
     /**
@@ -33,22 +34,29 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
+        $validator = Validator()->make($request->all(), [
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
+        
+        if ($validator->fails()) {
+            return response()->json(['message' => 'Something went wrong',$validator->getMessageBag()], 400);
+        } else {
+            $user = User::create([
+                'first_name' => $request->first_name,
+                'last_name' => $request->last_name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+            ]);
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+            event(new Registered($user));
 
-        event(new Registered($user));
-
-        Auth::login($user);
-
-        return redirect(RouteServiceProvider::HOME);
-    }
+            //Auth::login($user);
+            $credentials = $request->only('email', 'password');
+            $token = auth::attempt($credentials);
+            return response()->json(['message' => 'Successfully created your account, just verify it at your email !','user'=>$user,'AccessToken:'=>$token], 201);
+        }
+}
 }
