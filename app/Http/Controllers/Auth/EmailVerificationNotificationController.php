@@ -17,7 +17,7 @@ class EmailVerificationNotificationController extends Controller
     public function store(Request $request)
     {
         if ($request->user()->hasVerifiedEmail()) {
-            return response()->json(['msg' => 'Already Verfied ',201]);
+            return response()->json(['msg' => 'Verification email already sent ',201]);
         }
 
         $request->user()->sendEmailVerificationNotification();

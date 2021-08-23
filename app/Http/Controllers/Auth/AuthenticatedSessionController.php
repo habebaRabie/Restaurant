@@ -18,7 +18,14 @@ class AuthenticatedSessionController extends Controller
     public function create()
     {
       //  return view('auth.login');
-      return response()->json(['message' => 'this is the login form page']);
+      return response()->json(['message' => 'this is the user login form page']);
+    }
+
+
+    public function create_admin()
+    {
+      //  return view('auth.login');
+      return response()->json(['message' => 'this is the admin login form page']);
     }
 
     /**
@@ -48,6 +55,32 @@ class AuthenticatedSessionController extends Controller
             }
             else{
                 return response()->json(['message' => 'No such user, invalid email or password'], 400);
+            }
+        }
+    }
+
+
+    public function store_admin(LoginRequest $request)
+    {
+          //$request->authenticate();
+          $validator = Validator()->make($request->all(), [
+            'username' => 'required|string',
+            'password' => 'required|string',
+            'remember' => 'default:false'
+        ]);
+        
+        if ($validator->fails()) {
+            return response()->json(['message' => 'Invalid data','Errors in'=>$validator->getMessageBag()], 400);
+        } else {
+            //$request->session()->regenerate();
+            //$request->password=Hash::make($request->password);
+            $credentials = $request->only('username', 'password');
+            $token = Auth::attempt($credentials);
+            if ($token){
+                return response()->json(['message' => 'logged in successfully','AccessToken:'=>$token], 200);
+            }
+            else{
+                return response()->json(['message' => 'Admin doesnt exist, invalid email or password'], 400);
             }
         }
     }

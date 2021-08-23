@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Admin;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -21,9 +22,14 @@ class RegisteredUserController extends Controller
     public function create()
     {
        // return view('auth.register');
-       return response()->json(['message' => 'this is the register form view']);
+       return response()->json(['message' => 'this is the user register form view']);
     }
 
+    public function create_admin()
+    {
+       // return view('auth.register');
+       return response()->json(['message' => 'this is the admin register form view']);
+    }
     /**
      * Handle an incoming registration request.
      *
@@ -57,6 +63,38 @@ class RegisteredUserController extends Controller
             $credentials = $request->only('email', 'password');
             $token = auth::attempt($credentials);
             return response()->json(['message' => 'Successfully created your account, just verify it at your email !','user'=>$user,'AccessToken:'=>$token], 201);
+        }
+}
+
+
+public function store_admin(Request $request)
+    {
+        $validator = Validator()->make($request->all(), [
+            'username' => 'required|string|max:255|unique:admins',
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'superadmin' =>'max:1',
+        ]);
+        
+        if ($validator->fails()) {
+            return response()->json(['message' => 'Something went wrong',$validator->getMessageBag()], 400);
+        } else {
+            $admin = Admin::create([
+                'username' => $request->username,
+                'password' => Hash::make($request->password),
+                'superadmin' =>$request->superadmin,
+            ]);
+
+            event(new Registered($admin));
+
+            //Auth::login($user);
+            $credentials = $request->only(['username', 'password']);
+            $token = auth::attempt($credentials);
+            if ($token){
+                return response()->json(['message' => 'registered successfully','AccessToken:'=>$token], 200);
+            }
+            else{
+                return response()->json(['message' => 'Something went wrong, couldnt create admin'], 400);
+            }    
         }
 }
 }
