@@ -64,38 +64,47 @@ class RegisteredUserController extends Controller
             $token = auth::attempt($credentials);
             return response()->json(['message' => 'Successfully created your account, just verify it at your email !','user'=>$user,'AccessToken:'=>$token], 201);
         }
-}
+    }
 
-public function store_admin(Request $request)
-    {
-        $validator = Validator()->make($request->all(), [
-            'username' => 'required|string|max:255|unique:admins',
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'superadmin' => 'max:1',
-        ]);
-        
-        if ($validator->fails()) {
-            return response()->json(['message' => 'Something went wrong',$validator->getMessageBag()], 400);
-        } else {
-            $admin = Admin::create([
-                'username' => $request->username,
-                'password' => Hash::make($request->password),
-                'superadmin' => $request->superadmin,
-            ]);
+    public function store_admin(Request $request){
+        $admin = Auth::user();
 
-            event(new Registered($admin));
+        $admin->superadmin;
 
-            $credentials = $request->only('username', 'password');
-            $token = Auth::guard('admin-api')->attempt($credentials);
-
-            if ($token){
-                return response()->json(['message' => 'registered successfully','AccessToken:'=>$token], 200);
-            }
-            else{
-                return response()->json(['message' => 'Something went wrong'], 400);
-            }
+        if($admin->superadmin == 1)
+        {
             
-        }
-}
+            $validator = Validator()->make($request->all(), [
+                'username' => 'unique:admins,username|required|regex:/^\S*$/u|filled|max:40',
+                'password' => 'required|filled|regex:/^\S*$/u|max:20|min:8',
+                'superadmin' => 'boolean',
+            ]);
+            
+            if ($validator->fails()) {
+                return response()->json(['message' => 'Something went wrong',$validator->getMessageBag()], 400);
+            } else {
+                $admin = Admin::create([
+                    'username' => $request->username,
+                    'password' => Hash::make($request->password),
+                    'superadmin' => $request->superadmin,
+                ]);
 
+                event(new Registered($admin));
+
+                $credentials = $request->only('username', 'password');
+                $token = Auth::guard('admin-api')->attempt($credentials);
+
+                if ($token){
+                    return response()->json(['message' => 'registered successfully','AccessToken:'=>$token], 200);
+                }
+                else{
+                    return response()->json(['message' => 'Something went wrong'], 400);
+                }
+                
+            }
+        }
+        else{
+            return "You are not a superadmin";
+        }
+    }
 }

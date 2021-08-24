@@ -4,27 +4,9 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 class AdminController extends Controller
 {
-    function AddAdmins(Request $request){
-
-        $request->validate([
-            'username'=>'unique:admin,username|required|regex:/^\S*$/u|filled|max:40',
-            'password'=>'required|filled|regex:/^\S*$/u|max:20|min:8',
-            'superadmin'=>'boolean',
-            
-        ]);
-        
-
-        
-        DB::table('admin')->insert([
-            "username" => $request["username"] ,
-            "password" => Hash::make($request["password"]),
-            "superadmin" => $request["superadmin"]
-            
-        ]);
-    }
-
     function UpdateAdmin(Request $request , $id){
 
         $request->validate([
@@ -32,20 +14,16 @@ class AdminController extends Controller
             'superadmin'=>'boolean',
         ]);
 
-        DB::table('admin')
+        DB::table('admins')
         ->where('id' , $id)
         ->update([
             'superadmin' => $request["superadmin"]
         ]
-        );
-
-            
-    
-        
+        );        
     }
     function RemoveAdmins($id){
 
-        $result = DB::table('admin')->
+        $result = DB::table('admins')->
         where('id' , '=' , $id)
         ->delete();
         if($result == 1)

@@ -27,10 +27,10 @@ class AdminSeeder extends Seeder
         else{
             $result = false;
         }
-        DB::table('admin')->insert([
+        DB::table('admins')->insert([
             'username' => $faker->email,
            
-            'password' => Hash::make($faker->password(8)),
+            'password' => Hash::make("12345678"),
             'superadmin' => $result
 
 

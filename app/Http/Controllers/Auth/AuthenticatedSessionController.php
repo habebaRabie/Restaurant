@@ -60,13 +60,15 @@ class AuthenticatedSessionController extends Controller
     }
 
 
-    public function store_admin(LoginRequest $request)
+    public function store_admin(Request $request)
     {
-        return 'here';
+        
           //$request->authenticate();
-          $validator = Validator()->make($request->all(), [
+          $validator = Validator()->make($request->except('superadmin'), [
             'username' => 'required|string',
             'password' => 'required|string',
+            
+            
         ]);
      
         if ($validator->fails()) {
@@ -82,7 +84,7 @@ class AuthenticatedSessionController extends Controller
                 return response()->json(['message' => 'No such user, invalid email or password'], 400);
             }
         
-    }
+     }
 
     /**
      * Destroy an authenticated session.

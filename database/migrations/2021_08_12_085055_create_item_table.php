@@ -20,9 +20,9 @@ class CreateItemTable extends Migration
             $table->unsignedBigInteger('category_id');
             $table->unsignedSmallInteger('rating')->default(0);
             $table->decimal('price');      
-            
             $table -> decimal('offer')->nullable();
             $table -> date('offer_end_date')->nullable();
+            
 
             $table->timestamps();
            

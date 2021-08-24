@@ -59,25 +59,3 @@ Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
 });
 
 
-///////////////////////////////     ADMIN    //////////////////////////////////////////////
-Route::group(['middleware' => 'guest:admin-api', 'prefix' =>'admin'], function(){
-    
-    Route::get('/register', [RegisteredUserController::class, 'create_admin'])
-    ->name('admin.register');
-
-Route::post('/register', [RegisteredUserController::class, 'store_admin']);
-
-Route::get('/login', [AuthenticatedSessionController::class, 'create_admin'])
-    ->name('admin.login');
-
-Route::post('/login', [AuthenticatedSessionController::class, 'store_admin']);
-
-});
-
-///////////////////////////////////////////////////////////////////////////////////////////
-Route::group(['middleware' => 'auth:admin-api','prefix' =>'admin'], function(){
-
-    Route::post('/logout', [AuthenticatedSessionController::class, 'destroy_admin'])
-    ->name('admin.logout');
-
-});
