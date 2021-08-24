@@ -66,13 +66,12 @@ class RegisteredUserController extends Controller
         }
 }
 
-
 public function store_admin(Request $request)
     {
         $validator = Validator()->make($request->all(), [
             'username' => 'required|string|max:255|unique:admins',
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'superadmin' =>'max:1',
+            'superadmin' => 'max:1',
         ]);
         
         if ($validator->fails()) {
@@ -81,20 +80,22 @@ public function store_admin(Request $request)
             $admin = Admin::create([
                 'username' => $request->username,
                 'password' => Hash::make($request->password),
-                'superadmin' =>$request->superadmin,
+                'superadmin' => $request->superadmin,
             ]);
 
             event(new Registered($admin));
 
-            //Auth::login($user);
-            $credentials = $request->only(['username', 'password']);
-            $token = auth::attempt($credentials);
+            $credentials = $request->only('username', 'password');
+            $token = Auth::guard('admin-api')->attempt($credentials);
+
             if ($token){
                 return response()->json(['message' => 'registered successfully','AccessToken:'=>$token], 200);
             }
             else{
-                return response()->json(['message' => 'Something went wrong, couldnt create admin'], 400);
-            }    
+                return response()->json(['message' => 'Something went wrong'], 400);
+            }
+            
         }
 }
+
 }

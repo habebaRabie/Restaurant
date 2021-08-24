@@ -62,27 +62,26 @@ class AuthenticatedSessionController extends Controller
 
     public function store_admin(LoginRequest $request)
     {
+        return 'here';
           //$request->authenticate();
           $validator = Validator()->make($request->all(), [
             'username' => 'required|string',
             'password' => 'required|string',
-            'remember' => 'default:false'
         ]);
-        
+     
         if ($validator->fails()) {
             return response()->json(['message' => 'Invalid data','Errors in'=>$validator->getMessageBag()], 400);
-        } else {
-            //$request->session()->regenerate();
-            //$request->password=Hash::make($request->password);
-            $credentials = $request->only('username', 'password');
-            $token = Auth::attempt($credentials);
+        } 
+            $credentials = $request->only(['username', 'password']);
+            
+            $token = Auth::guard('admin-api')->attempt($credentials);
             if ($token){
                 return response()->json(['message' => 'logged in successfully','AccessToken:'=>$token], 200);
             }
             else{
-                return response()->json(['message' => 'Admin doesnt exist, invalid email or password'], 400);
+                return response()->json(['message' => 'No such user, invalid email or password'], 400);
             }
-        }
+        
     }
 
     /**
@@ -95,6 +94,18 @@ class AuthenticatedSessionController extends Controller
     {
        //Auth::guard('api')->logout();
        auth::logout();
+
+       //$request->session()->invalidate();
+       //$request->session()->regenerateToken();
+
+       return response()->json(['message' => 'logged out successfully'], 200);
+    }
+
+
+    public function destroy_admin(Request $request)
+    {
+       //Auth::guard('api')->logout();
+       auth::guard('admin-api')->logout();
 
        //$request->session()->invalidate();
        //$request->session()->regenerateToken();

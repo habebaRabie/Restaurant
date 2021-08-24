@@ -12,7 +12,7 @@ class Admin extends Authenticatable implements JWTSubject,MustVerifyEmail
 {
     use HasFactory, Notifiable;
 
-    //protected $guard = 'admin';
+    //protected $guard = 'admin-api';
 
     protected $fillable = [
         'username',
