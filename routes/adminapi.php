@@ -22,7 +22,6 @@ Route::group(['middleware' => 'guest:admin-api', 'prefix' =>'admin'], function()
 });
 
 Route::group(['middleware' => 'auth:admin-api', 'prefix' =>'admin'], function(){
-    Route::get('/currentuser', [AdminController::class, 'CurrentLoggedIn']);
     Route::get('/register', [RegisteredUserController::class, 'create_admin'])->name('admin.register');
     Route::post('/register', [RegisteredUserController::class, 'store_admin']);
     Route::post('/logout', [AuthenticatedSessionController::class, 'destroy_admin'])->name('admin.logout');

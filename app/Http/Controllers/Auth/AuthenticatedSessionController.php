@@ -65,7 +65,7 @@ class AuthenticatedSessionController extends Controller
         
           //$request->authenticate();
           $validator = Validator()->make($request->except('superadmin'), [
-            'username' => 'required|string',
+            'email' => 'required|string',
             'password' => 'required|string',
             
             
@@ -74,7 +74,7 @@ class AuthenticatedSessionController extends Controller
         if ($validator->fails()) {
             return response()->json(['message' => 'Invalid data','Errors in'=>$validator->getMessageBag()], 400);
         } 
-            $credentials = $request->only(['username', 'password']);
+            $credentials = $request->only(['email', 'password']);
             
             $token = Auth::guard('admin-api')->attempt($credentials);
             if ($token){

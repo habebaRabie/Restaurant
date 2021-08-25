@@ -9,29 +9,48 @@ class AdminController extends Controller
 {
     function UpdateAdmin(Request $request , $id){
 
-        $request->validate([
+        $admin = Auth::user();
 
-            'superadmin'=>'boolean',
-        ]);
+        $admin->superadmin;
 
-        DB::table('admins')
-        ->where('id' , $id)
-        ->update([
-            'superadmin' => $request["superadmin"]
-        ]
-        );        
-    }
-    function RemoveAdmins($id){
-
-        $result = DB::table('admins')->
-        where('id' , '=' , $id)
-        ->delete();
-        if($result == 1)
+        if($admin->superadmin == 1)
         {
-            return "Admin is removed successfully";
+            $request->validate([
+
+                'superadmin'=>'boolean',
+            ]);
+
+            DB::table('admins')
+            ->where('id' , $id)
+            ->update([
+                'superadmin' => $request["superadmin"]
+            ]
+            );
         }
         else{
-            return  "Admin deletion failed";
+            return "You are not a superadmin";
+        }        
+    }
+    function RemoveAdmins($id){
+        $admin = Auth::user();
+
+        $admin->superadmin;
+
+        if($admin->superadmin == 1)
+        {
+            $result = DB::table('admins')->
+            where('id' , '=' , $id)
+            ->delete();
+            if($result == 1)
+            {
+                return "Admin is removed successfully";
+            }
+            else{
+                return  "Admin deletion failed";
+            }
+        }
+        else{
+            return "You are not a superadmin";
         }
          
      }

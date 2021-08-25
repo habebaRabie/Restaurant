@@ -15,6 +15,7 @@ class Admin extends Authenticatable implements JWTSubject,MustVerifyEmail
     //protected $guard = 'admin-api';
 
     protected $fillable = [
+        'email',
         'username',
         'password',
         'superadmin',

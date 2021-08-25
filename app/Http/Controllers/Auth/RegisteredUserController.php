@@ -75,7 +75,8 @@ class RegisteredUserController extends Controller
         {
             
             $validator = Validator()->make($request->all(), [
-                'username' => 'unique:admins,username|required|regex:/^\S*$/u|filled|max:40',
+                'email' => 'unique:admins,email|required|regex:/^\S*$/u|filled|max:40|email',
+                'username'=>'required|regex:/^\S*$/u|filled|max:40',
                 'password' => 'required|filled|regex:/^\S*$/u|max:20|min:8',
                 'superadmin' => 'boolean',
             ]);
@@ -84,6 +85,7 @@ class RegisteredUserController extends Controller
                 return response()->json(['message' => 'Something went wrong',$validator->getMessageBag()], 400);
             } else {
                 $admin = Admin::create([
+                    'email' => $request->email,
                     'username' => $request->username,
                     'password' => Hash::make($request->password),
                     'superadmin' => $request->superadmin,
@@ -91,7 +93,7 @@ class RegisteredUserController extends Controller
 
                 event(new Registered($admin));
 
-                $credentials = $request->only('username', 'password');
+                $credentials = $request->only('email', 'password');
                 $token = Auth::guard('admin-api')->attempt($credentials);
 
                 if ($token){
