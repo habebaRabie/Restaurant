@@ -77,7 +77,7 @@ class RegisteredUserController extends Controller
             $validator = Validator()->make($request->all(), [
                 'email' => 'unique:admins,email|required|regex:/^\S*$/u|filled|max:40|email',
                 'username'=>'required|regex:/^\S*$/u|filled|max:40',
-                'password' => 'required|filled|regex:/^\S*$/u|max:20|min:8',
+                'password' => 'required|filled|regex:/^\S*$/u|max:20|min:8|confirmed',
                 'superadmin' => 'boolean',
             ]);
             

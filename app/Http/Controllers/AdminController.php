@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 class AdminController extends Controller
 {
     function UpdateAdmin(Request $request , $id){
@@ -75,7 +76,7 @@ class AdminController extends Controller
     function UpdateCategory($id , Request $request){
 
         $request->validate([
-            'category_name'=>"required|unique:category,category_name,$id|filled|max:40"
+            'category_name'=>"unique:category,category_name,$id|filled|max:40"
         ]);
         $result = DB::table('category')
               ->where('id', $id)
@@ -110,8 +111,8 @@ class AdminController extends Controller
             'item_name' => 'required|filled|unique:items,item_name|max:40',
             'category_id'=>'required|filled|exists:category,id',
             'price'=>'required|filled|gt:0',
-            'offer'=>'filled|gt:-1|numeric',
-            'offer_end_date'=>'filled|after_or_equal:today'
+            'offer'=>['filled','gt:-1','numeric',Rule::requiredIf(!empty($request->input('offer_end_date')))],
+            'offer_end_date'=> [Rule::requiredIf(!empty($request->input('offer'))),'filled']
         ]);
         $result = DB::table('items')->insert(
                 $request->except('rating' , 'id')
@@ -127,11 +128,11 @@ class AdminController extends Controller
    
     function UpdateItem($id , Request $request){
         $request->validate([
-            'item_name' => "required|filled|unique:items,item_name,${id}|max:40",
-            'category_id'=>'required|filled|exists:category,id',
-            'price'=>'required|filled|gt:0',
-            'offer'=>'filled|gt:-1|numeric',
-            'offer_end_date'=>'filled|after_or_equal:now'
+            'item_name' => "filled|unique:items,item_name,${id}|max:40",
+            'category_id'=>'filled|exists:category,id',
+            'price'=>'filled|gt:0',
+            'offer'=>['filled','gt:-1','numeric',Rule::requiredIf(!empty($request->input('offer_end_date')))],
+            'offer_end_date'=>['filled',Rule::requiredIf(!empty($request->input('offer')))]
             
     ]);
         
