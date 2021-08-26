@@ -25,7 +25,7 @@ class ItemSeeder extends Seeder
             'rating'=>rand(0 , 5),
             'price'=>rand(100 , 200),
             'offer'=>rand(50,99),
-            'offer_end_date'=>date("2022/1/1"),
+            'offer_end_date'=>date("2022/1/1 5:30:3"),
             
 
         ]);
