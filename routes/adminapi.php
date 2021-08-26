@@ -12,6 +12,9 @@ use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 
+use App\Http\Controllers\Auth\AdminEmailVerificationNotificationController;
+use App\Http\Controllers\Auth\AdminEmailVerificationPromptController;
+use App\Http\Controllers\Auth\AdminVerifyEmailController;
 
 Route::group(['middleware' => 'guest:admin-api', 'prefix' =>'admin'], function(){
     
@@ -33,5 +36,17 @@ Route::group(['middleware' => 'auth:admin-api', 'prefix' =>'admin'], function(){
     Route::post('additem' , 'App\Http\Controllers\AdminController@AddItem' );
     Route::post('removeitem/{id}' , 'App\Http\Controllers\AdminController@DeleteItem');
     Route::post('updateitem/{id}' , 'App\Http\Controllers\AdminController@UpdateItem');
+
+
+    Route::get('/verify-email', [AdminEmailVerificationPromptController::class, '__invoke'])
+                ->name('verification.notice');
+
+Route::get('/verify-email/{id}/{hash}', [AdminVerifyEmailController::class, '__invoke'])
+                ->middleware(['signed', 'throttle:6,1'])
+                ->name('admin-verification.verify');
+
+Route::post('/email/verification-notification', [AdminEmailVerificationNotificationController::class, 'store'])
+                ->middleware(['throttle:6,1'])
+                ->name('verification.send');
 });
 

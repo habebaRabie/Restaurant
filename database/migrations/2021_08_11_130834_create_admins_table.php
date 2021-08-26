@@ -19,7 +19,7 @@ class CreateAdminsTable extends Migration
             $table->string('username');
             $table->string('password');
             $table->boolean('superadmin')->default(0);
-            $table->softDeletes();
+            $table->timestamp('email_verified_at')->nullable();
             $table->timestamps();
         });
     }
