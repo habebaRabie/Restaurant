@@ -6,8 +6,36 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
+use App\Models\Admin;
 class AdminController extends Controller
 {
+    function GetAdmins(){
+        $admin = Auth::user();
+
+        $admin->superadmin;
+
+        if($admin->superadmin == 1)
+        {
+            return Admin::all();
+        }
+        else{
+            return "you are not a superadmin";
+        }
+    }
+    function GetAdminsById($id){
+        $admin = Auth::user();
+
+        $admin->superadmin;
+
+        if($admin->superadmin == 1)
+        {
+            return  Admin::where('id', $id)
+            ->get();
+        }
+        else{
+            return "you are not a superadmin";
+        }
+    }
     function UpdateAdmin(Request $request , $id){
 
         $admin = Auth::user();
