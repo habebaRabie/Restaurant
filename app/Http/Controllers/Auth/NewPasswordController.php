@@ -20,7 +20,8 @@ class NewPasswordController extends Controller
      */
     public function create(Request $request)
     {
-        return view('auth.reset-password', ['request' => $request]);
+        return response()->json(['msg'=>'This is the reset password form'],201);
+   //should contain email, new password & password confirmation fields
     }
 
     /**
@@ -33,11 +34,16 @@ class NewPasswordController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        //handling the form submission
+        $validator = Validator()->make($request->all(),[
             'token' => 'required',
             'email' => 'required|email',
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
+             ]);
+
+        if ($validator->fails()) {
+            return response()->json(['message' => 'Something went wrong',$validator->getMessageBag()], 400);
+        }
 
         // Here we will attempt to reset the user's password. If it is successful we
         // will update the password on an actual user model and persist it to the
@@ -57,9 +63,11 @@ class NewPasswordController extends Controller
         // If the password was successfully reset, we will redirect the user back to
         // the application's home authenticated view. If there is an error we can
         // redirect them back to where they came from with their error message.
-        return $status == Password::PASSWORD_RESET
-                    ? redirect()->route('login')->with('status', __($status))
-                    : back()->withInput($request->only('email'))
-                            ->withErrors(['email' => __($status)]);
+        if ($status == Password::PASSWORD_RESET)
+        {
+                    return response()->json(['msg'=>'this is the user login form, login with the new password ','status', __($status)],201); }
+                    else{
+                    return response()->json(['email' => __($status)],500);
     }
+}
 }

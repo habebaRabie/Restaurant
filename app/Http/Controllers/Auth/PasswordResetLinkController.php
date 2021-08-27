@@ -15,7 +15,8 @@ class PasswordResetLinkController extends Controller
      */
     public function create()
     {
-        return view('auth.forgot-password');
+        return response()->json(['msg'=>'This is the password reset link request form'],201);
+    //contains an email field 
     }
 
     /**
@@ -28,6 +29,8 @@ class PasswordResetLinkController extends Controller
      */
     public function store(Request $request)
     {
+        //handling the form submission 
+
         $request->validate([
             'email' => 'required|email',
         ]);
@@ -39,9 +42,11 @@ class PasswordResetLinkController extends Controller
             $request->only('email')
         );
 
-        return $status == Password::RESET_LINK_SENT
-                    ? back()->with('status', __($status))
-                    : back()->withInput($request->only('email'))
-                            ->withErrors(['email' => __($status)]);
+        if ($status == Password::RESET_LINK_SENT){
+                    return response()->json(['status', __($status)],201) ;}
+                    else {
+                        return response()->json(['Error msg' => __($status)],500);
+                    }
     }
 }
+
