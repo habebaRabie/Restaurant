@@ -15,7 +15,7 @@ use Illuminate\Validation\Rules;
 class RegisteredUserController extends Controller
 {
     /**
-     * Display the registration view.
+     * Display the user registration view.
      *
      * @return \Illuminate\View\View
      */
@@ -25,15 +25,29 @@ class RegisteredUserController extends Controller
        return response()->json(['message' => 'this is the user register form view']);
     }
 
+    /**
+     * Display the admin registration view.
+     *
+     * @return \Illuminate\View\View
+     */
     public function create_admin()
     {
        // return view('auth.register');
        return response()->json(['message' => 'this is the admin register form view']);
     }
+
     /**
-     * Handle an incoming registration request.
+     * Handle an incoming user registration request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * Only a super admin can sign up a new admin
+     * 
+     * 
+     * @param   \Illuminate\Http\Request  $request
+     * @bodyParam first_name string required   
+     * @bodyParam last_name string required   
+     * @bodyParam email string required   
+     * @bodyParam password string required   
+     * @bodyParam password_confirmation string required   
      * @return \Illuminate\Http\RedirectResponse
      *
      * @throws \Illuminate\Validation\ValidationException
@@ -66,6 +80,22 @@ class RegisteredUserController extends Controller
         }
     }
 
+    /**
+     * Handle an incoming admin registration request.
+     *
+     * @authenticated
+     * 
+     * @param  \Illuminate\Http\Request  $request    
+     * @bodyParam email string required  
+     * @bodyParam username string required   
+     * @bodyParam password string required   
+     * @bodyParam password_confirmation string required  
+     * @bodyParam superadmin boolean 
+     * 
+     * @return \Illuminate\Http\RedirectResponse
+     *
+     * @throws \Illuminate\Validation\ValidationException
+     */
     public function store_admin(Request $request){
         $admin = Auth::user();
 

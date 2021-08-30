@@ -9,8 +9,10 @@ use Illuminate\Http\Request;
 class AdminEmailVerificationPromptController extends Controller
 {
     /**
-     * Display the email verification prompt.
+     * Display the admin email verification prompt.
      *
+     * @authenticated 
+     * 
      * @param  \Illuminate\Http\Request  $request
      * @return mixed
      */

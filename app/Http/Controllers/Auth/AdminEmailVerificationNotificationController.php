@@ -11,6 +11,8 @@ class AdminEmailVerificationNotificationController extends Controller
     /**
      * Send a new email verification notification.
      *
+     * @authenticated 
+     * 
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse
      */
