@@ -31,6 +31,12 @@ class PasswordResetLinkController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      *
      * @throws \Illuminate\Validation\ValidationException
+     * 
+     * @response 
+     * {
+     *  "status",
+     * "We have emailed your password reset link!"
+     * }
      */
     public function store(Request $request)
     {

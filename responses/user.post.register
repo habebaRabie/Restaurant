@@ -1,0 +1,12 @@
+{
+    "message": "Successfully created your account, just verify it at your email !",
+    "user": {
+        "first_name": "mariam",
+        "last_name": "elkhashab",
+        "email": "m@hotmail.com",
+        "updated_at": "2021-08-30T13:28:25.000000Z",
+        "created_at": "2021-08-30T13:28:25.000000Z",
+        "id": 25
+    },
+    "AccessToken:": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9yZWdpc3RlciIsImlhdCI6MTYzMDMzMDEwNSwiZXhwIjoxNjMwMzMzNzA1LCJuYmYiOjE2MzAzMzAxMDUsImp0aSI6ImFQV1ExUmZyTDJhZXl2RmEiLCJzdWIiOjI1LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.Gb6pauP14JnqtlmZ4-GIrUJJwY34HGqmwGyXTr35zKI"
+}

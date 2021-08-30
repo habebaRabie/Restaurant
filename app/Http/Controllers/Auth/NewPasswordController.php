@@ -42,6 +42,12 @@ class NewPasswordController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      *
      * @throws \Illuminate\Validation\ValidationException
+     * 
+     * @response {
+     * "msg": "this is the user login form, login with the new password ",
+     * "0": "status",
+     * "1": "Your password has been reset!"
+     * }
      */
     public function store(Request $request)
     {

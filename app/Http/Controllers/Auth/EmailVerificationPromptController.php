@@ -20,6 +20,6 @@ class EmailVerificationPromptController extends Controller
     {
         if($request->user()->hasVerifiedEmail())
                     return response()->json(['msg'=> 'Email already verified!'],200);
-                    else return response()->json(['msg'=> 'Email verifiaction view!'],200);
+                    else return response()->json(['view'=> 'this is the Email verifiaction view'],200);
     }
 }

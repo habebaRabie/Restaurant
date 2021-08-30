@@ -44,7 +44,7 @@ paths:
       security: []
     post:
       summary: 'Handle an incoming user registration request.'
-      description: 'Only a super admin can sign up a new admin'
+      description: ''
       parameters:
         -
           in: header
@@ -60,7 +60,39 @@ paths:
           example: application/json
           schema:
             type: string
-      responses: {  }
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Successfully created your account, just verify it at your email !'
+                  user:
+                    first_name: mariam
+                    last_name: elkhashab
+                    email: m@hotmail.com
+                    updated_at: '2021-08-30T13:28:25.000000Z'
+                    created_at: '2021-08-30T13:28:25.000000Z'
+                    id: 25
+                  'AccessToken:': eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9yZWdpc3RlciIsImlhdCI6MTYzMDMzMDEwNSwiZXhwIjoxNjMwMzMzNzA1LCJuYmYiOjE2MzAzMzAxMDUsImp0aSI6ImFQV1ExUmZyTDJhZXl2RmEiLCJzdWIiOjI1LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.Gb6pauP14JnqtlmZ4-GIrUJJwY34HGqmwGyXTr35zKI
+                properties:
+                  message:
+                    type: string
+                    example: 'Successfully created your account, just verify it at your email !'
+                  user:
+                    type: object
+                    example:
+                      first_name: mariam
+                      last_name: elkhashab
+                      email: m@hotmail.com
+                      updated_at: '2021-08-30T13:28:25.000000Z'
+                      created_at: '2021-08-30T13:28:25.000000Z'
+                      id: 25
+                  'AccessToken:':
+                    type: string
+                    example: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9yZWdpc3RlciIsImlhdCI6MTYzMDMzMDEwNSwiZXhwIjoxNjMwMzMzNzA1LCJuYmYiOjE2MzAzMzAxMDUsImp0aSI6ImFQV1ExUmZyTDJhZXl2RmEiLCJzdWIiOjI1LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.Gb6pauP14JnqtlmZ4-GIrUJJwY34HGqmwGyXTr35zKI
       tags:
         - Endpoints
       requestBody:
@@ -73,9 +105,29 @@ paths:
                 first_name:
                   type: string
                   description: ''
-                  example: nobis
+                  example: delectus
+                last_name:
+                  type: string
+                  description: ''
+                  example: dolor
+                email:
+                  type: string
+                  description: ''
+                  example: voluptatem
+                password:
+                  type: string
+                  description: ''
+                  example: laboriosam
+                password_confirmation:
+                  type: string
+                  description: ''
+                  example: et
               required:
                 - first_name
+                - last_name
+                - email
+                - password
+                - password_confirmation
       security: []
   /api/login:
     get:
@@ -142,12 +194,16 @@ paths:
               properties:
                 email:
                   type: string
-                  description: 'Must be a valid email address.'
-                  example: coty25@example.com
+                  description: ''
+                  example: ducimus
                 password:
                   type: string
                   description: ''
-                  example: quis
+                  example: et
+                remember:
+                  type: boolean
+                  description: ''
+                  example: true
               required:
                 - email
                 - password
@@ -208,6 +264,19 @@ paths:
       responses: {  }
       tags:
         - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: ''
+                  example: dolorum
+              required:
+                - email
       security: []
   '/api/reset-password/{token}':
     get:
@@ -249,7 +318,7 @@ paths:
         in: path
         name: token
         description: ''
-        example: officiis
+        example: dolores
         required: true
         schema:
           type: string
@@ -275,6 +344,34 @@ paths:
       responses: {  }
       tags:
         - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: mixed
+                  description: ''
+                  example: qui
+                emai:
+                  type: string
+                  description: ''
+                  example: velit
+                password:
+                  type: string
+                  description: ''
+                  example: nisi
+                password_confirmation:
+                  type: string
+                  description: ''
+                  example: et
+              required:
+                - token
+                - emai
+                - password
+                - password_confirmation
       security: []
   /api/verify-email:
     get:
@@ -310,7 +407,6 @@ paths:
                     example: Unauthenticated.
       tags:
         - Endpoints
-      security: []
   '/api/verify-email/{id}/{hash}':
     get:
       summary: 'Mark the authenticated user''s email address as verified.'
@@ -345,13 +441,12 @@ paths:
                     example: Unauthenticated.
       tags:
         - Endpoints
-      security: []
     parameters:
       -
         in: path
         name: id
         description: 'The ID of the verify email.'
-        example: ut
+        example: eaque
         required: true
         schema:
           type: string
@@ -359,7 +454,7 @@ paths:
         in: path
         name: hash
         description: ''
-        example: libero
+        example: corrupti
         required: true
         schema:
           type: string
@@ -385,7 +480,6 @@ paths:
       responses: {  }
       tags:
         - Endpoints
-      security: []
   /api/confirm-password:
     get:
       summary: 'Show the confirm password view.'
@@ -465,7 +559,6 @@ paths:
       responses: {  }
       tags:
         - Endpoints
-      security: []
   /api/admin/login:
     get:
       summary: 'Display the admin login view.'
@@ -522,7 +615,24 @@ paths:
       responses: {  }
       tags:
         - Endpoints
-      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: ''
+                  example: aut
+                password:
+                  type: string
+                  description: ''
+                  example: quia
+              required:
+                - email
+                - password
   /api/admin/admins:
     get:
       summary: ''
@@ -598,7 +708,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the admin.'
-        example: 16
+        example: 14
         required: true
         schema:
           type: integer
@@ -658,7 +768,38 @@ paths:
       responses: {  }
       tags:
         - Endpoints
-      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: ''
+                  example: nam
+                username:
+                  type: string
+                  description: ''
+                  example: occaecati
+                password:
+                  type: string
+                  description: ''
+                  example: vero
+                password_confirmation:
+                  type: string
+                  description: ''
+                  example: et
+                superadmin:
+                  type: boolean
+                  description: ''
+                  example: false
+              required:
+                - email
+                - username
+                - password
+                - password_confirmation
   /api/admin/logout:
     post:
       summary: 'Destroy an authenticated admin session (logout).'
@@ -681,7 +822,6 @@ paths:
       responses: {  }
       tags:
         - Endpoints
-      security: []
   '/api/admin/updateadmin/{id}':
     post:
       summary: ''
@@ -710,7 +850,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the updateadmin.'
-        example: vel
+        example: nostrum
         required: true
         schema:
           type: string
@@ -742,7 +882,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the removeadmin.'
-        example: voluptatem
+        example: minus
         required: true
         schema:
           type: string
@@ -797,7 +937,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the removecategory.'
-        example: sed
+        example: iste
         required: true
         schema:
           type: string
@@ -829,7 +969,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the updatecategory.'
-        example: illo
+        example: molestiae
         required: true
         schema:
           type: string
@@ -884,7 +1024,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the removeitem.'
-        example: quae
+        example: in
         required: true
         schema:
           type: string
@@ -916,7 +1056,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the updateitem.'
-        example: architecto
+        example: voluptas
         required: true
         schema:
           type: string
@@ -954,7 +1094,6 @@ paths:
                     example: Unauthenticated.
       tags:
         - Endpoints
-      security: []
   '/api/admin/verify-email/{id}/{hash}':
     get:
       summary: 'Mark the authenticated admin''s email address as verified.'
@@ -989,13 +1128,12 @@ paths:
                     example: Unauthenticated.
       tags:
         - Endpoints
-      security: []
     parameters:
       -
         in: path
         name: id
         description: 'The ID of the verify email.'
-        example: sit
+        example: odio
         required: true
         schema:
           type: string
@@ -1003,7 +1141,7 @@ paths:
         in: path
         name: hash
         description: ''
-        example: id
+        example: cum
         required: true
         schema:
           type: string
@@ -1029,7 +1167,6 @@ paths:
       responses: {  }
       tags:
         - Endpoints
-      security: []
 tags:
   -
     name: Endpoints

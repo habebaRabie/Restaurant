@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Laravel",
-        "_postman_id": "d8edbcba-9e16-481f-a5a7-4cf2447e460f",
+        "_postman_id": "86e67509-e135-407e-bd1f-634b5d874073",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -99,14 +99,21 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"first_name\":\"nobis\"}"
+                            "raw": "{\"first_name\":\"delectus\",\"last_name\":\"dolor\",\"email\":\"voluptatem\",\"password\":\"laboriosam\",\"password_confirmation\":\"et\"}"
                         },
-                        "description": "Only a super admin can sign up a new admin",
+                        "description": "",
                         "auth": {
                             "type": "noauth"
                         }
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\r\n    \"message\": \"Successfully created your account, just verify it at your email !\",\r\n    \"user\": {\r\n        \"first_name\": \"mariam\",\r\n        \"last_name\": \"elkhashab\",\r\n        \"email\": \"m@hotmail.com\",\r\n        \"updated_at\": \"2021-08-30T13:28:25.000000Z\",\r\n        \"created_at\": \"2021-08-30T13:28:25.000000Z\",\r\n        \"id\": 25\r\n    },\r\n    \"AccessToken:\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9yZWdpc3RlciIsImlhdCI6MTYzMDMzMDEwNSwiZXhwIjoxNjMwMzMzNzA1LCJuYmYiOjE2MzAzMzAxMDUsImp0aSI6ImFQV1ExUmZyTDJhZXl2RmEiLCJzdWIiOjI1LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.Gb6pauP14JnqtlmZ4-GIrUJJwY34HGqmwGyXTr35zKI\"\r\n}",
+                            "name": ""
+                        }
+                    ]
                 },
                 {
                     "name": "Display the user login view.",
@@ -188,7 +195,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"email\":\"coty25@example.com\",\"password\":\"quis\"}"
+                            "raw": "{\"email\":\"ducimus\",\"password\":\"et\",\"remember\":true}"
                         },
                         "description": "",
                         "auth": {
@@ -275,7 +282,10 @@
                                 "value": "application\/json"
                             }
                         ],
-                        "body": null,
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"email\":\"dolorum\"}"
+                        },
                         "description": "This api handles the form submission\nWe will send the password reset link to this user. Once we have attempted\nto send the link, we will examine the response then see the message we\nneed to show to the user. Finally, we'll send out a proper response.",
                         "auth": {
                             "type": "noauth"
@@ -296,7 +306,7 @@
                                 {
                                     "id": "token",
                                     "key": "token",
-                                    "value": "officiis",
+                                    "value": "dolores",
                                     "description": ""
                                 }
                             ]
@@ -369,7 +379,10 @@
                                 "value": "application\/json"
                             }
                         ],
-                        "body": null,
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"token\":\"qui\",\"emai\":\"velit\",\"password\":\"nisi\",\"password_confirmation\":\"et\"}"
+                        },
                         "description": "This api handles the form submission\nHere we will attempt to reset the user's password. If it is successful we\nwill update the password on an actual user model and persist it to the\ndatabase. Otherwise we will parse the error and return the response.",
                         "auth": {
                             "type": "noauth"
@@ -399,10 +412,7 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": [
                         {
@@ -439,13 +449,13 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "ut",
+                                    "value": "eaque",
                                     "description": "The ID of the verify email."
                                 },
                                 {
                                     "id": "hash",
                                     "key": "hash",
-                                    "value": "libero",
+                                    "value": "corrupti",
                                     "description": ""
                                 }
                             ]
@@ -462,10 +472,7 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": [
                         {
@@ -511,10 +518,7 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": []
                 },
@@ -618,10 +622,7 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": []
                 },
@@ -703,11 +704,11 @@
                                 "value": "application\/json"
                             }
                         ],
-                        "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"email\":\"aut\",\"password\":\"quia\"}"
+                        },
+                        "description": ""
                     },
                     "response": []
                 },
@@ -773,7 +774,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "16",
+                                    "value": "14",
                                     "description": "The ID of the admin."
                                 }
                             ]
@@ -887,11 +888,11 @@
                                 "value": "application\/json"
                             }
                         ],
-                        "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"email\":\"nam\",\"username\":\"occaecati\",\"password\":\"vero\",\"password_confirmation\":\"et\",\"superadmin\":false}"
+                        },
+                        "description": ""
                     },
                     "response": []
                 },
@@ -917,10 +918,7 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": []
                 },
@@ -937,7 +935,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "vel",
+                                    "value": "nostrum",
                                     "description": "The ID of the updateadmin."
                                 }
                             ]
@@ -974,7 +972,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "voluptatem",
+                                    "value": "minus",
                                     "description": "The ID of the removeadmin."
                                 }
                             ]
@@ -1040,7 +1038,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "sed",
+                                    "value": "iste",
                                     "description": "The ID of the removecategory."
                                 }
                             ]
@@ -1077,7 +1075,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "illo",
+                                    "value": "molestiae",
                                     "description": "The ID of the updatecategory."
                                 }
                             ]
@@ -1143,7 +1141,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "quae",
+                                    "value": "in",
                                     "description": "The ID of the removeitem."
                                 }
                             ]
@@ -1180,7 +1178,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "architecto",
+                                    "value": "voluptas",
                                     "description": "The ID of the updateitem."
                                 }
                             ]
@@ -1226,10 +1224,7 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": [
                         {
@@ -1266,13 +1261,13 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "sit",
+                                    "value": "odio",
                                     "description": "The ID of the verify email."
                                 },
                                 {
                                     "id": "hash",
                                     "key": "hash",
-                                    "value": "id",
+                                    "value": "cum",
                                     "description": ""
                                 }
                             ]
@@ -1289,10 +1284,7 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": [
                         {
@@ -1338,10 +1330,7 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
+                        "description": ""
                     },
                     "response": []
                 }

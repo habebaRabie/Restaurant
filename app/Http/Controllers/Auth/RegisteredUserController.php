@@ -38,9 +38,6 @@ class RegisteredUserController extends Controller
 
     /**
      * Handle an incoming user registration request.
-     *
-     * Only a super admin can sign up a new admin
-     * 
      * 
      * @param   \Illuminate\Http\Request  $request
      * @bodyParam first_name string required   
@@ -51,6 +48,8 @@ class RegisteredUserController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      *
      * @throws \Illuminate\Validation\ValidationException
+     * 
+     * @responseFile responses/user.post.register
      */
     public function store(Request $request)
     {
@@ -71,7 +70,7 @@ class RegisteredUserController extends Controller
                 'password' => Hash::make($request->password),
             ]);
 
-            event(new Registered($user));
+            //event(new Registered($user));
 
             //Auth::login($user);
             $credentials = $request->only('email', 'password');
@@ -95,6 +94,8 @@ class RegisteredUserController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      *
      * @throws \Illuminate\Validation\ValidationException
+     * 
+     * @responseFile responses/admin.post.register
      */
     public function store_admin(Request $request){
         $admin = Auth::user();
@@ -121,7 +122,7 @@ class RegisteredUserController extends Controller
                     'superadmin' => $request->superadmin,
                 ]);
 
-                event(new Registered($admin));
+                //event(new Registered($admin));
 
                 $credentials = $request->only('email', 'password');
                 $token = Auth::guard('admin-api')->attempt($credentials);

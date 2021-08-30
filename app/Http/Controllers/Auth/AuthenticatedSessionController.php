@@ -40,6 +40,8 @@ class AuthenticatedSessionController extends Controller
      * @bodyParam password string required
      * @bodyParam remember boolean
      * @return \Illuminate\Http\RedirectResponse
+     * 
+     * @responseFile responses/user.post.login
      */
     public function store(LoginRequest $request)
     {
@@ -75,6 +77,8 @@ class AuthenticatedSessionController extends Controller
      * @bodyParam email string required
      * @bodyParam password string required
      * @return \Illuminate\Http\RedirectResponse
+     * 
+     * @responseFile responses/admin.post.login
      */
     public function store_admin(Request $request)
     {

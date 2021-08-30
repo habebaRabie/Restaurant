@@ -171,7 +171,7 @@ access-control-allow-origin: *
 <p>
 </p>
 
-<p>Only a super admin can sign up a new admin</p>
+
 
 <span id="example-requests-POSTapi-register">
 <blockquote>Example request:</blockquote>
@@ -182,7 +182,11 @@ access-control-allow-origin: *
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"first_name\": \"nobis\"
+    \"first_name\": \"delectus\",
+    \"last_name\": \"dolor\",
+    \"email\": \"voluptatem\",
+    \"password\": \"laboriosam\",
+    \"password_confirmation\": \"et\"
 }"
 </code></pre>
 
@@ -196,7 +200,11 @@ const headers = {
 };
 
 let body = {
-    "first_name": "nobis"
+    "first_name": "delectus",
+    "last_name": "dolor",
+    "email": "voluptatem",
+    "password": "laboriosam",
+    "password_confirmation": "et"
 }
 
 fetch(url, {
@@ -207,7 +215,25 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-register">
-</span>
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;message&quot;: &quot;Successfully created your account, just verify it at your email !&quot;,
+    &quot;user&quot;: {
+        &quot;first_name&quot;: &quot;mariam&quot;,
+        &quot;last_name&quot;: &quot;elkhashab&quot;,
+        &quot;email&quot;: &quot;m@hotmail.com&quot;,
+        &quot;updated_at&quot;: &quot;2021-08-30T13:28:25.000000Z&quot;,
+        &quot;created_at&quot;: &quot;2021-08-30T13:28:25.000000Z&quot;,
+        &quot;id&quot;: 25
+    },
+    &quot;AccessToken:&quot;: &quot;eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9yZWdpc3RlciIsImlhdCI6MTYzMDMzMDEwNSwiZXhwIjoxNjMwMzMzNzA1LCJuYmYiOjE2MzAzMzAxMDUsImp0aSI6ImFQV1ExUmZyTDJhZXl2RmEiLCJzdWIiOjI1LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.Gb6pauP14JnqtlmZ4-GIrUJJwY34HGqmwGyXTr35zKI&quot;
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-POSTapi-register" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-register"></span>:
@@ -252,6 +278,38 @@ fetch(url, {
             <b><code>first_name</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
                 <input type="text"
                name="first_name"
+               data-endpoint="POSTapi-register"
+               data-component="body" required  hidden>
+    <br>
+        </p>
+                <p>
+            <b><code>last_name</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="last_name"
+               data-endpoint="POSTapi-register"
+               data-component="body" required  hidden>
+    <br>
+        </p>
+                <p>
+            <b><code>email</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="email"
+               data-endpoint="POSTapi-register"
+               data-component="body" required  hidden>
+    <br>
+        </p>
+                <p>
+            <b><code>password</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="password"
+               data-endpoint="POSTapi-register"
+               data-component="body" required  hidden>
+    <br>
+        </p>
+                <p>
+            <b><code>password_confirmation</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="password_confirmation"
                data-endpoint="POSTapi-register"
                data-component="body" required  hidden>
     <br>
@@ -368,8 +426,9 @@ access-control-allow-origin: *
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"email\": \"coty25@example.com\",
-    \"password\": \"quis\"
+    \"email\": \"ducimus\",
+    \"password\": \"et\",
+    \"remember\": true
 }"
 </code></pre>
 
@@ -383,8 +442,9 @@ const headers = {
 };
 
 let body = {
-    "email": "coty25@example.com",
-    "password": "quis"
+    "email": "ducimus",
+    "password": "et",
+    "remember": true
 }
 
 fetch(url, {
@@ -443,13 +503,31 @@ fetch(url, {
                data-endpoint="POSTapi-login"
                data-component="body" required  hidden>
     <br>
-<p>Must be a valid email address.</p>        </p>
+        </p>
                 <p>
             <b><code>password</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
                 <input type="text"
                name="password"
                data-endpoint="POSTapi-login"
                data-component="body" required  hidden>
+    <br>
+        </p>
+                <p>
+            <b><code>remember</code></b>&nbsp;&nbsp;<small>boolean</small>     <i>optional</i> &nbsp;
+                <label data-endpoint="POSTapi-login" hidden>
+            <input type="radio" name="remember"
+                   value="true"
+                   data-endpoint="POSTapi-login"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="POSTapi-login" hidden>
+            <input type="radio" name="remember"
+                   value="false"
+                   data-endpoint="POSTapi-login"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
     <br>
         </p>
     
@@ -565,7 +643,11 @@ need to show to the user. Finally, we'll send out a proper response.</p>
 <pre><code class="language-bash">curl --request POST \
     "http://localhost/api/forgot-password" \
     --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre>
+    --header "Accept: application/json" \
+    --data "{
+    \"email\": \"dolorum\"
+}"
+</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
     "http://localhost/api/forgot-password"
@@ -576,9 +658,14 @@ const headers = {
     "Accept": "application/json",
 };
 
+let body = {
+    "email": "dolorum"
+}
+
 fetch(url, {
     method: "POST",
     headers,
+    body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre>
 </span>
 
@@ -623,7 +710,17 @@ fetch(url, {
             <small class="badge badge-black">POST</small>
             <b><code>api/forgot-password</code></b>
         </p>
-                    </form>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>email</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="email"
+               data-endpoint="POSTapi-forgot-password"
+               data-component="body" required  hidden>
+    <br>
+        </p>
+    
+    </form>
 
             <h2 id="endpoints-GETapi-reset-password--token-">Display the password reset view.</h2>
 
@@ -637,12 +734,12 @@ fetch(url, {
 
 
 <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/reset-password/officiis" \
+    --get "http://localhost/api/reset-password/dolores" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/reset-password/officiis"
+    "http://localhost/api/reset-password/dolores"
 );
 
 const headers = {
@@ -744,7 +841,14 @@ database. Otherwise we will parse the error and return the response.</p>
 <pre><code class="language-bash">curl --request POST \
     "http://localhost/api/reset-password" \
     --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre>
+    --header "Accept: application/json" \
+    --data "{
+    \"token\": \"qui\",
+    \"emai\": \"velit\",
+    \"password\": \"nisi\",
+    \"password_confirmation\": \"et\"
+}"
+</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
     "http://localhost/api/reset-password"
@@ -755,9 +859,17 @@ const headers = {
     "Accept": "application/json",
 };
 
+let body = {
+    "token": "qui",
+    "emai": "velit",
+    "password": "nisi",
+    "password_confirmation": "et"
+}
+
 fetch(url, {
     method: "POST",
     headers,
+    body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre>
 </span>
 
@@ -802,11 +914,46 @@ fetch(url, {
             <small class="badge badge-black">POST</small>
             <b><code>api/reset-password</code></b>
         </p>
-                    </form>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>token</code></b>&nbsp;&nbsp;<small>mixed</small>  &nbsp;
+                <input type="text"
+               name="token"
+               data-endpoint="POSTapi-reset-password"
+               data-component="body" required  hidden>
+    <br>
+        </p>
+                <p>
+            <b><code>emai</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="emai"
+               data-endpoint="POSTapi-reset-password"
+               data-component="body" required  hidden>
+    <br>
+        </p>
+                <p>
+            <b><code>password</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="password"
+               data-endpoint="POSTapi-reset-password"
+               data-component="body" required  hidden>
+    <br>
+        </p>
+                <p>
+            <b><code>password_confirmation</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="password_confirmation"
+               data-endpoint="POSTapi-reset-password"
+               data-component="body" required  hidden>
+    <br>
+        </p>
+    
+    </form>
 
             <h2 id="endpoints-GETapi-verify-email">Display the user email verification prompt.</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -866,7 +1013,7 @@ access-control-allow-origin: *
 </span>
 <form id="form-GETapi-verify-email" data-method="GET"
       data-path="api/verify-email"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
@@ -893,11 +1040,20 @@ access-control-allow-origin: *
             <small class="badge badge-green">GET</small>
             <b><code>api/verify-email</code></b>
         </p>
-                    </form>
+                <p>
+            <label id="auth-GETapi-verify-email" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-verify-email"
+                                                                data-component="header"></label>
+        </p>
+                </form>
 
             <h2 id="endpoints-GETapi-verify-email--id---hash-">Mark the authenticated user&#039;s email address as verified.</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -907,12 +1063,12 @@ access-control-allow-origin: *
 
 
 <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/verify-email/ut/libero" \
+    --get "http://localhost/api/verify-email/eaque/corrupti" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/verify-email/ut/libero"
+    "http://localhost/api/verify-email/eaque/corrupti"
 );
 
 const headers = {
@@ -957,7 +1113,7 @@ access-control-allow-origin: *
 </span>
 <form id="form-GETapi-verify-email--id---hash-" data-method="GET"
       data-path="api/verify-email/{id}/{hash}"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
@@ -984,7 +1140,15 @@ access-control-allow-origin: *
             <small class="badge badge-green">GET</small>
             <b><code>api/verify-email/{id}/{hash}</code></b>
         </p>
-                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                <p>
+            <label id="auth-GETapi-verify-email--id---hash-" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-verify-email--id---hash-"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
                     <p>
                 <b><code>id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
                 <input type="text"
@@ -1006,6 +1170,7 @@ access-control-allow-origin: *
             <h2 id="endpoints-POSTapi-email-verification-notification">Send a new email verification notification.</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -1048,7 +1213,7 @@ fetch(url, {
 </span>
 <form id="form-POSTapi-email-verification-notification" data-method="POST"
       data-path="api/email/verification-notification"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
@@ -1075,7 +1240,15 @@ fetch(url, {
             <small class="badge badge-black">POST</small>
             <b><code>api/email/verification-notification</code></b>
         </p>
-                    </form>
+                <p>
+            <label id="auth-POSTapi-email-verification-notification" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="POSTapi-email-verification-notification"
+                                                                data-component="header"></label>
+        </p>
+                </form>
 
             <h2 id="endpoints-GETapi-confirm-password">Show the confirm password view.</h2>
 
@@ -1245,6 +1418,7 @@ fetch(url, {
             <h2 id="endpoints-POSTapi-logout">Destroy an authenticated user session (logout).</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -1287,7 +1461,7 @@ fetch(url, {
 </span>
 <form id="form-POSTapi-logout" data-method="POST"
       data-path="api/logout"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
@@ -1314,7 +1488,15 @@ fetch(url, {
             <small class="badge badge-black">POST</small>
             <b><code>api/logout</code></b>
         </p>
-                    </form>
+                <p>
+            <label id="auth-POSTapi-logout" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="POSTapi-logout"
+                                                                data-component="header"></label>
+        </p>
+                </form>
 
             <h2 id="endpoints-GETapi-admin-login">Display the admin login view.</h2>
 
@@ -1412,6 +1594,7 @@ access-control-allow-origin: *
             <h2 id="endpoints-POSTapi-admin-login">Handle an incoming admin login request.</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -1423,7 +1606,12 @@ access-control-allow-origin: *
 <pre><code class="language-bash">curl --request POST \
     "http://localhost/api/admin/login" \
     --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre>
+    --header "Accept: application/json" \
+    --data "{
+    \"email\": \"aut\",
+    \"password\": \"quia\"
+}"
+</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
     "http://localhost/api/admin/login"
@@ -1434,9 +1622,15 @@ const headers = {
     "Accept": "application/json",
 };
 
+let body = {
+    "email": "aut",
+    "password": "quia"
+}
+
 fetch(url, {
     method: "POST",
     headers,
+    body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre>
 </span>
 
@@ -1454,7 +1648,7 @@ fetch(url, {
 </span>
 <form id="form-POSTapi-admin-login" data-method="POST"
       data-path="api/admin/login"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
@@ -1481,7 +1675,33 @@ fetch(url, {
             <small class="badge badge-black">POST</small>
             <b><code>api/admin/login</code></b>
         </p>
-                    </form>
+                <p>
+            <label id="auth-POSTapi-admin-login" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="POSTapi-admin-login"
+                                                                data-component="header"></label>
+        </p>
+                        <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>email</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="email"
+               data-endpoint="POSTapi-admin-login"
+               data-component="body" required  hidden>
+    <br>
+        </p>
+                <p>
+            <b><code>password</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="password"
+               data-endpoint="POSTapi-admin-login"
+               data-component="body" required  hidden>
+    <br>
+        </p>
+    
+    </form>
 
             <h2 id="endpoints-GETapi-admin-admins">GET api/admin/admins</h2>
 
@@ -1586,12 +1806,12 @@ access-control-allow-origin: *
 
 
 <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/admin/admins/16" \
+    --get "http://localhost/api/admin/admins/14" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/admin/admins/16"
+    "http://localhost/api/admin/admins/14"
 );
 
 const headers = {
@@ -1768,6 +1988,7 @@ access-control-allow-origin: *
             <h2 id="endpoints-POSTapi-admin-register">Handle an incoming admin registration request.</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -1779,7 +2000,15 @@ access-control-allow-origin: *
 <pre><code class="language-bash">curl --request POST \
     "http://localhost/api/admin/register" \
     --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre>
+    --header "Accept: application/json" \
+    --data "{
+    \"email\": \"nam\",
+    \"username\": \"occaecati\",
+    \"password\": \"vero\",
+    \"password_confirmation\": \"et\",
+    \"superadmin\": false
+}"
+</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
     "http://localhost/api/admin/register"
@@ -1790,9 +2019,18 @@ const headers = {
     "Accept": "application/json",
 };
 
+let body = {
+    "email": "nam",
+    "username": "occaecati",
+    "password": "vero",
+    "password_confirmation": "et",
+    "superadmin": false
+}
+
 fetch(url, {
     method: "POST",
     headers,
+    body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre>
 </span>
 
@@ -1810,7 +2048,7 @@ fetch(url, {
 </span>
 <form id="form-POSTapi-admin-register" data-method="POST"
       data-path="api/admin/register"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
@@ -1837,11 +2075,72 @@ fetch(url, {
             <small class="badge badge-black">POST</small>
             <b><code>api/admin/register</code></b>
         </p>
-                    </form>
+                <p>
+            <label id="auth-POSTapi-admin-register" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="POSTapi-admin-register"
+                                                                data-component="header"></label>
+        </p>
+                        <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>email</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="email"
+               data-endpoint="POSTapi-admin-register"
+               data-component="body" required  hidden>
+    <br>
+        </p>
+                <p>
+            <b><code>username</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="username"
+               data-endpoint="POSTapi-admin-register"
+               data-component="body" required  hidden>
+    <br>
+        </p>
+                <p>
+            <b><code>password</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="password"
+               data-endpoint="POSTapi-admin-register"
+               data-component="body" required  hidden>
+    <br>
+        </p>
+                <p>
+            <b><code>password_confirmation</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="password_confirmation"
+               data-endpoint="POSTapi-admin-register"
+               data-component="body" required  hidden>
+    <br>
+        </p>
+                <p>
+            <b><code>superadmin</code></b>&nbsp;&nbsp;<small>boolean</small>     <i>optional</i> &nbsp;
+                <label data-endpoint="POSTapi-admin-register" hidden>
+            <input type="radio" name="superadmin"
+                   value="true"
+                   data-endpoint="POSTapi-admin-register"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="POSTapi-admin-register" hidden>
+            <input type="radio" name="superadmin"
+                   value="false"
+                   data-endpoint="POSTapi-admin-register"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+        </p>
+    
+    </form>
 
             <h2 id="endpoints-POSTapi-admin-logout">Destroy an authenticated admin session (logout).</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -1884,7 +2183,7 @@ fetch(url, {
 </span>
 <form id="form-POSTapi-admin-logout" data-method="POST"
       data-path="api/admin/logout"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
@@ -1911,7 +2210,15 @@ fetch(url, {
             <small class="badge badge-black">POST</small>
             <b><code>api/admin/logout</code></b>
         </p>
-                    </form>
+                <p>
+            <label id="auth-POSTapi-admin-logout" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="POSTapi-admin-logout"
+                                                                data-component="header"></label>
+        </p>
+                </form>
 
             <h2 id="endpoints-POSTapi-admin-updateadmin--id-">POST api/admin/updateadmin/{id}</h2>
 
@@ -1925,12 +2232,12 @@ fetch(url, {
 
 
 <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/admin/updateadmin/vel" \
+    "http://localhost/api/admin/updateadmin/nostrum" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/admin/updateadmin/vel"
+    "http://localhost/api/admin/updateadmin/nostrum"
 );
 
 const headers = {
@@ -2008,12 +2315,12 @@ fetch(url, {
 
 
 <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/admin/removeadmin/voluptatem" \
+    "http://localhost/api/admin/removeadmin/minus" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/admin/removeadmin/voluptatem"
+    "http://localhost/api/admin/removeadmin/minus"
 );
 
 const headers = {
@@ -2165,12 +2472,12 @@ fetch(url, {
 
 
 <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/admin/removecategory/sed" \
+    "http://localhost/api/admin/removecategory/iste" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/admin/removecategory/sed"
+    "http://localhost/api/admin/removecategory/iste"
 );
 
 const headers = {
@@ -2248,12 +2555,12 @@ fetch(url, {
 
 
 <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/admin/updatecategory/illo" \
+    "http://localhost/api/admin/updatecategory/molestiae" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/admin/updatecategory/illo"
+    "http://localhost/api/admin/updatecategory/molestiae"
 );
 
 const headers = {
@@ -2405,12 +2712,12 @@ fetch(url, {
 
 
 <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/admin/removeitem/quae" \
+    "http://localhost/api/admin/removeitem/in" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/admin/removeitem/quae"
+    "http://localhost/api/admin/removeitem/in"
 );
 
 const headers = {
@@ -2488,12 +2795,12 @@ fetch(url, {
 
 
 <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/admin/updateitem/architecto" \
+    "http://localhost/api/admin/updateitem/voluptas" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/admin/updateitem/architecto"
+    "http://localhost/api/admin/updateitem/voluptas"
 );
 
 const headers = {
@@ -2562,6 +2869,7 @@ fetch(url, {
             <h2 id="endpoints-GETapi-admin-verify-email">Display the admin email verification prompt.</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -2621,7 +2929,7 @@ access-control-allow-origin: *
 </span>
 <form id="form-GETapi-admin-verify-email" data-method="GET"
       data-path="api/admin/verify-email"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
@@ -2648,11 +2956,20 @@ access-control-allow-origin: *
             <small class="badge badge-green">GET</small>
             <b><code>api/admin/verify-email</code></b>
         </p>
-                    </form>
+                <p>
+            <label id="auth-GETapi-admin-verify-email" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-admin-verify-email"
+                                                                data-component="header"></label>
+        </p>
+                </form>
 
             <h2 id="endpoints-GETapi-admin-verify-email--id---hash-">Mark the authenticated admin&#039;s email address as verified.</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -2662,12 +2979,12 @@ access-control-allow-origin: *
 
 
 <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/admin/verify-email/sit/id" \
+    --get "http://localhost/api/admin/verify-email/odio/cum" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/admin/verify-email/sit/id"
+    "http://localhost/api/admin/verify-email/odio/cum"
 );
 
 const headers = {
@@ -2712,7 +3029,7 @@ access-control-allow-origin: *
 </span>
 <form id="form-GETapi-admin-verify-email--id---hash-" data-method="GET"
       data-path="api/admin/verify-email/{id}/{hash}"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
@@ -2739,7 +3056,15 @@ access-control-allow-origin: *
             <small class="badge badge-green">GET</small>
             <b><code>api/admin/verify-email/{id}/{hash}</code></b>
         </p>
-                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                <p>
+            <label id="auth-GETapi-admin-verify-email--id---hash-" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-admin-verify-email--id---hash-"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
                     <p>
                 <b><code>id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
                 <input type="text"
@@ -2761,6 +3086,7 @@ access-control-allow-origin: *
             <h2 id="endpoints-POSTapi-admin-email-verification-notification">Send a new email verification notification.</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -2803,7 +3129,7 @@ fetch(url, {
 </span>
 <form id="form-POSTapi-admin-email-verification-notification" data-method="POST"
       data-path="api/admin/email/verification-notification"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
@@ -2830,7 +3156,15 @@ fetch(url, {
             <small class="badge badge-black">POST</small>
             <b><code>api/admin/email/verification-notification</code></b>
         </p>
-                    </form>
+                <p>
+            <label id="auth-POSTapi-admin-email-verification-notification" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="POSTapi-admin-email-verification-notification"
+                                                                data-component="header"></label>
+        </p>
+                </form>
 
     
 

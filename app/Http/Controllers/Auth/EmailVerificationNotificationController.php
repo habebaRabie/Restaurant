@@ -14,6 +14,12 @@ class EmailVerificationNotificationController extends Controller
      * @authenticated
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse
+     * 
+     * @response 
+     * {
+     * "msg": "verification-link-sent",
+     * "0": 201
+     *   }
      */
     public function store(Request $request)
     {

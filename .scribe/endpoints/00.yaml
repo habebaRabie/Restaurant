@@ -33,7 +33,7 @@ endpoints:
     uri: api/register
     metadata:
       title: 'Handle an incoming user registration request.'
-      description: 'Only a super admin can sign up a new admin'
+      description: ''
       authenticated: false
     headers:
       Content-Type: application/json
@@ -45,9 +45,38 @@ endpoints:
         name: first_name
         description: ''
         required: true
-        example: nobis
+        example: delectus
         type: string
-    responses: []
+      last_name:
+        name: last_name
+        description: ''
+        required: true
+        example: dolor
+        type: string
+      email:
+        name: email
+        description: ''
+        required: true
+        example: voluptatem
+        type: string
+      password:
+        name: password
+        description: ''
+        required: true
+        example: laboriosam
+        type: string
+      password_confirmation:
+        name: password_confirmation
+        description: ''
+        required: true
+        example: et
+        type: string
+    responses:
+      -
+        status: 200
+        content: "{\r\n    \"message\": \"Successfully created your account, just verify it at your email !\",\r\n    \"user\": {\r\n        \"first_name\": \"mariam\",\r\n        \"last_name\": \"elkhashab\",\r\n        \"email\": \"m@hotmail.com\",\r\n        \"updated_at\": \"2021-08-30T13:28:25.000000Z\",\r\n        \"created_at\": \"2021-08-30T13:28:25.000000Z\",\r\n        \"id\": 25\r\n    },\r\n    \"AccessToken:\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9yZWdpc3RlciIsImlhdCI6MTYzMDMzMDEwNSwiZXhwIjoxNjMwMzMzNzA1LCJuYmYiOjE2MzAzMzAxMDUsImp0aSI6ImFQV1ExUmZyTDJhZXl2RmEiLCJzdWIiOjI1LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.Gb6pauP14JnqtlmZ4-GIrUJJwY34HGqmwGyXTr35zKI\"\r\n}"
+        headers: []
+        description: '200'
     responseFields: []
   -
     httpMethods:
@@ -91,16 +120,22 @@ endpoints:
     bodyParameters:
       email:
         name: email
-        description: 'Must be a valid email address.'
+        description: ''
         required: true
-        example: coty25@example.com
+        example: ducimus
         type: string
       password:
         name: password
         description: ''
         required: true
-        example: quis
+        example: et
         type: string
+      remember:
+        name: remember
+        description: ''
+        required: false
+        example: true
+        type: boolean
     responses: []
     responseFields: []
   -
@@ -146,7 +181,13 @@ endpoints:
       Accept: application/json
     urlParameters: []
     queryParameters: []
-    bodyParameters: []
+    bodyParameters:
+      email:
+        name: email
+        description: ''
+        required: true
+        example: dolorum
+        type: string
     responses: []
     responseFields: []
   -
@@ -165,7 +206,7 @@ endpoints:
         name: token
         description: ''
         required: true
-        example: officiis
+        example: dolores
         type: string
     queryParameters: []
     bodyParameters: []
@@ -198,7 +239,31 @@ endpoints:
       Accept: application/json
     urlParameters: []
     queryParameters: []
-    bodyParameters: []
+    bodyParameters:
+      token:
+        name: token
+        description: ''
+        required: true
+        example: qui
+        type: mixed
+      emai:
+        name: emai
+        description: ''
+        required: true
+        example: velit
+        type: string
+      password:
+        name: password
+        description: ''
+        required: true
+        example: nisi
+        type: string
+      password_confirmation:
+        name: password_confirmation
+        description: ''
+        required: true
+        example: et
+        type: string
     responses: []
     responseFields: []
   -
@@ -208,7 +273,7 @@ endpoints:
     metadata:
       title: 'Display the user email verification prompt.'
       description: ''
-      authenticated: false
+      authenticated: true
     headers:
       Content-Type: application/json
       Accept: application/json
@@ -232,7 +297,7 @@ endpoints:
     metadata:
       title: 'Mark the authenticated user''s email address as verified.'
       description: ''
-      authenticated: false
+      authenticated: true
     headers:
       Content-Type: application/json
       Accept: application/json
@@ -241,13 +306,13 @@ endpoints:
         name: id
         description: 'The ID of the verify email.'
         required: true
-        example: ut
+        example: eaque
         type: string
       hash:
         name: hash
         description: ''
         required: true
-        example: libero
+        example: corrupti
         type: string
     queryParameters: []
     bodyParameters: []
@@ -268,7 +333,7 @@ endpoints:
     metadata:
       title: 'Send a new email verification notification.'
       description: ''
-      authenticated: false
+      authenticated: true
     headers:
       Content-Type: application/json
       Accept: application/json
@@ -324,7 +389,7 @@ endpoints:
     metadata:
       title: 'Destroy an authenticated user session (logout).'
       description: ''
-      authenticated: false
+      authenticated: true
     headers:
       Content-Type: application/json
       Accept: application/json
@@ -366,13 +431,25 @@ endpoints:
     metadata:
       title: 'Handle an incoming admin login request.'
       description: ''
-      authenticated: false
+      authenticated: true
     headers:
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
     queryParameters: []
-    bodyParameters: []
+    bodyParameters:
+      email:
+        name: email
+        description: ''
+        required: true
+        example: aut
+        type: string
+      password:
+        name: password
+        description: ''
+        required: true
+        example: quia
+        type: string
     responses: []
     responseFields: []
   -
@@ -415,7 +492,7 @@ endpoints:
         name: id
         description: 'The ID of the admin.'
         required: true
-        example: 16
+        example: 14
         type: integer
     queryParameters: []
     bodyParameters: []
@@ -460,13 +537,43 @@ endpoints:
     metadata:
       title: 'Handle an incoming admin registration request.'
       description: ''
-      authenticated: false
+      authenticated: true
     headers:
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
     queryParameters: []
-    bodyParameters: []
+    bodyParameters:
+      email:
+        name: email
+        description: ''
+        required: true
+        example: nam
+        type: string
+      username:
+        name: username
+        description: ''
+        required: true
+        example: occaecati
+        type: string
+      password:
+        name: password
+        description: ''
+        required: true
+        example: vero
+        type: string
+      password_confirmation:
+        name: password_confirmation
+        description: ''
+        required: true
+        example: et
+        type: string
+      superadmin:
+        name: superadmin
+        description: ''
+        required: false
+        example: false
+        type: boolean
     responses: []
     responseFields: []
   -
@@ -476,7 +583,7 @@ endpoints:
     metadata:
       title: 'Destroy an authenticated admin session (logout).'
       description: ''
-      authenticated: false
+      authenticated: true
     headers:
       Content-Type: application/json
       Accept: application/json
@@ -501,7 +608,7 @@ endpoints:
         name: id
         description: 'The ID of the updateadmin.'
         required: true
-        example: vel
+        example: nostrum
         type: string
     queryParameters: []
     bodyParameters: []
@@ -523,7 +630,7 @@ endpoints:
         name: id
         description: 'The ID of the removeadmin.'
         required: true
-        example: voluptatem
+        example: minus
         type: string
     queryParameters: []
     bodyParameters: []
@@ -561,7 +668,7 @@ endpoints:
         name: id
         description: 'The ID of the removecategory.'
         required: true
-        example: sed
+        example: iste
         type: string
     queryParameters: []
     bodyParameters: []
@@ -583,7 +690,7 @@ endpoints:
         name: id
         description: 'The ID of the updatecategory.'
         required: true
-        example: illo
+        example: molestiae
         type: string
     queryParameters: []
     bodyParameters: []
@@ -621,7 +728,7 @@ endpoints:
         name: id
         description: 'The ID of the removeitem.'
         required: true
-        example: quae
+        example: in
         type: string
     queryParameters: []
     bodyParameters: []
@@ -643,7 +750,7 @@ endpoints:
         name: id
         description: 'The ID of the updateitem.'
         required: true
-        example: architecto
+        example: voluptas
         type: string
     queryParameters: []
     bodyParameters: []
@@ -656,7 +763,7 @@ endpoints:
     metadata:
       title: 'Display the admin email verification prompt.'
       description: ''
-      authenticated: false
+      authenticated: true
     headers:
       Content-Type: application/json
       Accept: application/json
@@ -680,7 +787,7 @@ endpoints:
     metadata:
       title: 'Mark the authenticated admin''s email address as verified.'
       description: ''
-      authenticated: false
+      authenticated: true
     headers:
       Content-Type: application/json
       Accept: application/json
@@ -689,13 +796,13 @@ endpoints:
         name: id
         description: 'The ID of the verify email.'
         required: true
-        example: sit
+        example: odio
         type: string
       hash:
         name: hash
         description: ''
         required: true
-        example: id
+        example: cum
         type: string
     queryParameters: []
     bodyParameters: []
@@ -716,7 +823,7 @@ endpoints:
     metadata:
       title: 'Send a new email verification notification.'
       description: ''
-      authenticated: false
+      authenticated: true
     headers:
       Content-Type: application/json
       Accept: application/json
