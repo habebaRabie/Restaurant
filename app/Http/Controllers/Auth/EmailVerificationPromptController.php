@@ -9,8 +9,10 @@ use Illuminate\Http\Request;
 class EmailVerificationPromptController extends Controller
 {
     /**
-     * Display the email verification prompt.
+     * Display the user email verification prompt.
      *
+     * @authenticated
+     * 
      * @param  \Illuminate\Http\Request  $request
      * @return mixed
      */
@@ -18,6 +20,6 @@ class EmailVerificationPromptController extends Controller
     {
         if($request->user()->hasVerifiedEmail())
                     return response()->json(['msg'=> 'Email already verified!'],200);
-                    else return response()->json(['msg'=> 'Email verifiaction view!'],200);
+                    else return response()->json(['view'=> 'this is the Email verifiaction view'],200);
     }
 }

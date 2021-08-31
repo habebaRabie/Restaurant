@@ -98,7 +98,7 @@ class AdminController extends Controller
            return Admin::FindorFail($id)->
            update(
             $request->except('email' , 'username' , 'password')
-        );
+           );
             
         }
         else{
@@ -140,7 +140,7 @@ class AdminController extends Controller
 
 /**
 * adding category to the database
-* @bodyParam category_name string required and must be unique
+* @bodyParam category_name required string and must be unique
 * @response 200 scenario="the user is an admin and the inputs are satisfied with the validation rules"
 * @response 401 scenario="the user isn't an admin" {"message":"unauthorized"}
 * @response 422 scenario="The request was well formed but was unable to be followed due to a validation error"

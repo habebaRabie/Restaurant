@@ -17,7 +17,7 @@ class ConfirmablePasswordController extends Controller
      */
     public function show()
     {
-        return view('auth.confirm-password');
+        return response()->json(['msg'=>'This is the new password confirmation view'],201);
     }
 
     /**
@@ -39,6 +39,6 @@ class ConfirmablePasswordController extends Controller
 
         $request->session()->put('auth.password_confirmed_at', time());
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        return response()->json(['msg'=>'This is the authenticated user home page'],201);
     }
 }

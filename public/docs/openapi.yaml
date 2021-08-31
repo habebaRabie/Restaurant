@@ -5,12 +5,12 @@ info:
   version: 1.0.0
 servers:
   -
-    url: 'http://localhost'
+    url: 'http://127.0.0.1:8000'
 paths:
-  /api/register:
+  /api/create-cart:
     post:
-      summary: 'Handle an incoming registration request.'
-      description: ''
+      summary: 'Create cart'
+      description: 'Create a new cart to place items in'
       parameters:
         -
           in: header
@@ -28,10 +28,106 @@ paths:
             type: string
       responses: {  }
       tags:
-        - Endpoints
+        - 'Cart Management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                User_id:
+                  type: integer
+                  description: 'The ID of the user who''s account is associated with this cart'
+                  example: 13
+              required:
+                - User_id
       security: []
+  /api/add-to-cart:
+    post:
+      summary: 'Add to cart'
+      description: 'add a new item to the cart'
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - 'Cart Management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                cart_id:
+                  type: integer
+                  description: 'The id of the cart to which the item will be added'
+                  example: 20
+                item_id:
+                  type: integer
+                  description: 'The id of the item that needs to be added'
+                  example: 14
+              required:
+                - cart_id
+                - item_id
+      security: []
+  /api/remove-from-cart:
+    post:
+      summary: 'Remove from cart'
+      description: 'Remove an item from the cart'
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - 'Cart Management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                cart_id:
+                  type: integer
+                  description: 'The id of the cart that will be modified'
+                  example: 13
+                item_id:
+                  type: integer
+                  description: 'The id of the item that needs to be removed'
+                  example: 14
+              required:
+                - cart_id
+                - item_id
+      security: []
+  /api/register:
     get:
-      summary: 'Display the registration view.'
+      summary: 'Display the user registration view.'
       description: ''
       parameters:
         -
@@ -64,9 +160,96 @@ paths:
       tags:
         - Endpoints
       security: []
+    post:
+      summary: 'Handle an incoming user registration request.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Successfully created your account, just verify it at your email !'
+                  user:
+                    first_name: mariam
+                    last_name: elkhashab
+                    email: m@hotmail.com
+                    updated_at: '2021-08-30T13:28:25.000000Z'
+                    created_at: '2021-08-30T13:28:25.000000Z'
+                    id: 25
+                  'AccessToken:': eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9yZWdpc3RlciIsImlhdCI6MTYzMDMzMDEwNSwiZXhwIjoxNjMwMzMzNzA1LCJuYmYiOjE2MzAzMzAxMDUsImp0aSI6ImFQV1ExUmZyTDJhZXl2RmEiLCJzdWIiOjI1LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.Gb6pauP14JnqtlmZ4-GIrUJJwY34HGqmwGyXTr35zKI
+                properties:
+                  message:
+                    type: string
+                    example: 'Successfully created your account, just verify it at your email !'
+                  user:
+                    type: object
+                    example:
+                      first_name: mariam
+                      last_name: elkhashab
+                      email: m@hotmail.com
+                      updated_at: '2021-08-30T13:28:25.000000Z'
+                      created_at: '2021-08-30T13:28:25.000000Z'
+                      id: 25
+                  'AccessToken:':
+                    type: string
+                    example: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9yZWdpc3RlciIsImlhdCI6MTYzMDMzMDEwNSwiZXhwIjoxNjMwMzMzNzA1LCJuYmYiOjE2MzAzMzAxMDUsImp0aSI6ImFQV1ExUmZyTDJhZXl2RmEiLCJzdWIiOjI1LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.Gb6pauP14JnqtlmZ4-GIrUJJwY34HGqmwGyXTr35zKI
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                first_name:
+                  type: string
+                  description: ''
+                  example: quaerat
+                last_name:
+                  type: string
+                  description: ''
+                  example: minima
+                email:
+                  type: string
+                  description: ''
+                  example: porro
+                password:
+                  type: string
+                  description: ''
+                  example: velit
+                password_confirmation:
+                  type: string
+                  description: ''
+                  example: dolorem
+              required:
+                - first_name
+                - last_name
+                - email
+                - password
+                - password_confirmation
+      security: []
   /api/login:
     get:
-      summary: 'Display the login view.'
+      summary: 'Display the user login view.'
       description: ''
       parameters:
         -
@@ -100,7 +283,7 @@ paths:
         - Endpoints
       security: []
     post:
-      summary: 'Handle an incoming authentication request.'
+      summary: 'Handle an incoming user login request.'
       description: ''
       parameters:
         -
@@ -117,7 +300,23 @@ paths:
           example: application/json
           schema:
             type: string
-      responses: {  }
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'logged in successfully'
+                  'AccessToken:': eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTYzMDMzMDU2NSwiZXhwIjoxNjMwMzM0MTY1LCJuYmYiOjE2MzAzMzA1NjUsImp0aSI6Ik1GQndmSzl3OVM5T1UyWEkiLCJzdWIiOjI1LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.xxpKgqW5NUZ9OXFXy3AHIPw22H_ivI3KOgblbKDAaoc
+                properties:
+                  message:
+                    type: string
+                    example: 'logged in successfully'
+                  'AccessToken:':
+                    type: string
+                    example: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTYzMDMzMDU2NSwiZXhwIjoxNjMwMzM0MTY1LCJuYmYiOjE2MzAzMzA1NjUsImp0aSI6Ik1GQndmSzl3OVM5T1UyWEkiLCJzdWIiOjI1LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.xxpKgqW5NUZ9OXFXy3AHIPw22H_ivI3KOgblbKDAaoc
       tags:
         - Endpoints
       requestBody:
@@ -129,12 +328,16 @@ paths:
               properties:
                 email:
                   type: string
-                  description: 'Must be a valid email address.'
-                  example: ureichel@example.com
+                  description: ''
+                  example: ut
                 password:
                   type: string
                   description: ''
-                  example: mollitia
+                  example: pariatur
+                remember:
+                  type: boolean
+                  description: ''
+                  example: false
               required:
                 - email
                 - password
@@ -176,7 +379,7 @@ paths:
       security: []
     post:
       summary: 'Handle an incoming password reset link request.'
-      description: ''
+      description: "This api handles the form submission\nWe will send the password reset link to this user. Once we have attempted\nto send the link, we will examine the response then see the message we\nneed to show to the user. Finally, we'll send out a proper response."
       parameters:
         -
           in: header
@@ -192,14 +395,34 @@ paths:
           example: application/json
           schema:
             type: string
-      responses: {  }
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n \"status\",\n\"We have emailed your password reset link!\"\n}"
       tags:
         - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: ''
+                  example: rem
+              required:
+                - email
       security: []
   '/api/reset-password/{token}':
     get:
       summary: 'Display the password reset view.'
-      description: ''
+      description: 'should contain email, new password & password confirmation fields'
       parameters:
         -
           in: header
@@ -236,14 +459,14 @@ paths:
         in: path
         name: token
         description: ''
-        example: et
+        example: possimus
         required: true
         schema:
           type: string
   /api/reset-password:
     post:
       summary: 'Handle an incoming new password request.'
-      description: ''
+      description: "This api handles the form submission\nHere we will attempt to reset the user's password. If it is successful we\nwill update the password on an actual user model and persist it to the\ndatabase. Otherwise we will parse the error and return the response."
       parameters:
         -
           in: header
@@ -259,13 +482,61 @@ paths:
           example: application/json
           schema:
             type: string
-      responses: {  }
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  msg: 'this is the user login form, login with the new password '
+                  '0': status
+                  '1': 'Your password has been reset!'
+                properties:
+                  msg:
+                    type: string
+                    example: 'this is the user login form, login with the new password '
+                  0:
+                    type: string
+                    example: status
+                  1:
+                    type: string
+                    example: 'Your password has been reset!'
       tags:
         - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: mixed
+                  description: ''
+                  example: aliquam
+                emai:
+                  type: string
+                  description: ''
+                  example: aliquam
+                password:
+                  type: string
+                  description: ''
+                  example: quam
+                password_confirmation:
+                  type: string
+                  description: ''
+                  example: suscipit
+              required:
+                - token
+                - emai
+                - password
+                - password_confirmation
       security: []
   /api/verify-email:
     get:
-      summary: 'Display the email verification prompt.'
+      summary: 'Display the user email verification prompt.'
       description: ''
       parameters:
         -
@@ -297,7 +568,6 @@ paths:
                     example: Unauthenticated.
       tags:
         - Endpoints
-      security: []
   '/api/verify-email/{id}/{hash}':
     get:
       summary: 'Mark the authenticated user''s email address as verified.'
@@ -318,27 +588,30 @@ paths:
           schema:
             type: string
       responses:
-        401:
+        200:
           description: ''
           content:
             application/json:
               schema:
                 type: object
                 example:
-                  message: Unauthenticated.
+                  msg: 'Successfully verified'
+                  '0': 201
                 properties:
-                  message:
+                  msg:
                     type: string
-                    example: Unauthenticated.
+                    example: 'Successfully verified'
+                  0:
+                    type: integer
+                    example: 201
       tags:
         - Endpoints
-      security: []
     parameters:
       -
         in: path
         name: id
         description: 'The ID of the verify email.'
-        example: sequi
+        example: pariatur
         required: true
         schema:
           type: string
@@ -346,7 +619,7 @@ paths:
         in: path
         name: hash
         description: ''
-        example: illo
+        example: culpa
         required: true
         schema:
           type: string
@@ -369,71 +642,29 @@ paths:
           example: application/json
           schema:
             type: string
-      responses: {  }
-      tags:
-        - Endpoints
-      security: []
-  /api/confirm-password:
-    get:
-      summary: 'Show the confirm password view.'
-      description: ''
-      parameters:
-        -
-          in: header
-          name: Content-Type
-          description: ''
-          example: application/json
-          schema:
-            type: string
-        -
-          in: header
-          name: Accept
-          description: ''
-          example: application/json
-          schema:
-            type: string
       responses:
-        401:
+        200:
           description: ''
           content:
             application/json:
               schema:
                 type: object
                 example:
-                  message: Unauthenticated.
+                  msg: verification-link-sent
+                  '0': 201
                 properties:
-                  message:
+                  msg:
                     type: string
-                    example: Unauthenticated.
+                    example: verification-link-sent
+                  0:
+                    type: integer
+                    example: 201
       tags:
         - Endpoints
-      security: []
-    post:
-      summary: 'Confirm the user''s password.'
-      description: ''
-      parameters:
-        -
-          in: header
-          name: Content-Type
-          description: ''
-          example: application/json
-          schema:
-            type: string
-        -
-          in: header
-          name: Accept
-          description: ''
-          example: application/json
-          schema:
-            type: string
-      responses: {  }
-      tags:
-        - Endpoints
-      security: []
   /api/logout:
     post:
-      summary: 'Destroy an authenticated session.'
-      description: ''
+      summary: 'User logout'
+      description: 'Destroy an authenticated user session.'
       parameters:
         -
           in: header
@@ -452,10 +683,9 @@ paths:
       responses: {  }
       tags:
         - Endpoints
-      security: []
   /api/admin/login:
     get:
-      summary: ''
+      summary: 'Display the admin login view.'
       description: ''
       parameters:
         -
@@ -489,6 +719,62 @@ paths:
         - Endpoints
       security: []
     post:
+      summary: 'Handle an incoming admin login request.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'logged in successfully'
+                  'AccessToken:': eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9hZG1pblwvbG9naW4iLCJpYXQiOjE2MzAzMzE5NTIsImV4cCI6MTYzMDMzNTU1MiwibmJmIjoxNjMwMzMxOTUyLCJqdGkiOiJRQjc0UnNIVjBKaldadG9GIiwic3ViIjoxLCJwcnYiOiJkZjg4M2RiOTdiZDA1ZWY4ZmY4NTA4MmQ2ODZjNDVlODMyZTU5M2E5In0.ASySa0_mm7wqeSdAsAhpWGkuD2_oAafoduHBnh4tsJs
+                properties:
+                  message:
+                    type: string
+                    example: 'logged in successfully'
+                  'AccessToken:':
+                    type: string
+                    example: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9hZG1pblwvbG9naW4iLCJpYXQiOjE2MzAzMzE5NTIsImV4cCI6MTYzMDMzNTU1MiwibmJmIjoxNjMwMzMxOTUyLCJqdGkiOiJRQjc0UnNIVjBKaldadG9GIiwic3ViIjoxLCJwcnYiOiJkZjg4M2RiOTdiZDA1ZWY4ZmY4NTA4MmQ2ODZjNDVlODMyZTU5M2E5In0.ASySa0_mm7wqeSdAsAhpWGkuD2_oAafoduHBnh4tsJs
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: ''
+                  example: ducimus
+                password:
+                  type: string
+                  description: ''
+                  example: porro
+              required:
+                - email
+                - password
+  /api/admin/admins:
+    get:
       summary: ''
       description: ''
       parameters:
@@ -506,13 +792,25 @@ paths:
           example: application/json
           schema:
             type: string
-      responses: {  }
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
       tags:
         - Endpoints
       security: []
   '/api/admin/admins/{id}':
     get:
-      summary: 'getting a certain admin in the database by the id'
+      summary: ''
       description: ''
       parameters:
         -
@@ -530,49 +828,18 @@ paths:
           schema:
             type: string
       responses:
-        200:
-          description: 'the user is a superadmin'
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  id: '1'
-                  email: steve@gmail.com
-                  username: steve
-                  superadmin: '1'
-                properties:
-                  id:
-                    type: string
-                    example: '1'
-                  email:
-                    type: string
-                    example: steve@gmail.com
-                  username:
-                    type: string
-                    example: steve
-                  superadmin:
-                    type: string
-                    example: '1'
         401:
-          description: 'the user isn''t a superadmin'
+          description: ''
           content:
             application/json:
               schema:
                 type: object
                 example:
-                  message: unauthorized
+                  message: Unauthenticated.
                 properties:
                   message:
                     type: string
-                    example: unauthorized
-        404:
-          description: 'the admin by the given id is not found'
-          content:
-            text/plain:
-              schema:
-                type: string
-                example: ''
+                    example: Unauthenticated.
       tags:
         - Endpoints
       security: []
@@ -580,14 +847,14 @@ paths:
       -
         in: path
         name: id
-        description: 'The ID of the admin'
-        example: 19
+        description: 'The ID of the admin.'
+        example: 10
         required: true
         schema:
           type: integer
   /api/admin/register:
     get:
-      summary: ''
+      summary: 'Display the admin registration view.'
       description: ''
       parameters:
         -
@@ -621,53 +888,7 @@ paths:
         - Endpoints
       security: []
     post:
-      summary: ''
-      description: ''
-      parameters:
-        -
-          in: header
-          name: Content-Type
-          description: ''
-          example: application/json
-          schema:
-            type: string
-        -
-          in: header
-          name: Accept
-          description: ''
-          example: application/json
-          schema:
-            type: string
-      responses: {  }
-      tags:
-        - Endpoints
-      security: []
-  /api/admin/logout:
-    post:
-      summary: ''
-      description: ''
-      parameters:
-        -
-          in: header
-          name: Content-Type
-          description: ''
-          example: application/json
-          schema:
-            type: string
-        -
-          in: header
-          name: Accept
-          description: ''
-          example: application/json
-          schema:
-            type: string
-      responses: {  }
-      tags:
-        - Endpoints
-      security: []
-  '/api/admin/updateadmin/{id}':
-    post:
-      summary: 'updating a certain admin with id from the database'
+      summary: 'Handle an incoming admin registration request.'
       description: ''
       parameters:
         -
@@ -686,64 +907,112 @@ paths:
             type: string
       responses:
         200:
-          description: 'the user is a superadmin'
-          content:
-            text/plain:
-              schema:
-                type: string
-                example: ''
-        401:
-          description: 'the user isn''t a superadmin'
+          description: ''
           content:
             application/json:
               schema:
                 type: object
                 example:
-                  message: unauthorized
+                  message: 'registered successfully'
+                  'AccessToken:': eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9hZG1pblwvcmVnaXN0ZXIiLCJpYXQiOjE2MzAzMzE5OTQsImV4cCI6MTYzMDMzNTU5NCwibmJmIjoxNjMwMzMxOTk0LCJqdGkiOiJwMGFQcVpUUlQyYW5rT3RjIiwic3ViIjoyNCwicHJ2IjoiZGY4ODNkYjk3YmQwNWVmOGZmODUwODJkNjg2YzQ1ZTgzMmU1OTNhOSJ9.FuZ92MotjJPJv7ebj15zv4Do1ER0_mwUKXhW8J9mDK8
                 properties:
                   message:
                     type: string
-                    example: unauthorized
-        404:
-          description: 'the admin by the given id was not found'
-          content:
-            text/plain:
-              schema:
-                type: string
-                example: ''
-        422:
-          description: 'The request was well formed but was unable to be followed due to a validation error'
-          content:
-            text/plain:
-              schema:
-                type: string
-                example: ''
+                    example: 'registered successfully'
+                  'AccessToken:':
+                    type: string
+                    example: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9hZG1pblwvcmVnaXN0ZXIiLCJpYXQiOjE2MzAzMzE5OTQsImV4cCI6MTYzMDMzNTU5NCwibmJmIjoxNjMwMzMxOTk0LCJqdGkiOiJwMGFQcVpUUlQyYW5rT3RjIiwic3ViIjoyNCwicHJ2IjoiZGY4ODNkYjk3YmQwNWVmOGZmODUwODJkNjg2YzQ1ZTgzMmU1OTNhOSJ9.FuZ92MotjJPJv7ebj15zv4Do1ER0_mwUKXhW8J9mDK8
       tags:
         - Endpoints
       requestBody:
-        required: false
+        required: true
         content:
           application/json:
             schema:
               type: object
               properties:
+                email:
+                  type: string
+                  description: ''
+                  example: fugit
+                username:
+                  type: string
+                  description: ''
+                  example: quo
+                password:
+                  type: string
+                  description: ''
+                  example: commodi
+                password_confirmation:
+                  type: string
+                  description: ''
+                  example: quis
                 superadmin:
                   type: boolean
                   description: ''
-                  example: false
+                  example: true
+              required:
+                - email
+                - username
+                - password
+                - password_confirmation
+  /api/admin/logout:
+    post:
+      summary: 'Admin logout'
+      description: 'Destroy an authenticated admin session (logout).'
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+  '/api/admin/updateadmin/{id}':
+    post:
+      summary: ''
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
       security: []
     parameters:
       -
         in: path
         name: id
-        description: 'The ID of the admin'
-        example: 9
+        description: 'The ID of the updateadmin.'
+        example: autem
         required: true
         schema:
-          type: integer
+          type: string
   '/api/admin/removeadmin/{id}':
     post:
-      summary: 'removing a certain admin with id from the database'
+      summary: ''
       description: ''
       parameters:
         -
@@ -760,33 +1029,7 @@ paths:
           example: application/json
           schema:
             type: string
-      responses:
-        200:
-          description: 'the user is a superadmin'
-          content:
-            text/plain:
-              schema:
-                type: string
-                example: ''
-        401:
-          description: 'the user isn''t a superadmin'
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  message: unauthorized
-                properties:
-                  message:
-                    type: string
-                    example: unauthorized
-        404:
-          description: 'the admin with the given id was not found'
-          content:
-            text/plain:
-              schema:
-                type: string
-                example: ''
+      responses: {  }
       tags:
         - Endpoints
       security: []
@@ -794,14 +1037,14 @@ paths:
       -
         in: path
         name: id
-        description: 'The ID of the admin'
-        example: 18
+        description: 'The ID of the removeadmin.'
+        example: eos
         required: true
         schema:
-          type: integer
+          type: string
   /api/admin/addcategory:
     post:
-      summary: 'adding category to the database'
+      summary: ''
       description: ''
       parameters:
         -
@@ -818,52 +1061,13 @@ paths:
           example: application/json
           schema:
             type: string
-      responses:
-        200:
-          description: 'the user is an admin and the inputs are satisfied with the validation rules'
-          content:
-            text/plain:
-              schema:
-                type: string
-                example: ''
-        401:
-          description: 'the user isn''t an admin'
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  message: unauthorized
-                properties:
-                  message:
-                    type: string
-                    example: unauthorized
-        422:
-          description: 'The request was well formed but was unable to be followed due to a validation error'
-          content:
-            text/plain:
-              schema:
-                type: string
-                example: ''
+      responses: {  }
       tags:
         - Endpoints
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                category_name:
-                  type: string
-                  description: 'and must be unique'
-                  example: optio
-              required:
-                - category_name
       security: []
   '/api/admin/removecategory/{id}':
     post:
-      summary: 'removing a certain category with id from the database'
+      summary: ''
       description: ''
       parameters:
         -
@@ -880,33 +1084,7 @@ paths:
           example: application/json
           schema:
             type: string
-      responses:
-        200:
-          description: 'the user is an admin'
-          content:
-            text/plain:
-              schema:
-                type: string
-                example: ''
-        401:
-          description: 'the user isn''t an admin'
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  message: unauthorized
-                properties:
-                  message:
-                    type: string
-                    example: unauthorized
-        404:
-          description: 'the category with the given id is not found'
-          content:
-            text/plain:
-              schema:
-                type: string
-                example: ''
+      responses: {  }
       tags:
         - Endpoints
       security: []
@@ -914,14 +1092,14 @@ paths:
       -
         in: path
         name: id
-        description: 'The ID of the category'
-        example: 11
+        description: 'The ID of the removecategory.'
+        example: id
         required: true
         schema:
-          type: integer
+          type: string
   '/api/admin/updatecategory/{id}':
     post:
-      summary: 'updating a certain category with id in the database'
+      summary: ''
       description: ''
       parameters:
         -
@@ -938,73 +1116,29 @@ paths:
           example: application/json
           schema:
             type: string
-      responses:
-        200:
-          description: 'the user is an admin and the inputs are satisfied with the validation rules'
-          content:
-            text/plain:
-              schema:
-                type: string
-                example: ''
-        401:
-          description: 'the user isn''t an admin'
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  message: unauthorized
-                properties:
-                  message:
-                    type: string
-                    example: unauthorized
-        404:
-          description: 'the category with the given id was not found'
-          content:
-            text/plain:
-              schema:
-                type: string
-                example: ''
-        422:
-          description: 'The request was well formed but was unable to be followed due to a validation error'
-          content:
-            text/plain:
-              schema:
-                type: string
-                example: ''
+      responses: {  }
       tags:
         - Endpoints
-      requestBody:
-        required: false
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                category_name:
-                  type: string
-                  description: 'and must be unique'
-                  example: a
       security: []
     parameters:
       -
         in: path
         name: id
-        description: 'The ID of the category'
-        example: 4
+        description: 'The ID of the updatecategory.'
+        example: molestiae
         required: true
         schema:
-          type: integer
+          type: string
   /api/admin/additem:
     post:
-      summary: 'adding item to the database'
+      summary: ''
       description: ''
       parameters:
         -
           in: header
           name: Content-Type
           description: ''
-          example: multipart/form-data
+          example: application/json
           schema:
             type: string
         -
@@ -1014,76 +1148,13 @@ paths:
           example: application/json
           schema:
             type: string
-      responses:
-        200:
-          description: 'the user is an admin and the inputs are satisfied with the validation rules'
-          content:
-            text/plain:
-              schema:
-                type: string
-                example: ''
-        401:
-          description: 'the user isn''t an admin'
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  message: unauthorized
-                properties:
-                  message:
-                    type: string
-                    example: unauthorized
-        422:
-          description: 'The request was well formed but was unable to be followed due to a validation error'
-          content:
-            text/plain:
-              schema:
-                type: string
-                example: ''
+      responses: {  }
       tags:
         - Endpoints
-      requestBody:
-        required: true
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                item_name:
-                  type: string
-                  description: 'and must be unique with 40 chrachters at maximum'
-                  example: aut
-                category_id:
-                  type: integer
-                  description: 'and it must exist'
-                  example: 20
-                price:
-                  type: decimal
-                  description: ''
-                  example: voluptatibus
-                offer:
-                  type: decimal
-                  description: 'if there was an offer_end_date'
-                  example: aliquam
-                offer_end_date:
-                  type: datetime
-                  description: 'if there was an offer'
-                  example: aliquid
-                file_path:
-                  type: string
-                  format: binary
-                  description: ''
-              required:
-                - item_name
-                - category_id
-                - price
-                - offer
-                - offer_end_date
       security: []
   '/api/admin/removeitem/{id}':
     post:
-      summary: 'removing a certain item with id from the database'
+      summary: ''
       description: ''
       parameters:
         -
@@ -1100,33 +1171,7 @@ paths:
           example: application/json
           schema:
             type: string
-      responses:
-        200:
-          description: 'the user is an admin'
-          content:
-            text/plain:
-              schema:
-                type: string
-                example: ''
-        401:
-          description: 'the user isn''t an admin'
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  message: unauthorized
-                properties:
-                  message:
-                    type: string
-                    example: unauthorized
-        404:
-          description: 'the item with the given id is not found'
-          content:
-            text/plain:
-              schema:
-                type: string
-                example: ''
+      responses: {  }
       tags:
         - Endpoints
       security: []
@@ -1134,14 +1179,14 @@ paths:
       -
         in: path
         name: id
-        description: 'The ID of the item'
-        example: 20
+        description: 'The ID of the removeitem.'
+        example: molestias
         required: true
         schema:
-          type: integer
+          type: string
   '/api/admin/updateitem/{id}':
     post:
-      summary: 'updating a certain item with id in the database'
+      summary: ''
       description: ''
       parameters:
         -
@@ -1158,40 +1203,7 @@ paths:
           example: application/json
           schema:
             type: string
-      responses:
-        200:
-          description: 'the user is an admin and the inputs are satisfied with the validation rules'
-          content:
-            text/plain:
-              schema:
-                type: string
-                example: ''
-        401:
-          description: 'the user isn''t an admin'
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  message: unauthorized
-                properties:
-                  message:
-                    type: string
-                    example: unauthorized
-        404:
-          description: 'the item with the given id was not found'
-          content:
-            text/plain:
-              schema:
-                type: string
-                example: ''
-        422:
-          description: 'The request was well formed but was unable to be followed due to a validation error'
-          content:
-            text/plain:
-              schema:
-                type: string
-                example: ''
+      responses: {  }
       tags:
         - Endpoints
       security: []
@@ -1199,14 +1211,14 @@ paths:
       -
         in: path
         name: id
-        description: 'The ID of the item'
-        example: 1
+        description: 'The ID of the updateitem.'
+        example: quo
         required: true
         schema:
-          type: integer
+          type: string
   /api/admin/verify-email:
     get:
-      summary: 'Display the email verification prompt.'
+      summary: 'Display the admin email verification prompt.'
       description: ''
       parameters:
         -
@@ -1238,10 +1250,9 @@ paths:
                     example: Unauthenticated.
       tags:
         - Endpoints
-      security: []
   '/api/admin/verify-email/{id}/{hash}':
     get:
-      summary: 'Mark the authenticated user''s email address as verified.'
+      summary: 'Mark the authenticated admin''s email address as verified.'
       description: ''
       parameters:
         -
@@ -1273,13 +1284,12 @@ paths:
                     example: Unauthenticated.
       tags:
         - Endpoints
-      security: []
     parameters:
       -
         in: path
         name: id
         description: 'The ID of the verify email.'
-        example: labore
+        example: nihil
         required: true
         schema:
           type: string
@@ -1287,7 +1297,7 @@ paths:
         in: path
         name: hash
         description: ''
-        example: ea
+        example: autem
         required: true
         schema:
           type: string
@@ -1313,11 +1323,10 @@ paths:
       responses: {  }
       tags:
         - Endpoints
-      security: []
-  /api/admin/admins:
-    get:
-      summary: 'getting all admins in the database'
-      description: ''
+  /api/place-order:
+    post:
+      summary: 'Place order'
+      description: 'recieve a cart and place an order with cart info'
       parameters:
         -
           in: header
@@ -1333,30 +1342,35 @@ paths:
           example: application/json
           schema:
             type: string
-      responses:
-        200:
-          description: 'the user is a superadmin'
-          content:
-            text/plain:
-              schema:
-                type: string
-                example: "{\n  {\n  \"id\": \"1\" ,\n  \"email\":\"steve@gmail.com\" ,\n  \"username\":\"steve\" ,\n  \"superadmin\":\"1\"\n  }\n  {\n  \"id\": \"2\" ,\n  \"email\":\"sara@gmail.com\" ,\n  \"username\":\"sara\" ,\n  \"superadmin\":\"0\"\n  }\n}"
-        401:
-          description: 'the user isn''t a superadmin'
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  message: unauthorized
-                properties:
-                  message:
-                    type: string
-                    example: unauthorized
+      responses: {  }
       tags:
-        - Endpoints
+        - 'Order Management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                cartID:
+                  type: integer
+                  description: 'The id of a valid cart to use for the order'
+                  example: 8
+                deliveryType:
+                  type: integer
+                  description: 'A number between 0-3 to specify the type of delivery from the list [''To Home'', ''To Car'', ''In Restaurant'', ''Take Away''].'
+                  example: 2
+              required:
+                - cartID
+                - deliveryType
       security: []
 tags:
   -
+    name: 'Cart Management'
+    description: "\nAPIs for Creating and using carts"
+  -
     name: Endpoints
     description: ''
+  -
+    name: 'Order Management'
+    description: "\nAPIs for placing orders and modifying them"

@@ -15,28 +15,39 @@ use Illuminate\Validation\Rules;
 class RegisteredUserController extends Controller
 {
     /**
-     * Display the registration view.
+     * Display the user registration view.
      *
      * @return \Illuminate\View\View
      */
     public function create()
     {
-       // return view('auth.register');
        return response()->json(['message' => 'this is the user register form view']);
     }
 
+    /**
+     * Display the admin registration view.
+     *
+     * @return \Illuminate\View\View
+     */
     public function create_admin()
     {
-       // return view('auth.register');
        return response()->json(['message' => 'this is the admin register form view']);
     }
+
     /**
-     * Handle an incoming registration request.
-     *
-     * @param  \Illuminate\Http\Request  $request
+     * Handle an incoming user registration request.
+     * 
+     * @param   \Illuminate\Http\Request  $request
+     * @bodyParam first_name string required   
+     * @bodyParam last_name string required   
+     * @bodyParam email string required   
+     * @bodyParam password string required   
+     * @bodyParam password_confirmation string required   
      * @return \Illuminate\Http\RedirectResponse
      *
      * @throws \Illuminate\Validation\ValidationException
+     * 
+     * @responseFile responses/user.post.register
      */
     public function store(Request $request)
     {
@@ -57,15 +68,30 @@ class RegisteredUserController extends Controller
                 'password' => Hash::make($request->password),
             ]);
 
-            event(new Registered($user));
-
-            //Auth::login($user);
             $credentials = $request->only('email', 'password');
             $token = auth::attempt($credentials);
             return response()->json(['message' => 'Successfully created your account, just verify it at your email !','user'=>$user,'AccessToken:'=>$token], 201);
         }
     }
 
+    /**
+     * Handle an incoming admin registration request.
+     *
+     * @authenticated
+     * 
+     * @param  \Illuminate\Http\Request  $request    
+     * @bodyParam email string required  
+     * @bodyParam username string required   
+     * @bodyParam password string required   
+     * @bodyParam password_confirmation string required  
+     * @bodyParam superadmin boolean 
+     * 
+     * @return \Illuminate\Http\RedirectResponse
+     *
+     * @throws \Illuminate\Validation\ValidationException
+     * 
+     * @responseFile responses/admin.post.register
+     */
     public function store_admin(Request $request){
         $admin = Auth::user();
 
@@ -91,7 +117,6 @@ class RegisteredUserController extends Controller
                     'superadmin' => $request->superadmin,
                 ]);
 
-                event(new Registered($admin));
 
                 $credentials = $request->only('email', 'password');
                 $token = Auth::guard('admin-api')->attempt($credentials);

@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 class AuthenticatedSessionController extends Controller
 {
     /**
-     * Display the login view.
+     * Display the user login view.
      *
      * @return \Illuminate\View\View
      */
@@ -21,7 +21,11 @@ class AuthenticatedSessionController extends Controller
       return response()->json(['message' => 'this is the user login form page']);
     }
 
-
+    /**
+     * Display the admin login view.
+     *
+     * @return \Illuminate\View\View
+     */
     public function create_admin()
     {
       //  return view('auth.login');
@@ -29,14 +33,18 @@ class AuthenticatedSessionController extends Controller
     }
 
     /**
-     * Handle an incoming authentication request.
+     * Handle an incoming user login request.
      *
      * @param  \App\Http\Requests\Auth\LoginRequest  $request
+     * @bodyParam email string required
+     * @bodyParam password string required
+     * @bodyParam remember boolean
      * @return \Illuminate\Http\RedirectResponse
+     * 
+     * @responseFile responses/user.post.login
      */
     public function store(LoginRequest $request)
     {
-          //$request->authenticate();
           $validator = Validator()->make($request->all(), [
             'email' => 'required|string|email',
             'password' => 'required|string',
@@ -46,8 +54,6 @@ class AuthenticatedSessionController extends Controller
         if ($validator->fails()) {
             return response()->json(['message' => 'Invalid data','Errors in'=>$validator->getMessageBag()], 400);
         } else {
-            //$request->session()->regenerate();
-            //$request->password=Hash::make($request->password);
             $credentials = $request->only('email', 'password');
             $token = Auth::attempt($credentials, true);
             if ($token){
@@ -59,11 +65,21 @@ class AuthenticatedSessionController extends Controller
         }
     }
 
-
+    /**
+     * Handle an incoming admin login request.
+     *
+     * @authenticated
+     * 
+     * @param  \App\Http\Requests\Auth\LoginRequest  $request
+     * @bodyParam email string required
+     * @bodyParam password string required
+     * @return \Illuminate\Http\RedirectResponse
+     * 
+     * @responseFile responses/admin.post.login
+     */
     public function store_admin(Request $request)
     {
-        
-          //$request->authenticate();
+    
           $validator = Validator()->make($request->except('superadmin'), [
             'email' => 'required|string',
             'password' => 'required|string',
@@ -87,30 +103,37 @@ class AuthenticatedSessionController extends Controller
      }
 
     /**
-     * Destroy an authenticated session.
+     * User logout
+     * 
+     * Destroy an authenticated user session.
      *
+     * @authenticated
+     * 
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Request $request)
     {
-       //Auth::guard('api')->logout();
        auth::logout();
-
-       //$request->session()->invalidate();
-       //$request->session()->regenerateToken();
 
        return response()->json(['message' => 'logged out successfully'], 200);
     }
 
-
+    /**
+     * Admin logout
+     * 
+     * Destroy an authenticated admin session (logout).
+     * 
+     * @authenticated
+     * 
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function destroy_admin(Request $request)
     {
-       //Auth::guard('api')->logout();
+
        auth::guard('admin-api')->logout();
 
-       //$request->session()->invalidate();
-       //$request->session()->regenerateToken();
 
        return response()->json(['message' => 'logged out successfully'], 200);
     }

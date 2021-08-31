@@ -15,26 +15,43 @@ class NewPasswordController extends Controller
     /**
      * Display the password reset view.
      *
+     * should contain email, new password & password confirmation fields
+     * 
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\View\View
      */
     public function create(Request $request)
     {
         return response()->json(['msg'=>'This is the reset password form'],201);
-   //should contain email, new password & password confirmation fields
+   
     }
 
     /**
      * Handle an incoming new password request.
      *
+     * This api handles the form submission
+     * Here we will attempt to reset the user's password. If it is successful we
+     * will update the password on an actual user model and persist it to the
+     * database. Otherwise we will parse the error and return the response.
+     *
      * @param  \Illuminate\Http\Request  $request
+     * @bodyParam token mixed required
+     * @bodyParam emai string required
+     * @bodyParam password string required
+     * @bodyParam password_confirmation string required  
      * @return \Illuminate\Http\RedirectResponse
      *
      * @throws \Illuminate\Validation\ValidationException
+     * 
+     * @response {
+     * "msg": "this is the user login form, login with the new password ",
+     * "0": "status",
+     * "1": "Your password has been reset!"
+     * }
      */
     public function store(Request $request)
     {
-        //handling the form submission
+       
         $validator = Validator()->make($request->all(),[
             'token' => 'required',
             'email' => 'required|email',
@@ -45,9 +62,7 @@ class NewPasswordController extends Controller
             return response()->json(['message' => 'Something went wrong',$validator->getMessageBag()], 400);
         }
 
-        // Here we will attempt to reset the user's password. If it is successful we
-        // will update the password on an actual user model and persist it to the
-        // database. Otherwise we will parse the error and return the response.
+
         $status = Password::reset(
             $request->only('email', 'password', 'password_confirmation', 'token'),
             function ($user) use ($request) {
@@ -60,9 +75,7 @@ class NewPasswordController extends Controller
             }
         );
 
-        // If the password was successfully reset, we will redirect the user back to
-        // the application's home authenticated view. If there is an error we can
-        // redirect them back to where they came from with their error message.
+       
         if ($status == Password::PASSWORD_RESET)
         {
                     return response()->json(['msg'=>'this is the user login form, login with the new password ','status', __($status)],201); }

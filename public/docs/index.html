@@ -19,7 +19,7 @@
 
     <script src="//cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js"></script>
     <script>
-        var baseUrl = "http://localhost";
+        var baseUrl = "http://127.0.0.1:8000";
     </script>
     <script src="../docs/js/tryitout-3.9.1.js"></script>
 
@@ -69,11 +69,407 @@ You can switch the language used with the tabs at the top right (or from the nav
         <h1>Authenticating requests</h1>
 <p>This API is not authenticated.</p>
 
+        <h1 id="cart-management">Cart Management</h1>
+
+    <p>APIs for Creating and using carts</p>
+
+            <h2 id="cart-management-POSTapi-create-cart">Create cart</h2>
+
+<p>
+</p>
+
+<p>Create a new cart to place items in</p>
+
+<span id="example-requests-POSTapi-create-cart">
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request POST \
+    "http://127.0.0.1:8000/api/create-cart" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"User_id\": 13
+}"
+</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/create-cart"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "User_id": 13
+}
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre>
+</span>
+
+<span id="example-responses-POSTapi-create-cart">
+</span>
+<span id="execution-results-POSTapi-create-cart" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-create-cart"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-create-cart"></code></pre>
+</span>
+<span id="execution-error-POSTapi-create-cart" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-create-cart"></code></pre>
+</span>
+<form id="form-POSTapi-create-cart" data-method="POST"
+      data-path="api/create-cart"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-create-cart', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-create-cart"
+                    onclick="tryItOut('POSTapi-create-cart');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-create-cart"
+                    onclick="cancelTryOut('POSTapi-create-cart');" hidden>Cancel
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-create-cart" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/create-cart</code></b>
+        </p>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>User_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="User_id"
+               data-endpoint="POSTapi-create-cart"
+               data-component="body" required  hidden>
+    <br>
+<p>The ID of the user who's account is associated with this cart</p>        </p>
+    
+    </form>
+
+            <h2 id="cart-management-POSTapi-add-to-cart">Add to cart</h2>
+
+<p>
+</p>
+
+<p>add a new item to the cart</p>
+
+<span id="example-requests-POSTapi-add-to-cart">
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request POST \
+    "http://127.0.0.1:8000/api/add-to-cart" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"cart_id\": 20,
+    \"item_id\": 14
+}"
+</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/add-to-cart"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "cart_id": 20,
+    "item_id": 14
+}
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre>
+</span>
+
+<span id="example-responses-POSTapi-add-to-cart">
+</span>
+<span id="execution-results-POSTapi-add-to-cart" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-add-to-cart"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-add-to-cart"></code></pre>
+</span>
+<span id="execution-error-POSTapi-add-to-cart" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-add-to-cart"></code></pre>
+</span>
+<form id="form-POSTapi-add-to-cart" data-method="POST"
+      data-path="api/add-to-cart"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-add-to-cart', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-add-to-cart"
+                    onclick="tryItOut('POSTapi-add-to-cart');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-add-to-cart"
+                    onclick="cancelTryOut('POSTapi-add-to-cart');" hidden>Cancel
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-add-to-cart" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/add-to-cart</code></b>
+        </p>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>cart_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="cart_id"
+               data-endpoint="POSTapi-add-to-cart"
+               data-component="body" required  hidden>
+    <br>
+<p>The id of the cart to which the item will be added</p>        </p>
+                <p>
+            <b><code>item_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="item_id"
+               data-endpoint="POSTapi-add-to-cart"
+               data-component="body" required  hidden>
+    <br>
+<p>The id of the item that needs to be added</p>        </p>
+    
+    </form>
+
+            <h2 id="cart-management-POSTapi-remove-from-cart">Remove from cart</h2>
+
+<p>
+</p>
+
+<p>Remove an item from the cart</p>
+
+<span id="example-requests-POSTapi-remove-from-cart">
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request POST \
+    "http://127.0.0.1:8000/api/remove-from-cart" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"cart_id\": 13,
+    \"item_id\": 14
+}"
+</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/remove-from-cart"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "cart_id": 13,
+    "item_id": 14
+}
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre>
+</span>
+
+<span id="example-responses-POSTapi-remove-from-cart">
+</span>
+<span id="execution-results-POSTapi-remove-from-cart" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-remove-from-cart"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-remove-from-cart"></code></pre>
+</span>
+<span id="execution-error-POSTapi-remove-from-cart" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-remove-from-cart"></code></pre>
+</span>
+<form id="form-POSTapi-remove-from-cart" data-method="POST"
+      data-path="api/remove-from-cart"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-remove-from-cart', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-remove-from-cart"
+                    onclick="tryItOut('POSTapi-remove-from-cart');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-remove-from-cart"
+                    onclick="cancelTryOut('POSTapi-remove-from-cart');" hidden>Cancel
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-remove-from-cart" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/remove-from-cart</code></b>
+        </p>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>cart_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="cart_id"
+               data-endpoint="POSTapi-remove-from-cart"
+               data-component="body" required  hidden>
+    <br>
+<p>The id of the cart that will be modified</p>        </p>
+                <p>
+            <b><code>item_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="item_id"
+               data-endpoint="POSTapi-remove-from-cart"
+               data-component="body" required  hidden>
+    <br>
+<p>The id of the item that needs to be removed</p>        </p>
+    
+    </form>
+
         <h1 id="endpoints">Endpoints</h1>
 
     
 
-            <h2 id="endpoints-POSTapi-register">Handle an incoming registration request.</h2>
+            <h2 id="endpoints-GETapi-register">Display the user registration view.</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-register">
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request GET \
+    --get "http://127.0.0.1:8000/api/register" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/register"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+</span>
+
+<span id="example-responses-GETapi-register">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 59
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;message&quot;: &quot;this is the user register form view&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-register" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-register"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-register"></code></pre>
+</span>
+<span id="execution-error-GETapi-register" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-register"></code></pre>
+</span>
+<form id="form-GETapi-register" data-method="GET"
+      data-path="api/register"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-register', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-register"
+                    onclick="tryItOut('GETapi-register');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-register"
+                    onclick="cancelTryOut('GETapi-register');" hidden>Cancel
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-register" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/register</code></b>
+        </p>
+                    </form>
+
+            <h2 id="endpoints-POSTapi-register">Handle an incoming user registration request.</h2>
 
 <p>
 </p>
@@ -85,12 +481,20 @@ You can switch the language used with the tabs at the top right (or from the nav
 
 
 <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/register" \
+    "http://127.0.0.1:8000/api/register" \
     --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre>
+    --header "Accept: application/json" \
+    --data "{
+    \"first_name\": \"quaerat\",
+    \"last_name\": \"minima\",
+    \"email\": \"porro\",
+    \"password\": \"velit\",
+    \"password_confirmation\": \"dolorem\"
+}"
+</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/register"
+    "http://127.0.0.1:8000/api/register"
 );
 
 const headers = {
@@ -98,14 +502,41 @@ const headers = {
     "Accept": "application/json",
 };
 
+let body = {
+    "first_name": "quaerat",
+    "last_name": "minima",
+    "email": "porro",
+    "password": "velit",
+    "password_confirmation": "dolorem"
+}
+
 fetch(url, {
     method: "POST",
     headers,
+    body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre>
 </span>
 
 <span id="example-responses-POSTapi-register">
-</span>
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;message&quot;: &quot;Successfully created your account, just verify it at your email !&quot;,
+    &quot;user&quot;: {
+        &quot;first_name&quot;: &quot;mariam&quot;,
+        &quot;last_name&quot;: &quot;elkhashab&quot;,
+        &quot;email&quot;: &quot;m@hotmail.com&quot;,
+        &quot;updated_at&quot;: &quot;2021-08-30T13:28:25.000000Z&quot;,
+        &quot;created_at&quot;: &quot;2021-08-30T13:28:25.000000Z&quot;,
+        &quot;id&quot;: 25
+    },
+    &quot;AccessToken:&quot;: &quot;eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9yZWdpc3RlciIsImlhdCI6MTYzMDMzMDEwNSwiZXhwIjoxNjMwMzMzNzA1LCJuYmYiOjE2MzAzMzAxMDUsImp0aSI6ImFQV1ExUmZyTDJhZXl2RmEiLCJzdWIiOjI1LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.Gb6pauP14JnqtlmZ4-GIrUJJwY34HGqmwGyXTr35zKI&quot;
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-POSTapi-register" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-register"></span>:
@@ -145,9 +576,51 @@ fetch(url, {
             <small class="badge badge-black">POST</small>
             <b><code>api/register</code></b>
         </p>
-                    </form>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>first_name</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="first_name"
+               data-endpoint="POSTapi-register"
+               data-component="body" required  hidden>
+    <br>
+        </p>
+                <p>
+            <b><code>last_name</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="last_name"
+               data-endpoint="POSTapi-register"
+               data-component="body" required  hidden>
+    <br>
+        </p>
+                <p>
+            <b><code>email</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="email"
+               data-endpoint="POSTapi-register"
+               data-component="body" required  hidden>
+    <br>
+        </p>
+                <p>
+            <b><code>password</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="password"
+               data-endpoint="POSTapi-register"
+               data-component="body" required  hidden>
+    <br>
+        </p>
+                <p>
+            <b><code>password_confirmation</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="password_confirmation"
+               data-endpoint="POSTapi-register"
+               data-component="body" required  hidden>
+    <br>
+        </p>
+    
+    </form>
 
-            <h2 id="endpoints-GETapi-login">Display the login view.</h2>
+            <h2 id="endpoints-GETapi-login">Display the user login view.</h2>
 
 <p>
 </p>
@@ -159,12 +632,12 @@ fetch(url, {
 
 
 <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/login" \
+    --get "http://127.0.0.1:8000/api/login" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/login"
+    "http://127.0.0.1:8000/api/login"
 );
 
 const headers = {
@@ -240,7 +713,7 @@ access-control-allow-origin: *
         </p>
                     </form>
 
-            <h2 id="endpoints-POSTapi-login">Handle an incoming authentication request.</h2>
+            <h2 id="endpoints-POSTapi-login">Handle an incoming user login request.</h2>
 
 <p>
 </p>
@@ -252,17 +725,18 @@ access-control-allow-origin: *
 
 
 <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/login" \
+    "http://127.0.0.1:8000/api/login" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"email\": \"ureichel@example.com\",
-    \"password\": \"mollitia\"
+    \"email\": \"ut\",
+    \"password\": \"pariatur\",
+    \"remember\": false
 }"
 </code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/login"
+    "http://127.0.0.1:8000/api/login"
 );
 
 const headers = {
@@ -271,8 +745,9 @@ const headers = {
 };
 
 let body = {
-    "email": "ureichel@example.com",
-    "password": "mollitia"
+    "email": "ut",
+    "password": "pariatur",
+    "remember": false
 }
 
 fetch(url, {
@@ -283,7 +758,17 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-login">
-</span>
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;message&quot;: &quot;logged in successfully&quot;,
+    &quot;AccessToken:&quot;: &quot;eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTYzMDMzMDU2NSwiZXhwIjoxNjMwMzM0MTY1LCJuYmYiOjE2MzAzMzA1NjUsImp0aSI6Ik1GQndmSzl3OVM5T1UyWEkiLCJzdWIiOjI1LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.xxpKgqW5NUZ9OXFXy3AHIPw22H_ivI3KOgblbKDAaoc&quot;
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-POSTapi-login" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-login"></span>:
@@ -331,13 +816,31 @@ fetch(url, {
                data-endpoint="POSTapi-login"
                data-component="body" required  hidden>
     <br>
-<p>Must be a valid email address.</p>        </p>
+        </p>
                 <p>
             <b><code>password</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
                 <input type="text"
                name="password"
                data-endpoint="POSTapi-login"
                data-component="body" required  hidden>
+    <br>
+        </p>
+                <p>
+            <b><code>remember</code></b>&nbsp;&nbsp;<small>boolean</small>     <i>optional</i> &nbsp;
+                <label data-endpoint="POSTapi-login" hidden>
+            <input type="radio" name="remember"
+                   value="true"
+                   data-endpoint="POSTapi-login"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="POSTapi-login" hidden>
+            <input type="radio" name="remember"
+                   value="false"
+                   data-endpoint="POSTapi-login"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
     <br>
         </p>
     
@@ -355,12 +858,12 @@ fetch(url, {
 
 
 <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/forgot-password" \
+    --get "http://127.0.0.1:8000/api/forgot-password" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/forgot-password"
+    "http://127.0.0.1:8000/api/forgot-password"
 );
 
 const headers = {
@@ -441,19 +944,26 @@ access-control-allow-origin: *
 <p>
 </p>
 
-
+<p>This api handles the form submission
+We will send the password reset link to this user. Once we have attempted
+to send the link, we will examine the response then see the message we
+need to show to the user. Finally, we'll send out a proper response.</p>
 
 <span id="example-requests-POSTapi-forgot-password">
 <blockquote>Example request:</blockquote>
 
 
 <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/forgot-password" \
+    "http://127.0.0.1:8000/api/forgot-password" \
     --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre>
+    --header "Accept: application/json" \
+    --data "{
+    \"email\": \"rem\"
+}"
+</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/forgot-password"
+    "http://127.0.0.1:8000/api/forgot-password"
 );
 
 const headers = {
@@ -461,14 +971,29 @@ const headers = {
     "Accept": "application/json",
 };
 
+let body = {
+    "email": "rem"
+}
+
 fetch(url, {
     method: "POST",
     headers,
+    body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre>
 </span>
 
 <span id="example-responses-POSTapi-forgot-password">
-</span>
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+ &quot;status&quot;,
+&quot;We have emailed your password reset link!&quot;
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-POSTapi-forgot-password" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-forgot-password"></span>:
@@ -508,26 +1033,36 @@ fetch(url, {
             <small class="badge badge-black">POST</small>
             <b><code>api/forgot-password</code></b>
         </p>
-                    </form>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>email</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="email"
+               data-endpoint="POSTapi-forgot-password"
+               data-component="body" required  hidden>
+    <br>
+        </p>
+    
+    </form>
 
             <h2 id="endpoints-GETapi-reset-password--token-">Display the password reset view.</h2>
 
 <p>
 </p>
 
-
+<p>should contain email, new password &amp; password confirmation fields</p>
 
 <span id="example-requests-GETapi-reset-password--token-">
 <blockquote>Example request:</blockquote>
 
 
 <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/reset-password/et" \
+    --get "http://127.0.0.1:8000/api/reset-password/possimus" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/reset-password/et"
+    "http://127.0.0.1:8000/api/reset-password/possimus"
 );
 
 const headers = {
@@ -617,19 +1152,29 @@ access-control-allow-origin: *
 <p>
 </p>
 
-
+<p>This api handles the form submission
+Here we will attempt to reset the user's password. If it is successful we
+will update the password on an actual user model and persist it to the
+database. Otherwise we will parse the error and return the response.</p>
 
 <span id="example-requests-POSTapi-reset-password">
 <blockquote>Example request:</blockquote>
 
 
 <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/reset-password" \
+    "http://127.0.0.1:8000/api/reset-password" \
     --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre>
+    --header "Accept: application/json" \
+    --data "{
+    \"token\": \"aliquam\",
+    \"emai\": \"aliquam\",
+    \"password\": \"quam\",
+    \"password_confirmation\": \"suscipit\"
+}"
+</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/reset-password"
+    "http://127.0.0.1:8000/api/reset-password"
 );
 
 const headers = {
@@ -637,14 +1182,33 @@ const headers = {
     "Accept": "application/json",
 };
 
+let body = {
+    "token": "aliquam",
+    "emai": "aliquam",
+    "password": "quam",
+    "password_confirmation": "suscipit"
+}
+
 fetch(url, {
     method: "POST",
     headers,
+    body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre>
 </span>
 
 <span id="example-responses-POSTapi-reset-password">
-</span>
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;msg&quot;: &quot;this is the user login form, login with the new password &quot;,
+    &quot;0&quot;: &quot;status&quot;,
+    &quot;1&quot;: &quot;Your password has been reset!&quot;
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-POSTapi-reset-password" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-reset-password"></span>:
@@ -684,11 +1248,46 @@ fetch(url, {
             <small class="badge badge-black">POST</small>
             <b><code>api/reset-password</code></b>
         </p>
-                    </form>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>token</code></b>&nbsp;&nbsp;<small>mixed</small>  &nbsp;
+                <input type="text"
+               name="token"
+               data-endpoint="POSTapi-reset-password"
+               data-component="body" required  hidden>
+    <br>
+        </p>
+                <p>
+            <b><code>emai</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="emai"
+               data-endpoint="POSTapi-reset-password"
+               data-component="body" required  hidden>
+    <br>
+        </p>
+                <p>
+            <b><code>password</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="password"
+               data-endpoint="POSTapi-reset-password"
+               data-component="body" required  hidden>
+    <br>
+        </p>
+                <p>
+            <b><code>password_confirmation</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="password_confirmation"
+               data-endpoint="POSTapi-reset-password"
+               data-component="body" required  hidden>
+    <br>
+        </p>
+    
+    </form>
 
-            <h2 id="endpoints-GETapi-verify-email">Display the email verification prompt.</h2>
+            <h2 id="endpoints-GETapi-verify-email">Display the user email verification prompt.</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -698,12 +1297,12 @@ fetch(url, {
 
 
 <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/verify-email" \
+    --get "http://127.0.0.1:8000/api/verify-email" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/verify-email"
+    "http://127.0.0.1:8000/api/verify-email"
 );
 
 const headers = {
@@ -748,7 +1347,7 @@ access-control-allow-origin: *
 </span>
 <form id="form-GETapi-verify-email" data-method="GET"
       data-path="api/verify-email"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
@@ -775,11 +1374,20 @@ access-control-allow-origin: *
             <small class="badge badge-green">GET</small>
             <b><code>api/verify-email</code></b>
         </p>
-                    </form>
+                <p>
+            <label id="auth-GETapi-verify-email" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-verify-email"
+                                                                data-component="header"></label>
+        </p>
+                </form>
 
             <h2 id="endpoints-GETapi-verify-email--id---hash-">Mark the authenticated user&#039;s email address as verified.</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -789,12 +1397,12 @@ access-control-allow-origin: *
 
 
 <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/verify-email/sequi/illo" \
+    --get "http://127.0.0.1:8000/api/verify-email/pariatur/culpa" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/verify-email/sequi/illo"
+    "http://127.0.0.1:8000/api/verify-email/pariatur/culpa"
 );
 
 const headers = {
@@ -810,20 +1418,13 @@ fetch(url, {
 
 <span id="example-responses-GETapi-verify-email--id---hash-">
             <blockquote>
-            <p>Example response (401):</p>
+            <p>Example response (200):</p>
         </blockquote>
-                <details class="annotation">
-            <summary>
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre>
-        </details>         <pre>
+                <pre>
 
 <code class="language-json">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
+    &quot;msg&quot;: &quot;Successfully verified&quot;,
+    &quot;0&quot;: 201
 }</code>
  </pre>
     </span>
@@ -839,7 +1440,7 @@ access-control-allow-origin: *
 </span>
 <form id="form-GETapi-verify-email--id---hash-" data-method="GET"
       data-path="api/verify-email/{id}/{hash}"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
@@ -866,7 +1467,15 @@ access-control-allow-origin: *
             <small class="badge badge-green">GET</small>
             <b><code>api/verify-email/{id}/{hash}</code></b>
         </p>
-                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                <p>
+            <label id="auth-GETapi-verify-email--id---hash-" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-verify-email--id---hash-"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
                     <p>
                 <b><code>id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
                 <input type="text"
@@ -888,6 +1497,7 @@ access-control-allow-origin: *
             <h2 id="endpoints-POSTapi-email-verification-notification">Send a new email verification notification.</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -897,12 +1507,12 @@ access-control-allow-origin: *
 
 
 <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/email/verification-notification" \
+    "http://127.0.0.1:8000/api/email/verification-notification" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/email/verification-notification"
+    "http://127.0.0.1:8000/api/email/verification-notification"
 );
 
 const headers = {
@@ -917,7 +1527,17 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-email-verification-notification">
-</span>
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;msg&quot;: &quot;verification-link-sent&quot;,
+    &quot;0&quot;: 201
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-POSTapi-email-verification-notification" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-email-verification-notification"></span>:
@@ -930,7 +1550,7 @@ fetch(url, {
 </span>
 <form id="form-POSTapi-email-verification-notification" data-method="POST"
       data-path="api/email/verification-notification"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
@@ -957,191 +1577,35 @@ fetch(url, {
             <small class="badge badge-black">POST</small>
             <b><code>api/email/verification-notification</code></b>
         </p>
-                    </form>
-
-            <h2 id="endpoints-GETapi-confirm-password">Show the confirm password view.</h2>
-
-<p>
-</p>
-
-
-
-<span id="example-requests-GETapi-confirm-password">
-<blockquote>Example request:</blockquote>
-
-
-<pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/confirm-password" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre>
-
-<pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/confirm-password"
-);
-
-const headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "GET",
-    headers,
-}).then(response =&gt; response.json());</code></pre>
-</span>
-
-<span id="example-responses-GETapi-confirm-password">
-            <blockquote>
-            <p>Example response (401):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary>
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre>
-        </details>         <pre>
-
-<code class="language-json">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
-}</code>
- </pre>
-    </span>
-<span id="execution-results-GETapi-confirm-password" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-GETapi-confirm-password"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-confirm-password"></code></pre>
-</span>
-<span id="execution-error-GETapi-confirm-password" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-confirm-password"></code></pre>
-</span>
-<form id="form-GETapi-confirm-password" data-method="GET"
-      data-path="api/confirm-password"
-      data-authed="0"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-confirm-password', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-confirm-password"
-                    onclick="tryItOut('GETapi-confirm-password');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-confirm-password"
-                    onclick="cancelTryOut('GETapi-confirm-password');" hidden>Cancel
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-confirm-password" hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-green">GET</small>
-            <b><code>api/confirm-password</code></b>
+                <p>
+            <label id="auth-POSTapi-email-verification-notification" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="POSTapi-email-verification-notification"
+                                                                data-component="header"></label>
         </p>
-                    </form>
+                </form>
 
-            <h2 id="endpoints-POSTapi-confirm-password">Confirm the user&#039;s password.</h2>
-
-<p>
-</p>
-
-
-
-<span id="example-requests-POSTapi-confirm-password">
-<blockquote>Example request:</blockquote>
-
-
-<pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/confirm-password" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre>
-
-<pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/confirm-password"
-);
-
-const headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "POST",
-    headers,
-}).then(response =&gt; response.json());</code></pre>
-</span>
-
-<span id="example-responses-POSTapi-confirm-password">
-</span>
-<span id="execution-results-POSTapi-confirm-password" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-POSTapi-confirm-password"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi-confirm-password"></code></pre>
-</span>
-<span id="execution-error-POSTapi-confirm-password" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi-confirm-password"></code></pre>
-</span>
-<form id="form-POSTapi-confirm-password" data-method="POST"
-      data-path="api/confirm-password"
-      data-authed="0"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('POSTapi-confirm-password', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-confirm-password"
-                    onclick="tryItOut('POSTapi-confirm-password');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-confirm-password"
-                    onclick="cancelTryOut('POSTapi-confirm-password');" hidden>Cancel
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-confirm-password" hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-black">POST</small>
-            <b><code>api/confirm-password</code></b>
-        </p>
-                    </form>
-
-            <h2 id="endpoints-POSTapi-logout">Destroy an authenticated session.</h2>
+            <h2 id="endpoints-POSTapi-logout">User logout</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
-
+<p>Destroy an authenticated user session.</p>
 
 <span id="example-requests-POSTapi-logout">
 <blockquote>Example request:</blockquote>
 
 
 <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/logout" \
+    "http://127.0.0.1:8000/api/logout" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/logout"
+    "http://127.0.0.1:8000/api/logout"
 );
 
 const headers = {
@@ -1169,7 +1633,7 @@ fetch(url, {
 </span>
 <form id="form-POSTapi-logout" data-method="POST"
       data-path="api/logout"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
@@ -1196,9 +1660,17 @@ fetch(url, {
             <small class="badge badge-black">POST</small>
             <b><code>api/logout</code></b>
         </p>
-                    </form>
+                <p>
+            <label id="auth-POSTapi-logout" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="POSTapi-logout"
+                                                                data-component="header"></label>
+        </p>
+                </form>
 
-            <h2 id="endpoints-GETapi-admin-login">GET api/admin/login</h2>
+            <h2 id="endpoints-GETapi-admin-login">Display the admin login view.</h2>
 
 <p>
 </p>
@@ -1210,12 +1682,12 @@ fetch(url, {
 
 
 <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/admin/login" \
+    --get "http://127.0.0.1:8000/api/admin/login" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/admin/login"
+    "http://127.0.0.1:8000/api/admin/login"
 );
 
 const headers = {
@@ -1291,9 +1763,10 @@ access-control-allow-origin: *
         </p>
                     </form>
 
-            <h2 id="endpoints-POSTapi-admin-login">POST api/admin/login</h2>
+            <h2 id="endpoints-POSTapi-admin-login">Handle an incoming admin login request.</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -1303,12 +1776,17 @@ access-control-allow-origin: *
 
 
 <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/admin/login" \
+    "http://127.0.0.1:8000/api/admin/login" \
     --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre>
+    --header "Accept: application/json" \
+    --data "{
+    \"email\": \"ducimus\",
+    \"password\": \"porro\"
+}"
+</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/admin/login"
+    "http://127.0.0.1:8000/api/admin/login"
 );
 
 const headers = {
@@ -1316,14 +1794,30 @@ const headers = {
     "Accept": "application/json",
 };
 
+let body = {
+    "email": "ducimus",
+    "password": "porro"
+}
+
 fetch(url, {
     method: "POST",
     headers,
+    body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre>
 </span>
 
 <span id="example-responses-POSTapi-admin-login">
-</span>
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;message&quot;: &quot;logged in successfully&quot;,
+    &quot;AccessToken:&quot;: &quot;eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9hZG1pblwvbG9naW4iLCJpYXQiOjE2MzAzMzE5NTIsImV4cCI6MTYzMDMzNTU1MiwibmJmIjoxNjMwMzMxOTUyLCJqdGkiOiJRQjc0UnNIVjBKaldadG9GIiwic3ViIjoxLCJwcnYiOiJkZjg4M2RiOTdiZDA1ZWY4ZmY4NTA4MmQ2ODZjNDVlODMyZTU5M2E5In0.ASySa0_mm7wqeSdAsAhpWGkuD2_oAafoduHBnh4tsJs&quot;
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-POSTapi-admin-login" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-admin-login"></span>:
@@ -1336,7 +1830,7 @@ fetch(url, {
 </span>
 <form id="form-POSTapi-admin-login" data-method="POST"
       data-path="api/admin/login"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
@@ -1363,9 +1857,126 @@ fetch(url, {
             <small class="badge badge-black">POST</small>
             <b><code>api/admin/login</code></b>
         </p>
+                <p>
+            <label id="auth-POSTapi-admin-login" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="POSTapi-admin-login"
+                                                                data-component="header"></label>
+        </p>
+                        <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>email</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="email"
+               data-endpoint="POSTapi-admin-login"
+               data-component="body" required  hidden>
+    <br>
+        </p>
+                <p>
+            <b><code>password</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="password"
+               data-endpoint="POSTapi-admin-login"
+               data-component="body" required  hidden>
+    <br>
+        </p>
+    
+    </form>
+
+            <h2 id="endpoints-GETapi-admin-admins">GET api/admin/admins</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-admin-admins">
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request GET \
+    --get "http://127.0.0.1:8000/api/admin/admins" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/admin/admins"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+</span>
+
+<span id="example-responses-GETapi-admin-admins">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-admin-admins" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-admin-admins"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-admin-admins"></code></pre>
+</span>
+<span id="execution-error-GETapi-admin-admins" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-admin-admins"></code></pre>
+</span>
+<form id="form-GETapi-admin-admins" data-method="GET"
+      data-path="api/admin/admins"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-admin-admins', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-admin-admins"
+                    onclick="tryItOut('GETapi-admin-admins');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-admin-admins"
+                    onclick="cancelTryOut('GETapi-admin-admins');" hidden>Cancel
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-admin-admins" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/admin/admins</code></b>
+        </p>
                     </form>
 
-            <h2 id="endpoints-GETapi-admin-admins--id-">getting a certain admin in the database by the id</h2>
+            <h2 id="endpoints-GETapi-admin-admins--id-">GET api/admin/admins/{id}</h2>
 
 <p>
 </p>
@@ -1377,12 +1988,12 @@ fetch(url, {
 
 
 <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/admin/admins/19" \
+    --get "http://127.0.0.1:8000/api/admin/admins/10" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/admin/admins/19"
+    "http://127.0.0.1:8000/api/admin/admins/10"
 );
 
 const headers = {
@@ -1398,32 +2009,21 @@ fetch(url, {
 
 <span id="example-responses-GETapi-admin-admins--id-">
             <blockquote>
-            <p>Example response (200, the user is a superadmin):</p>
+            <p>Example response (401):</p>
         </blockquote>
-                <pre>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
 
 <code class="language-json">{
-    &quot;id&quot;: &quot;1&quot;,
-    &quot;email&quot;: &quot;steve@gmail.com&quot;,
-    &quot;username&quot;: &quot;steve&quot;,
-    &quot;superadmin&quot;: &quot;1&quot;
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
 }</code>
- </pre>
-            <blockquote>
-            <p>Example response (401, the user isn&#039;t a superadmin):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json">{
-    &quot;message&quot;: &quot;unauthorized&quot;
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (404, the admin by the given id is not found):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json"></code>
  </pre>
     </span>
 <span id="execution-results-GETapi-admin-admins--id-" hidden>
@@ -1473,10 +2073,10 @@ fetch(url, {
                data-endpoint="GETapi-admin-admins--id-"
                data-component="url" required  hidden>
     <br>
-<p>The ID of the admin</p>            </p>
+<p>The ID of the admin.</p>            </p>
                     </form>
 
-            <h2 id="endpoints-GETapi-admin-register">GET api/admin/register</h2>
+            <h2 id="endpoints-GETapi-admin-register">Display the admin registration view.</h2>
 
 <p>
 </p>
@@ -1488,12 +2088,12 @@ fetch(url, {
 
 
 <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/admin/register" \
+    --get "http://127.0.0.1:8000/api/admin/register" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/admin/register"
+    "http://127.0.0.1:8000/api/admin/register"
 );
 
 const headers = {
@@ -1567,9 +2167,10 @@ access-control-allow-origin: *
         </p>
                     </form>
 
-            <h2 id="endpoints-POSTapi-admin-register">POST api/admin/register</h2>
+            <h2 id="endpoints-POSTapi-admin-register">Handle an incoming admin registration request.</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -1579,12 +2180,20 @@ access-control-allow-origin: *
 
 
 <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/admin/register" \
+    "http://127.0.0.1:8000/api/admin/register" \
     --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre>
+    --header "Accept: application/json" \
+    --data "{
+    \"email\": \"fugit\",
+    \"username\": \"quo\",
+    \"password\": \"commodi\",
+    \"password_confirmation\": \"quis\",
+    \"superadmin\": true
+}"
+</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/admin/register"
+    "http://127.0.0.1:8000/api/admin/register"
 );
 
 const headers = {
@@ -1592,14 +2201,33 @@ const headers = {
     "Accept": "application/json",
 };
 
+let body = {
+    "email": "fugit",
+    "username": "quo",
+    "password": "commodi",
+    "password_confirmation": "quis",
+    "superadmin": true
+}
+
 fetch(url, {
     method: "POST",
     headers,
+    body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre>
 </span>
 
 <span id="example-responses-POSTapi-admin-register">
-</span>
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;message&quot;: &quot;registered successfully&quot;,
+    &quot;AccessToken:&quot;: &quot;eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9hZG1pblwvcmVnaXN0ZXIiLCJpYXQiOjE2MzAzMzE5OTQsImV4cCI6MTYzMDMzNTU5NCwibmJmIjoxNjMwMzMxOTk0LCJqdGkiOiJwMGFQcVpUUlQyYW5rT3RjIiwic3ViIjoyNCwicHJ2IjoiZGY4ODNkYjk3YmQwNWVmOGZmODUwODJkNjg2YzQ1ZTgzMmU1OTNhOSJ9.FuZ92MotjJPJv7ebj15zv4Do1ER0_mwUKXhW8J9mDK8&quot;
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-POSTapi-admin-register" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-admin-register"></span>:
@@ -1612,7 +2240,7 @@ fetch(url, {
 </span>
 <form id="form-POSTapi-admin-register" data-method="POST"
       data-path="api/admin/register"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
@@ -1639,26 +2267,87 @@ fetch(url, {
             <small class="badge badge-black">POST</small>
             <b><code>api/admin/register</code></b>
         </p>
-                    </form>
+                <p>
+            <label id="auth-POSTapi-admin-register" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="POSTapi-admin-register"
+                                                                data-component="header"></label>
+        </p>
+                        <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>email</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="email"
+               data-endpoint="POSTapi-admin-register"
+               data-component="body" required  hidden>
+    <br>
+        </p>
+                <p>
+            <b><code>username</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="username"
+               data-endpoint="POSTapi-admin-register"
+               data-component="body" required  hidden>
+    <br>
+        </p>
+                <p>
+            <b><code>password</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="password"
+               data-endpoint="POSTapi-admin-register"
+               data-component="body" required  hidden>
+    <br>
+        </p>
+                <p>
+            <b><code>password_confirmation</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="password_confirmation"
+               data-endpoint="POSTapi-admin-register"
+               data-component="body" required  hidden>
+    <br>
+        </p>
+                <p>
+            <b><code>superadmin</code></b>&nbsp;&nbsp;<small>boolean</small>     <i>optional</i> &nbsp;
+                <label data-endpoint="POSTapi-admin-register" hidden>
+            <input type="radio" name="superadmin"
+                   value="true"
+                   data-endpoint="POSTapi-admin-register"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="POSTapi-admin-register" hidden>
+            <input type="radio" name="superadmin"
+                   value="false"
+                   data-endpoint="POSTapi-admin-register"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+        </p>
+    
+    </form>
 
-            <h2 id="endpoints-POSTapi-admin-logout">POST api/admin/logout</h2>
+            <h2 id="endpoints-POSTapi-admin-logout">Admin logout</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
-
+<p>Destroy an authenticated admin session (logout).</p>
 
 <span id="example-requests-POSTapi-admin-logout">
 <blockquote>Example request:</blockquote>
 
 
 <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/admin/logout" \
+    "http://127.0.0.1:8000/api/admin/logout" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/admin/logout"
+    "http://127.0.0.1:8000/api/admin/logout"
 );
 
 const headers = {
@@ -1686,7 +2375,7 @@ fetch(url, {
 </span>
 <form id="form-POSTapi-admin-logout" data-method="POST"
       data-path="api/admin/logout"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
@@ -1713,9 +2402,17 @@ fetch(url, {
             <small class="badge badge-black">POST</small>
             <b><code>api/admin/logout</code></b>
         </p>
-                    </form>
+                <p>
+            <label id="auth-POSTapi-admin-logout" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="POSTapi-admin-logout"
+                                                                data-component="header"></label>
+        </p>
+                </form>
 
-            <h2 id="endpoints-POSTapi-admin-updateadmin--id-">updating a certain admin with id from the database</h2>
+            <h2 id="endpoints-POSTapi-admin-updateadmin--id-">POST api/admin/updateadmin/{id}</h2>
 
 <p>
 </p>
@@ -1727,16 +2424,12 @@ fetch(url, {
 
 
 <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/admin/updateadmin/9" \
+    "http://127.0.0.1:8000/api/admin/updateadmin/autem" \
     --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
-    --data "{
-    \"superadmin\": false
-}"
-</code></pre>
+    --header "Accept: application/json"</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/admin/updateadmin/9"
+    "http://127.0.0.1:8000/api/admin/updateadmin/autem"
 );
 
 const headers = {
@@ -1744,49 +2437,14 @@ const headers = {
     "Accept": "application/json",
 };
 
-let body = {
-    "superadmin": false
-}
-
 fetch(url, {
     method: "POST",
     headers,
-    body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre>
 </span>
 
 <span id="example-responses-POSTapi-admin-updateadmin--id-">
-            <blockquote>
-            <p>Example response (200, the user is a superadmin):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json"></code>
- </pre>
-            <blockquote>
-            <p>Example response (401, the user isn&#039;t a superadmin):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json">{
-    &quot;message&quot;: &quot;unauthorized&quot;
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (404, the admin by the given id was not found):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json"></code>
- </pre>
-            <blockquote>
-            <p>Example response (422, The request was well formed but was unable to be followed due to a validation error):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json"></code>
- </pre>
-    </span>
+</span>
 <span id="execution-results-POSTapi-admin-updateadmin--id-" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-admin-updateadmin--id-"></span>:
@@ -1828,36 +2486,16 @@ fetch(url, {
         </p>
                     <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
                     <p>
-                <b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
-                <input type="number"
+                <b><code>id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
                name="id"
                data-endpoint="POSTapi-admin-updateadmin--id-"
                data-component="url" required  hidden>
     <br>
-<p>The ID of the admin</p>            </p>
-                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
-        <p>
-            <b><code>superadmin</code></b>&nbsp;&nbsp;<small>boolean</small>     <i>optional</i> &nbsp;
-                <label data-endpoint="POSTapi-admin-updateadmin--id-" hidden>
-            <input type="radio" name="superadmin"
-                   value="true"
-                   data-endpoint="POSTapi-admin-updateadmin--id-"
-                   data-component="body"             >
-            <code>true</code>
-        </label>
-        <label data-endpoint="POSTapi-admin-updateadmin--id-" hidden>
-            <input type="radio" name="superadmin"
-                   value="false"
-                   data-endpoint="POSTapi-admin-updateadmin--id-"
-                   data-component="body"             >
-            <code>false</code>
-        </label>
-    <br>
-        </p>
-    
-    </form>
+<p>The ID of the updateadmin.</p>            </p>
+                    </form>
 
-            <h2 id="endpoints-POSTapi-admin-removeadmin--id-">removing a certain admin with id from the database</h2>
+            <h2 id="endpoints-POSTapi-admin-removeadmin--id-">POST api/admin/removeadmin/{id}</h2>
 
 <p>
 </p>
@@ -1869,12 +2507,12 @@ fetch(url, {
 
 
 <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/admin/removeadmin/18" \
+    "http://127.0.0.1:8000/api/admin/removeadmin/eos" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/admin/removeadmin/18"
+    "http://127.0.0.1:8000/api/admin/removeadmin/eos"
 );
 
 const headers = {
@@ -1889,30 +2527,7 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-admin-removeadmin--id-">
-            <blockquote>
-            <p>Example response (200, the user is a superadmin):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json"></code>
- </pre>
-            <blockquote>
-            <p>Example response (401, the user isn&#039;t a superadmin):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json">{
-    &quot;message&quot;: &quot;unauthorized&quot;
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (404, the admin with the given id was not found):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json"></code>
- </pre>
-    </span>
+</span>
 <span id="execution-results-POSTapi-admin-removeadmin--id-" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-admin-removeadmin--id-"></span>:
@@ -1954,16 +2569,16 @@ fetch(url, {
         </p>
                     <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
                     <p>
-                <b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
-                <input type="number"
+                <b><code>id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
                name="id"
                data-endpoint="POSTapi-admin-removeadmin--id-"
                data-component="url" required  hidden>
     <br>
-<p>The ID of the admin</p>            </p>
+<p>The ID of the removeadmin.</p>            </p>
                     </form>
 
-            <h2 id="endpoints-POSTapi-admin-addcategory">adding category to the database</h2>
+            <h2 id="endpoints-POSTapi-admin-addcategory">POST api/admin/addcategory</h2>
 
 <p>
 </p>
@@ -1975,16 +2590,12 @@ fetch(url, {
 
 
 <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/admin/addcategory" \
+    "http://127.0.0.1:8000/api/admin/addcategory" \
     --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
-    --data "{
-    \"category_name\": \"optio\"
-}"
-</code></pre>
+    --header "Accept: application/json"</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/admin/addcategory"
+    "http://127.0.0.1:8000/api/admin/addcategory"
 );
 
 const headers = {
@@ -1992,42 +2603,14 @@ const headers = {
     "Accept": "application/json",
 };
 
-let body = {
-    "category_name": "optio"
-}
-
 fetch(url, {
     method: "POST",
     headers,
-    body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre>
 </span>
 
 <span id="example-responses-POSTapi-admin-addcategory">
-            <blockquote>
-            <p>Example response (200, the user is an admin and the inputs are satisfied with the validation rules):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json"></code>
- </pre>
-            <blockquote>
-            <p>Example response (401, the user isn&#039;t an admin):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json">{
-    &quot;message&quot;: &quot;unauthorized&quot;
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (422, The request was well formed but was unable to be followed due to a validation error):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json"></code>
- </pre>
-    </span>
+</span>
 <span id="execution-results-POSTapi-admin-addcategory" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-admin-addcategory"></span>:
@@ -2067,19 +2650,9 @@ fetch(url, {
             <small class="badge badge-black">POST</small>
             <b><code>api/admin/addcategory</code></b>
         </p>
-                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
-        <p>
-            <b><code>category_name</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-                <input type="text"
-               name="category_name"
-               data-endpoint="POSTapi-admin-addcategory"
-               data-component="body" required  hidden>
-    <br>
-<p>and must be unique</p>        </p>
-    
-    </form>
+                    </form>
 
-            <h2 id="endpoints-POSTapi-admin-removecategory--id-">removing a certain category with id from the database</h2>
+            <h2 id="endpoints-POSTapi-admin-removecategory--id-">POST api/admin/removecategory/{id}</h2>
 
 <p>
 </p>
@@ -2091,12 +2664,12 @@ fetch(url, {
 
 
 <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/admin/removecategory/11" \
+    "http://127.0.0.1:8000/api/admin/removecategory/id" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/admin/removecategory/11"
+    "http://127.0.0.1:8000/api/admin/removecategory/id"
 );
 
 const headers = {
@@ -2111,30 +2684,7 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-admin-removecategory--id-">
-            <blockquote>
-            <p>Example response (200, the user is an admin):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json"></code>
- </pre>
-            <blockquote>
-            <p>Example response (401, the user isn&#039;t an admin):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json">{
-    &quot;message&quot;: &quot;unauthorized&quot;
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (404, the category with the given id is not found):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json"></code>
- </pre>
-    </span>
+</span>
 <span id="execution-results-POSTapi-admin-removecategory--id-" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-admin-removecategory--id-"></span>:
@@ -2176,16 +2726,16 @@ fetch(url, {
         </p>
                     <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
                     <p>
-                <b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
-                <input type="number"
+                <b><code>id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
                name="id"
                data-endpoint="POSTapi-admin-removecategory--id-"
                data-component="url" required  hidden>
     <br>
-<p>The ID of the category</p>            </p>
+<p>The ID of the removecategory.</p>            </p>
                     </form>
 
-            <h2 id="endpoints-POSTapi-admin-updatecategory--id-">updating a certain category with id in the database</h2>
+            <h2 id="endpoints-POSTapi-admin-updatecategory--id-">POST api/admin/updatecategory/{id}</h2>
 
 <p>
 </p>
@@ -2197,16 +2747,12 @@ fetch(url, {
 
 
 <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/admin/updatecategory/4" \
+    "http://127.0.0.1:8000/api/admin/updatecategory/molestiae" \
     --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
-    --data "{
-    \"category_name\": \"a\"
-}"
-</code></pre>
+    --header "Accept: application/json"</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/admin/updatecategory/4"
+    "http://127.0.0.1:8000/api/admin/updatecategory/molestiae"
 );
 
 const headers = {
@@ -2214,49 +2760,14 @@ const headers = {
     "Accept": "application/json",
 };
 
-let body = {
-    "category_name": "a"
-}
-
 fetch(url, {
     method: "POST",
     headers,
-    body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre>
 </span>
 
 <span id="example-responses-POSTapi-admin-updatecategory--id-">
-            <blockquote>
-            <p>Example response (200, the user is an admin and the inputs are satisfied with the validation rules):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json"></code>
- </pre>
-            <blockquote>
-            <p>Example response (401, the user isn&#039;t an admin):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json">{
-    &quot;message&quot;: &quot;unauthorized&quot;
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (404, the category with the given id was not found):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json"></code>
- </pre>
-            <blockquote>
-            <p>Example response (422, The request was well formed but was unable to be followed due to a validation error):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json"></code>
- </pre>
-    </span>
+</span>
 <span id="execution-results-POSTapi-admin-updatecategory--id-" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-admin-updatecategory--id-"></span>:
@@ -2298,26 +2809,16 @@ fetch(url, {
         </p>
                     <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
                     <p>
-                <b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
-                <input type="number"
+                <b><code>id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
                name="id"
                data-endpoint="POSTapi-admin-updatecategory--id-"
                data-component="url" required  hidden>
     <br>
-<p>The ID of the category</p>            </p>
-                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
-        <p>
-            <b><code>category_name</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
-                <input type="text"
-               name="category_name"
-               data-endpoint="POSTapi-admin-updatecategory--id-"
-               data-component="body"  hidden>
-    <br>
-<p>and must be unique</p>        </p>
-    
-    </form>
+<p>The ID of the updatecategory.</p>            </p>
+                    </form>
 
-            <h2 id="endpoints-POSTapi-admin-additem">adding item to the database</h2>
+            <h2 id="endpoints-POSTapi-admin-additem">POST api/admin/additem</h2>
 
 <p>
 </p>
@@ -2329,65 +2830,27 @@ fetch(url, {
 
 
 <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/admin/additem" \
-    --header "Content-Type: multipart/form-data" \
-    --header "Accept: application/json" \
-    --form "item_name=aut" \
-    --form "category_id=20" \
-    --form "price=voluptatibus" \
-    --form "offer=aliquam" \
-    --form "offer_end_date=aliquid" \
-    --form "file_path=@C:\Users\Abdel Fattah Romiah\AppData\Local\Temp\php9A01.tmp" </code></pre>
+    "http://127.0.0.1:8000/api/admin/additem" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/admin/additem"
+    "http://127.0.0.1:8000/api/admin/additem"
 );
 
 const headers = {
-    "Content-Type": "multipart/form-data",
+    "Content-Type": "application/json",
     "Accept": "application/json",
 };
-
-const body = new FormData();
-body.append('item_name', 'aut');
-body.append('category_id', '20');
-body.append('price', 'voluptatibus');
-body.append('offer', 'aliquam');
-body.append('offer_end_date', 'aliquid');
-body.append('file_path', document.querySelector('input[name="file_path"]').files[0]);
 
 fetch(url, {
     method: "POST",
     headers,
-    body,
 }).then(response =&gt; response.json());</code></pre>
 </span>
 
 <span id="example-responses-POSTapi-admin-additem">
-            <blockquote>
-            <p>Example response (200, the user is an admin and the inputs are satisfied with the validation rules):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json"></code>
- </pre>
-            <blockquote>
-            <p>Example response (401, the user isn&#039;t an admin):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json">{
-    &quot;message&quot;: &quot;unauthorized&quot;
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (422, The request was well formed but was unable to be followed due to a validation error):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json"></code>
- </pre>
-    </span>
+</span>
 <span id="execution-results-POSTapi-admin-additem" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-admin-additem"></span>:
@@ -2401,9 +2864,9 @@ fetch(url, {
 <form id="form-POSTapi-admin-additem" data-method="POST"
       data-path="api/admin/additem"
       data-authed="0"
-      data-hasfiles="1"
+      data-hasfiles="0"
       data-isarraybody="0"
-      data-headers='{"Content-Type":"multipart\/form-data","Accept":"application\/json"}'
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('POSTapi-admin-additem', this);">
     <h3>
@@ -2427,59 +2890,9 @@ fetch(url, {
             <small class="badge badge-black">POST</small>
             <b><code>api/admin/additem</code></b>
         </p>
-                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
-        <p>
-            <b><code>item_name</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-                <input type="text"
-               name="item_name"
-               data-endpoint="POSTapi-admin-additem"
-               data-component="body" required  hidden>
-    <br>
-<p>and must be unique with 40 chrachters at maximum</p>        </p>
-                <p>
-            <b><code>category_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
-                <input type="number"
-               name="category_id"
-               data-endpoint="POSTapi-admin-additem"
-               data-component="body" required  hidden>
-    <br>
-<p>and it must exist</p>        </p>
-                <p>
-            <b><code>price</code></b>&nbsp;&nbsp;<small>decimal</small>  &nbsp;
-                <input type="text"
-               name="price"
-               data-endpoint="POSTapi-admin-additem"
-               data-component="body" required  hidden>
-    <br>
-        </p>
-                <p>
-            <b><code>offer</code></b>&nbsp;&nbsp;<small>decimal</small>  &nbsp;
-                <input type="text"
-               name="offer"
-               data-endpoint="POSTapi-admin-additem"
-               data-component="body" required  hidden>
-    <br>
-<p>if there was an offer_end_date</p>        </p>
-                <p>
-            <b><code>offer_end_date</code></b>&nbsp;&nbsp;<small>datetime</small>  &nbsp;
-                <input type="text"
-               name="offer_end_date"
-               data-endpoint="POSTapi-admin-additem"
-               data-component="body" required  hidden>
-    <br>
-<p>if there was an offer</p>        </p>
-                <p>
-            <b><code>file_path</code></b>&nbsp;&nbsp;<small>file</small>     <i>optional</i> &nbsp;
-                <input type="file"
-               name="file_path"
-               data-endpoint="POSTapi-admin-additem"
-               data-component="body"  hidden>
-    <br>
-        </p>
-    
-    </form>
+                    </form>
 
-            <h2 id="endpoints-POSTapi-admin-removeitem--id-">removing a certain item with id from the database</h2>
+            <h2 id="endpoints-POSTapi-admin-removeitem--id-">POST api/admin/removeitem/{id}</h2>
 
 <p>
 </p>
@@ -2491,12 +2904,12 @@ fetch(url, {
 
 
 <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/admin/removeitem/20" \
+    "http://127.0.0.1:8000/api/admin/removeitem/molestias" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/admin/removeitem/20"
+    "http://127.0.0.1:8000/api/admin/removeitem/molestias"
 );
 
 const headers = {
@@ -2511,30 +2924,7 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-admin-removeitem--id-">
-            <blockquote>
-            <p>Example response (200, the user is an admin):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json"></code>
- </pre>
-            <blockquote>
-            <p>Example response (401, the user isn&#039;t an admin):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json">{
-    &quot;message&quot;: &quot;unauthorized&quot;
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (404, the item with the given id is not found):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json"></code>
- </pre>
-    </span>
+</span>
 <span id="execution-results-POSTapi-admin-removeitem--id-" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-admin-removeitem--id-"></span>:
@@ -2576,16 +2966,16 @@ fetch(url, {
         </p>
                     <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
                     <p>
-                <b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
-                <input type="number"
+                <b><code>id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
                name="id"
                data-endpoint="POSTapi-admin-removeitem--id-"
                data-component="url" required  hidden>
     <br>
-<p>The ID of the item</p>            </p>
+<p>The ID of the removeitem.</p>            </p>
                     </form>
 
-            <h2 id="endpoints-POSTapi-admin-updateitem--id-">updating a certain item with id in the database</h2>
+            <h2 id="endpoints-POSTapi-admin-updateitem--id-">POST api/admin/updateitem/{id}</h2>
 
 <p>
 </p>
@@ -2597,12 +2987,12 @@ fetch(url, {
 
 
 <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/admin/updateitem/1" \
+    "http://127.0.0.1:8000/api/admin/updateitem/quo" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/admin/updateitem/1"
+    "http://127.0.0.1:8000/api/admin/updateitem/quo"
 );
 
 const headers = {
@@ -2617,37 +3007,7 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-admin-updateitem--id-">
-            <blockquote>
-            <p>Example response (200, the user is an admin and the inputs are satisfied with the validation rules):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json"></code>
- </pre>
-            <blockquote>
-            <p>Example response (401, the user isn&#039;t an admin):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json">{
-    &quot;message&quot;: &quot;unauthorized&quot;
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (404, the item with the given id was not found):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json"></code>
- </pre>
-            <blockquote>
-            <p>Example response (422, The request was well formed but was unable to be followed due to a validation error):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json"></code>
- </pre>
-    </span>
+</span>
 <span id="execution-results-POSTapi-admin-updateitem--id-" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-admin-updateitem--id-"></span>:
@@ -2689,18 +3049,19 @@ fetch(url, {
         </p>
                     <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
                     <p>
-                <b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
-                <input type="number"
+                <b><code>id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
                name="id"
                data-endpoint="POSTapi-admin-updateitem--id-"
                data-component="url" required  hidden>
     <br>
-<p>The ID of the item</p>            </p>
+<p>The ID of the updateitem.</p>            </p>
                     </form>
 
-            <h2 id="endpoints-GETapi-admin-verify-email">Display the email verification prompt.</h2>
+            <h2 id="endpoints-GETapi-admin-verify-email">Display the admin email verification prompt.</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -2710,12 +3071,12 @@ fetch(url, {
 
 
 <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/admin/verify-email" \
+    --get "http://127.0.0.1:8000/api/admin/verify-email" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/admin/verify-email"
+    "http://127.0.0.1:8000/api/admin/verify-email"
 );
 
 const headers = {
@@ -2760,7 +3121,7 @@ access-control-allow-origin: *
 </span>
 <form id="form-GETapi-admin-verify-email" data-method="GET"
       data-path="api/admin/verify-email"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
@@ -2787,11 +3148,20 @@ access-control-allow-origin: *
             <small class="badge badge-green">GET</small>
             <b><code>api/admin/verify-email</code></b>
         </p>
-                    </form>
+                <p>
+            <label id="auth-GETapi-admin-verify-email" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-admin-verify-email"
+                                                                data-component="header"></label>
+        </p>
+                </form>
 
-            <h2 id="endpoints-GETapi-admin-verify-email--id---hash-">Mark the authenticated user&#039;s email address as verified.</h2>
+            <h2 id="endpoints-GETapi-admin-verify-email--id---hash-">Mark the authenticated admin&#039;s email address as verified.</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -2801,12 +3171,12 @@ access-control-allow-origin: *
 
 
 <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/admin/verify-email/labore/ea" \
+    --get "http://127.0.0.1:8000/api/admin/verify-email/nihil/autem" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/admin/verify-email/labore/ea"
+    "http://127.0.0.1:8000/api/admin/verify-email/nihil/autem"
 );
 
 const headers = {
@@ -2851,7 +3221,7 @@ access-control-allow-origin: *
 </span>
 <form id="form-GETapi-admin-verify-email--id---hash-" data-method="GET"
       data-path="api/admin/verify-email/{id}/{hash}"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
@@ -2878,7 +3248,15 @@ access-control-allow-origin: *
             <small class="badge badge-green">GET</small>
             <b><code>api/admin/verify-email/{id}/{hash}</code></b>
         </p>
-                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                <p>
+            <label id="auth-GETapi-admin-verify-email--id---hash-" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-admin-verify-email--id---hash-"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
                     <p>
                 <b><code>id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
                 <input type="text"
@@ -2900,6 +3278,7 @@ access-control-allow-origin: *
             <h2 id="endpoints-POSTapi-admin-email-verification-notification">Send a new email verification notification.</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -2909,12 +3288,12 @@ access-control-allow-origin: *
 
 
 <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/admin/email/verification-notification" \
+    "http://127.0.0.1:8000/api/admin/email/verification-notification" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/admin/email/verification-notification"
+    "http://127.0.0.1:8000/api/admin/email/verification-notification"
 );
 
 const headers = {
@@ -2942,7 +3321,7 @@ fetch(url, {
 </span>
 <form id="form-POSTapi-admin-email-verification-notification" data-method="POST"
       data-path="api/admin/email/verification-notification"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
@@ -2969,26 +3348,43 @@ fetch(url, {
             <small class="badge badge-black">POST</small>
             <b><code>api/admin/email/verification-notification</code></b>
         </p>
-                    </form>
+                <p>
+            <label id="auth-POSTapi-admin-email-verification-notification" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="POSTapi-admin-email-verification-notification"
+                                                                data-component="header"></label>
+        </p>
+                </form>
 
-            <h2 id="endpoints-GETapi-register">Display the registration view.</h2>
+        <h1 id="order-management">Order Management</h1>
+
+    <p>APIs for placing orders and modifying them</p>
+
+            <h2 id="order-management-POSTapi-place-order">Place order</h2>
 
 <p>
 </p>
 
+<p>recieve a cart and place an order with cart info</p>
 
-
-<span id="example-requests-GETapi-register">
+<span id="example-requests-POSTapi-place-order">
 <blockquote>Example request:</blockquote>
 
 
-<pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/register" \
+<pre><code class="language-bash">curl --request POST \
+    "http://127.0.0.1:8000/api/place-order" \
     --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre>
+    --header "Accept: application/json" \
+    --data "{
+    \"cartID\": 8,
+    \"deliveryType\": 2
+}"
+</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/register"
+    "http://127.0.0.1:8000/api/place-order"
 );
 
 const headers = {
@@ -2996,176 +3392,78 @@ const headers = {
     "Accept": "application/json",
 };
 
+let body = {
+    "cartID": 8,
+    "deliveryType": 2
+}
+
 fetch(url, {
-    method: "GET",
+    method: "POST",
     headers,
+    body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre>
 </span>
 
-<span id="example-responses-GETapi-register">
-            <blockquote>
-            <p>Example response (200):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary>
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-x-ratelimit-limit: 60
-x-ratelimit-remaining: 59
-access-control-allow-origin: *
- </code></pre>
-        </details>         <pre>
-
-<code class="language-json">{
-    &quot;message&quot;: &quot;this is the user register form view&quot;
-}</code>
- </pre>
-    </span>
-<span id="execution-results-GETapi-register" hidden>
+<span id="example-responses-POSTapi-place-order">
+</span>
+<span id="execution-results-POSTapi-place-order" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-GETapi-register"></span>:
+                id="execution-response-status-POSTapi-place-order"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-register"></code></pre>
+    <pre class="json"><code id="execution-response-content-POSTapi-place-order"></code></pre>
 </span>
-<span id="execution-error-GETapi-register" hidden>
+<span id="execution-error-POSTapi-place-order" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-register"></code></pre>
+    <pre><code id="execution-error-message-POSTapi-place-order"></code></pre>
 </span>
-<form id="form-GETapi-register" data-method="GET"
-      data-path="api/register"
+<form id="form-POSTapi-place-order" data-method="POST"
+      data-path="api/place-order"
       data-authed="0"
       data-hasfiles="0"
       data-isarraybody="0"
       data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-register', this);">
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-place-order', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-register"
-                    onclick="tryItOut('GETapi-register');">Try it out ⚡
+                    id="btn-tryout-POSTapi-place-order"
+                    onclick="tryItOut('POSTapi-place-order');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-register"
-                    onclick="cancelTryOut('GETapi-register');" hidden>Cancel
+                    id="btn-canceltryout-POSTapi-place-order"
+                    onclick="cancelTryOut('POSTapi-place-order');" hidden>Cancel
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-register" hidden>Send Request 💥
+                    id="btn-executetryout-POSTapi-place-order" hidden>Send Request 💥
             </button>
             </h3>
             <p>
-            <small class="badge badge-green">GET</small>
-            <b><code>api/register</code></b>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/place-order</code></b>
         </p>
-                    </form>
-
-            <h2 id="endpoints-GETapi-admin-admins">getting all admins in the database</h2>
-
-<p>
-</p>
-
-
-
-<span id="example-requests-GETapi-admin-admins">
-<blockquote>Example request:</blockquote>
-
-
-<pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/admin/admins" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre>
-
-<pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/admin/admins"
-);
-
-const headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "GET",
-    headers,
-}).then(response =&gt; response.json());</code></pre>
-</span>
-
-<span id="example-responses-GETapi-admin-admins">
-            <blockquote>
-            <p>Example response (200, the user is a superadmin):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json">{
-  {
-  &quot;id&quot;: &quot;1&quot; ,
-  &quot;email&quot;:&quot;steve@gmail.com&quot; ,
-  &quot;username&quot;:&quot;steve&quot; ,
-  &quot;superadmin&quot;:&quot;1&quot;
-  }
-  {
-  &quot;id&quot;: &quot;2&quot; ,
-  &quot;email&quot;:&quot;sara@gmail.com&quot; ,
-  &quot;username&quot;:&quot;sara&quot; ,
-  &quot;superadmin&quot;:&quot;0&quot;
-  }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (401, the user isn&#039;t a superadmin):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json">{
-    &quot;message&quot;: &quot;unauthorized&quot;
-}</code>
- </pre>
-    </span>
-<span id="execution-results-GETapi-admin-admins" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-GETapi-admin-admins"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-admin-admins"></code></pre>
-</span>
-<span id="execution-error-GETapi-admin-admins" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-admin-admins"></code></pre>
-</span>
-<form id="form-GETapi-admin-admins" data-method="GET"
-      data-path="api/admin/admins"
-      data-authed="0"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-admin-admins', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-admin-admins"
-                    onclick="tryItOut('GETapi-admin-admins');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-admin-admins"
-                    onclick="cancelTryOut('GETapi-admin-admins');" hidden>Cancel
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-admin-admins" hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-green">GET</small>
-            <b><code>api/admin/admins</code></b>
-        </p>
-                    </form>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>cartID</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="cartID"
+               data-endpoint="POSTapi-place-order"
+               data-component="body" required  hidden>
+    <br>
+<p>The id of a valid cart to use for the order</p>        </p>
+                <p>
+            <b><code>deliveryType</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="deliveryType"
+               data-endpoint="POSTapi-place-order"
+               data-component="body" required  hidden>
+    <br>
+<p>A number between 0-3 to specify the type of delivery from the list ['To Home', 'To Car', 'In Restaurant', 'Take Away'].</p>        </p>
+    
+    </form>
 
     
 
