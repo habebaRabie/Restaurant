@@ -1,5 +1,7 @@
-name: Endpoints
-description: ''
+name: 'Cart Management'
+description: |-
+
+  APIs for Creating and using carts
 endpoints:
   -
     httpMethods:
@@ -15,9 +17,6 @@ endpoints:
     urlParameters: []
     queryParameters: []
     bodyParameters:
-    urlParameters: []
-    queryParameters: []
-    bodyParameters:
       cart_id:
         name: cart_id
         description: 'The id of the cart that will be modified'
@@ -29,6 +28,62 @@ endpoints:
         description: 'The id of the item that needs to be removed'
         required: true
         example: 14
+        type: integer
+    responses: []
+    responseFields: []
+  -
+    httpMethods:
+      - POST
+    uri: api/add-to-cart
+    metadata:
+      title: 'Add to cart'
+      description: 'add a new item to the cart'
+      authenticated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters:
+      cart_id:
+        name: cart_id
+        description: 'The id of the cart to which the item will be added'
+        required: true
+        example: 7
+        type: integer
+      item_id:
+        name: item_id
+        description: 'The id of the item that needs to be added'
+        required: true
+        example: 6
+        type: integer
+    responses: []
+    responseFields: []
+  -
+    httpMethods:
+      - POST
+    uri: api/remove-from-cart
+    metadata:
+      title: 'Remove from cart'
+      description: 'Remove an item from the cart'
+      authenticated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters:
+      cart_id:
+        name: cart_id
+        description: 'The id of the cart that will be modified'
+        required: true
+        example: 12
+        type: integer
+      item_id:
+        name: item_id
+        description: 'The id of the item that needs to be removed'
+        required: true
+        example: 8
         type: integer
     responses: []
     responseFields: []

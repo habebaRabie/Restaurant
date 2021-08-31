@@ -21,7 +21,7 @@ endpoints:
         name: cartID
         description: 'The id of a valid cart to use for the order'
         required: true
-        example: 8
+        example: 18
         type: integer
       deliveryType:
         name: deliveryType

@@ -5,12 +5,12 @@
             "key": "baseUrl",
             "type": "string",
             "name": "string",
-            "value": "127.0.0.1"
+            "value": "localhost"
         }
     ],
     "info": {
         "name": "Laravel",
-        "_postman_id": "f5954811-dfec-4ade-b5ca-5b83a590ba09",
+        "_postman_id": "af4eb7be-3d5b-4c9b-bed7-6aa4160cf642",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -42,7 +42,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"User_id\":13}"
+                            "raw": "{\"cart_id\":13,\"item_id\":14}"
                         },
                         "description": "Create a new cart to place items in",
                         "auth": {
@@ -74,7 +74,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"cart_id\":20,\"item_id\":14}"
+                            "raw": "{\"cart_id\":7,\"item_id\":6}"
                         },
                         "description": "add a new item to the cart",
                         "auth": {
@@ -106,7 +106,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"cart_id\":13,\"item_id\":14}"
+                            "raw": "{\"cart_id\":12,\"item_id\":8}"
                         },
                         "description": "Remove an item from the cart",
                         "auth": {
@@ -201,7 +201,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"first_name\":\"quaerat\",\"last_name\":\"minima\",\"email\":\"porro\",\"password\":\"velit\",\"password_confirmation\":\"dolorem\"}"
+                            "raw": "{\"first_name\":\"minima\",\"last_name\":\"eum\",\"email\":\"mollitia\",\"password\":\"dolorem\",\"password_confirmation\":\"adipisci\"}"
                         },
                         "description": "",
                         "auth": {
@@ -297,7 +297,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"email\":\"ut\",\"password\":\"pariatur\",\"remember\":false}"
+                            "raw": "{\"email\":\"cupiditate\",\"password\":\"et\",\"remember\":true}"
                         },
                         "description": "",
                         "auth": {
@@ -393,7 +393,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"email\":\"rem\"}"
+                            "raw": "{\"email\":\"at\"}"
                         },
                         "description": "This api handles the form submission\nWe will send the password reset link to this user. Once we have attempted\nto send the link, we will examine the response then see the message we\nneed to show to the user. Finally, we'll send out a proper response.",
                         "auth": {
@@ -422,7 +422,7 @@
                                 {
                                     "id": "token",
                                     "key": "token",
-                                    "value": "possimus",
+                                    "value": "veniam",
                                     "description": ""
                                 }
                             ]
@@ -497,7 +497,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"token\":\"aliquam\",\"emai\":\"aliquam\",\"password\":\"quam\",\"password_confirmation\":\"suscipit\"}"
+                            "raw": "{\"token\":\"omnis\",\"emai\":\"ipsa\",\"password\":\"alias\",\"password_confirmation\":\"delectus\"}"
                         },
                         "description": "This api handles the form submission\nHere we will attempt to reset the user's password. If it is successful we\nwill update the password on an actual user model and persist it to the\ndatabase. Otherwise we will parse the error and return the response.",
                         "auth": {
@@ -572,13 +572,13 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "pariatur",
+                                    "value": "dolores",
                                     "description": "The ID of the verify email."
                                 },
                                 {
                                     "id": "hash",
                                     "key": "hash",
-                                    "value": "culpa",
+                                    "value": "dolore",
                                     "description": ""
                                 }
                             ]
@@ -745,7 +745,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"email\":\"ducimus\",\"password\":\"porro\"}"
+                            "raw": "{\"email\":\"dolor\",\"password\":\"quia\"}"
                         },
                         "description": ""
                     },
@@ -759,7 +759,7 @@
                     ]
                 },
                 {
-                    "name": "api\/admin\/admins",
+                    "name": "getting all admins in the database",
                     "request": {
                         "url": {
                             "protocol": "http",
@@ -787,28 +787,21 @@
                     },
                     "response": [
                         {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                }
-                            ],
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n  {\n  \"id\": \"1\" ,\n  \"email\":\"steve@gmail.com\" ,\n  \"username\":\"steve\" ,\n  \"superadmin\":\"1\"\n  }\n  {\n  \"id\": \"2\" ,\n  \"email\":\"sara@gmail.com\" ,\n  \"username\":\"sara\" ,\n  \"superadmin\":\"0\"\n  }\n}",
+                            "name": "the user is a superadmin"
+                        },
+                        {
+                            "header": [],
                             "code": 401,
-                            "body": "{\"message\":\"Unauthenticated.\"}",
-                            "name": ""
+                            "body": "{\"message\":\"unauthorized\"}",
+                            "name": "the user isn't a superadmin"
                         }
                     ]
                 },
                 {
-                    "name": "api\/admin\/admins\/{id}",
+                    "name": "getting a certain admin in the database by the id",
                     "request": {
                         "url": {
                             "protocol": "http",
@@ -820,8 +813,8 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "10",
-                                    "description": "The ID of the admin."
+                                    "value": "20",
+                                    "description": "The ID of the admin"
                                 }
                             ]
                         },
@@ -844,23 +837,22 @@
                     },
                     "response": [
                         {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                }
-                            ],
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n  \"id\": \"1\" ,\n  \"email\":\"steve@gmail.com\" ,\n  \"username\":\"steve\" ,\n  \"superadmin\":\"1\"\n  }",
+                            "name": "the user is a superadmin"
+                        },
+                        {
+                            "header": [],
                             "code": 401,
-                            "body": "{\"message\":\"Unauthenticated.\"}",
-                            "name": ""
+                            "body": "{\"message\":\"unauthorized\"}",
+                            "name": "the user isn't a superadmin"
+                        },
+                        {
+                            "header": [],
+                            "code": 404,
+                            "body": "",
+                            "name": "the admin by the given id is not found"
                         }
                     ]
                 },
@@ -936,7 +928,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"email\":\"fugit\",\"username\":\"quo\",\"password\":\"commodi\",\"password_confirmation\":\"quis\",\"superadmin\":true}"
+                            "raw": "{\"email\":\"et\",\"username\":\"voluptatibus\",\"password\":\"explicabo\",\"password_confirmation\":\"voluptatem\",\"superadmin\":true}"
                         },
                         "description": ""
                     },
@@ -976,7 +968,7 @@
                     "response": []
                 },
                 {
-                    "name": "api\/admin\/updateadmin\/{id}",
+                    "name": "updating a certain admin with id from the database",
                     "request": {
                         "url": {
                             "protocol": "http",
@@ -988,8 +980,8 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "autem",
-                                    "description": "The ID of the updateadmin."
+                                    "value": "14",
+                                    "description": "The ID of the admin"
                                 }
                             ]
                         },
@@ -1004,16 +996,44 @@
                                 "value": "application\/json"
                             }
                         ],
-                        "body": null,
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"superadmin\":true}"
+                        },
                         "description": "",
                         "auth": {
                             "type": "noauth"
                         }
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "",
+                            "name": "the user is a superadmin"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\"message\":\"unauthorized\"}",
+                            "name": "the user isn't a superadmin"
+                        },
+                        {
+                            "header": [],
+                            "code": 404,
+                            "body": "",
+                            "name": "the admin by the given id was not found"
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "",
+                            "name": "The request was well formed but was unable to be followed due to a validation error"
+                        }
+                    ]
                 },
                 {
-                    "name": "api\/admin\/removeadmin\/{id}",
+                    "name": "removing a certain admin with id from the database",
                     "request": {
                         "url": {
                             "protocol": "http",
@@ -1025,8 +1045,8 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "eos",
-                                    "description": "The ID of the removeadmin."
+                                    "value": "14",
+                                    "description": "The ID of the admin"
                                 }
                             ]
                         },
@@ -1047,10 +1067,29 @@
                             "type": "noauth"
                         }
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "",
+                            "name": "the user is a superadmin"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\"message\":\"unauthorized\"}",
+                            "name": "the user isn't a superadmin"
+                        },
+                        {
+                            "header": [],
+                            "code": 404,
+                            "body": "",
+                            "name": "the admin with the given id was not found"
+                        }
+                    ]
                 },
                 {
-                    "name": "api\/admin\/addcategory",
+                    "name": "adding category to the database",
                     "request": {
                         "url": {
                             "protocol": "http",
@@ -1070,16 +1109,38 @@
                                 "value": "application\/json"
                             }
                         ],
-                        "body": null,
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"category_name\":\"veniam\"}"
+                        },
                         "description": "",
                         "auth": {
                             "type": "noauth"
                         }
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "",
+                            "name": "the user is an admin and the inputs are satisfied with the validation rules"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\"message\":\"unauthorized\"}",
+                            "name": "the user isn't an admin"
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "",
+                            "name": "The request was well formed but was unable to be followed due to a validation error"
+                        }
+                    ]
                 },
                 {
-                    "name": "api\/admin\/removecategory\/{id}",
+                    "name": "removing a certain category with id from the database",
                     "request": {
                         "url": {
                             "protocol": "http",
@@ -1091,8 +1152,8 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "id",
-                                    "description": "The ID of the removecategory."
+                                    "value": "15",
+                                    "description": "The ID of the category"
                                 }
                             ]
                         },
@@ -1113,10 +1174,29 @@
                             "type": "noauth"
                         }
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "",
+                            "name": "the user is an admin"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\"message\":\"unauthorized\"}",
+                            "name": "the user isn't an admin"
+                        },
+                        {
+                            "header": [],
+                            "code": 404,
+                            "body": "",
+                            "name": "the category with the given id is not found"
+                        }
+                    ]
                 },
                 {
-                    "name": "api\/admin\/updatecategory\/{id}",
+                    "name": "updating a certain category with id in the database",
                     "request": {
                         "url": {
                             "protocol": "http",
@@ -1128,8 +1208,8 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "molestiae",
-                                    "description": "The ID of the updatecategory."
+                                    "value": "20",
+                                    "description": "The ID of the category"
                                 }
                             ]
                         },
@@ -1144,16 +1224,44 @@
                                 "value": "application\/json"
                             }
                         ],
-                        "body": null,
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"category_name\":\"vero\"}"
+                        },
                         "description": "",
                         "auth": {
                             "type": "noauth"
                         }
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "",
+                            "name": "the user is an admin and the inputs are satisfied with the validation rules"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\"message\":\"unauthorized\"}",
+                            "name": "the user isn't an admin"
+                        },
+                        {
+                            "header": [],
+                            "code": 404,
+                            "body": "",
+                            "name": "the category with the given id was not found"
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "",
+                            "name": "The request was well formed but was unable to be followed due to a validation error"
+                        }
+                    ]
                 },
                 {
-                    "name": "api\/admin\/additem",
+                    "name": "adding item to the database",
                     "request": {
                         "url": {
                             "protocol": "http",
@@ -1166,23 +1274,76 @@
                         "header": [
                             {
                                 "key": "Content-Type",
-                                "value": "application\/json"
+                                "value": "multipart\/form-data"
                             },
                             {
                                 "key": "Accept",
                                 "value": "application\/json"
                             }
                         ],
-                        "body": null,
+                        "body": {
+                            "mode": "formdata",
+                            "formdata": [
+                                {
+                                    "key": "item_name",
+                                    "value": "aut",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "category_id",
+                                    "value": 4,
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "price",
+                                    "value": "quae",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "offer",
+                                    "value": "ut",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "offer_end_date",
+                                    "value": "voluptatum",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "file_path",
+                                    "src": [],
+                                    "type": "file"
+                                }
+                            ]
+                        },
                         "description": "",
                         "auth": {
                             "type": "noauth"
                         }
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "",
+                            "name": "the user is an admin and the inputs are satisfied with the validation rules"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\"message\":\"unauthorized\"}",
+                            "name": "the user isn't an admin"
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "",
+                            "name": "The request was well formed but was unable to be followed due to a validation error"
+                        }
+                    ]
                 },
                 {
-                    "name": "api\/admin\/removeitem\/{id}",
+                    "name": "removing a certain item with id from the database",
                     "request": {
                         "url": {
                             "protocol": "http",
@@ -1194,8 +1355,8 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "molestias",
-                                    "description": "The ID of the removeitem."
+                                    "value": "13",
+                                    "description": "The ID of the item"
                                 }
                             ]
                         },
@@ -1216,10 +1377,29 @@
                             "type": "noauth"
                         }
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "",
+                            "name": "the user is an admin"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\"message\":\"unauthorized\"}",
+                            "name": "the user isn't an admin"
+                        },
+                        {
+                            "header": [],
+                            "code": 404,
+                            "body": "",
+                            "name": "the item with the given id is not found"
+                        }
+                    ]
                 },
                 {
-                    "name": "api\/admin\/updateitem\/{id}",
+                    "name": "updating a certain item with id in the database",
                     "request": {
                         "url": {
                             "protocol": "http",
@@ -1231,8 +1411,8 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "quo",
-                                    "description": "The ID of the updateitem."
+                                    "value": "14",
+                                    "description": "The ID of the item"
                                 }
                             ]
                         },
@@ -1253,7 +1433,32 @@
                             "type": "noauth"
                         }
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "",
+                            "name": "the user is an admin and the inputs are satisfied with the validation rules"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\"message\":\"unauthorized\"}",
+                            "name": "the user isn't an admin"
+                        },
+                        {
+                            "header": [],
+                            "code": 404,
+                            "body": "",
+                            "name": "the item with the given id was not found"
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "",
+                            "name": "The request was well formed but was unable to be followed due to a validation error"
+                        }
+                    ]
                 },
                 {
                     "name": "Display the admin email verification prompt.",
@@ -1314,13 +1519,13 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "nihil",
+                                    "value": "esse",
                                     "description": "The ID of the verify email."
                                 },
                                 {
                                     "id": "hash",
                                     "key": "hash",
-                                    "value": "autem",
+                                    "value": "aut",
                                     "description": ""
                                 }
                             ]
@@ -1416,7 +1621,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"cartID\":8,\"deliveryType\":2}"
+                            "raw": "{\"cartID\":18,\"deliveryType\":2}"
                         },
                         "description": "recieve a cart and place an order with cart info",
                         "auth": {

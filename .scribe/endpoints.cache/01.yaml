@@ -47,31 +47,31 @@ endpoints:
         name: first_name
         description: ''
         required: true
-        example: quaerat
+        example: minima
         type: string
       last_name:
         name: last_name
         description: ''
         required: true
-        example: minima
+        example: eum
         type: string
       email:
         name: email
         description: ''
         required: true
-        example: porro
+        example: mollitia
         type: string
       password:
         name: password
         description: ''
         required: true
-        example: velit
+        example: dolorem
         type: string
       password_confirmation:
         name: password_confirmation
         description: ''
         required: true
-        example: dolorem
+        example: adipisci
         type: string
     responses:
       -
@@ -124,19 +124,19 @@ endpoints:
         name: email
         description: ''
         required: true
-        example: ut
+        example: cupiditate
         type: string
       password:
         name: password
         description: ''
         required: true
-        example: pariatur
+        example: et
         type: string
       remember:
         name: remember
         description: ''
         required: false
-        example: false
+        example: true
         type: boolean
     responses:
       -
@@ -193,7 +193,7 @@ endpoints:
         name: email
         description: ''
         required: true
-        example: rem
+        example: at
         type: string
     responses:
       -
@@ -222,7 +222,7 @@ endpoints:
         name: token
         description: ''
         required: true
-        example: possimus
+        example: veniam
         type: string
     queryParameters: []
     bodyParameters: []
@@ -260,25 +260,25 @@ endpoints:
         name: token
         description: ''
         required: true
-        example: aliquam
+        example: omnis
         type: mixed
       emai:
         name: emai
         description: ''
         required: true
-        example: aliquam
+        example: ipsa
         type: string
       password:
         name: password
         description: ''
         required: true
-        example: quam
+        example: alias
         type: string
       password_confirmation:
         name: password_confirmation
         description: ''
         required: true
-        example: suscipit
+        example: delectus
         type: string
     responses:
       -
@@ -332,13 +332,13 @@ endpoints:
         name: id
         description: 'The ID of the verify email.'
         required: true
-        example: pariatur
+        example: dolores
         type: string
       hash:
         name: hash
         description: ''
         required: true
-        example: culpa
+        example: dolore
         type: string
     queryParameters: []
     bodyParameters: []
@@ -438,13 +438,13 @@ endpoints:
         name: email
         description: ''
         required: true
-        example: ducimus
+        example: dolor
         type: string
       password:
         name: password
         description: ''
         required: true
-        example: porro
+        example: quia
         type: string
     responses:
       -
@@ -458,7 +458,7 @@ endpoints:
       - GET
     uri: api/admin/admins
     metadata:
-      title: ''
+      title: 'getting all admins in the database'
       description: ''
       authenticated: false
     headers:
@@ -469,20 +469,36 @@ endpoints:
     bodyParameters: []
     responses:
       -
+        status: 200
+        content: |-
+          {
+            {
+            "id": "1" ,
+            "email":"steve@gmail.com" ,
+            "username":"steve" ,
+            "superadmin":"1"
+            }
+            {
+            "id": "2" ,
+            "email":"sara@gmail.com" ,
+            "username":"sara" ,
+            "superadmin":"0"
+            }
+          }
+        headers: []
+        description: '200, the user is a superadmin'
+      -
         status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          access-control-allow-origin: '*'
-        description: null
+        content: '{"message":"unauthorized"}'
+        headers: []
+        description: '401, the user isn''t a superadmin'
     responseFields: []
   -
     httpMethods:
       - GET
     uri: 'api/admin/admins/{id}'
     metadata:
-      title: ''
+      title: 'getting a certain admin in the database by the id'
       description: ''
       authenticated: false
     headers:
@@ -491,21 +507,34 @@ endpoints:
     urlParameters:
       id:
         name: id
-        description: 'The ID of the admin.'
+        description: 'The ID of the admin'
         required: true
-        example: 10
+        example: 20
         type: integer
     queryParameters: []
     bodyParameters: []
     responses:
       -
+        status: 200
+        content: |-
+          {
+            "id": "1" ,
+            "email":"steve@gmail.com" ,
+            "username":"steve" ,
+            "superadmin":"1"
+            }
+        headers: []
+        description: '200, the user is a superadmin'
+      -
         status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          access-control-allow-origin: '*'
-        description: null
+        content: '{"message":"unauthorized"}'
+        headers: []
+        description: '401, the user isn''t a superadmin'
+      -
+        status: 404
+        content: ''
+        headers: []
+        description: '404, the admin by the given id is not found'
     responseFields: []
   -
     httpMethods:
@@ -549,25 +578,25 @@ endpoints:
         name: email
         description: ''
         required: true
-        example: fugit
+        example: et
         type: string
       username:
         name: username
         description: ''
         required: true
-        example: quo
+        example: voluptatibus
         type: string
       password:
         name: password
         description: ''
         required: true
-        example: commodi
+        example: explicabo
         type: string
       password_confirmation:
         name: password_confirmation
         description: ''
         required: true
-        example: quis
+        example: voluptatem
         type: string
       superadmin:
         name: superadmin
@@ -603,7 +632,7 @@ endpoints:
       - POST
     uri: 'api/admin/updateadmin/{id}'
     metadata:
-      title: ''
+      title: 'updating a certain admin with id from the database'
       description: ''
       authenticated: false
     headers:
@@ -612,20 +641,46 @@ endpoints:
     urlParameters:
       id:
         name: id
-        description: 'The ID of the updateadmin.'
+        description: 'The ID of the admin'
         required: true
-        example: autem
-        type: string
+        example: 14
+        type: integer
     queryParameters: []
-    bodyParameters: []
-    responses: []
+    bodyParameters:
+      superadmin:
+        name: superadmin
+        description: ''
+        required: false
+        example: true
+        type: boolean
+    responses:
+      -
+        status: 200
+        content: ''
+        headers: []
+        description: '200, the user is a superadmin'
+      -
+        status: 401
+        content: '{"message":"unauthorized"}'
+        headers: []
+        description: '401, the user isn''t a superadmin'
+      -
+        status: 404
+        content: ''
+        headers: []
+        description: '404, the admin by the given id was not found'
+      -
+        status: 422
+        content: ''
+        headers: []
+        description: '422, The request was well formed but was unable to be followed due to a validation error'
     responseFields: []
   -
     httpMethods:
       - POST
     uri: 'api/admin/removeadmin/{id}'
     metadata:
-      title: ''
+      title: 'removing a certain admin with id from the database'
       description: ''
       authenticated: false
     headers:
@@ -634,20 +689,35 @@ endpoints:
     urlParameters:
       id:
         name: id
-        description: 'The ID of the removeadmin.'
+        description: 'The ID of the admin'
         required: true
-        example: eos
-        type: string
+        example: 14
+        type: integer
     queryParameters: []
     bodyParameters: []
-    responses: []
+    responses:
+      -
+        status: 200
+        content: ''
+        headers: []
+        description: '200, the user is a superadmin'
+      -
+        status: 401
+        content: '{"message":"unauthorized"}'
+        headers: []
+        description: '401, the user isn''t a superadmin'
+      -
+        status: 404
+        content: ''
+        headers: []
+        description: '404, the admin with the given id was not found'
     responseFields: []
   -
     httpMethods:
       - POST
     uri: api/admin/addcategory
     metadata:
-      title: ''
+      title: 'adding category to the database'
       description: ''
       authenticated: false
     headers:
@@ -655,15 +725,36 @@ endpoints:
       Accept: application/json
     urlParameters: []
     queryParameters: []
-    bodyParameters: []
-    responses: []
+    bodyParameters:
+      category_name:
+        name: category_name
+        description: 'string and must be unique'
+        required: false
+        example: veniam
+        type: required
+    responses:
+      -
+        status: 200
+        content: ''
+        headers: []
+        description: '200, the user is an admin and the inputs are satisfied with the validation rules'
+      -
+        status: 401
+        content: '{"message":"unauthorized"}'
+        headers: []
+        description: '401, the user isn''t an admin'
+      -
+        status: 422
+        content: ''
+        headers: []
+        description: '422, The request was well formed but was unable to be followed due to a validation error'
     responseFields: []
   -
     httpMethods:
       - POST
     uri: 'api/admin/removecategory/{id}'
     metadata:
-      title: ''
+      title: 'removing a certain category with id from the database'
       description: ''
       authenticated: false
     headers:
@@ -672,20 +763,35 @@ endpoints:
     urlParameters:
       id:
         name: id
-        description: 'The ID of the removecategory.'
+        description: 'The ID of the category'
         required: true
-        example: id
-        type: string
+        example: 15
+        type: integer
     queryParameters: []
     bodyParameters: []
-    responses: []
+    responses:
+      -
+        status: 200
+        content: ''
+        headers: []
+        description: '200, the user is an admin'
+      -
+        status: 401
+        content: '{"message":"unauthorized"}'
+        headers: []
+        description: '401, the user isn''t an admin'
+      -
+        status: 404
+        content: ''
+        headers: []
+        description: '404, the category with the given id is not found'
     responseFields: []
   -
     httpMethods:
       - POST
     uri: 'api/admin/updatecategory/{id}'
     metadata:
-      title: ''
+      title: 'updating a certain category with id in the database'
       description: ''
       authenticated: false
     headers:
@@ -694,36 +800,113 @@ endpoints:
     urlParameters:
       id:
         name: id
-        description: 'The ID of the updatecategory.'
+        description: 'The ID of the category'
         required: true
-        example: molestiae
-        type: string
+        example: 20
+        type: integer
     queryParameters: []
-    bodyParameters: []
-    responses: []
+    bodyParameters:
+      category_name:
+        name: category_name
+        description: 'and must be unique'
+        required: false
+        example: vero
+        type: string
+    responses:
+      -
+        status: 200
+        content: ''
+        headers: []
+        description: '200, the user is an admin and the inputs are satisfied with the validation rules'
+      -
+        status: 401
+        content: '{"message":"unauthorized"}'
+        headers: []
+        description: '401, the user isn''t an admin'
+      -
+        status: 404
+        content: ''
+        headers: []
+        description: '404, the category with the given id was not found'
+      -
+        status: 422
+        content: ''
+        headers: []
+        description: '422, The request was well formed but was unable to be followed due to a validation error'
     responseFields: []
   -
     httpMethods:
       - POST
     uri: api/admin/additem
     metadata:
-      title: ''
+      title: 'adding item to the database'
       description: ''
       authenticated: false
     headers:
-      Content-Type: application/json
+      Content-Type: multipart/form-data
       Accept: application/json
     urlParameters: []
     queryParameters: []
-    bodyParameters: []
-    responses: []
+    bodyParameters:
+      item_name:
+        name: item_name
+        description: 'and must be unique with 40 chrachters at maximum'
+        required: true
+        example: aut
+        type: string
+      category_id:
+        name: category_id
+        description: 'and it must exist'
+        required: true
+        example: 4
+        type: integer
+      price:
+        name: price
+        description: ''
+        required: true
+        example: quae
+        type: decimal
+      offer:
+        name: offer
+        description: 'if there was an offer_end_date'
+        required: true
+        example: ut
+        type: decimal
+      offer_end_date:
+        name: offer_end_date
+        description: 'if there was an offer'
+        required: true
+        example: voluptatum
+        type: datetime
+      file_path:
+        name: file_path
+        description: ''
+        required: false
+        example: null
+        type: file
+    responses:
+      -
+        status: 200
+        content: ''
+        headers: []
+        description: '200, the user is an admin and the inputs are satisfied with the validation rules'
+      -
+        status: 401
+        content: '{"message":"unauthorized"}'
+        headers: []
+        description: '401, the user isn''t an admin'
+      -
+        status: 422
+        content: ''
+        headers: []
+        description: '422, The request was well formed but was unable to be followed due to a validation error'
     responseFields: []
   -
     httpMethods:
       - POST
     uri: 'api/admin/removeitem/{id}'
     metadata:
-      title: ''
+      title: 'removing a certain item with id from the database'
       description: ''
       authenticated: false
     headers:
@@ -732,20 +915,35 @@ endpoints:
     urlParameters:
       id:
         name: id
-        description: 'The ID of the removeitem.'
+        description: 'The ID of the item'
         required: true
-        example: molestias
-        type: string
+        example: 13
+        type: integer
     queryParameters: []
     bodyParameters: []
-    responses: []
+    responses:
+      -
+        status: 200
+        content: ''
+        headers: []
+        description: '200, the user is an admin'
+      -
+        status: 401
+        content: '{"message":"unauthorized"}'
+        headers: []
+        description: '401, the user isn''t an admin'
+      -
+        status: 404
+        content: ''
+        headers: []
+        description: '404, the item with the given id is not found'
     responseFields: []
   -
     httpMethods:
       - POST
     uri: 'api/admin/updateitem/{id}'
     metadata:
-      title: ''
+      title: 'updating a certain item with id in the database'
       description: ''
       authenticated: false
     headers:
@@ -754,13 +952,33 @@ endpoints:
     urlParameters:
       id:
         name: id
-        description: 'The ID of the updateitem.'
+        description: 'The ID of the item'
         required: true
-        example: quo
-        type: string
+        example: 14
+        type: integer
     queryParameters: []
     bodyParameters: []
-    responses: []
+    responses:
+      -
+        status: 200
+        content: ''
+        headers: []
+        description: '200, the user is an admin and the inputs are satisfied with the validation rules'
+      -
+        status: 401
+        content: '{"message":"unauthorized"}'
+        headers: []
+        description: '401, the user isn''t an admin'
+      -
+        status: 404
+        content: ''
+        headers: []
+        description: '404, the item with the given id was not found'
+      -
+        status: 422
+        content: ''
+        headers: []
+        description: '422, The request was well formed but was unable to be followed due to a validation error'
     responseFields: []
   -
     httpMethods:
@@ -802,13 +1020,13 @@ endpoints:
         name: id
         description: 'The ID of the verify email.'
         required: true
-        example: nihil
+        example: esse
         type: string
       hash:
         name: hash
         description: ''
         required: true
-        example: autem
+        example: aut
         type: string
     queryParameters: []
     bodyParameters: []

@@ -5,7 +5,7 @@ info:
   version: 1.0.0
 servers:
   -
-    url: 'http://127.0.0.1:8000'
+    url: 'http://localhost'
 paths:
   /api/create-cart:
     post:
@@ -36,12 +36,17 @@ paths:
             schema:
               type: object
               properties:
-                User_id:
+                cart_id:
                   type: integer
-                  description: 'The ID of the user who''s account is associated with this cart'
+                  description: 'The id of the cart that will be modified'
                   example: 13
+                item_id:
+                  type: integer
+                  description: 'The id of the item that needs to be removed'
+                  example: 14
               required:
-                - User_id
+                - cart_id
+                - item_id
       security: []
   /api/add-to-cart:
     post:
@@ -75,11 +80,11 @@ paths:
                 cart_id:
                   type: integer
                   description: 'The id of the cart to which the item will be added'
-                  example: 20
+                  example: 7
                 item_id:
                   type: integer
                   description: 'The id of the item that needs to be added'
-                  example: 14
+                  example: 6
               required:
                 - cart_id
                 - item_id
@@ -116,11 +121,11 @@ paths:
                 cart_id:
                   type: integer
                   description: 'The id of the cart that will be modified'
-                  example: 13
+                  example: 12
                 item_id:
                   type: integer
                   description: 'The id of the item that needs to be removed'
-                  example: 14
+                  example: 8
               required:
                 - cart_id
                 - item_id
@@ -223,23 +228,23 @@ paths:
                 first_name:
                   type: string
                   description: ''
-                  example: quaerat
+                  example: minima
                 last_name:
                   type: string
                   description: ''
-                  example: minima
+                  example: eum
                 email:
                   type: string
                   description: ''
-                  example: porro
+                  example: mollitia
                 password:
                   type: string
                   description: ''
-                  example: velit
+                  example: dolorem
                 password_confirmation:
                   type: string
                   description: ''
-                  example: dolorem
+                  example: adipisci
               required:
                 - first_name
                 - last_name
@@ -329,15 +334,15 @@ paths:
                 email:
                   type: string
                   description: ''
-                  example: ut
+                  example: cupiditate
                 password:
                   type: string
                   description: ''
-                  example: pariatur
+                  example: et
                 remember:
                   type: boolean
                   description: ''
-                  example: false
+                  example: true
               required:
                 - email
                 - password
@@ -415,7 +420,7 @@ paths:
                 email:
                   type: string
                   description: ''
-                  example: rem
+                  example: at
               required:
                 - email
       security: []
@@ -459,7 +464,7 @@ paths:
         in: path
         name: token
         description: ''
-        example: possimus
+        example: veniam
         required: true
         schema:
           type: string
@@ -515,19 +520,19 @@ paths:
                 token:
                   type: mixed
                   description: ''
-                  example: aliquam
+                  example: omnis
                 emai:
                   type: string
                   description: ''
-                  example: aliquam
+                  example: ipsa
                 password:
                   type: string
                   description: ''
-                  example: quam
+                  example: alias
                 password_confirmation:
                   type: string
                   description: ''
-                  example: suscipit
+                  example: delectus
               required:
                 - token
                 - emai
@@ -611,7 +616,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the verify email.'
-        example: pariatur
+        example: dolores
         required: true
         schema:
           type: string
@@ -619,7 +624,7 @@ paths:
         in: path
         name: hash
         description: ''
-        example: culpa
+        example: dolore
         required: true
         schema:
           type: string
@@ -765,17 +770,17 @@ paths:
                 email:
                   type: string
                   description: ''
-                  example: ducimus
+                  example: dolor
                 password:
                   type: string
                   description: ''
-                  example: porro
+                  example: quia
               required:
                 - email
                 - password
   /api/admin/admins:
     get:
-      summary: ''
+      summary: 'getting all admins in the database'
       description: ''
       parameters:
         -
@@ -793,24 +798,31 @@ paths:
           schema:
             type: string
       responses:
+        200:
+          description: 'the user is a superadmin'
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n  {\n  \"id\": \"1\" ,\n  \"email\":\"steve@gmail.com\" ,\n  \"username\":\"steve\" ,\n  \"superadmin\":\"1\"\n  }\n  {\n  \"id\": \"2\" ,\n  \"email\":\"sara@gmail.com\" ,\n  \"username\":\"sara\" ,\n  \"superadmin\":\"0\"\n  }\n}"
         401:
-          description: ''
+          description: 'the user isn''t a superadmin'
           content:
             application/json:
               schema:
                 type: object
                 example:
-                  message: Unauthenticated.
+                  message: unauthorized
                 properties:
                   message:
                     type: string
-                    example: Unauthenticated.
+                    example: unauthorized
       tags:
         - Endpoints
       security: []
   '/api/admin/admins/{id}':
     get:
-      summary: ''
+      summary: 'getting a certain admin in the database by the id'
       description: ''
       parameters:
         -
@@ -828,18 +840,49 @@ paths:
           schema:
             type: string
       responses:
-        401:
-          description: ''
+        200:
+          description: 'the user is a superadmin'
           content:
             application/json:
               schema:
                 type: object
                 example:
-                  message: Unauthenticated.
+                  id: '1'
+                  email: steve@gmail.com
+                  username: steve
+                  superadmin: '1'
+                properties:
+                  id:
+                    type: string
+                    example: '1'
+                  email:
+                    type: string
+                    example: steve@gmail.com
+                  username:
+                    type: string
+                    example: steve
+                  superadmin:
+                    type: string
+                    example: '1'
+        401:
+          description: 'the user isn''t a superadmin'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: unauthorized
                 properties:
                   message:
                     type: string
-                    example: Unauthenticated.
+                    example: unauthorized
+        404:
+          description: 'the admin by the given id is not found'
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: ''
       tags:
         - Endpoints
       security: []
@@ -847,8 +890,8 @@ paths:
       -
         in: path
         name: id
-        description: 'The ID of the admin.'
-        example: 10
+        description: 'The ID of the admin'
+        example: 20
         required: true
         schema:
           type: integer
@@ -934,19 +977,19 @@ paths:
                 email:
                   type: string
                   description: ''
-                  example: fugit
+                  example: et
                 username:
                   type: string
                   description: ''
-                  example: quo
+                  example: voluptatibus
                 password:
                   type: string
                   description: ''
-                  example: commodi
+                  example: explicabo
                 password_confirmation:
                   type: string
                   description: ''
-                  example: quis
+                  example: voluptatem
                 superadmin:
                   type: boolean
                   description: ''
@@ -980,7 +1023,7 @@ paths:
         - Endpoints
   '/api/admin/updateadmin/{id}':
     post:
-      summary: ''
+      summary: 'updating a certain admin with id from the database'
       description: ''
       parameters:
         -
@@ -997,22 +1040,66 @@ paths:
           example: application/json
           schema:
             type: string
-      responses: {  }
+      responses:
+        200:
+          description: 'the user is a superadmin'
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: ''
+        401:
+          description: 'the user isn''t a superadmin'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: unauthorized
+                properties:
+                  message:
+                    type: string
+                    example: unauthorized
+        404:
+          description: 'the admin by the given id was not found'
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: ''
+        422:
+          description: 'The request was well formed but was unable to be followed due to a validation error'
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: ''
       tags:
         - Endpoints
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                superadmin:
+                  type: boolean
+                  description: ''
+                  example: true
       security: []
     parameters:
       -
         in: path
         name: id
-        description: 'The ID of the updateadmin.'
-        example: autem
+        description: 'The ID of the admin'
+        example: 14
         required: true
         schema:
-          type: string
+          type: integer
   '/api/admin/removeadmin/{id}':
     post:
-      summary: ''
+      summary: 'removing a certain admin with id from the database'
       description: ''
       parameters:
         -
@@ -1029,7 +1116,33 @@ paths:
           example: application/json
           schema:
             type: string
-      responses: {  }
+      responses:
+        200:
+          description: 'the user is a superadmin'
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: ''
+        401:
+          description: 'the user isn''t a superadmin'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: unauthorized
+                properties:
+                  message:
+                    type: string
+                    example: unauthorized
+        404:
+          description: 'the admin with the given id was not found'
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: ''
       tags:
         - Endpoints
       security: []
@@ -1037,14 +1150,14 @@ paths:
       -
         in: path
         name: id
-        description: 'The ID of the removeadmin.'
-        example: eos
+        description: 'The ID of the admin'
+        example: 14
         required: true
         schema:
-          type: string
+          type: integer
   /api/admin/addcategory:
     post:
-      summary: ''
+      summary: 'adding category to the database'
       description: ''
       parameters:
         -
@@ -1061,13 +1174,50 @@ paths:
           example: application/json
           schema:
             type: string
-      responses: {  }
+      responses:
+        200:
+          description: 'the user is an admin and the inputs are satisfied with the validation rules'
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: ''
+        401:
+          description: 'the user isn''t an admin'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: unauthorized
+                properties:
+                  message:
+                    type: string
+                    example: unauthorized
+        422:
+          description: 'The request was well formed but was unable to be followed due to a validation error'
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: ''
       tags:
         - Endpoints
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                category_name:
+                  type: required
+                  description: 'string and must be unique'
+                  example: veniam
       security: []
   '/api/admin/removecategory/{id}':
     post:
-      summary: ''
+      summary: 'removing a certain category with id from the database'
       description: ''
       parameters:
         -
@@ -1084,7 +1234,33 @@ paths:
           example: application/json
           schema:
             type: string
-      responses: {  }
+      responses:
+        200:
+          description: 'the user is an admin'
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: ''
+        401:
+          description: 'the user isn''t an admin'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: unauthorized
+                properties:
+                  message:
+                    type: string
+                    example: unauthorized
+        404:
+          description: 'the category with the given id is not found'
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: ''
       tags:
         - Endpoints
       security: []
@@ -1092,14 +1268,14 @@ paths:
       -
         in: path
         name: id
-        description: 'The ID of the removecategory.'
-        example: id
+        description: 'The ID of the category'
+        example: 15
         required: true
         schema:
-          type: string
+          type: integer
   '/api/admin/updatecategory/{id}':
     post:
-      summary: ''
+      summary: 'updating a certain category with id in the database'
       description: ''
       parameters:
         -
@@ -1116,29 +1292,73 @@ paths:
           example: application/json
           schema:
             type: string
-      responses: {  }
+      responses:
+        200:
+          description: 'the user is an admin and the inputs are satisfied with the validation rules'
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: ''
+        401:
+          description: 'the user isn''t an admin'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: unauthorized
+                properties:
+                  message:
+                    type: string
+                    example: unauthorized
+        404:
+          description: 'the category with the given id was not found'
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: ''
+        422:
+          description: 'The request was well formed but was unable to be followed due to a validation error'
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: ''
       tags:
         - Endpoints
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                category_name:
+                  type: string
+                  description: 'and must be unique'
+                  example: vero
       security: []
     parameters:
       -
         in: path
         name: id
-        description: 'The ID of the updatecategory.'
-        example: molestiae
+        description: 'The ID of the category'
+        example: 20
         required: true
         schema:
-          type: string
+          type: integer
   /api/admin/additem:
     post:
-      summary: ''
+      summary: 'adding item to the database'
       description: ''
       parameters:
         -
           in: header
           name: Content-Type
           description: ''
-          example: application/json
+          example: multipart/form-data
           schema:
             type: string
         -
@@ -1148,13 +1368,76 @@ paths:
           example: application/json
           schema:
             type: string
-      responses: {  }
+      responses:
+        200:
+          description: 'the user is an admin and the inputs are satisfied with the validation rules'
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: ''
+        401:
+          description: 'the user isn''t an admin'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: unauthorized
+                properties:
+                  message:
+                    type: string
+                    example: unauthorized
+        422:
+          description: 'The request was well formed but was unable to be followed due to a validation error'
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: ''
       tags:
         - Endpoints
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                item_name:
+                  type: string
+                  description: 'and must be unique with 40 chrachters at maximum'
+                  example: aut
+                category_id:
+                  type: integer
+                  description: 'and it must exist'
+                  example: 4
+                price:
+                  type: decimal
+                  description: ''
+                  example: quae
+                offer:
+                  type: decimal
+                  description: 'if there was an offer_end_date'
+                  example: ut
+                offer_end_date:
+                  type: datetime
+                  description: 'if there was an offer'
+                  example: voluptatum
+                file_path:
+                  type: string
+                  format: binary
+                  description: ''
+              required:
+                - item_name
+                - category_id
+                - price
+                - offer
+                - offer_end_date
       security: []
   '/api/admin/removeitem/{id}':
     post:
-      summary: ''
+      summary: 'removing a certain item with id from the database'
       description: ''
       parameters:
         -
@@ -1171,7 +1454,33 @@ paths:
           example: application/json
           schema:
             type: string
-      responses: {  }
+      responses:
+        200:
+          description: 'the user is an admin'
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: ''
+        401:
+          description: 'the user isn''t an admin'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: unauthorized
+                properties:
+                  message:
+                    type: string
+                    example: unauthorized
+        404:
+          description: 'the item with the given id is not found'
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: ''
       tags:
         - Endpoints
       security: []
@@ -1179,14 +1488,14 @@ paths:
       -
         in: path
         name: id
-        description: 'The ID of the removeitem.'
-        example: molestias
+        description: 'The ID of the item'
+        example: 13
         required: true
         schema:
-          type: string
+          type: integer
   '/api/admin/updateitem/{id}':
     post:
-      summary: ''
+      summary: 'updating a certain item with id in the database'
       description: ''
       parameters:
         -
@@ -1203,7 +1512,40 @@ paths:
           example: application/json
           schema:
             type: string
-      responses: {  }
+      responses:
+        200:
+          description: 'the user is an admin and the inputs are satisfied with the validation rules'
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: ''
+        401:
+          description: 'the user isn''t an admin'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: unauthorized
+                properties:
+                  message:
+                    type: string
+                    example: unauthorized
+        404:
+          description: 'the item with the given id was not found'
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: ''
+        422:
+          description: 'The request was well formed but was unable to be followed due to a validation error'
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: ''
       tags:
         - Endpoints
       security: []
@@ -1211,11 +1553,11 @@ paths:
       -
         in: path
         name: id
-        description: 'The ID of the updateitem.'
-        example: quo
+        description: 'The ID of the item'
+        example: 14
         required: true
         schema:
-          type: string
+          type: integer
   /api/admin/verify-email:
     get:
       summary: 'Display the admin email verification prompt.'
@@ -1289,7 +1631,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the verify email.'
-        example: nihil
+        example: esse
         required: true
         schema:
           type: string
@@ -1297,7 +1639,7 @@ paths:
         in: path
         name: hash
         description: ''
-        example: autem
+        example: aut
         required: true
         schema:
           type: string
@@ -1355,7 +1697,7 @@ paths:
                 cartID:
                   type: integer
                   description: 'The id of a valid cart to use for the order'
-                  example: 8
+                  example: 18
                 deliveryType:
                   type: integer
                   description: 'A number between 0-3 to specify the type of delivery from the list [''To Home'', ''To Car'', ''In Restaurant'', ''Take Away''].'
