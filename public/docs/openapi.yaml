@@ -5,8 +5,126 @@ info:
   version: 1.0.0
 servers:
   -
-    url: 'http://localhost'
+    url: 'http://127.0.0.1:8000'
 paths:
+  /api/create-cart:
+    post:
+      summary: 'Create cart'
+      description: 'Create a new cart to place items in'
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - 'Cart Management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                User_id:
+                  type: integer
+                  description: 'The ID of the user who''s account is associated with this cart'
+                  example: 13
+              required:
+                - User_id
+      security: []
+  /api/add-to-cart:
+    post:
+      summary: 'Add to cart'
+      description: 'add a new item to the cart'
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - 'Cart Management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                cart_id:
+                  type: integer
+                  description: 'The id of the cart to which the item will be added'
+                  example: 20
+                item_id:
+                  type: integer
+                  description: 'The id of the item that needs to be added'
+                  example: 14
+              required:
+                - cart_id
+                - item_id
+      security: []
+  /api/remove-from-cart:
+    post:
+      summary: 'Remove from cart'
+      description: 'Remove an item from the cart'
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - 'Cart Management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                cart_id:
+                  type: integer
+                  description: 'The id of the cart that will be modified'
+                  example: 13
+                item_id:
+                  type: integer
+                  description: 'The id of the item that needs to be removed'
+                  example: 14
+              required:
+                - cart_id
+                - item_id
+      security: []
   /api/register:
     get:
       summary: 'Display the user registration view.'
@@ -105,23 +223,23 @@ paths:
                 first_name:
                   type: string
                   description: ''
-                  example: delectus
+                  example: quaerat
                 last_name:
                   type: string
                   description: ''
-                  example: dolor
+                  example: minima
                 email:
                   type: string
                   description: ''
-                  example: voluptatem
+                  example: porro
                 password:
                   type: string
                   description: ''
-                  example: laboriosam
+                  example: velit
                 password_confirmation:
                   type: string
                   description: ''
-                  example: et
+                  example: dolorem
               required:
                 - first_name
                 - last_name
@@ -182,7 +300,23 @@ paths:
           example: application/json
           schema:
             type: string
-      responses: {  }
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'logged in successfully'
+                  'AccessToken:': eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTYzMDMzMDU2NSwiZXhwIjoxNjMwMzM0MTY1LCJuYmYiOjE2MzAzMzA1NjUsImp0aSI6Ik1GQndmSzl3OVM5T1UyWEkiLCJzdWIiOjI1LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.xxpKgqW5NUZ9OXFXy3AHIPw22H_ivI3KOgblbKDAaoc
+                properties:
+                  message:
+                    type: string
+                    example: 'logged in successfully'
+                  'AccessToken:':
+                    type: string
+                    example: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTYzMDMzMDU2NSwiZXhwIjoxNjMwMzM0MTY1LCJuYmYiOjE2MzAzMzA1NjUsImp0aSI6Ik1GQndmSzl3OVM5T1UyWEkiLCJzdWIiOjI1LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.xxpKgqW5NUZ9OXFXy3AHIPw22H_ivI3KOgblbKDAaoc
       tags:
         - Endpoints
       requestBody:
@@ -195,15 +329,15 @@ paths:
                 email:
                   type: string
                   description: ''
-                  example: ducimus
+                  example: ut
                 password:
                   type: string
                   description: ''
-                  example: et
+                  example: pariatur
                 remember:
                   type: boolean
                   description: ''
-                  example: true
+                  example: false
               required:
                 - email
                 - password
@@ -261,7 +395,14 @@ paths:
           example: application/json
           schema:
             type: string
-      responses: {  }
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n \"status\",\n\"We have emailed your password reset link!\"\n}"
       tags:
         - Endpoints
       requestBody:
@@ -274,7 +415,7 @@ paths:
                 email:
                   type: string
                   description: ''
-                  example: dolorum
+                  example: rem
               required:
                 - email
       security: []
@@ -318,7 +459,7 @@ paths:
         in: path
         name: token
         description: ''
-        example: dolores
+        example: possimus
         required: true
         schema:
           type: string
@@ -341,7 +482,27 @@ paths:
           example: application/json
           schema:
             type: string
-      responses: {  }
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  msg: 'this is the user login form, login with the new password '
+                  '0': status
+                  '1': 'Your password has been reset!'
+                properties:
+                  msg:
+                    type: string
+                    example: 'this is the user login form, login with the new password '
+                  0:
+                    type: string
+                    example: status
+                  1:
+                    type: string
+                    example: 'Your password has been reset!'
       tags:
         - Endpoints
       requestBody:
@@ -354,19 +515,19 @@ paths:
                 token:
                   type: mixed
                   description: ''
-                  example: qui
+                  example: aliquam
                 emai:
                   type: string
                   description: ''
-                  example: velit
+                  example: aliquam
                 password:
                   type: string
                   description: ''
-                  example: nisi
+                  example: quam
                 password_confirmation:
                   type: string
                   description: ''
-                  example: et
+                  example: suscipit
               required:
                 - token
                 - emai
@@ -427,18 +588,22 @@ paths:
           schema:
             type: string
       responses:
-        401:
+        200:
           description: ''
           content:
             application/json:
               schema:
                 type: object
                 example:
-                  message: Unauthenticated.
+                  msg: 'Successfully verified'
+                  '0': 201
                 properties:
-                  message:
+                  msg:
                     type: string
-                    example: Unauthenticated.
+                    example: 'Successfully verified'
+                  0:
+                    type: integer
+                    example: 201
       tags:
         - Endpoints
     parameters:
@@ -446,7 +611,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the verify email.'
-        example: eaque
+        example: pariatur
         required: true
         schema:
           type: string
@@ -454,7 +619,7 @@ paths:
         in: path
         name: hash
         description: ''
-        example: corrupti
+        example: culpa
         required: true
         schema:
           type: string
@@ -477,70 +642,29 @@ paths:
           example: application/json
           schema:
             type: string
-      responses: {  }
-      tags:
-        - Endpoints
-  /api/confirm-password:
-    get:
-      summary: 'Show the confirm password view.'
-      description: ''
-      parameters:
-        -
-          in: header
-          name: Content-Type
-          description: ''
-          example: application/json
-          schema:
-            type: string
-        -
-          in: header
-          name: Accept
-          description: ''
-          example: application/json
-          schema:
-            type: string
       responses:
-        401:
+        200:
           description: ''
           content:
             application/json:
               schema:
                 type: object
                 example:
-                  message: Unauthenticated.
+                  msg: verification-link-sent
+                  '0': 201
                 properties:
-                  message:
+                  msg:
                     type: string
-                    example: Unauthenticated.
+                    example: verification-link-sent
+                  0:
+                    type: integer
+                    example: 201
       tags:
         - Endpoints
-      security: []
-    post:
-      summary: 'Confirm the user''s password.'
-      description: ''
-      parameters:
-        -
-          in: header
-          name: Content-Type
-          description: ''
-          example: application/json
-          schema:
-            type: string
-        -
-          in: header
-          name: Accept
-          description: ''
-          example: application/json
-          schema:
-            type: string
-      responses: {  }
-      tags:
-        - Endpoints
-      security: []
   /api/logout:
     post:
-      summary: 'Destroy an authenticated user session (logout).'
-      description: ''
+      summary: 'User logout'
+      description: 'Destroy an authenticated user session.'
       parameters:
         -
           in: header
@@ -612,7 +736,23 @@ paths:
           example: application/json
           schema:
             type: string
-      responses: {  }
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'logged in successfully'
+                  'AccessToken:': eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9hZG1pblwvbG9naW4iLCJpYXQiOjE2MzAzMzE5NTIsImV4cCI6MTYzMDMzNTU1MiwibmJmIjoxNjMwMzMxOTUyLCJqdGkiOiJRQjc0UnNIVjBKaldadG9GIiwic3ViIjoxLCJwcnYiOiJkZjg4M2RiOTdiZDA1ZWY4ZmY4NTA4MmQ2ODZjNDVlODMyZTU5M2E5In0.ASySa0_mm7wqeSdAsAhpWGkuD2_oAafoduHBnh4tsJs
+                properties:
+                  message:
+                    type: string
+                    example: 'logged in successfully'
+                  'AccessToken:':
+                    type: string
+                    example: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9hZG1pblwvbG9naW4iLCJpYXQiOjE2MzAzMzE5NTIsImV4cCI6MTYzMDMzNTU1MiwibmJmIjoxNjMwMzMxOTUyLCJqdGkiOiJRQjc0UnNIVjBKaldadG9GIiwic3ViIjoxLCJwcnYiOiJkZjg4M2RiOTdiZDA1ZWY4ZmY4NTA4MmQ2ODZjNDVlODMyZTU5M2E5In0.ASySa0_mm7wqeSdAsAhpWGkuD2_oAafoduHBnh4tsJs
       tags:
         - Endpoints
       requestBody:
@@ -625,11 +765,11 @@ paths:
                 email:
                   type: string
                   description: ''
-                  example: aut
+                  example: ducimus
                 password:
                   type: string
                   description: ''
-                  example: quia
+                  example: porro
               required:
                 - email
                 - password
@@ -708,7 +848,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the admin.'
-        example: 14
+        example: 10
         required: true
         schema:
           type: integer
@@ -765,7 +905,23 @@ paths:
           example: application/json
           schema:
             type: string
-      responses: {  }
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'registered successfully'
+                  'AccessToken:': eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9hZG1pblwvcmVnaXN0ZXIiLCJpYXQiOjE2MzAzMzE5OTQsImV4cCI6MTYzMDMzNTU5NCwibmJmIjoxNjMwMzMxOTk0LCJqdGkiOiJwMGFQcVpUUlQyYW5rT3RjIiwic3ViIjoyNCwicHJ2IjoiZGY4ODNkYjk3YmQwNWVmOGZmODUwODJkNjg2YzQ1ZTgzMmU1OTNhOSJ9.FuZ92MotjJPJv7ebj15zv4Do1ER0_mwUKXhW8J9mDK8
+                properties:
+                  message:
+                    type: string
+                    example: 'registered successfully'
+                  'AccessToken:':
+                    type: string
+                    example: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9hZG1pblwvcmVnaXN0ZXIiLCJpYXQiOjE2MzAzMzE5OTQsImV4cCI6MTYzMDMzNTU5NCwibmJmIjoxNjMwMzMxOTk0LCJqdGkiOiJwMGFQcVpUUlQyYW5rT3RjIiwic3ViIjoyNCwicHJ2IjoiZGY4ODNkYjk3YmQwNWVmOGZmODUwODJkNjg2YzQ1ZTgzMmU1OTNhOSJ9.FuZ92MotjJPJv7ebj15zv4Do1ER0_mwUKXhW8J9mDK8
       tags:
         - Endpoints
       requestBody:
@@ -778,23 +934,23 @@ paths:
                 email:
                   type: string
                   description: ''
-                  example: nam
+                  example: fugit
                 username:
                   type: string
                   description: ''
-                  example: occaecati
+                  example: quo
                 password:
                   type: string
                   description: ''
-                  example: vero
+                  example: commodi
                 password_confirmation:
                   type: string
                   description: ''
-                  example: et
+                  example: quis
                 superadmin:
                   type: boolean
                   description: ''
-                  example: false
+                  example: true
               required:
                 - email
                 - username
@@ -802,8 +958,8 @@ paths:
                 - password_confirmation
   /api/admin/logout:
     post:
-      summary: 'Destroy an authenticated admin session (logout).'
-      description: ''
+      summary: 'Admin logout'
+      description: 'Destroy an authenticated admin session (logout).'
       parameters:
         -
           in: header
@@ -850,7 +1006,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the updateadmin.'
-        example: nostrum
+        example: autem
         required: true
         schema:
           type: string
@@ -882,7 +1038,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the removeadmin.'
-        example: minus
+        example: eos
         required: true
         schema:
           type: string
@@ -937,7 +1093,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the removecategory.'
-        example: iste
+        example: id
         required: true
         schema:
           type: string
@@ -1024,7 +1180,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the removeitem.'
-        example: in
+        example: molestias
         required: true
         schema:
           type: string
@@ -1056,7 +1212,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the updateitem.'
-        example: voluptas
+        example: quo
         required: true
         schema:
           type: string
@@ -1133,7 +1289,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the verify email.'
-        example: odio
+        example: nihil
         required: true
         schema:
           type: string
@@ -1141,7 +1297,7 @@ paths:
         in: path
         name: hash
         description: ''
-        example: cum
+        example: autem
         required: true
         schema:
           type: string
@@ -1167,7 +1323,54 @@ paths:
       responses: {  }
       tags:
         - Endpoints
+  /api/place-order:
+    post:
+      summary: 'Place order'
+      description: 'recieve a cart and place an order with cart info'
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - 'Order Management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                cartID:
+                  type: integer
+                  description: 'The id of a valid cart to use for the order'
+                  example: 8
+                deliveryType:
+                  type: integer
+                  description: 'A number between 0-3 to specify the type of delivery from the list [''To Home'', ''To Car'', ''In Restaurant'', ''Take Away''].'
+                  example: 2
+              required:
+                - cartID
+                - deliveryType
+      security: []
 tags:
+  -
+    name: 'Cart Management'
+    description: "\nAPIs for Creating and using carts"
   -
     name: Endpoints
     description: ''
+  -
+    name: 'Order Management'
+    description: "\nAPIs for placing orders and modifying them"

@@ -5,16 +5,118 @@
             "key": "baseUrl",
             "type": "string",
             "name": "string",
-            "value": "localhost"
+            "value": "127.0.0.1"
         }
     ],
     "info": {
         "name": "Laravel",
-        "_postman_id": "86e67509-e135-407e-bd1f-634b5d874073",
+        "_postman_id": "f5954811-dfec-4ade-b5ca-5b83a590ba09",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
     "item": [
+        {
+            "name": "Cart Management",
+            "description": "\nAPIs for Creating and using carts",
+            "item": [
+                {
+                    "name": "Create cart",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/create-cart",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/create-cart"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"User_id\":13}"
+                        },
+                        "description": "Create a new cart to place items in",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Add to cart",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/add-to-cart",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/add-to-cart"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"cart_id\":20,\"item_id\":14}"
+                        },
+                        "description": "add a new item to the cart",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Remove from cart",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/remove-from-cart",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/remove-from-cart"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"cart_id\":13,\"item_id\":14}"
+                        },
+                        "description": "Remove an item from the cart",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
         {
             "name": "Endpoints",
             "description": "",
@@ -99,7 +201,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"first_name\":\"delectus\",\"last_name\":\"dolor\",\"email\":\"voluptatem\",\"password\":\"laboriosam\",\"password_confirmation\":\"et\"}"
+                            "raw": "{\"first_name\":\"quaerat\",\"last_name\":\"minima\",\"email\":\"porro\",\"password\":\"velit\",\"password_confirmation\":\"dolorem\"}"
                         },
                         "description": "",
                         "auth": {
@@ -195,14 +297,21 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"email\":\"ducimus\",\"password\":\"et\",\"remember\":true}"
+                            "raw": "{\"email\":\"ut\",\"password\":\"pariatur\",\"remember\":false}"
                         },
                         "description": "",
                         "auth": {
                             "type": "noauth"
                         }
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\r\n    \"message\": \"logged in successfully\",\r\n    \"AccessToken:\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTYzMDMzMDU2NSwiZXhwIjoxNjMwMzM0MTY1LCJuYmYiOjE2MzAzMzA1NjUsImp0aSI6Ik1GQndmSzl3OVM5T1UyWEkiLCJzdWIiOjI1LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.xxpKgqW5NUZ9OXFXy3AHIPw22H_ivI3KOgblbKDAaoc\"\r\n}",
+                            "name": ""
+                        }
+                    ]
                 },
                 {
                     "name": "Display the password reset link request view.",
@@ -284,14 +393,21 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"email\":\"dolorum\"}"
+                            "raw": "{\"email\":\"rem\"}"
                         },
                         "description": "This api handles the form submission\nWe will send the password reset link to this user. Once we have attempted\nto send the link, we will examine the response then see the message we\nneed to show to the user. Finally, we'll send out a proper response.",
                         "auth": {
                             "type": "noauth"
                         }
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n \"status\",\n\"We have emailed your password reset link!\"\n}",
+                            "name": ""
+                        }
+                    ]
                 },
                 {
                     "name": "Display the password reset view.",
@@ -306,7 +422,7 @@
                                 {
                                     "id": "token",
                                     "key": "token",
-                                    "value": "dolores",
+                                    "value": "possimus",
                                     "description": ""
                                 }
                             ]
@@ -381,14 +497,21 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"token\":\"qui\",\"emai\":\"velit\",\"password\":\"nisi\",\"password_confirmation\":\"et\"}"
+                            "raw": "{\"token\":\"aliquam\",\"emai\":\"aliquam\",\"password\":\"quam\",\"password_confirmation\":\"suscipit\"}"
                         },
                         "description": "This api handles the form submission\nHere we will attempt to reset the user's password. If it is successful we\nwill update the password on an actual user model and persist it to the\ndatabase. Otherwise we will parse the error and return the response.",
                         "auth": {
                             "type": "noauth"
                         }
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"msg\": \"this is the user login form, login with the new password \",\n\"0\": \"status\",\n\"1\": \"Your password has been reset!\"\n}",
+                            "name": ""
+                        }
+                    ]
                 },
                 {
                     "name": "Display the user email verification prompt.",
@@ -449,13 +572,13 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "eaque",
+                                    "value": "pariatur",
                                     "description": "The ID of the verify email."
                                 },
                                 {
                                     "id": "hash",
                                     "key": "hash",
-                                    "value": "corrupti",
+                                    "value": "culpa",
                                     "description": ""
                                 }
                             ]
@@ -476,22 +599,9 @@
                     },
                     "response": [
                         {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                }
-                            ],
-                            "code": 401,
-                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n   \"msg\": \"Successfully verified\",\n  \"0\": 201\n}",
                             "name": ""
                         }
                     ]
@@ -520,88 +630,17 @@
                         "body": null,
                         "description": ""
                     },
-                    "response": []
-                },
-                {
-                    "name": "Show the confirm password view.",
-                    "request": {
-                        "url": {
-                            "protocol": "http",
-                            "host": "{{baseUrl}}",
-                            "path": "api\/confirm-password",
-                            "query": [],
-                            "raw": "http:\/\/{{baseUrl}}\/api\/confirm-password"
-                        },
-                        "method": "GET",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
-                    },
                     "response": [
                         {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                }
-                            ],
-                            "code": 401,
-                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"msg\": \"verification-link-sent\",\n\"0\": 201\n  }",
                             "name": ""
                         }
                     ]
                 },
                 {
-                    "name": "Confirm the user's password.",
-                    "request": {
-                        "url": {
-                            "protocol": "http",
-                            "host": "{{baseUrl}}",
-                            "path": "api\/confirm-password",
-                            "query": [],
-                            "raw": "http:\/\/{{baseUrl}}\/api\/confirm-password"
-                        },
-                        "method": "POST",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
-                    },
-                    "response": []
-                },
-                {
-                    "name": "Destroy an authenticated user session (logout).",
+                    "name": "User logout",
                     "request": {
                         "url": {
                             "protocol": "http",
@@ -622,7 +661,7 @@
                             }
                         ],
                         "body": null,
-                        "description": ""
+                        "description": "Destroy an authenticated user session."
                     },
                     "response": []
                 },
@@ -706,11 +745,18 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"email\":\"aut\",\"password\":\"quia\"}"
+                            "raw": "{\"email\":\"ducimus\",\"password\":\"porro\"}"
                         },
                         "description": ""
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\r\n    \"message\": \"logged in successfully\",\r\n    \"AccessToken:\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9hZG1pblwvbG9naW4iLCJpYXQiOjE2MzAzMzE5NTIsImV4cCI6MTYzMDMzNTU1MiwibmJmIjoxNjMwMzMxOTUyLCJqdGkiOiJRQjc0UnNIVjBKaldadG9GIiwic3ViIjoxLCJwcnYiOiJkZjg4M2RiOTdiZDA1ZWY4ZmY4NTA4MmQ2ODZjNDVlODMyZTU5M2E5In0.ASySa0_mm7wqeSdAsAhpWGkuD2_oAafoduHBnh4tsJs\"\r\n}",
+                            "name": ""
+                        }
+                    ]
                 },
                 {
                     "name": "api\/admin\/admins",
@@ -774,7 +820,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "14",
+                                    "value": "10",
                                     "description": "The ID of the admin."
                                 }
                             ]
@@ -890,14 +936,21 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"email\":\"nam\",\"username\":\"occaecati\",\"password\":\"vero\",\"password_confirmation\":\"et\",\"superadmin\":false}"
+                            "raw": "{\"email\":\"fugit\",\"username\":\"quo\",\"password\":\"commodi\",\"password_confirmation\":\"quis\",\"superadmin\":true}"
                         },
                         "description": ""
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\r\n    \"message\": \"registered successfully\",\r\n    \"AccessToken:\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9hZG1pblwvcmVnaXN0ZXIiLCJpYXQiOjE2MzAzMzE5OTQsImV4cCI6MTYzMDMzNTU5NCwibmJmIjoxNjMwMzMxOTk0LCJqdGkiOiJwMGFQcVpUUlQyYW5rT3RjIiwic3ViIjoyNCwicHJ2IjoiZGY4ODNkYjk3YmQwNWVmOGZmODUwODJkNjg2YzQ1ZTgzMmU1OTNhOSJ9.FuZ92MotjJPJv7ebj15zv4Do1ER0_mwUKXhW8J9mDK8\"\r\n}",
+                            "name": ""
+                        }
+                    ]
                 },
                 {
-                    "name": "Destroy an authenticated admin session (logout).",
+                    "name": "Admin logout",
                     "request": {
                         "url": {
                             "protocol": "http",
@@ -918,7 +971,7 @@
                             }
                         ],
                         "body": null,
-                        "description": ""
+                        "description": "Destroy an authenticated admin session (logout)."
                     },
                     "response": []
                 },
@@ -935,7 +988,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "nostrum",
+                                    "value": "autem",
                                     "description": "The ID of the updateadmin."
                                 }
                             ]
@@ -972,7 +1025,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "minus",
+                                    "value": "eos",
                                     "description": "The ID of the removeadmin."
                                 }
                             ]
@@ -1038,7 +1091,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "iste",
+                                    "value": "id",
                                     "description": "The ID of the removecategory."
                                 }
                             ]
@@ -1141,7 +1194,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "in",
+                                    "value": "molestias",
                                     "description": "The ID of the removeitem."
                                 }
                             ]
@@ -1178,7 +1231,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "voluptas",
+                                    "value": "quo",
                                     "description": "The ID of the updateitem."
                                 }
                             ]
@@ -1261,13 +1314,13 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "odio",
+                                    "value": "nihil",
                                     "description": "The ID of the verify email."
                                 },
                                 {
                                     "id": "hash",
                                     "key": "hash",
-                                    "value": "cum",
+                                    "value": "autem",
                                     "description": ""
                                 }
                             ]
@@ -1331,6 +1384,44 @@
                         ],
                         "body": null,
                         "description": ""
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Order Management",
+            "description": "\nAPIs for placing orders and modifying them",
+            "item": [
+                {
+                    "name": "Place order",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/place-order",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/place-order"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"cartID\":8,\"deliveryType\":2}"
+                        },
+                        "description": "recieve a cart and place an order with cart info",
+                        "auth": {
+                            "type": "noauth"
+                        }
                     },
                     "response": []
                 }
