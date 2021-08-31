@@ -35,7 +35,7 @@ Route::post('/reset-password', [NewPasswordController::class, 'store'])
     ->name('password.update');
  
 });
-////////////////////////////////////////////////////////////////////////////////////////////////////
+
 Route::group(['middleware' => 'auth'], function(){
 
 Route::get('/verify-email', [EmailVerificationPromptController::class, '__invoke'])

@@ -45,7 +45,6 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request)
     {
-          //$request->authenticate();
           $validator = Validator()->make($request->all(), [
             'email' => 'required|string|email',
             'password' => 'required|string',
@@ -55,8 +54,6 @@ class AuthenticatedSessionController extends Controller
         if ($validator->fails()) {
             return response()->json(['message' => 'Invalid data','Errors in'=>$validator->getMessageBag()], 400);
         } else {
-            //$request->session()->regenerate();
-            //$request->password=Hash::make($request->password);
             $credentials = $request->only('email', 'password');
             $token = Auth::attempt($credentials, true);
             if ($token){
@@ -82,8 +79,7 @@ class AuthenticatedSessionController extends Controller
      */
     public function store_admin(Request $request)
     {
-        
-          //$request->authenticate();
+    
           $validator = Validator()->make($request->except('superadmin'), [
             'email' => 'required|string',
             'password' => 'required|string',
@@ -107,7 +103,9 @@ class AuthenticatedSessionController extends Controller
      }
 
     /**
-     * Destroy an authenticated user session (logout).
+     * User logout
+     * 
+     * Destroy an authenticated user session.
      *
      * @authenticated
      * 
@@ -116,16 +114,14 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request)
     {
-       //Auth::guard('api')->logout();
        auth::logout();
-
-       //$request->session()->invalidate();
-       //$request->session()->regenerateToken();
 
        return response()->json(['message' => 'logged out successfully'], 200);
     }
 
     /**
+     * Admin logout
+     * 
      * Destroy an authenticated admin session (logout).
      * 
      * @authenticated
@@ -135,11 +131,9 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy_admin(Request $request)
     {
-       //Auth::guard('api')->logout();
+
        auth::guard('admin-api')->logout();
 
-       //$request->session()->invalidate();
-       //$request->session()->regenerateToken();
 
        return response()->json(['message' => 'logged out successfully'], 200);
     }

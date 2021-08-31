@@ -21,7 +21,6 @@ class RegisteredUserController extends Controller
      */
     public function create()
     {
-       // return view('auth.register');
        return response()->json(['message' => 'this is the user register form view']);
     }
 
@@ -32,7 +31,6 @@ class RegisteredUserController extends Controller
      */
     public function create_admin()
     {
-       // return view('auth.register');
        return response()->json(['message' => 'this is the admin register form view']);
     }
 
@@ -70,9 +68,6 @@ class RegisteredUserController extends Controller
                 'password' => Hash::make($request->password),
             ]);
 
-            //event(new Registered($user));
-
-            //Auth::login($user);
             $credentials = $request->only('email', 'password');
             $token = auth::attempt($credentials);
             return response()->json(['message' => 'Successfully created your account, just verify it at your email !','user'=>$user,'AccessToken:'=>$token], 201);
@@ -122,7 +117,6 @@ class RegisteredUserController extends Controller
                     'superadmin' => $request->superadmin,
                 ]);
 
-                //event(new Registered($admin));
 
                 $credentials = $request->only('email', 'password');
                 $token = Auth::guard('admin-api')->attempt($credentials);
