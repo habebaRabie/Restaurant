@@ -7,8 +7,28 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 use App\Models\Admin;
+use App\Models\item;
+use App\Models\category;
 class AdminController extends Controller
 {
+/**
+ * getting all admins in the database 
+ * @response 200 scenario="the user is a superadmin" {
+*   {
+*   "id": "1" , 
+*   "email":"steve@gmail.com" , 
+*   "username":"steve" , 
+*   "superadmin":"1"
+*   }
+*   {
+*   "id": "2" , 
+*   "email":"sara@gmail.com" , 
+*   "username":"sara" , 
+*   "superadmin":"0"
+*   }
+ * }
+ * @response 401 scenario="the user isn't a superadmin" {"message":"unauthorized"}
+*/
     function GetAdmins(){
         $admin = Auth::user();
 
@@ -21,7 +41,22 @@ class AdminController extends Controller
         else{
             return "you are not a superadmin";
         }
+        
     }
+/**
+* getting a certain admin in the database by the id
+* @urlParam id integer required The ID of the admin
+* @response 200 scenario="the user is a superadmin"
+*   {
+*   "id": "1" , 
+*   "email":"steve@gmail.com" , 
+*   "username":"steve" , 
+*   "superadmin":"1"
+*   }
+* @response 401 scenario="the user isn't a superadmin" {"message":"unauthorized"}
+* @response 404 scenario="the admin by the given id is not found"
+* 
+*/
     function GetAdminsById($id){
         $admin = Auth::user();
 
@@ -29,13 +64,24 @@ class AdminController extends Controller
 
         if($admin->superadmin == 1)
         {
-            return  Admin::where('id', $id)
-            ->get();
+            return  Admin::FindorFail($id);
         }
         else{
             return "you are not a superadmin";
         }
     }
+/**
+* updating a certain admin with id from the database 
+* @bodyParam superadmin boolean
+* @urlParam id integer required The ID of the admin
+* @response 200 scenario="the user is a superadmin"
+* @response 401 scenario="the user isn't a superadmin" {"message":"unauthorized"}
+* @response 404 scenario="the admin by the given id was not found"
+* @response 422 scenario="The request was well formed but was unable to be followed due to a validation error"
+
+* 
+*/
+    
     function UpdateAdmin(Request $request , $id){
 
         $admin = Auth::user();
@@ -49,17 +95,25 @@ class AdminController extends Controller
                 'superadmin'=>'boolean',
             ]);
 
-            DB::table('admins')
-            ->where('id' , $id)
-            ->update([
-                'superadmin' => $request["superadmin"]
-            ]
-            );
+           return Admin::FindorFail($id)->
+           update(
+            $request->except('email' , 'username' , 'password')
+        );
+            
         }
         else{
             return "You are not a superadmin";
-        }        
+        }
     }
+/**
+* removing a certain admin with id from the database
+* @urlParam id integer required The ID of the admin
+* @response 200 scenario="the user is a superadmin"
+* @response 401 scenario="the user isn't a superadmin" {"message":"unauthorized"}
+* @response 404 scenario="the admin with the given id was not found"
+* 
+*/        
+    
     function RemoveAdmins($id){
         $admin = Auth::user();
 
@@ -84,6 +138,15 @@ class AdminController extends Controller
          
      }
 
+/**
+* adding category to the database
+* @bodyParam category_name string required and must be unique
+* @response 200 scenario="the user is an admin and the inputs are satisfied with the validation rules"
+* @response 401 scenario="the user isn't an admin" {"message":"unauthorized"}
+* @response 422 scenario="The request was well formed but was unable to be followed due to a validation error"
+* 
+*/
+
     function AddCategory(Request $request){
         
         $request->validate([
@@ -101,13 +164,22 @@ class AdminController extends Controller
             return "Category was not created";
         }
     }
+/**
+* updating a certain category with id in the database 
+* @bodyParam category_name string and must be unique 
+* @urlParam id integer required The ID of the category
+* @response 200 scenario="the user is an admin and the inputs are satisfied with the validation rules"
+* @response 401 scenario="the user isn't an admin" {"message":"unauthorized"}
+* @response 404 scenario="the category with the given id was not found"
+* @response 422 scenario="The request was well formed but was unable to be followed due to a validation error"
+*/
+    
     function UpdateCategory($id , Request $request){
 
         $request->validate([
             'category_name'=>"unique:category,category_name,$id|filled|max:40"
         ]);
-        $result = DB::table('category')
-              ->where('id', $id)
+        $result = category::FindorFail($id)
               ->update(
                 $request->except('id')
               );
@@ -120,9 +192,18 @@ class AdminController extends Controller
         }
     
     }
+
+/**
+* removing a certain category with id from the database
+* @urlParam id integer required The ID of the category
+* @response 200 scenario="the user is an admin"
+* @response 401 scenario="the user isn't an admin" {"message":"unauthorized"}
+* @response 404 scenario="the category with the given id is not found"
+* 
+*/  
     function DeleteCategory($id){
         
-        $result = DB::table('category')->where("id" , "=" , $id)->delete();
+        $result = category::FindorFail($id)->delete();
 
         if($result == 1)
         {
@@ -132,6 +213,19 @@ class AdminController extends Controller
             return "The Category deletion failed";
         }
     }
+/**
+* adding item to the database 
+* @bodyParam item_name string required and must be unique with 40 chrachters at maximum
+* @bodyParam category_id int required and it must exist
+* @bodyParam price decimal required
+* @bodyParam offer decimal required if there was an offer_end_date
+* @bodyParam offer_end_date datetime required if there was an offer
+* @bodyParam file_path file 
+* @response 200 scenario="the user is an admin and the inputs are satisfied with the validation rules"
+* @response 401 scenario="the user isn't an admin" {"message":"unauthorized"}
+* @response 422 scenario="The request was well formed but was unable to be followed due to a validation error"
+* 
+*/
 
     function AddItem(Request $request){
 
@@ -139,20 +233,42 @@ class AdminController extends Controller
             'item_name' => 'required|filled|unique:items,item_name|max:40',
             'category_id'=>'required|filled|exists:category,id',
             'price'=>'required|filled|gt:0',
+            'file_path'=> 'filled|file',
             'offer'=>['filled','gt:-1','numeric',Rule::requiredIf(!empty($request->input('offer_end_date')))],
             'offer_end_date'=> [Rule::requiredIf(!empty($request->input('offer'))),'filled']
         ]);
-        $result = DB::table('items')->insert(
-                $request->except('rating' , 'id')
-            );
-        
+        $item = new item();
+
+        $item -> item_name = $request ->input('item_name');
+        $item -> category_id = $request ->input('category_id');
+        $item -> price = $request ->input('price');
+        if($request -> hasfile('file_path'))
+        {
+            $item = item::FindorFail($id);
+            $item->file_path = $request ->file('file_path')->store("items_image");
+        }
+        $item -> offer = $request ->input('offer');
+        $item -> offer_end_date = $request ->input('offer_end_date');
+        $result = $item -> save();
+
         if ($result == 1){
-            return "item was created succesfully";
+            return "item is created successfully";
         }
         else{
-            return "item is not created";
+            return "item isn't created";
         }
+
     }
+
+
+/**
+* updating a certain item with id in the database
+* @urlParam id integer required The ID of the item
+* @response 200 scenario="the user is an admin and the inputs are satisfied with the validation rules"
+* @response 401 scenario="the user isn't an admin" {"message":"unauthorized"}
+* @response 404 scenario="the item with the given id was not found"
+* @response 422 scenario="The request was well formed but was unable to be followed due to a validation error"
+*/
    
     function UpdateItem($id , Request $request){
         $request->validate([
@@ -161,17 +277,22 @@ class AdminController extends Controller
             'price'=>'filled|gt:0',
             'offer'=>['filled','gt:-1','numeric',Rule::requiredIf(!empty($request->input('offer_end_date')))],
             'offer_end_date'=>['filled',Rule::requiredIf(!empty($request->input('offer')))]
-            
-    ]);
+        ]);
         
 
-        $result = DB::table('items')
-              ->where('id', $id)
-              ->update(
-                
-                $request->except('id' , 'rating')
+       
 
+        if($request -> hasfile('file_path'))
+        {
+            $item = item::FindorFail($id);
+            $item->file_path = $request ->file('file_path')->store("items_image");
+            $item->save();
+        }
+        $result = item::FindorFail($id)
+              ->update(
+                $request->except('file_path')
             );
+        
         
         if ($result == 1){
             return "item is Updated successfully";
@@ -181,9 +302,17 @@ class AdminController extends Controller
         }
     
     }
+/**
+* removing a certain item with id from the database
+* @urlParam id integer required The ID of the item
+* @response 200 scenario="the user is an admin"
+* @response 401 scenario="the user isn't an admin" {"message":"unauthorized"}
+* @response 404 scenario="the item with the given id is not found"
+* 
+*/  
     function DeleteItem($id){
         
-        $result = DB::table('items')->where("id" , "=" , $id)->delete();
+        $result = Item::FindorFail($id)->delete();
 
         if($result == 1)
         {

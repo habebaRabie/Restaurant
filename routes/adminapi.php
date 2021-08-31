@@ -24,6 +24,8 @@ Route::group(['middleware' => 'guest:admin-api', 'prefix' =>'admin'], function()
 
 });
 
+
+
 Route::group(['middleware' => 'auth:admin-api', 'prefix' =>'admin'], function(){
     Route::get('/admins', [AdminController::class, 'GetAdmins']);
     Route::get('/admins/{id}', [AdminController::class, 'GetAdminsById']);

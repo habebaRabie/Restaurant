@@ -1,9 +1,1362 @@
 openapi: 3.0.3
 info:
-    title: Laravel
-    description: ''
-    version: 1.0.0
+  title: Laravel
+  description: ''
+  version: 1.0.0
 servers:
-    -
-        url: 'http://localhost'
-paths: []
+  -
+    url: 'http://localhost'
+paths:
+  /api/register:
+    post:
+      summary: 'Handle an incoming registration request.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    get:
+      summary: 'Display the registration view.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'this is the user register form view'
+                properties:
+                  message:
+                    type: string
+                    example: 'this is the user register form view'
+      tags:
+        - Endpoints
+      security: []
+  /api/login:
+    get:
+      summary: 'Display the login view.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'this is the user login form page'
+                properties:
+                  message:
+                    type: string
+                    example: 'this is the user login form page'
+      tags:
+        - Endpoints
+      security: []
+    post:
+      summary: 'Handle an incoming authentication request.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: 'Must be a valid email address.'
+                  example: ureichel@example.com
+                password:
+                  type: string
+                  description: ''
+                  example: mollitia
+              required:
+                - email
+                - password
+      security: []
+  /api/forgot-password:
+    get:
+      summary: 'Display the password reset link request view.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        201:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  msg: 'This is the password reset link request form'
+                properties:
+                  msg:
+                    type: string
+                    example: 'This is the password reset link request form'
+      tags:
+        - Endpoints
+      security: []
+    post:
+      summary: 'Handle an incoming password reset link request.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  '/api/reset-password/{token}':
+    get:
+      summary: 'Display the password reset view.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        201:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  msg: 'This is the reset password form'
+                properties:
+                  msg:
+                    type: string
+                    example: 'This is the reset password form'
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: token
+        description: ''
+        example: et
+        required: true
+        schema:
+          type: string
+  /api/reset-password:
+    post:
+      summary: 'Handle an incoming new password request.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  /api/verify-email:
+    get:
+      summary: 'Display the email verification prompt.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  '/api/verify-email/{id}/{hash}':
+    get:
+      summary: 'Mark the authenticated user''s email address as verified.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the verify email.'
+        example: sequi
+        required: true
+        schema:
+          type: string
+      -
+        in: path
+        name: hash
+        description: ''
+        example: illo
+        required: true
+        schema:
+          type: string
+  /api/email/verification-notification:
+    post:
+      summary: 'Send a new email verification notification.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  /api/confirm-password:
+    get:
+      summary: 'Show the confirm password view.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    post:
+      summary: 'Confirm the user''s password.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  /api/logout:
+    post:
+      summary: 'Destroy an authenticated session.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  /api/admin/login:
+    get:
+      summary: ''
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'this is the admin login form page'
+                properties:
+                  message:
+                    type: string
+                    example: 'this is the admin login form page'
+      tags:
+        - Endpoints
+      security: []
+    post:
+      summary: ''
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  '/api/admin/admins/{id}':
+    get:
+      summary: 'getting a certain admin in the database by the id'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: 'the user is a superadmin'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  id: '1'
+                  email: steve@gmail.com
+                  username: steve
+                  superadmin: '1'
+                properties:
+                  id:
+                    type: string
+                    example: '1'
+                  email:
+                    type: string
+                    example: steve@gmail.com
+                  username:
+                    type: string
+                    example: steve
+                  superadmin:
+                    type: string
+                    example: '1'
+        401:
+          description: 'the user isn''t a superadmin'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: unauthorized
+                properties:
+                  message:
+                    type: string
+                    example: unauthorized
+        404:
+          description: 'the admin by the given id is not found'
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: ''
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the admin'
+        example: 19
+        required: true
+        schema:
+          type: integer
+  /api/admin/register:
+    get:
+      summary: ''
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    post:
+      summary: ''
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  /api/admin/logout:
+    post:
+      summary: ''
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  '/api/admin/updateadmin/{id}':
+    post:
+      summary: 'updating a certain admin with id from the database'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: 'the user is a superadmin'
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: ''
+        401:
+          description: 'the user isn''t a superadmin'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: unauthorized
+                properties:
+                  message:
+                    type: string
+                    example: unauthorized
+        404:
+          description: 'the admin by the given id was not found'
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: ''
+        422:
+          description: 'The request was well formed but was unable to be followed due to a validation error'
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: ''
+      tags:
+        - Endpoints
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                superadmin:
+                  type: boolean
+                  description: ''
+                  example: false
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the admin'
+        example: 9
+        required: true
+        schema:
+          type: integer
+  '/api/admin/removeadmin/{id}':
+    post:
+      summary: 'removing a certain admin with id from the database'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: 'the user is a superadmin'
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: ''
+        401:
+          description: 'the user isn''t a superadmin'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: unauthorized
+                properties:
+                  message:
+                    type: string
+                    example: unauthorized
+        404:
+          description: 'the admin with the given id was not found'
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: ''
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the admin'
+        example: 18
+        required: true
+        schema:
+          type: integer
+  /api/admin/addcategory:
+    post:
+      summary: 'adding category to the database'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: 'the user is an admin and the inputs are satisfied with the validation rules'
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: ''
+        401:
+          description: 'the user isn''t an admin'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: unauthorized
+                properties:
+                  message:
+                    type: string
+                    example: unauthorized
+        422:
+          description: 'The request was well formed but was unable to be followed due to a validation error'
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: ''
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                category_name:
+                  type: string
+                  description: 'and must be unique'
+                  example: optio
+              required:
+                - category_name
+      security: []
+  '/api/admin/removecategory/{id}':
+    post:
+      summary: 'removing a certain category with id from the database'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: 'the user is an admin'
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: ''
+        401:
+          description: 'the user isn''t an admin'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: unauthorized
+                properties:
+                  message:
+                    type: string
+                    example: unauthorized
+        404:
+          description: 'the category with the given id is not found'
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: ''
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the category'
+        example: 11
+        required: true
+        schema:
+          type: integer
+  '/api/admin/updatecategory/{id}':
+    post:
+      summary: 'updating a certain category with id in the database'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: 'the user is an admin and the inputs are satisfied with the validation rules'
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: ''
+        401:
+          description: 'the user isn''t an admin'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: unauthorized
+                properties:
+                  message:
+                    type: string
+                    example: unauthorized
+        404:
+          description: 'the category with the given id was not found'
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: ''
+        422:
+          description: 'The request was well formed but was unable to be followed due to a validation error'
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: ''
+      tags:
+        - Endpoints
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                category_name:
+                  type: string
+                  description: 'and must be unique'
+                  example: a
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the category'
+        example: 4
+        required: true
+        schema:
+          type: integer
+  /api/admin/additem:
+    post:
+      summary: 'adding item to the database'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: multipart/form-data
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: 'the user is an admin and the inputs are satisfied with the validation rules'
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: ''
+        401:
+          description: 'the user isn''t an admin'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: unauthorized
+                properties:
+                  message:
+                    type: string
+                    example: unauthorized
+        422:
+          description: 'The request was well formed but was unable to be followed due to a validation error'
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: ''
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                item_name:
+                  type: string
+                  description: 'and must be unique with 40 chrachters at maximum'
+                  example: aut
+                category_id:
+                  type: integer
+                  description: 'and it must exist'
+                  example: 20
+                price:
+                  type: decimal
+                  description: ''
+                  example: voluptatibus
+                offer:
+                  type: decimal
+                  description: 'if there was an offer_end_date'
+                  example: aliquam
+                offer_end_date:
+                  type: datetime
+                  description: 'if there was an offer'
+                  example: aliquid
+                file_path:
+                  type: string
+                  format: binary
+                  description: ''
+              required:
+                - item_name
+                - category_id
+                - price
+                - offer
+                - offer_end_date
+      security: []
+  '/api/admin/removeitem/{id}':
+    post:
+      summary: 'removing a certain item with id from the database'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: 'the user is an admin'
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: ''
+        401:
+          description: 'the user isn''t an admin'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: unauthorized
+                properties:
+                  message:
+                    type: string
+                    example: unauthorized
+        404:
+          description: 'the item with the given id is not found'
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: ''
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the item'
+        example: 20
+        required: true
+        schema:
+          type: integer
+  '/api/admin/updateitem/{id}':
+    post:
+      summary: 'updating a certain item with id in the database'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: 'the user is an admin and the inputs are satisfied with the validation rules'
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: ''
+        401:
+          description: 'the user isn''t an admin'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: unauthorized
+                properties:
+                  message:
+                    type: string
+                    example: unauthorized
+        404:
+          description: 'the item with the given id was not found'
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: ''
+        422:
+          description: 'The request was well formed but was unable to be followed due to a validation error'
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: ''
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the item'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/admin/verify-email:
+    get:
+      summary: 'Display the email verification prompt.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  '/api/admin/verify-email/{id}/{hash}':
+    get:
+      summary: 'Mark the authenticated user''s email address as verified.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the verify email.'
+        example: labore
+        required: true
+        schema:
+          type: string
+      -
+        in: path
+        name: hash
+        description: ''
+        example: ea
+        required: true
+        schema:
+          type: string
+  /api/admin/email/verification-notification:
+    post:
+      summary: 'Send a new email verification notification.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  /api/admin/admins:
+    get:
+      summary: 'getting all admins in the database'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: 'the user is a superadmin'
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n  {\n  \"id\": \"1\" ,\n  \"email\":\"steve@gmail.com\" ,\n  \"username\":\"steve\" ,\n  \"superadmin\":\"1\"\n  }\n  {\n  \"id\": \"2\" ,\n  \"email\":\"sara@gmail.com\" ,\n  \"username\":\"sara\" ,\n  \"superadmin\":\"0\"\n  }\n}"
+        401:
+          description: 'the user isn''t a superadmin'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: unauthorized
+                properties:
+                  message:
+                    type: string
+                    example: unauthorized
+      tags:
+        - Endpoints
+      security: []
+tags:
+  -
+    name: Endpoints
+    description: ''

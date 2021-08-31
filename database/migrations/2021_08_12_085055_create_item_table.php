@@ -22,6 +22,7 @@ class CreateItemTable extends Migration
             $table->decimal('price');      
             $table -> decimal('offer')->nullable();
             $table -> datetime('offer_end_date')->nullable();
+            $table -> char('file_path')->nullable();
             
 
             $table->timestamps();
