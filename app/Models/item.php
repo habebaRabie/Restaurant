@@ -5,9 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Item extends Model
+class item extends Model
 {
     use HasFactory;
+
     protected $table = 'items';
     protected $fillable = ['item_name',
        'category_id',
@@ -15,7 +16,5 @@ class Item extends Model
        'offer_end_date',
        'offer',
        'file_path'
-
     ];
 }
-
