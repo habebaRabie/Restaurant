@@ -95,10 +95,17 @@ class AdminController extends Controller
                 'superadmin'=>'boolean',
             ]);
 
-           return Admin::FindorFail($id)->
+           $result = Admin::FindorFail($id)->
            update(
             $request->except('email' , 'username' , 'password')
            );
+           if($result == 1)
+            {
+                return "Admin with id:$id was updated successfully";
+            }
+            else{
+                return  "Admin with id:$id wasn't updated";
+            }
             
         }
         else{
@@ -290,7 +297,7 @@ class AdminController extends Controller
         }
         $result = item::FindorFail($id)
               ->update(
-                $request->except('file_path')
+                $request->except("file_path")
             );
         
         
