@@ -18,7 +18,8 @@ class CreateOrderItemTable extends Migration
             $table -> unsignedBigInteger('order_id');
             $table -> unsignedBigInteger('item_id');
 
-            
+            $table->foreign('order_id')->references('id')->on('order')->onDelete('cascade');
+
             $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
 
             $table->timestamps();

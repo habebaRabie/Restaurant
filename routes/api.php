@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\showcontroller;
+
 
 
 /*
@@ -33,3 +35,4 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::post('/add-to-cart', 'App\Http\Controllers\CartController@addToCart');
     Route::post('/remove-from-cart', 'App\Http\Controllers\CartController@removeFromCart');
 });
+

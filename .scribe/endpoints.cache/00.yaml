@@ -19,17 +19,11 @@ endpoints:
     urlParameters: []
     queryParameters: []
     bodyParameters:
-      cart_id:
-        name: cart_id
-        description: 'The id of the cart that will be modified'
+      User_id:
+        name: User_id
+        description: 'The ID of the user who''s account is associated with this cart'
         required: true
-        example: 13
-        type: integer
-      item_id:
-        name: item_id
-        description: 'The id of the item that needs to be removed'
-        required: true
-        example: 14
+        example: 7
         type: integer
     responses: []
     responseFields: []
@@ -51,13 +45,13 @@ endpoints:
         name: cart_id
         description: 'The id of the cart to which the item will be added'
         required: true
-        example: 7
+        example: 16
         type: integer
       item_id:
         name: item_id
         description: 'The id of the item that needs to be added'
         required: true
-        example: 6
+        example: 11
         type: integer
     responses: []
     responseFields: []
@@ -79,13 +73,13 @@ endpoints:
         name: cart_id
         description: 'The id of the cart that will be modified'
         required: true
-        example: 12
+        example: 18
         type: integer
       item_id:
         name: item_id
         description: 'The id of the item that needs to be removed'
         required: true
-        example: 8
+        example: 16
         type: integer
     responses: []
     responseFields: []

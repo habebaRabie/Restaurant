@@ -45,36 +45,48 @@ endpoints:
         name: first_name
         description: ''
         required: true
-        example: minima
+        example: et
         type: string
       last_name:
         name: last_name
         description: ''
         required: true
-        example: eum
+        example: ex
         type: string
       email:
         name: email
         description: ''
         required: true
-        example: mollitia
+        example: voluptatem
         type: string
       password:
         name: password
         description: ''
         required: true
-        example: dolorem
+        example: hic
         type: string
       password_confirmation:
         name: password_confirmation
         description: ''
         required: true
-        example: adipisci
+        example: ut
         type: string
     responses:
       -
         status: 200
-        content: "{\r\n    \"message\": \"Successfully created your account, just verify it at your email !\",\r\n    \"user\": {\r\n        \"first_name\": \"mariam\",\r\n        \"last_name\": \"elkhashab\",\r\n        \"email\": \"m@hotmail.com\",\r\n        \"updated_at\": \"2021-08-30T13:28:25.000000Z\",\r\n        \"created_at\": \"2021-08-30T13:28:25.000000Z\",\r\n        \"id\": 25\r\n    },\r\n    \"AccessToken:\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9yZWdpc3RlciIsImlhdCI6MTYzMDMzMDEwNSwiZXhwIjoxNjMwMzMzNzA1LCJuYmYiOjE2MzAzMzAxMDUsImp0aSI6ImFQV1ExUmZyTDJhZXl2RmEiLCJzdWIiOjI1LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.Gb6pauP14JnqtlmZ4-GIrUJJwY34HGqmwGyXTr35zKI\"\r\n}"
+        content: |-
+          {
+              "message": "Successfully created your account, just verify it at your email !",
+              "user": {
+                  "first_name": "mariam",
+                  "last_name": "elkhashab",
+                  "email": "m@hotmail.com",
+                  "updated_at": "2021-08-30T13:28:25.000000Z",
+                  "created_at": "2021-08-30T13:28:25.000000Z",
+                  "id": 25
+              },
+              "AccessToken:": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9yZWdpc3RlciIsImlhdCI6MTYzMDMzMDEwNSwiZXhwIjoxNjMwMzMzNzA1LCJuYmYiOjE2MzAzMzAxMDUsImp0aSI6ImFQV1ExUmZyTDJhZXl2RmEiLCJzdWIiOjI1LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.Gb6pauP14JnqtlmZ4-GIrUJJwY34HGqmwGyXTr35zKI"
+          }
         headers: []
         description: '200'
     responseFields: []
@@ -122,24 +134,28 @@ endpoints:
         name: email
         description: ''
         required: true
-        example: cupiditate
+        example: laboriosam
         type: string
       password:
         name: password
         description: ''
         required: true
-        example: et
+        example: a
         type: string
       remember:
         name: remember
         description: ''
         required: false
-        example: true
+        example: false
         type: boolean
     responses:
       -
         status: 200
-        content: "{\r\n    \"message\": \"logged in successfully\",\r\n    \"AccessToken:\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTYzMDMzMDU2NSwiZXhwIjoxNjMwMzM0MTY1LCJuYmYiOjE2MzAzMzA1NjUsImp0aSI6Ik1GQndmSzl3OVM5T1UyWEkiLCJzdWIiOjI1LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.xxpKgqW5NUZ9OXFXy3AHIPw22H_ivI3KOgblbKDAaoc\"\r\n}"
+        content: |-
+          {
+              "message": "logged in successfully",
+              "AccessToken:": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTYzMDMzMDU2NSwiZXhwIjoxNjMwMzM0MTY1LCJuYmYiOjE2MzAzMzA1NjUsImp0aSI6Ik1GQndmSzl3OVM5T1UyWEkiLCJzdWIiOjI1LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.xxpKgqW5NUZ9OXFXy3AHIPw22H_ivI3KOgblbKDAaoc"
+          }
         headers: []
         description: '200'
     responseFields: []
@@ -191,7 +207,7 @@ endpoints:
         name: email
         description: ''
         required: true
-        example: at
+        example: est
         type: string
     responses:
       -
@@ -220,7 +236,7 @@ endpoints:
         name: token
         description: ''
         required: true
-        example: veniam
+        example: adipisci
         type: string
     queryParameters: []
     bodyParameters: []
@@ -258,25 +274,25 @@ endpoints:
         name: token
         description: ''
         required: true
-        example: omnis
+        example: id
         type: mixed
       emai:
         name: emai
         description: ''
         required: true
-        example: ipsa
+        example: libero
         type: string
       password:
         name: password
         description: ''
         required: true
-        example: alias
+        example: non
         type: string
       password_confirmation:
         name: password_confirmation
         description: ''
         required: true
-        example: delectus
+        example: tenetur
         type: string
     responses:
       -
@@ -330,13 +346,13 @@ endpoints:
         name: id
         description: 'The ID of the verify email.'
         required: true
-        example: dolores
+        example: quisquam
         type: string
       hash:
         name: hash
         description: ''
         required: true
-        example: dolore
+        example: quaerat
         type: string
     queryParameters: []
     bodyParameters: []
@@ -436,18 +452,22 @@ endpoints:
         name: email
         description: ''
         required: true
-        example: dolor
+        example: totam
         type: string
       password:
         name: password
         description: ''
         required: true
-        example: quia
+        example: minus
         type: string
     responses:
       -
         status: 200
-        content: "{\r\n    \"message\": \"logged in successfully\",\r\n    \"AccessToken:\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9hZG1pblwvbG9naW4iLCJpYXQiOjE2MzAzMzE5NTIsImV4cCI6MTYzMDMzNTU1MiwibmJmIjoxNjMwMzMxOTUyLCJqdGkiOiJRQjc0UnNIVjBKaldadG9GIiwic3ViIjoxLCJwcnYiOiJkZjg4M2RiOTdiZDA1ZWY4ZmY4NTA4MmQ2ODZjNDVlODMyZTU5M2E5In0.ASySa0_mm7wqeSdAsAhpWGkuD2_oAafoduHBnh4tsJs\"\r\n}"
+        content: |-
+          {
+              "message": "logged in successfully",
+              "AccessToken:": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9hZG1pblwvbG9naW4iLCJpYXQiOjE2MzAzMzE5NTIsImV4cCI6MTYzMDMzNTU1MiwibmJmIjoxNjMwMzMxOTUyLCJqdGkiOiJRQjc0UnNIVjBKaldadG9GIiwic3ViIjoxLCJwcnYiOiJkZjg4M2RiOTdiZDA1ZWY4ZmY4NTA4MmQ2ODZjNDVlODMyZTU5M2E5In0.ASySa0_mm7wqeSdAsAhpWGkuD2_oAafoduHBnh4tsJs"
+          }
         headers: []
         description: '200'
     responseFields: []
@@ -507,7 +527,7 @@ endpoints:
         name: id
         description: 'The ID of the admin'
         required: true
-        example: 20
+        example: 15
         type: integer
     queryParameters: []
     bodyParameters: []
@@ -576,25 +596,25 @@ endpoints:
         name: email
         description: ''
         required: true
-        example: et
+        example: amet
         type: string
       username:
         name: username
         description: ''
         required: true
-        example: voluptatibus
+        example: excepturi
         type: string
       password:
         name: password
         description: ''
         required: true
-        example: explicabo
+        example: aut
         type: string
       password_confirmation:
         name: password_confirmation
         description: ''
         required: true
-        example: voluptatem
+        example: sunt
         type: string
       superadmin:
         name: superadmin
@@ -605,7 +625,11 @@ endpoints:
     responses:
       -
         status: 200
-        content: "{\r\n    \"message\": \"registered successfully\",\r\n    \"AccessToken:\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9hZG1pblwvcmVnaXN0ZXIiLCJpYXQiOjE2MzAzMzE5OTQsImV4cCI6MTYzMDMzNTU5NCwibmJmIjoxNjMwMzMxOTk0LCJqdGkiOiJwMGFQcVpUUlQyYW5rT3RjIiwic3ViIjoyNCwicHJ2IjoiZGY4ODNkYjk3YmQwNWVmOGZmODUwODJkNjg2YzQ1ZTgzMmU1OTNhOSJ9.FuZ92MotjJPJv7ebj15zv4Do1ER0_mwUKXhW8J9mDK8\"\r\n}"
+        content: |-
+          {
+              "message": "registered successfully",
+              "AccessToken:": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9hZG1pblwvcmVnaXN0ZXIiLCJpYXQiOjE2MzAzMzE5OTQsImV4cCI6MTYzMDMzNTU5NCwibmJmIjoxNjMwMzMxOTk0LCJqdGkiOiJwMGFQcVpUUlQyYW5rT3RjIiwic3ViIjoyNCwicHJ2IjoiZGY4ODNkYjk3YmQwNWVmOGZmODUwODJkNjg2YzQ1ZTgzMmU1OTNhOSJ9.FuZ92MotjJPJv7ebj15zv4Do1ER0_mwUKXhW8J9mDK8"
+          }
         headers: []
         description: '200'
     responseFields: []
@@ -641,7 +665,7 @@ endpoints:
         name: id
         description: 'The ID of the admin'
         required: true
-        example: 14
+        example: 12
         type: integer
     queryParameters: []
     bodyParameters:
@@ -649,7 +673,7 @@ endpoints:
         name: superadmin
         description: ''
         required: false
-        example: true
+        example: false
         type: boolean
     responses:
       -
@@ -689,7 +713,7 @@ endpoints:
         name: id
         description: 'The ID of the admin'
         required: true
-        example: 14
+        example: 7
         type: integer
     queryParameters: []
     bodyParameters: []
@@ -728,7 +752,7 @@ endpoints:
         name: category_name
         description: 'string and must be unique'
         required: false
-        example: veniam
+        example: sit
         type: required
     responses:
       -
@@ -763,7 +787,7 @@ endpoints:
         name: id
         description: 'The ID of the category'
         required: true
-        example: 15
+        example: 1
         type: integer
     queryParameters: []
     bodyParameters: []
@@ -800,7 +824,7 @@ endpoints:
         name: id
         description: 'The ID of the category'
         required: true
-        example: 20
+        example: 6
         type: integer
     queryParameters: []
     bodyParameters:
@@ -808,7 +832,7 @@ endpoints:
         name: category_name
         description: 'and must be unique'
         required: false
-        example: vero
+        example: beatae
         type: string
     responses:
       -
@@ -850,31 +874,31 @@ endpoints:
         name: item_name
         description: 'and must be unique with 40 chrachters at maximum'
         required: true
-        example: aut
+        example: molestias
         type: string
       category_id:
         name: category_id
         description: 'and it must exist'
         required: true
-        example: 4
+        example: 9
         type: integer
       price:
         name: price
         description: ''
         required: true
-        example: quae
+        example: excepturi
         type: decimal
       offer:
         name: offer
         description: 'if there was an offer_end_date'
         required: true
-        example: ut
+        example: sequi
         type: decimal
       offer_end_date:
         name: offer_end_date
         description: 'if there was an offer'
         required: true
-        example: voluptatum
+        example: occaecati
         type: datetime
       file_path:
         name: file_path
@@ -915,7 +939,7 @@ endpoints:
         name: id
         description: 'The ID of the item'
         required: true
-        example: 13
+        example: 16
         type: integer
     queryParameters: []
     bodyParameters: []
@@ -952,7 +976,7 @@ endpoints:
         name: id
         description: 'The ID of the item'
         required: true
-        example: 14
+        example: 13
         type: integer
     queryParameters: []
     bodyParameters: []
@@ -1018,13 +1042,13 @@ endpoints:
         name: id
         description: 'The ID of the verify email.'
         required: true
-        example: esse
+        example: harum
         type: string
       hash:
         name: hash
         description: ''
         required: true
-        example: aut
+        example: qui
         type: string
     queryParameters: []
     bodyParameters: []
@@ -1052,5 +1076,1236 @@ endpoints:
     urlParameters: []
     queryParameters: []
     bodyParameters: []
+    responses: []
+    responseFields: []
+  -
+    httpMethods:
+      - GET
+    uri: api/show
+    metadata:
+      title: 'getting all orders in database'
+      description: ''
+      authenticated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          scenario=
+          {
+
+
+           "id": 1,
+           "user_id": 1,
+
+          "price": "20.20",
+          "type_of_delivery": "Take Away",
+          "created_at": null,
+          "updated_at": null,
+          "rating": "5.00",
+          "Feedback": "good"
+           },
+          {
+          "id": 2,
+          "user_id": 1,
+          "price": "20.20",
+          "type_of_delivery": "Take Away",
+          "created_at": null,
+          "updated_at": null,
+          "rating": "5.00",
+          "Feedback": "good"
+
+          *},
+        headers: []
+        description: '200'
+    responseFields: []
+  -
+    httpMethods:
+      - GET
+    uri: api/search
+    metadata:
+      title: 'get all the orders of a specific user'
+      description: ''
+      authenticated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: '[{"id":1,"user_id":10,"price":"20.00","type_of_delivery":"delivery","created_at":null,"updated_at":null,"rating":"5.00","Feedback":"good"},{"id":2,"user_id":10,"price":"20.00","type_of_delivery":"delivery","created_at":null,"updated_at":null,"rating":"5.00","Feedback":"good"},{"id":3,"user_id":22,"price":"20.00","type_of_delivery":"delivery","created_at":null,"updated_at":null,"rating":"5.00","Feedback":"good"},{"id":4,"user_id":22,"price":"20.00","type_of_delivery":"delivery","created_at":null,"updated_at":null,"rating":"5.00","Feedback":"good"}]'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '60'
+          x-ratelimit-remaining: '54'
+          access-control-allow-origin: '*'
+        description: null
+    responseFields: []
+  -
+    httpMethods:
+      - GET
+    uri: api/total
+    metadata:
+      title: 'get the total number of orders'
+      description: ''
+      authenticated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: '4'
+        headers:
+          content-type: 'text/html; charset=UTF-8'
+          cache-control: 'no-cache, private'
+          x-ratelimit-limit: '60'
+          x-ratelimit-remaining: '53'
+          access-control-allow-origin: '*'
+        description: null
+    responseFields: []
+  -
+    httpMethods:
+      - GET
+    uri: api/piechart
+    metadata:
+      title: ''
+      description: ''
+      authenticated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 500
+        content: |-
+          {
+              "message": "SQLSTATE[42S02]: Base table or view not found: 1146 Table 'laravel.item' doesn't exist (SQL: SELECT count(item_id)as item_id,item.item_name FROM orderitem join item on orderitem.item_id=item.id group by item.item_name)",
+              "exception": "Illuminate\\Database\\QueryException",
+              "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php",
+              "line": 692,
+              "trace": [
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php",
+                      "line": 652,
+                      "function": "runQueryCallback",
+                      "class": "Illuminate\\Database\\Connection",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php",
+                      "line": 360,
+                      "function": "run",
+                      "class": "Illuminate\\Database\\Connection",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\DatabaseManager.php",
+                      "line": 388,
+                      "function": "select",
+                      "class": "Illuminate\\Database\\Connection",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Facades\\Facade.php",
+                      "line": 261,
+                      "function": "__call",
+                      "class": "Illuminate\\Database\\DatabaseManager",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\app\\Http\\Controllers\\showcontroller.php",
+                      "line": 76,
+                      "function": "__callStatic",
+                      "class": "Illuminate\\Support\\Facades\\Facade",
+                      "type": "::"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Controller.php",
+                      "line": 54,
+                      "function": "piechart",
+                      "class": "App\\Http\\Controllers\\showcontroller",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ControllerDispatcher.php",
+                      "line": 45,
+                      "function": "callAction",
+                      "class": "Illuminate\\Routing\\Controller",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php",
+                      "line": 261,
+                      "function": "dispatch",
+                      "class": "Illuminate\\Routing\\ControllerDispatcher",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php",
+                      "line": 204,
+                      "function": "runController",
+                      "class": "Illuminate\\Routing\\Route",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
+                      "line": 695,
+                      "function": "run",
+                      "class": "Illuminate\\Routing\\Route",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
+                      "line": 128,
+                      "function": "Illuminate\\Routing\\{closure}",
+                      "class": "Illuminate\\Routing\\Router",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\SubstituteBindings.php",
+                      "line": 50,
+                      "function": "Illuminate\\Pipeline\\{closure}",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
+                      "line": 167,
+                      "function": "handle",
+                      "class": "Illuminate\\Routing\\Middleware\\SubstituteBindings",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\ThrottleRequests.php",
+                      "line": 127,
+                      "function": "Illuminate\\Pipeline\\{closure}",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\ThrottleRequests.php",
+                      "line": 103,
+                      "function": "handleRequest",
+                      "class": "Illuminate\\Routing\\Middleware\\ThrottleRequests",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\ThrottleRequests.php",
+                      "line": 55,
+                      "function": "handleRequestUsingNamedLimiter",
+                      "class": "Illuminate\\Routing\\Middleware\\ThrottleRequests",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
+                      "line": 167,
+                      "function": "handle",
+                      "class": "Illuminate\\Routing\\Middleware\\ThrottleRequests",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
+                      "line": 103,
+                      "function": "Illuminate\\Pipeline\\{closure}",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
+                      "line": 697,
+                      "function": "then",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
+                      "line": 672,
+                      "function": "runRouteWithinStack",
+                      "class": "Illuminate\\Routing\\Router",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
+                      "line": 636,
+                      "function": "runRoute",
+                      "class": "Illuminate\\Routing\\Router",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
+                      "line": 625,
+                      "function": "dispatchToRoute",
+                      "class": "Illuminate\\Routing\\Router",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php",
+                      "line": 166,
+                      "function": "dispatch",
+                      "class": "Illuminate\\Routing\\Router",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
+                      "line": 128,
+                      "function": "Illuminate\\Foundation\\Http\\{closure}",
+                      "class": "Illuminate\\Foundation\\Http\\Kernel",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php",
+                      "line": 21,
+                      "function": "Illuminate\\Pipeline\\{closure}",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull.php",
+                      "line": 31,
+                      "function": "handle",
+                      "class": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
+                      "line": 167,
+                      "function": "handle",
+                      "class": "Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php",
+                      "line": 21,
+                      "function": "Illuminate\\Pipeline\\{closure}",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TrimStrings.php",
+                      "line": 40,
+                      "function": "handle",
+                      "class": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
+                      "line": 167,
+                      "function": "handle",
+                      "class": "Illuminate\\Foundation\\Http\\Middleware\\TrimStrings",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php",
+                      "line": 27,
+                      "function": "Illuminate\\Pipeline\\{closure}",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
+                      "line": 167,
+                      "function": "handle",
+                      "class": "Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php",
+                      "line": 86,
+                      "function": "Illuminate\\Pipeline\\{closure}",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
+                      "line": 167,
+                      "function": "handle",
+                      "class": "Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\fruitcake\\laravel-cors\\src\\HandleCors.php",
+                      "line": 52,
+                      "function": "Illuminate\\Pipeline\\{closure}",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
+                      "line": 167,
+                      "function": "handle",
+                      "class": "Fruitcake\\Cors\\HandleCors",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\fideloper\\proxy\\src\\TrustProxies.php",
+                      "line": 57,
+                      "function": "Illuminate\\Pipeline\\{closure}",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
+                      "line": 167,
+                      "function": "handle",
+                      "class": "Fideloper\\Proxy\\TrustProxies",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
+                      "line": 103,
+                      "function": "Illuminate\\Pipeline\\{closure}",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php",
+                      "line": 141,
+                      "function": "then",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php",
+                      "line": 110,
+                      "function": "sendRequestThroughRouter",
+                      "class": "Illuminate\\Foundation\\Http\\Kernel",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php",
+                      "line": 287,
+                      "function": "handle",
+                      "class": "Illuminate\\Foundation\\Http\\Kernel",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php",
+                      "line": 275,
+                      "function": "callLaravelOrLumenRoute",
+                      "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php",
+                      "line": 86,
+                      "function": "makeApiCall",
+                      "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php",
+                      "line": 44,
+                      "function": "makeResponseCall",
+                      "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php",
+                      "line": 34,
+                      "function": "makeResponseCallIfConditionsPass",
+                      "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Extractor.php",
+                      "line": 225,
+                      "function": "__invoke",
+                      "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Extractor.php",
+                      "line": 182,
+                      "function": "iterateThroughStrategies",
+                      "class": "Knuckles\\Scribe\\Extracting\\Extractor",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Extractor.php",
+                      "line": 116,
+                      "function": "fetchResponses",
+                      "class": "Knuckles\\Scribe\\Extracting\\Extractor",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\knuckleswtf\\scribe\\src\\GroupedEndpoints\\GroupedEndpointsFromApp.php",
+                      "line": 118,
+                      "function": "processRoute",
+                      "class": "Knuckles\\Scribe\\Extracting\\Extractor",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\knuckleswtf\\scribe\\src\\GroupedEndpoints\\GroupedEndpointsFromApp.php",
+                      "line": 75,
+                      "function": "extractEndpointsInfoFromLaravelApp",
+                      "class": "Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\knuckleswtf\\scribe\\src\\GroupedEndpoints\\GroupedEndpointsFromApp.php",
+                      "line": 51,
+                      "function": "extractEndpointsInfoAndWriteToDisk",
+                      "class": "Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\knuckleswtf\\scribe\\src\\Commands\\GenerateDocumentation.php",
+                      "line": 39,
+                      "function": "get",
+                      "class": "Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php",
+                      "line": 36,
+                      "function": "handle",
+                      "class": "Knuckles\\Scribe\\Commands\\GenerateDocumentation",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php",
+                      "line": 40,
+                      "function": "Illuminate\\Container\\{closure}",
+                      "class": "Illuminate\\Container\\BoundMethod",
+                      "type": "::"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php",
+                      "line": 93,
+                      "function": "unwrapIfClosure",
+                      "class": "Illuminate\\Container\\Util",
+                      "type": "::"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php",
+                      "line": 37,
+                      "function": "callBoundMethod",
+                      "class": "Illuminate\\Container\\BoundMethod",
+                      "type": "::"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php",
+                      "line": 651,
+                      "function": "call",
+                      "class": "Illuminate\\Container\\BoundMethod",
+                      "type": "::"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php",
+                      "line": 136,
+                      "function": "call",
+                      "class": "Illuminate\\Container\\Container",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\symfony\\console\\Command\\Command.php",
+                      "line": 299,
+                      "function": "execute",
+                      "class": "Illuminate\\Console\\Command",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php",
+                      "line": 121,
+                      "function": "run",
+                      "class": "Symfony\\Component\\Console\\Command\\Command",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\symfony\\console\\Application.php",
+                      "line": 978,
+                      "function": "run",
+                      "class": "Illuminate\\Console\\Command",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\symfony\\console\\Application.php",
+                      "line": 295,
+                      "function": "doRunCommand",
+                      "class": "Symfony\\Component\\Console\\Application",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\symfony\\console\\Application.php",
+                      "line": 167,
+                      "function": "doRun",
+                      "class": "Symfony\\Component\\Console\\Application",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Application.php",
+                      "line": 92,
+                      "function": "run",
+                      "class": "Symfony\\Component\\Console\\Application",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php",
+                      "line": 129,
+                      "function": "run",
+                      "class": "Illuminate\\Console\\Application",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\artisan",
+                      "line": 37,
+                      "function": "handle",
+                      "class": "Illuminate\\Foundation\\Console\\Kernel",
+                      "type": "->"
+                  }
+              ]
+          }
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '60'
+          x-ratelimit-remaining: '52'
+          access-control-allow-origin: '*'
+        description: null
+    responseFields: []
+  -
+    httpMethods:
+      - GET
+    uri: api/sort
+    metadata:
+      title: 'get the 4 most selling item'
+      description: ''
+      authenticated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: '[{"item_name":"Little Bacon Cheeseburger"},{"item_name":"Veggie Sandwich"},{"item_name":"Cheese Veggie Sandwich"}]'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '60'
+          x-ratelimit-remaining: '51'
+          access-control-allow-origin: '*'
+        description: null
+    responseFields: []
+  -
+    httpMethods:
+      - GET
+    uri: api/add
+    metadata:
+      title: 'Invoke the controller method.'
+      description: ''
+      authenticated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 500
+        content: |-
+          {
+              "message": "View [table] not found.",
+              "exception": "InvalidArgumentException",
+              "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\View\\FileViewFinder.php",
+              "line": 137,
+              "trace": [
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\View\\FileViewFinder.php",
+                      "line": 79,
+                      "function": "findInPaths",
+                      "class": "Illuminate\\View\\FileViewFinder",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Factory.php",
+                      "line": 138,
+                      "function": "find",
+                      "class": "Illuminate\\View\\FileViewFinder",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ResponseFactory.php",
+                      "line": 85,
+                      "function": "make",
+                      "class": "Illuminate\\View\\Factory",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ViewController.php",
+                      "line": 37,
+                      "function": "view",
+                      "class": "Illuminate\\Routing\\ResponseFactory",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Controller.php",
+                      "line": 54,
+                      "function": "__invoke",
+                      "class": "Illuminate\\Routing\\ViewController",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ControllerDispatcher.php",
+                      "line": 45,
+                      "function": "callAction",
+                      "class": "Illuminate\\Routing\\Controller",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php",
+                      "line": 261,
+                      "function": "dispatch",
+                      "class": "Illuminate\\Routing\\ControllerDispatcher",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php",
+                      "line": 204,
+                      "function": "runController",
+                      "class": "Illuminate\\Routing\\Route",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
+                      "line": 695,
+                      "function": "run",
+                      "class": "Illuminate\\Routing\\Route",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
+                      "line": 128,
+                      "function": "Illuminate\\Routing\\{closure}",
+                      "class": "Illuminate\\Routing\\Router",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\SubstituteBindings.php",
+                      "line": 50,
+                      "function": "Illuminate\\Pipeline\\{closure}",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
+                      "line": 167,
+                      "function": "handle",
+                      "class": "Illuminate\\Routing\\Middleware\\SubstituteBindings",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\ThrottleRequests.php",
+                      "line": 127,
+                      "function": "Illuminate\\Pipeline\\{closure}",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\ThrottleRequests.php",
+                      "line": 103,
+                      "function": "handleRequest",
+                      "class": "Illuminate\\Routing\\Middleware\\ThrottleRequests",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\ThrottleRequests.php",
+                      "line": 55,
+                      "function": "handleRequestUsingNamedLimiter",
+                      "class": "Illuminate\\Routing\\Middleware\\ThrottleRequests",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
+                      "line": 167,
+                      "function": "handle",
+                      "class": "Illuminate\\Routing\\Middleware\\ThrottleRequests",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
+                      "line": 103,
+                      "function": "Illuminate\\Pipeline\\{closure}",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
+                      "line": 697,
+                      "function": "then",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
+                      "line": 672,
+                      "function": "runRouteWithinStack",
+                      "class": "Illuminate\\Routing\\Router",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
+                      "line": 636,
+                      "function": "runRoute",
+                      "class": "Illuminate\\Routing\\Router",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
+                      "line": 625,
+                      "function": "dispatchToRoute",
+                      "class": "Illuminate\\Routing\\Router",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php",
+                      "line": 166,
+                      "function": "dispatch",
+                      "class": "Illuminate\\Routing\\Router",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
+                      "line": 128,
+                      "function": "Illuminate\\Foundation\\Http\\{closure}",
+                      "class": "Illuminate\\Foundation\\Http\\Kernel",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php",
+                      "line": 21,
+                      "function": "Illuminate\\Pipeline\\{closure}",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull.php",
+                      "line": 31,
+                      "function": "handle",
+                      "class": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
+                      "line": 167,
+                      "function": "handle",
+                      "class": "Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php",
+                      "line": 21,
+                      "function": "Illuminate\\Pipeline\\{closure}",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TrimStrings.php",
+                      "line": 40,
+                      "function": "handle",
+                      "class": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
+                      "line": 167,
+                      "function": "handle",
+                      "class": "Illuminate\\Foundation\\Http\\Middleware\\TrimStrings",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php",
+                      "line": 27,
+                      "function": "Illuminate\\Pipeline\\{closure}",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
+                      "line": 167,
+                      "function": "handle",
+                      "class": "Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php",
+                      "line": 86,
+                      "function": "Illuminate\\Pipeline\\{closure}",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
+                      "line": 167,
+                      "function": "handle",
+                      "class": "Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\fruitcake\\laravel-cors\\src\\HandleCors.php",
+                      "line": 52,
+                      "function": "Illuminate\\Pipeline\\{closure}",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
+                      "line": 167,
+                      "function": "handle",
+                      "class": "Fruitcake\\Cors\\HandleCors",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\fideloper\\proxy\\src\\TrustProxies.php",
+                      "line": 57,
+                      "function": "Illuminate\\Pipeline\\{closure}",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
+                      "line": 167,
+                      "function": "handle",
+                      "class": "Fideloper\\Proxy\\TrustProxies",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
+                      "line": 103,
+                      "function": "Illuminate\\Pipeline\\{closure}",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php",
+                      "line": 141,
+                      "function": "then",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php",
+                      "line": 110,
+                      "function": "sendRequestThroughRouter",
+                      "class": "Illuminate\\Foundation\\Http\\Kernel",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php",
+                      "line": 287,
+                      "function": "handle",
+                      "class": "Illuminate\\Foundation\\Http\\Kernel",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php",
+                      "line": 275,
+                      "function": "callLaravelOrLumenRoute",
+                      "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php",
+                      "line": 86,
+                      "function": "makeApiCall",
+                      "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php",
+                      "line": 44,
+                      "function": "makeResponseCall",
+                      "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php",
+                      "line": 34,
+                      "function": "makeResponseCallIfConditionsPass",
+                      "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Extractor.php",
+                      "line": 225,
+                      "function": "__invoke",
+                      "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Extractor.php",
+                      "line": 182,
+                      "function": "iterateThroughStrategies",
+                      "class": "Knuckles\\Scribe\\Extracting\\Extractor",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Extractor.php",
+                      "line": 116,
+                      "function": "fetchResponses",
+                      "class": "Knuckles\\Scribe\\Extracting\\Extractor",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\knuckleswtf\\scribe\\src\\GroupedEndpoints\\GroupedEndpointsFromApp.php",
+                      "line": 118,
+                      "function": "processRoute",
+                      "class": "Knuckles\\Scribe\\Extracting\\Extractor",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\knuckleswtf\\scribe\\src\\GroupedEndpoints\\GroupedEndpointsFromApp.php",
+                      "line": 75,
+                      "function": "extractEndpointsInfoFromLaravelApp",
+                      "class": "Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\knuckleswtf\\scribe\\src\\GroupedEndpoints\\GroupedEndpointsFromApp.php",
+                      "line": 51,
+                      "function": "extractEndpointsInfoAndWriteToDisk",
+                      "class": "Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\knuckleswtf\\scribe\\src\\Commands\\GenerateDocumentation.php",
+                      "line": 39,
+                      "function": "get",
+                      "class": "Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php",
+                      "line": 36,
+                      "function": "handle",
+                      "class": "Knuckles\\Scribe\\Commands\\GenerateDocumentation",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php",
+                      "line": 40,
+                      "function": "Illuminate\\Container\\{closure}",
+                      "class": "Illuminate\\Container\\BoundMethod",
+                      "type": "::"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php",
+                      "line": 93,
+                      "function": "unwrapIfClosure",
+                      "class": "Illuminate\\Container\\Util",
+                      "type": "::"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php",
+                      "line": 37,
+                      "function": "callBoundMethod",
+                      "class": "Illuminate\\Container\\BoundMethod",
+                      "type": "::"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php",
+                      "line": 651,
+                      "function": "call",
+                      "class": "Illuminate\\Container\\BoundMethod",
+                      "type": "::"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php",
+                      "line": 136,
+                      "function": "call",
+                      "class": "Illuminate\\Container\\Container",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\symfony\\console\\Command\\Command.php",
+                      "line": 299,
+                      "function": "execute",
+                      "class": "Illuminate\\Console\\Command",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php",
+                      "line": 121,
+                      "function": "run",
+                      "class": "Symfony\\Component\\Console\\Command\\Command",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\symfony\\console\\Application.php",
+                      "line": 978,
+                      "function": "run",
+                      "class": "Illuminate\\Console\\Command",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\symfony\\console\\Application.php",
+                      "line": 295,
+                      "function": "doRunCommand",
+                      "class": "Symfony\\Component\\Console\\Application",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\symfony\\console\\Application.php",
+                      "line": 167,
+                      "function": "doRun",
+                      "class": "Symfony\\Component\\Console\\Application",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Application.php",
+                      "line": 92,
+                      "function": "run",
+                      "class": "Symfony\\Component\\Console\\Application",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php",
+                      "line": 129,
+                      "function": "run",
+                      "class": "Illuminate\\Console\\Application",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\artisan",
+                      "line": 37,
+                      "function": "handle",
+                      "class": "Illuminate\\Foundation\\Console\\Kernel",
+                      "type": "->"
+                  }
+              ]
+          }
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '60'
+          x-ratelimit-remaining: '50'
+          access-control-allow-origin: '*'
+        description: null
+    responseFields: []
+  -
+    httpMethods:
+      - POST
+    uri: api/add
+    metadata:
+      title: 'create a new table with the state'
+      description: ''
+      authenticated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters:
+      table:
+        name: table
+        description: 'string required The state of the table to which the table will be added'
+        required: false
+        example: voluptatem
+        type: state
+    responses: []
+    responseFields: []
+  -
+    httpMethods:
+      - GET
+    uri: api/list
+    metadata:
+      title: 'shows all the tables with their state'
+      description: ''
+      authenticated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: '[{"id":1,"state":"avaliable","created_at":"2021-09-01T19:11:41.000000Z","updated_at":"2021-09-01T19:13:01.000000Z"}]'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '60'
+          x-ratelimit-remaining: '49'
+          access-control-allow-origin: '*'
+        description: null
+    responseFields: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/update/{id}'
+    metadata:
+      title: 'select the wanted table to change it''s state'
+      description: ''
+      authenticated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the selected table'
+        required: true
+        example: 12
+        type: integer
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: ''
+        headers:
+          content-type: 'text/html; charset=UTF-8'
+          cache-control: 'no-cache, private'
+          x-ratelimit-limit: '60'
+          x-ratelimit-remaining: '48'
+          access-control-allow-origin: '*'
+        description: null
+    responseFields: []
+  -
+    httpMethods:
+      - POST
+    uri: api/update
+    metadata:
+      title: 'update the table state'
+      description: ''
+      authenticated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters:
+      id:
+        name: id
+        description: 'the table'
+        required: false
+        example: minus
+        type: of
+      state:
+        name: state
+        description: 'new wanted state to update'
+        required: false
+        example: et
+        type: the
     responses: []
     responseFields: []

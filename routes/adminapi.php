@@ -11,6 +11,8 @@ use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Http\Controllers\showcontroller;
+
 
 use App\Http\Controllers\Auth\AdminEmailVerificationNotificationController;
 use App\Http\Controllers\Auth\AdminEmailVerificationPromptController;
@@ -53,4 +55,30 @@ Route::post('/email/verification-notification', [AdminEmailVerificationNotificat
                 ->middleware(['throttle:6,1'])
                 ->name('verification.send');
 });
+
+
+Route::get('show',[showcontroller::class,'show']);
+
+
+Route::get('/search',[showcontroller::class,'search']);
+
+
+Route::get('total',[showcontroller::class,'operations']);
+
+
+Route::get('piechart',[showcontroller::class,'piechart']);
+
+Route::get('sort',[showcontroller::class,'sort']);
+
+Route::view('add','table');
+
+Route::post('add',[showcontroller::class,'addtable']);
+
+Route::get('list',[showcontroller::class,'list']);
+
+Route::get('update/{id}',[showcontroller::class,'showdata']);
+
+
+Route::post('update',[showcontroller::class,'edit']);
+
 
