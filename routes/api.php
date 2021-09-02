@@ -34,5 +34,9 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::post('/create-cart', 'App\Http\Controllers\CartController@createCart');
     Route::post('/add-to-cart', 'App\Http\Controllers\CartController@addToCart');
     Route::post('/remove-from-cart', 'App\Http\Controllers\CartController@removeFromCart');
+   
+
 });
 
+Route::post('/store', [App\Http\Controllers\PromoCodeController::class, 'store'])->name('store');
+Route::delete('/destroy', [App\Http\Controllers\PromoCodeController::class, 'destroy'])->name('destroy');
