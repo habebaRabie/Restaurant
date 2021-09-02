@@ -42,6 +42,19 @@ Route::group(['middleware' => 'auth:admin-api', 'prefix' =>'admin'], function(){
     Route::post('additem' , 'App\Http\Controllers\AdminController@AddItem' );
     Route::post('removeitem/{id}' , 'App\Http\Controllers\AdminController@DeleteItem');
     Route::post('updateitem/{id}' , 'App\Http\Controllers\AdminController@UpdateItem');
+    Route::get('show',[showcontroller::class,'show']);
+    Route::get('/search',[showcontroller::class,'search']);
+    Route::get('total',[showcontroller::class,'operations']);
+    Route::get('piechart',[showcontroller::class,'piechart']);
+    Route::get('sort',[showcontroller::class,'sort']);
+    Route::view('add','table');
+    Route::post('add',[showcontroller::class,'addtable']);
+    Route::get('list',[showcontroller::class,'list']);
+    Route::get('update/{id}',[showcontroller::class,'showdata']);
+    Route::post('update',[showcontroller::class,'edit']);
+
+
+
 
 
     Route::get('/verify-email', [AdminEmailVerificationPromptController::class, '__invoke'])
@@ -55,30 +68,5 @@ Route::post('/email/verification-notification', [AdminEmailVerificationNotificat
                 ->middleware(['throttle:6,1'])
                 ->name('verification.send');
 });
-
-
-Route::get('show',[showcontroller::class,'show']);
-
-
-Route::get('/search',[showcontroller::class,'search']);
-
-
-Route::get('total',[showcontroller::class,'operations']);
-
-
-Route::get('piechart',[showcontroller::class,'piechart']);
-
-Route::get('sort',[showcontroller::class,'sort']);
-
-Route::view('add','table');
-
-Route::post('add',[showcontroller::class,'addtable']);
-
-Route::get('list',[showcontroller::class,'list']);
-
-Route::get('update/{id}',[showcontroller::class,'showdata']);
-
-
-Route::post('update',[showcontroller::class,'edit']);
 
 
