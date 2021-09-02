@@ -59,7 +59,7 @@ class showcontroller extends Controller
     public function search(Request $request)
     {
         $search=$request->search;
-        return $data=orders::where('user_id','Like','%'.$search.'%')->get();
+        return $data=Order::where('user_id','Like','%'.$search.'%')->get();
         
 
     }
