@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Models\orders;
+use App\Models\Order;
 use App\Models\Table;
 
 
@@ -46,7 +46,7 @@ class showcontroller extends Controller
      */
     function show()
     {
-       return $data=orders::all();
+       return $data=Order::all();
          
     }
 
