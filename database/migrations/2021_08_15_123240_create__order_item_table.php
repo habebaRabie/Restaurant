@@ -21,6 +21,7 @@ class CreateOrderItemTable extends Migration
 
 
         $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
+        $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
 
             $table->timestamps();
         });
