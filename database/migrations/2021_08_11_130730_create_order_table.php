@@ -21,7 +21,7 @@ class CreateOrderTable extends Migration
             $table->timestamps();
             $table->decimal('rating')->nullable();
             $table -> string('Feedback')->nullable();
-
+            $table -> string('additional_comment');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
         });
