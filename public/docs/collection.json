@@ -5,12 +5,12 @@
             "key": "baseUrl",
             "type": "string",
             "name": "string",
-            "value": "localhost"
+            "value": "127.0.0.1"
         }
     ],
     "info": {
         "name": "Laravel",
-        "_postman_id": "1576eb37-42d6-41bb-98c2-31c24d8e2ec8",
+        "_postman_id": "f114f52c-5452-4cf1-b70d-026d72876725",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -42,14 +42,21 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"User_id\":7}"
+                            "raw": "{\"User_id\":13}"
                         },
                         "description": "Create a new cart to place items in",
                         "auth": {
                             "type": "noauth"
                         }
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n  \"status\": true,\n  \"errNum\": 200,\n  \"msg\": \"cart created\",\n  \"cart details\": {\n      \"user_id\": \"3\",\n      \"total_price\": 0,\n       \"status\": false,\n       \"updated_at\": \"2021-09-02T13:04:33.000000Z\",\n       \"created_at\": \"2021-09-02T13:04:33.000000Z\",\n       \"id\": 9\n   }\n}",
+                            "name": "success"
+                        }
+                    ]
                 },
                 {
                     "name": "Add to cart",
@@ -74,14 +81,21 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"cart_id\":16,\"item_id\":11}"
+                            "raw": "{\"cart_id\":5,\"item_id\":19}"
                         },
                         "description": "add a new item to the cart",
                         "auth": {
                             "type": "noauth"
                         }
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n \"status\": true,\n \"errNum\": 200,\n \"msg\": \"Item Added Successfully\",\n \"cart details\": {\n     \"id\": 5,\n     \"user_id\": 3,\n     \"total_price\": 66,\n     \"status\": \"false\",\n     \"created_at\": \"2021-08-19T09:51:01.000000Z\",\n     \"updated_at\": \"2021-09-02T12:30:43.000000Z\"\n }\n}",
+                            "name": "success"
+                        }
+                    ]
                 },
                 {
                     "name": "Remove from cart",
@@ -106,7 +120,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"cart_id\":18,\"item_id\":16}"
+                            "raw": "{\"cart_id\":2,\"item_id\":11}"
                         },
                         "description": "Remove an item from the cart",
                         "auth": {
@@ -114,6 +128,158 @@
                         }
                     },
                     "response": []
+                },
+                {
+                    "name": "List cart items",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/view-cart",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/view-cart"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"cart_id\":2}"
+                        },
+                        "description": "lists all items in the cart and their quantity",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Complaints Management",
+            "description": "\nAPIs for adding or removing specific complaint, in addition to showing all the complaints found in the system",
+            "item": [
+                {
+                    "name": "Add complaint",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/add-complaint",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/add-complaint"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"item_id\":6,\"user_id\":17,\"complaint\":\"non\"}"
+                        },
+                        "description": "This endpoint allows you to add complaint to specific item in the order.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n \"status\": true,\n \"response\": 200\n \"data\": The whole complaint after adding it\n}",
+                            "name": "success"
+                        }
+                    ]
+                },
+                {
+                    "name": "Remove complaint",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/remove-complaint",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/remove-complaint"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"item_id\":3,\"user_id\":19,\"complaint\":\"quo\"}"
+                        },
+                        "description": "This endpoint allows you to remove complaint from specific item in the order.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n \"status\": true,\n \"response\": 200\n}",
+                            "name": "success"
+                        }
+                    ]
+                },
+                {
+                    "name": "Show all the complaints found in the system.",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/show-complaints",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/show-complaints"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "This endpoint allows you to see all the complaints found in the system.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n complaints\n}",
+                            "name": "success"
+                        }
+                    ]
                 }
             ]
         },
@@ -201,7 +367,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"first_name\":\"et\",\"last_name\":\"ex\",\"email\":\"voluptatem\",\"password\":\"hic\",\"password_confirmation\":\"ut\"}"
+                            "raw": "{\"first_name\":\"aut\",\"last_name\":\"eligendi\",\"email\":\"iste\",\"password\":\"qui\",\"password_confirmation\":\"sed\"}"
                         },
                         "description": "",
                         "auth": {
@@ -212,7 +378,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n    \"message\": \"Successfully created your account, just verify it at your email !\",\n    \"user\": {\n        \"first_name\": \"mariam\",\n        \"last_name\": \"elkhashab\",\n        \"email\": \"m@hotmail.com\",\n        \"updated_at\": \"2021-08-30T13:28:25.000000Z\",\n        \"created_at\": \"2021-08-30T13:28:25.000000Z\",\n        \"id\": 25\n    },\n    \"AccessToken:\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9yZWdpc3RlciIsImlhdCI6MTYzMDMzMDEwNSwiZXhwIjoxNjMwMzMzNzA1LCJuYmYiOjE2MzAzMzAxMDUsImp0aSI6ImFQV1ExUmZyTDJhZXl2RmEiLCJzdWIiOjI1LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.Gb6pauP14JnqtlmZ4-GIrUJJwY34HGqmwGyXTr35zKI\"\n}",
+                            "body": "{\r\n    \"message\": \"Successfully created your account, just verify it at your email !\",\r\n    \"user\": {\r\n        \"first_name\": \"mariam\",\r\n        \"last_name\": \"elkhashab\",\r\n        \"email\": \"m@hotmail.com\",\r\n        \"updated_at\": \"2021-08-30T13:28:25.000000Z\",\r\n        \"created_at\": \"2021-08-30T13:28:25.000000Z\",\r\n        \"id\": 25\r\n    },\r\n    \"AccessToken:\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9yZWdpc3RlciIsImlhdCI6MTYzMDMzMDEwNSwiZXhwIjoxNjMwMzMzNzA1LCJuYmYiOjE2MzAzMzAxMDUsImp0aSI6ImFQV1ExUmZyTDJhZXl2RmEiLCJzdWIiOjI1LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.Gb6pauP14JnqtlmZ4-GIrUJJwY34HGqmwGyXTr35zKI\"\r\n}",
                             "name": ""
                         }
                     ]
@@ -297,7 +463,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"email\":\"laboriosam\",\"password\":\"a\",\"remember\":false}"
+                            "raw": "{\"email\":\"beatae\",\"password\":\"consequatur\",\"remember\":true}"
                         },
                         "description": "",
                         "auth": {
@@ -308,7 +474,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n    \"message\": \"logged in successfully\",\n    \"AccessToken:\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTYzMDMzMDU2NSwiZXhwIjoxNjMwMzM0MTY1LCJuYmYiOjE2MzAzMzA1NjUsImp0aSI6Ik1GQndmSzl3OVM5T1UyWEkiLCJzdWIiOjI1LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.xxpKgqW5NUZ9OXFXy3AHIPw22H_ivI3KOgblbKDAaoc\"\n}",
+                            "body": "{\r\n    \"message\": \"logged in successfully\",\r\n    \"AccessToken:\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTYzMDMzMDU2NSwiZXhwIjoxNjMwMzM0MTY1LCJuYmYiOjE2MzAzMzA1NjUsImp0aSI6Ik1GQndmSzl3OVM5T1UyWEkiLCJzdWIiOjI1LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.xxpKgqW5NUZ9OXFXy3AHIPw22H_ivI3KOgblbKDAaoc\"\r\n}",
                             "name": ""
                         }
                     ]
@@ -422,7 +588,7 @@
                                 {
                                     "id": "token",
                                     "key": "token",
-                                    "value": "adipisci",
+                                    "value": "maiores",
                                     "description": ""
                                 }
                             ]
@@ -497,7 +663,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"token\":\"id\",\"emai\":\"libero\",\"password\":\"non\",\"password_confirmation\":\"tenetur\"}"
+                            "raw": "{\"token\":\"veniam\",\"emai\":\"placeat\",\"password\":\"voluptatem\",\"password_confirmation\":\"eveniet\"}"
                         },
                         "description": "This api handles the form submission\nHere we will attempt to reset the user's password. If it is successful we\nwill update the password on an actual user model and persist it to the\ndatabase. Otherwise we will parse the error and return the response.",
                         "auth": {
@@ -572,13 +738,13 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "quisquam",
+                                    "value": "dolore",
                                     "description": "The ID of the verify email."
                                 },
                                 {
                                     "id": "hash",
                                     "key": "hash",
-                                    "value": "quaerat",
+                                    "value": "qui",
                                     "description": ""
                                 }
                             ]
@@ -745,7 +911,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"email\":\"totam\",\"password\":\"minus\"}"
+                            "raw": "{\"email\":\"totam\",\"password\":\"non\"}"
                         },
                         "description": ""
                     },
@@ -753,7 +919,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n    \"message\": \"logged in successfully\",\n    \"AccessToken:\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9hZG1pblwvbG9naW4iLCJpYXQiOjE2MzAzMzE5NTIsImV4cCI6MTYzMDMzNTU1MiwibmJmIjoxNjMwMzMxOTUyLCJqdGkiOiJRQjc0UnNIVjBKaldadG9GIiwic3ViIjoxLCJwcnYiOiJkZjg4M2RiOTdiZDA1ZWY4ZmY4NTA4MmQ2ODZjNDVlODMyZTU5M2E5In0.ASySa0_mm7wqeSdAsAhpWGkuD2_oAafoduHBnh4tsJs\"\n}",
+                            "body": "{\r\n    \"message\": \"logged in successfully\",\r\n    \"AccessToken:\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9hZG1pblwvbG9naW4iLCJpYXQiOjE2MzAzMzE5NTIsImV4cCI6MTYzMDMzNTU1MiwibmJmIjoxNjMwMzMxOTUyLCJqdGkiOiJRQjc0UnNIVjBKaldadG9GIiwic3ViIjoxLCJwcnYiOiJkZjg4M2RiOTdiZDA1ZWY4ZmY4NTA4MmQ2ODZjNDVlODMyZTU5M2E5In0.ASySa0_mm7wqeSdAsAhpWGkuD2_oAafoduHBnh4tsJs\"\r\n}",
                             "name": ""
                         }
                     ]
@@ -813,7 +979,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "15",
+                                    "value": "13",
                                     "description": "The ID of the admin"
                                 }
                             ]
@@ -928,7 +1094,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"email\":\"amet\",\"username\":\"excepturi\",\"password\":\"aut\",\"password_confirmation\":\"sunt\",\"superadmin\":true}"
+                            "raw": "{\"email\":\"suscipit\",\"username\":\"quis\",\"password\":\"repellendus\",\"password_confirmation\":\"minus\",\"superadmin\":false}"
                         },
                         "description": ""
                     },
@@ -936,7 +1102,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n    \"message\": \"registered successfully\",\n    \"AccessToken:\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9hZG1pblwvcmVnaXN0ZXIiLCJpYXQiOjE2MzAzMzE5OTQsImV4cCI6MTYzMDMzNTU5NCwibmJmIjoxNjMwMzMxOTk0LCJqdGkiOiJwMGFQcVpUUlQyYW5rT3RjIiwic3ViIjoyNCwicHJ2IjoiZGY4ODNkYjk3YmQwNWVmOGZmODUwODJkNjg2YzQ1ZTgzMmU1OTNhOSJ9.FuZ92MotjJPJv7ebj15zv4Do1ER0_mwUKXhW8J9mDK8\"\n}",
+                            "body": "{\r\n    \"message\": \"registered successfully\",\r\n    \"AccessToken:\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9hZG1pblwvcmVnaXN0ZXIiLCJpYXQiOjE2MzAzMzE5OTQsImV4cCI6MTYzMDMzNTU5NCwibmJmIjoxNjMwMzMxOTk0LCJqdGkiOiJwMGFQcVpUUlQyYW5rT3RjIiwic3ViIjoyNCwicHJ2IjoiZGY4ODNkYjk3YmQwNWVmOGZmODUwODJkNjg2YzQ1ZTgzMmU1OTNhOSJ9.FuZ92MotjJPJv7ebj15zv4Do1ER0_mwUKXhW8J9mDK8\"\r\n}",
                             "name": ""
                         }
                     ]
@@ -980,7 +1146,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "12",
+                                    "value": "13",
                                     "description": "The ID of the admin"
                                 }
                             ]
@@ -998,7 +1164,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"superadmin\":false}"
+                            "raw": "{\"superadmin\":true}"
                         },
                         "description": "",
                         "auth": {
@@ -1045,7 +1211,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "7",
+                                    "value": "6",
                                     "description": "The ID of the admin"
                                 }
                             ]
@@ -1111,7 +1277,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"category_name\":\"sit\"}"
+                            "raw": "{\"category_name\":\"et\"}"
                         },
                         "description": "",
                         "auth": {
@@ -1152,7 +1318,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "1",
+                                    "value": "18",
                                     "description": "The ID of the category"
                                 }
                             ]
@@ -1208,7 +1374,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "6",
+                                    "value": "15",
                                     "description": "The ID of the category"
                                 }
                             ]
@@ -1226,7 +1392,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"category_name\":\"beatae\"}"
+                            "raw": "{\"category_name\":\"maiores\"}"
                         },
                         "description": "",
                         "auth": {
@@ -1286,27 +1452,27 @@
                             "formdata": [
                                 {
                                     "key": "item_name",
-                                    "value": "molestias",
+                                    "value": "ipsum",
                                     "type": "text"
                                 },
                                 {
                                     "key": "category_id",
-                                    "value": 9,
+                                    "value": 12,
                                     "type": "text"
                                 },
                                 {
                                     "key": "price",
-                                    "value": "excepturi",
+                                    "value": "natus",
                                     "type": "text"
                                 },
                                 {
                                     "key": "offer",
-                                    "value": "sequi",
+                                    "value": "tempora",
                                     "type": "text"
                                 },
                                 {
                                     "key": "offer_end_date",
-                                    "value": "occaecati",
+                                    "value": "deleniti",
                                     "type": "text"
                                 },
                                 {
@@ -1355,7 +1521,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "16",
+                                    "value": "19",
                                     "description": "The ID of the item"
                                 }
                             ]
@@ -1411,7 +1577,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "13",
+                                    "value": "16",
                                     "description": "The ID of the item"
                                 }
                             ]
@@ -1519,13 +1685,13 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "harum",
+                                    "value": "non",
                                     "description": "The ID of the verify email."
                                 },
                                 {
                                     "id": "hash",
                                     "key": "hash",
-                                    "value": "qui",
+                                    "value": "accusantium",
                                     "description": ""
                                 }
                             ]
@@ -1598,9 +1764,9 @@
                         "url": {
                             "protocol": "http",
                             "host": "{{baseUrl}}",
-                            "path": "api\/show",
+                            "path": "api\/admin\/show",
                             "query": [],
-                            "raw": "http:\/\/{{baseUrl}}\/api\/show"
+                            "raw": "http:\/\/{{baseUrl}}\/api\/admin\/show"
                         },
                         "method": "GET",
                         "header": [
@@ -1634,9 +1800,9 @@
                         "url": {
                             "protocol": "http",
                             "host": "{{baseUrl}}",
-                            "path": "api\/search",
+                            "path": "api\/admin\/search",
                             "query": [],
-                            "raw": "http:\/\/{{baseUrl}}\/api\/search"
+                            "raw": "http:\/\/{{baseUrl}}\/api\/admin\/search"
                         },
                         "method": "GET",
                         "header": [
@@ -1667,20 +1833,12 @@
                                     "value": "application\/json"
                                 },
                                 {
-                                    "key": "x-ratelimit-limit",
-                                    "value": "60"
-                                },
-                                {
-                                    "key": "x-ratelimit-remaining",
-                                    "value": "54"
-                                },
-                                {
                                     "key": "access-control-allow-origin",
                                     "value": "*"
                                 }
                             ],
-                            "code": 200,
-                            "body": "[{\"id\":1,\"user_id\":10,\"price\":\"20.00\",\"type_of_delivery\":\"delivery\",\"created_at\":null,\"updated_at\":null,\"rating\":\"5.00\",\"Feedback\":\"good\"},{\"id\":2,\"user_id\":10,\"price\":\"20.00\",\"type_of_delivery\":\"delivery\",\"created_at\":null,\"updated_at\":null,\"rating\":\"5.00\",\"Feedback\":\"good\"},{\"id\":3,\"user_id\":22,\"price\":\"20.00\",\"type_of_delivery\":\"delivery\",\"created_at\":null,\"updated_at\":null,\"rating\":\"5.00\",\"Feedback\":\"good\"},{\"id\":4,\"user_id\":22,\"price\":\"20.00\",\"type_of_delivery\":\"delivery\",\"created_at\":null,\"updated_at\":null,\"rating\":\"5.00\",\"Feedback\":\"good\"}]",
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
                             "name": ""
                         }
                     ]
@@ -1691,66 +1849,9 @@
                         "url": {
                             "protocol": "http",
                             "host": "{{baseUrl}}",
-                            "path": "api\/total",
+                            "path": "api\/admin\/total",
                             "query": [],
-                            "raw": "http:\/\/{{baseUrl}}\/api\/total"
-                        },
-                        "method": "GET",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
-                    },
-                    "response": [
-                        {
-                            "header": [
-                                {
-                                    "key": "content-type",
-                                    "value": "text\/html; charset=UTF-8"
-                                },
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "x-ratelimit-limit",
-                                    "value": "60"
-                                },
-                                {
-                                    "key": "x-ratelimit-remaining",
-                                    "value": "53"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                }
-                            ],
-                            "code": 200,
-                            "body": "4",
-                            "name": ""
-                        }
-                    ]
-                },
-                {
-                    "name": "api\/piechart",
-                    "request": {
-                        "url": {
-                            "protocol": "http",
-                            "host": "{{baseUrl}}",
-                            "path": "api\/piechart",
-                            "query": [],
-                            "raw": "http:\/\/{{baseUrl}}\/api\/piechart"
+                            "raw": "http:\/\/{{baseUrl}}\/api\/admin\/total"
                         },
                         "method": "GET",
                         "header": [
@@ -1781,20 +1882,61 @@
                                     "value": "application\/json"
                                 },
                                 {
-                                    "key": "x-ratelimit-limit",
-                                    "value": "60"
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "api\/admin\/piechart",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/admin\/piechart",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/admin\/piechart"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
                                 },
                                 {
-                                    "key": "x-ratelimit-remaining",
-                                    "value": "52"
+                                    "key": "content-type",
+                                    "value": "application\/json"
                                 },
                                 {
                                     "key": "access-control-allow-origin",
                                     "value": "*"
                                 }
                             ],
-                            "code": 500,
-                            "body": "{\n    \"message\": \"SQLSTATE[42S02]: Base table or view not found: 1146 Table 'laravel.item' doesn't exist (SQL: SELECT count(item_id)as item_id,item.item_name FROM orderitem join item on orderitem.item_id=item.id group by item.item_name)\",\n    \"exception\": \"Illuminate\\\\Database\\\\QueryException\",\n    \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Database\\\\Connection.php\",\n    \"line\": 692,\n    \"trace\": [\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Database\\\\Connection.php\",\n            \"line\": 652,\n            \"function\": \"runQueryCallback\",\n            \"class\": \"Illuminate\\\\Database\\\\Connection\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Database\\\\Connection.php\",\n            \"line\": 360,\n            \"function\": \"run\",\n            \"class\": \"Illuminate\\\\Database\\\\Connection\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Database\\\\DatabaseManager.php\",\n            \"line\": 388,\n            \"function\": \"select\",\n            \"class\": \"Illuminate\\\\Database\\\\Connection\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Support\\\\Facades\\\\Facade.php\",\n            \"line\": 261,\n            \"function\": \"__call\",\n            \"class\": \"Illuminate\\\\Database\\\\DatabaseManager\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\app\\\\Http\\\\Controllers\\\\showcontroller.php\",\n            \"line\": 76,\n            \"function\": \"__callStatic\",\n            \"class\": \"Illuminate\\\\Support\\\\Facades\\\\Facade\",\n            \"type\": \"::\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Controller.php\",\n            \"line\": 54,\n            \"function\": \"piechart\",\n            \"class\": \"App\\\\Http\\\\Controllers\\\\showcontroller\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\ControllerDispatcher.php\",\n            \"line\": 45,\n            \"function\": \"callAction\",\n            \"class\": \"Illuminate\\\\Routing\\\\Controller\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Route.php\",\n            \"line\": 261,\n            \"function\": \"dispatch\",\n            \"class\": \"Illuminate\\\\Routing\\\\ControllerDispatcher\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Route.php\",\n            \"line\": 204,\n            \"function\": \"runController\",\n            \"class\": \"Illuminate\\\\Routing\\\\Route\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Router.php\",\n            \"line\": 695,\n            \"function\": \"run\",\n            \"class\": \"Illuminate\\\\Routing\\\\Route\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 128,\n            \"function\": \"Illuminate\\\\Routing\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Routing\\\\Router\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Middleware\\\\SubstituteBindings.php\",\n            \"line\": 50,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Routing\\\\Middleware\\\\SubstituteBindings\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Middleware\\\\ThrottleRequests.php\",\n            \"line\": 127,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Middleware\\\\ThrottleRequests.php\",\n            \"line\": 103,\n            \"function\": \"handleRequest\",\n            \"class\": \"Illuminate\\\\Routing\\\\Middleware\\\\ThrottleRequests\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Middleware\\\\ThrottleRequests.php\",\n            \"line\": 55,\n            \"function\": \"handleRequestUsingNamedLimiter\",\n            \"class\": \"Illuminate\\\\Routing\\\\Middleware\\\\ThrottleRequests\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Routing\\\\Middleware\\\\ThrottleRequests\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 103,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Router.php\",\n            \"line\": 697,\n            \"function\": \"then\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Router.php\",\n            \"line\": 672,\n            \"function\": \"runRouteWithinStack\",\n            \"class\": \"Illuminate\\\\Routing\\\\Router\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Router.php\",\n            \"line\": 636,\n            \"function\": \"runRoute\",\n            \"class\": \"Illuminate\\\\Routing\\\\Router\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Router.php\",\n            \"line\": 625,\n            \"function\": \"dispatchToRoute\",\n            \"class\": \"Illuminate\\\\Routing\\\\Router\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Kernel.php\",\n            \"line\": 166,\n            \"function\": \"dispatch\",\n            \"class\": \"Illuminate\\\\Routing\\\\Router\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 128,\n            \"function\": \"Illuminate\\\\Foundation\\\\Http\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Kernel\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TransformsRequest.php\",\n            \"line\": 21,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\ConvertEmptyStringsToNull.php\",\n            \"line\": 31,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TransformsRequest\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\ConvertEmptyStringsToNull\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TransformsRequest.php\",\n            \"line\": 21,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TrimStrings.php\",\n            \"line\": 40,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TransformsRequest\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TrimStrings\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\ValidatePostSize.php\",\n            \"line\": 27,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\ValidatePostSize\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\PreventRequestsDuringMaintenance.php\",\n            \"line\": 86,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\PreventRequestsDuringMaintenance\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\fruitcake\\\\laravel-cors\\\\src\\\\HandleCors.php\",\n            \"line\": 52,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Fruitcake\\\\Cors\\\\HandleCors\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\fideloper\\\\proxy\\\\src\\\\TrustProxies.php\",\n            \"line\": 57,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Fideloper\\\\Proxy\\\\TrustProxies\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 103,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Kernel.php\",\n            \"line\": 141,\n            \"function\": \"then\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Kernel.php\",\n            \"line\": 110,\n            \"function\": \"sendRequestThroughRouter\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Kernel\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls.php\",\n            \"line\": 287,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Kernel\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls.php\",\n            \"line\": 275,\n            \"function\": \"callLaravelOrLumenRoute\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls.php\",\n            \"line\": 86,\n            \"function\": \"makeApiCall\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls.php\",\n            \"line\": 44,\n            \"function\": \"makeResponseCall\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls.php\",\n            \"line\": 34,\n            \"function\": \"makeResponseCallIfConditionsPass\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Extracting\\\\Extractor.php\",\n            \"line\": 225,\n            \"function\": \"__invoke\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Extracting\\\\Extractor.php\",\n            \"line\": 182,\n            \"function\": \"iterateThroughStrategies\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Extractor\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Extracting\\\\Extractor.php\",\n            \"line\": 116,\n            \"function\": \"fetchResponses\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Extractor\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\GroupedEndpoints\\\\GroupedEndpointsFromApp.php\",\n            \"line\": 118,\n            \"function\": \"processRoute\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Extractor\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\GroupedEndpoints\\\\GroupedEndpointsFromApp.php\",\n            \"line\": 75,\n            \"function\": \"extractEndpointsInfoFromLaravelApp\",\n            \"class\": \"Knuckles\\\\Scribe\\\\GroupedEndpoints\\\\GroupedEndpointsFromApp\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\GroupedEndpoints\\\\GroupedEndpointsFromApp.php\",\n            \"line\": 51,\n            \"function\": \"extractEndpointsInfoAndWriteToDisk\",\n            \"class\": \"Knuckles\\\\Scribe\\\\GroupedEndpoints\\\\GroupedEndpointsFromApp\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Commands\\\\GenerateDocumentation.php\",\n            \"line\": 39,\n            \"function\": \"get\",\n            \"class\": \"Knuckles\\\\Scribe\\\\GroupedEndpoints\\\\GroupedEndpointsFromApp\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Container\\\\BoundMethod.php\",\n            \"line\": 36,\n            \"function\": \"handle\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Commands\\\\GenerateDocumentation\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Container\\\\Util.php\",\n            \"line\": 40,\n            \"function\": \"Illuminate\\\\Container\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Container\\\\BoundMethod\",\n            \"type\": \"::\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Container\\\\BoundMethod.php\",\n            \"line\": 93,\n            \"function\": \"unwrapIfClosure\",\n            \"class\": \"Illuminate\\\\Container\\\\Util\",\n            \"type\": \"::\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Container\\\\BoundMethod.php\",\n            \"line\": 37,\n            \"function\": \"callBoundMethod\",\n            \"class\": \"Illuminate\\\\Container\\\\BoundMethod\",\n            \"type\": \"::\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Container\\\\Container.php\",\n            \"line\": 651,\n            \"function\": \"call\",\n            \"class\": \"Illuminate\\\\Container\\\\BoundMethod\",\n            \"type\": \"::\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Console\\\\Command.php\",\n            \"line\": 136,\n            \"function\": \"call\",\n            \"class\": \"Illuminate\\\\Container\\\\Container\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\symfony\\\\console\\\\Command\\\\Command.php\",\n            \"line\": 299,\n            \"function\": \"execute\",\n            \"class\": \"Illuminate\\\\Console\\\\Command\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Console\\\\Command.php\",\n            \"line\": 121,\n            \"function\": \"run\",\n            \"class\": \"Symfony\\\\Component\\\\Console\\\\Command\\\\Command\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\symfony\\\\console\\\\Application.php\",\n            \"line\": 978,\n            \"function\": \"run\",\n            \"class\": \"Illuminate\\\\Console\\\\Command\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\symfony\\\\console\\\\Application.php\",\n            \"line\": 295,\n            \"function\": \"doRunCommand\",\n            \"class\": \"Symfony\\\\Component\\\\Console\\\\Application\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\symfony\\\\console\\\\Application.php\",\n            \"line\": 167,\n            \"function\": \"doRun\",\n            \"class\": \"Symfony\\\\Component\\\\Console\\\\Application\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Console\\\\Application.php\",\n            \"line\": 92,\n            \"function\": \"run\",\n            \"class\": \"Symfony\\\\Component\\\\Console\\\\Application\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Console\\\\Kernel.php\",\n            \"line\": 129,\n            \"function\": \"run\",\n            \"class\": \"Illuminate\\\\Console\\\\Application\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\artisan\",\n            \"line\": 37,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Console\\\\Kernel\",\n            \"type\": \"->\"\n        }\n    ]\n}",
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
                             "name": ""
                         }
                     ]
@@ -1805,9 +1947,9 @@
                         "url": {
                             "protocol": "http",
                             "host": "{{baseUrl}}",
-                            "path": "api\/sort",
+                            "path": "api\/admin\/sort",
                             "query": [],
-                            "raw": "http:\/\/{{baseUrl}}\/api\/sort"
+                            "raw": "http:\/\/{{baseUrl}}\/api\/admin\/sort"
                         },
                         "method": "GET",
                         "header": [
@@ -1838,20 +1980,12 @@
                                     "value": "application\/json"
                                 },
                                 {
-                                    "key": "x-ratelimit-limit",
-                                    "value": "60"
-                                },
-                                {
-                                    "key": "x-ratelimit-remaining",
-                                    "value": "51"
-                                },
-                                {
                                     "key": "access-control-allow-origin",
                                     "value": "*"
                                 }
                             ],
-                            "code": 200,
-                            "body": "[{\"item_name\":\"Little Bacon Cheeseburger\"},{\"item_name\":\"Veggie Sandwich\"},{\"item_name\":\"Cheese Veggie Sandwich\"}]",
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
                             "name": ""
                         }
                     ]
@@ -1862,9 +1996,9 @@
                         "url": {
                             "protocol": "http",
                             "host": "{{baseUrl}}",
-                            "path": "api\/add",
+                            "path": "api\/admin\/add",
                             "query": [],
-                            "raw": "http:\/\/{{baseUrl}}\/api\/add"
+                            "raw": "http:\/\/{{baseUrl}}\/api\/admin\/add"
                         },
                         "method": "GET",
                         "header": [
@@ -1895,20 +2029,12 @@
                                     "value": "application\/json"
                                 },
                                 {
-                                    "key": "x-ratelimit-limit",
-                                    "value": "60"
-                                },
-                                {
-                                    "key": "x-ratelimit-remaining",
-                                    "value": "50"
-                                },
-                                {
                                     "key": "access-control-allow-origin",
                                     "value": "*"
                                 }
                             ],
-                            "code": 500,
-                            "body": "{\n    \"message\": \"View [table] not found.\",\n    \"exception\": \"InvalidArgumentException\",\n    \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\View\\\\FileViewFinder.php\",\n    \"line\": 137,\n    \"trace\": [\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\View\\\\FileViewFinder.php\",\n            \"line\": 79,\n            \"function\": \"findInPaths\",\n            \"class\": \"Illuminate\\\\View\\\\FileViewFinder\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\View\\\\Factory.php\",\n            \"line\": 138,\n            \"function\": \"find\",\n            \"class\": \"Illuminate\\\\View\\\\FileViewFinder\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\ResponseFactory.php\",\n            \"line\": 85,\n            \"function\": \"make\",\n            \"class\": \"Illuminate\\\\View\\\\Factory\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\ViewController.php\",\n            \"line\": 37,\n            \"function\": \"view\",\n            \"class\": \"Illuminate\\\\Routing\\\\ResponseFactory\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Controller.php\",\n            \"line\": 54,\n            \"function\": \"__invoke\",\n            \"class\": \"Illuminate\\\\Routing\\\\ViewController\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\ControllerDispatcher.php\",\n            \"line\": 45,\n            \"function\": \"callAction\",\n            \"class\": \"Illuminate\\\\Routing\\\\Controller\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Route.php\",\n            \"line\": 261,\n            \"function\": \"dispatch\",\n            \"class\": \"Illuminate\\\\Routing\\\\ControllerDispatcher\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Route.php\",\n            \"line\": 204,\n            \"function\": \"runController\",\n            \"class\": \"Illuminate\\\\Routing\\\\Route\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Router.php\",\n            \"line\": 695,\n            \"function\": \"run\",\n            \"class\": \"Illuminate\\\\Routing\\\\Route\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 128,\n            \"function\": \"Illuminate\\\\Routing\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Routing\\\\Router\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Middleware\\\\SubstituteBindings.php\",\n            \"line\": 50,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Routing\\\\Middleware\\\\SubstituteBindings\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Middleware\\\\ThrottleRequests.php\",\n            \"line\": 127,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Middleware\\\\ThrottleRequests.php\",\n            \"line\": 103,\n            \"function\": \"handleRequest\",\n            \"class\": \"Illuminate\\\\Routing\\\\Middleware\\\\ThrottleRequests\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Middleware\\\\ThrottleRequests.php\",\n            \"line\": 55,\n            \"function\": \"handleRequestUsingNamedLimiter\",\n            \"class\": \"Illuminate\\\\Routing\\\\Middleware\\\\ThrottleRequests\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Routing\\\\Middleware\\\\ThrottleRequests\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 103,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Router.php\",\n            \"line\": 697,\n            \"function\": \"then\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Router.php\",\n            \"line\": 672,\n            \"function\": \"runRouteWithinStack\",\n            \"class\": \"Illuminate\\\\Routing\\\\Router\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Router.php\",\n            \"line\": 636,\n            \"function\": \"runRoute\",\n            \"class\": \"Illuminate\\\\Routing\\\\Router\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Router.php\",\n            \"line\": 625,\n            \"function\": \"dispatchToRoute\",\n            \"class\": \"Illuminate\\\\Routing\\\\Router\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Kernel.php\",\n            \"line\": 166,\n            \"function\": \"dispatch\",\n            \"class\": \"Illuminate\\\\Routing\\\\Router\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 128,\n            \"function\": \"Illuminate\\\\Foundation\\\\Http\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Kernel\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TransformsRequest.php\",\n            \"line\": 21,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\ConvertEmptyStringsToNull.php\",\n            \"line\": 31,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TransformsRequest\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\ConvertEmptyStringsToNull\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TransformsRequest.php\",\n            \"line\": 21,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TrimStrings.php\",\n            \"line\": 40,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TransformsRequest\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TrimStrings\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\ValidatePostSize.php\",\n            \"line\": 27,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\ValidatePostSize\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\PreventRequestsDuringMaintenance.php\",\n            \"line\": 86,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\PreventRequestsDuringMaintenance\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\fruitcake\\\\laravel-cors\\\\src\\\\HandleCors.php\",\n            \"line\": 52,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Fruitcake\\\\Cors\\\\HandleCors\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\fideloper\\\\proxy\\\\src\\\\TrustProxies.php\",\n            \"line\": 57,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Fideloper\\\\Proxy\\\\TrustProxies\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 103,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Kernel.php\",\n            \"line\": 141,\n            \"function\": \"then\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Kernel.php\",\n            \"line\": 110,\n            \"function\": \"sendRequestThroughRouter\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Kernel\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls.php\",\n            \"line\": 287,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Kernel\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls.php\",\n            \"line\": 275,\n            \"function\": \"callLaravelOrLumenRoute\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls.php\",\n            \"line\": 86,\n            \"function\": \"makeApiCall\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls.php\",\n            \"line\": 44,\n            \"function\": \"makeResponseCall\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls.php\",\n            \"line\": 34,\n            \"function\": \"makeResponseCallIfConditionsPass\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Extracting\\\\Extractor.php\",\n            \"line\": 225,\n            \"function\": \"__invoke\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Extracting\\\\Extractor.php\",\n            \"line\": 182,\n            \"function\": \"iterateThroughStrategies\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Extractor\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Extracting\\\\Extractor.php\",\n            \"line\": 116,\n            \"function\": \"fetchResponses\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Extractor\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\GroupedEndpoints\\\\GroupedEndpointsFromApp.php\",\n            \"line\": 118,\n            \"function\": \"processRoute\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Extractor\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\GroupedEndpoints\\\\GroupedEndpointsFromApp.php\",\n            \"line\": 75,\n            \"function\": \"extractEndpointsInfoFromLaravelApp\",\n            \"class\": \"Knuckles\\\\Scribe\\\\GroupedEndpoints\\\\GroupedEndpointsFromApp\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\GroupedEndpoints\\\\GroupedEndpointsFromApp.php\",\n            \"line\": 51,\n            \"function\": \"extractEndpointsInfoAndWriteToDisk\",\n            \"class\": \"Knuckles\\\\Scribe\\\\GroupedEndpoints\\\\GroupedEndpointsFromApp\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Commands\\\\GenerateDocumentation.php\",\n            \"line\": 39,\n            \"function\": \"get\",\n            \"class\": \"Knuckles\\\\Scribe\\\\GroupedEndpoints\\\\GroupedEndpointsFromApp\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Container\\\\BoundMethod.php\",\n            \"line\": 36,\n            \"function\": \"handle\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Commands\\\\GenerateDocumentation\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Container\\\\Util.php\",\n            \"line\": 40,\n            \"function\": \"Illuminate\\\\Container\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Container\\\\BoundMethod\",\n            \"type\": \"::\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Container\\\\BoundMethod.php\",\n            \"line\": 93,\n            \"function\": \"unwrapIfClosure\",\n            \"class\": \"Illuminate\\\\Container\\\\Util\",\n            \"type\": \"::\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Container\\\\BoundMethod.php\",\n            \"line\": 37,\n            \"function\": \"callBoundMethod\",\n            \"class\": \"Illuminate\\\\Container\\\\BoundMethod\",\n            \"type\": \"::\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Container\\\\Container.php\",\n            \"line\": 651,\n            \"function\": \"call\",\n            \"class\": \"Illuminate\\\\Container\\\\BoundMethod\",\n            \"type\": \"::\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Console\\\\Command.php\",\n            \"line\": 136,\n            \"function\": \"call\",\n            \"class\": \"Illuminate\\\\Container\\\\Container\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\symfony\\\\console\\\\Command\\\\Command.php\",\n            \"line\": 299,\n            \"function\": \"execute\",\n            \"class\": \"Illuminate\\\\Console\\\\Command\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Console\\\\Command.php\",\n            \"line\": 121,\n            \"function\": \"run\",\n            \"class\": \"Symfony\\\\Component\\\\Console\\\\Command\\\\Command\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\symfony\\\\console\\\\Application.php\",\n            \"line\": 978,\n            \"function\": \"run\",\n            \"class\": \"Illuminate\\\\Console\\\\Command\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\symfony\\\\console\\\\Application.php\",\n            \"line\": 295,\n            \"function\": \"doRunCommand\",\n            \"class\": \"Symfony\\\\Component\\\\Console\\\\Application\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\symfony\\\\console\\\\Application.php\",\n            \"line\": 167,\n            \"function\": \"doRun\",\n            \"class\": \"Symfony\\\\Component\\\\Console\\\\Application\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Console\\\\Application.php\",\n            \"line\": 92,\n            \"function\": \"run\",\n            \"class\": \"Symfony\\\\Component\\\\Console\\\\Application\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Console\\\\Kernel.php\",\n            \"line\": 129,\n            \"function\": \"run\",\n            \"class\": \"Illuminate\\\\Console\\\\Application\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\zeyad\\\\Desktop\\\\newwwwwwwwwwwwwwwww\\\\restaurant-development\\\\artisan\",\n            \"line\": 37,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Console\\\\Kernel\",\n            \"type\": \"->\"\n        }\n    ]\n}",
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
                             "name": ""
                         }
                     ]
@@ -1919,9 +2045,9 @@
                         "url": {
                             "protocol": "http",
                             "host": "{{baseUrl}}",
-                            "path": "api\/add",
+                            "path": "api\/admin\/add",
                             "query": [],
-                            "raw": "http:\/\/{{baseUrl}}\/api\/add"
+                            "raw": "http:\/\/{{baseUrl}}\/api\/admin\/add"
                         },
                         "method": "POST",
                         "header": [
@@ -1936,7 +2062,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"table\":\"voluptatem\"}"
+                            "raw": "{\"table\":\"voluptatibus\"}"
                         },
                         "description": "",
                         "auth": {
@@ -1951,9 +2077,9 @@
                         "url": {
                             "protocol": "http",
                             "host": "{{baseUrl}}",
-                            "path": "api\/list",
+                            "path": "api\/admin\/list",
                             "query": [],
-                            "raw": "http:\/\/{{baseUrl}}\/api\/list"
+                            "raw": "http:\/\/{{baseUrl}}\/api\/admin\/list"
                         },
                         "method": "GET",
                         "header": [
@@ -1984,20 +2110,12 @@
                                     "value": "application\/json"
                                 },
                                 {
-                                    "key": "x-ratelimit-limit",
-                                    "value": "60"
-                                },
-                                {
-                                    "key": "x-ratelimit-remaining",
-                                    "value": "49"
-                                },
-                                {
                                     "key": "access-control-allow-origin",
                                     "value": "*"
                                 }
                             ],
-                            "code": 200,
-                            "body": "[{\"id\":1,\"state\":\"avaliable\",\"created_at\":\"2021-09-01T19:11:41.000000Z\",\"updated_at\":\"2021-09-01T19:13:01.000000Z\"}]",
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
                             "name": ""
                         }
                     ]
@@ -2008,9 +2126,9 @@
                         "url": {
                             "protocol": "http",
                             "host": "{{baseUrl}}",
-                            "path": "api\/update\/:id",
+                            "path": "api\/admin\/update\/:id",
                             "query": [],
-                            "raw": "http:\/\/{{baseUrl}}\/api\/update\/:id",
+                            "raw": "http:\/\/{{baseUrl}}\/api\/admin\/update\/:id",
                             "variable": [
                                 {
                                     "id": "id",
@@ -2041,28 +2159,20 @@
                         {
                             "header": [
                                 {
-                                    "key": "content-type",
-                                    "value": "text\/html; charset=UTF-8"
-                                },
-                                {
                                     "key": "cache-control",
                                     "value": "no-cache, private"
                                 },
                                 {
-                                    "key": "x-ratelimit-limit",
-                                    "value": "60"
-                                },
-                                {
-                                    "key": "x-ratelimit-remaining",
-                                    "value": "48"
+                                    "key": "content-type",
+                                    "value": "application\/json"
                                 },
                                 {
                                     "key": "access-control-allow-origin",
                                     "value": "*"
                                 }
                             ],
-                            "code": 200,
-                            "body": "",
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
                             "name": ""
                         }
                     ]
@@ -2073,9 +2183,9 @@
                         "url": {
                             "protocol": "http",
                             "host": "{{baseUrl}}",
-                            "path": "api\/update",
+                            "path": "api\/admin\/update",
                             "query": [],
-                            "raw": "http:\/\/{{baseUrl}}\/api\/update"
+                            "raw": "http:\/\/{{baseUrl}}\/api\/admin\/update"
                         },
                         "method": "POST",
                         "header": [
@@ -2090,7 +2200,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"id\":\"minus\",\"state\":\"et\"}"
+                            "raw": "{\"id\":\"non\",\"state\":\"debitis\"}"
                         },
                         "description": "",
                         "auth": {
@@ -2098,6 +2208,109 @@
                         }
                     },
                     "response": []
+                },
+                {
+                    "name": "Store a newly created resource in storage.",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/store",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/store"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Remove the specified resource from storage.",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/destroy",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/destroy"
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Item Management",
+            "description": "\nAPIs for placing item feedback and rating",
+            "item": [
+                {
+                    "name": "Add item Feedback Rating to the order.",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/review-iteam",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/review-iteam"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"U_id\":16,\"feedback\":\"sed\",\"rating\":266.05,\"It_id\":9}"
+                        },
+                        "description": "This endpoint allows user to add feedback and rating to a special item.\n\nThe user can add feedback and rating to any item he want.\nThe user can add more than feedback and rating to different item\n\n<aside class=\"notice\">the user add feedback and rating to many different item<\/aside>",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n \"status\": true,\n \"response\": 200\n}",
+                            "name": "success"
+                        }
+                    ]
                 }
             ]
         },
@@ -2128,14 +2341,300 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"cartID\":1,\"deliveryType\":2}"
+                            "raw": "{\"cartID\":4,\"deliveryType\":2}"
                         },
                         "description": "recieve a cart and place an order with cart info",
                         "auth": {
                             "type": "noauth"
                         }
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n  \"status\": true,\n  \"errNum\": 200,\n  \"msg\": \"Order placed\",\n  \"order details\": {\n      \"user_id\": 3,\n      \"price\": 0,\n      \"type_of_delivery\": \"In Restaurant\",\n      \"updated_at\": \"2021-09-02T13:05:53.000000Z\",\n      \"created_at\": \"2021-09-02T13:05:53.000000Z\",\n      \"id\": 11\n  }\n}",
+                            "name": "success"
+                        }
+                    ]
+                },
+                {
+                    "name": "History of the order.",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/order-history",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/order-history"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"user_id\":17}"
+                        },
+                        "description": "This endpoint allows user to see all his order history.\n\nEnable user to see all his old orders as if his want to take the same order again\n\n<aside class=\"notice\">when the user want to see his histroy he can see it<\/aside>",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "[\n {\n     \"price\": \"54.00\",\n     \"type_of_delivery\": \"To Home\",\n     \"rating\": null,\n     \"Feedback\": null\n },\n {\n   \"price\": \"15.00\",\n   \"type_of_delivery\": \"To Home\",\n   \"rating\": null,\n   \"Feedback\": null\n },\n {\n   \"price\": \"23.00\",\n   \"type_of_delivery\": \"In Restaurant\",\n   \"rating\": null,\n   \"Feedback\": null\n }\n]",
+                            "name": "success"
+                        }
+                    ]
+                },
+                {
+                    "name": "Add Feedback to the order.",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/feedback",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/feedback"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"order_id\":4,\"feedback\":\"esse\"}"
+                        },
+                        "description": "This endpoint allows user to add feedback to his order.\n\nthe user can put a feedback about the order that he paid\n\n<aside class=\"notice\">The user add a feedback to an order <\/aside>",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n \"status\": true,\n \"response\": 200\n}",
+                            "name": "success"
+                        }
+                    ]
+                },
+                {
+                    "name": "Add Rating to the order.",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/rating",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/rating"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"order_id\":10,\"rate\":3}"
+                        },
+                        "description": "This endpoint allows user to add rate to his order.\n\nthe user can put a rate about the order that he paid\n\n<aside class=\"notice\">The user add a rate to an order <\/aside>",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n \"status\": true,\n \"response\": 200\n}",
+                            "name": "success"
+                        }
+                    ]
+                },
+                {
+                    "name": "Add additional comment",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/add-comment",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/add-comment"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"id\":19,\"additional_comment\":\"laudantium\"}"
+                        },
+                        "description": "This endpoint allows you to add additional comment to the order.\n\nThe user can add additional comment to the order\nEx: The customer wants the food spicy.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n \"status\": true,\n \"response\": 200,\n \"data\": The whole order with the additional comment added to it\n}",
+                            "name": "success"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "address Management",
+            "description": "\nAPIs for adding new address or updating old one for customers",
+            "item": [
+                {
+                    "name": "Add address",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/add-addresses",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/add-addresses"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"user_id\":8,\"location\":\"beatae\",\"favourite_location\":\"doloribus\"}"
+                        },
+                        "description": "This endpoint allows you to add address to the order.\n\nThe user can add favourite address to facilitate the usage for him\nand also can add multiple addresses in his account\n\n<aside class=\"notice\">when the user add new address it takes place of the old one<\/aside>",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n \"status\": true,\n \"response\": 200\n \"data\": The user details id,user_id,favourite_location,location after assigning his new location and favourite location\n}",
+                            "name": "success"
+                        }
+                    ]
+                },
+                {
+                    "name": "Add favourite address",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/add-fav-addresses",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/add-fav-addresses"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"user_id\":3,\"favourite_location\":\"ea\"}"
+                        },
+                        "description": "This endpoint allows you to add favourite address to the order.\n\nThe user can add favourite address to facilitate the usage for him\n\n<aside class=\"notice\">when the user add new favourite address it takes place of the old one<\/aside>",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n \"status\": true,\n \"response\": 200\n \"data\": The user details id,user_id,favourite_location,location after updating his favourite address\n}",
+                            "name": "success"
+                        }
+                    ]
+                },
+                {
+                    "name": "Add another address",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/add-another-addresses",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/add-another-addresses"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"user_id\":15,\"location\":\"architecto\"}"
+                        },
+                        "description": "This endpoint allows you to add another address to the order differ from the old one he ordered by.\n\nThe user can add another address to facilitate the usage for him\n\n<aside class=\"notice\">when the user add new another address it takes place of the old one<\/aside>",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n \"status\": true,\n \"response\": 200,\n \"data\": The user details id,user_id,favourite_location,location after updating his address\n}",
+                            "name": "success"
+                        }
+                    ]
                 }
             ]
         }

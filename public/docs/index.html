@@ -19,7 +19,7 @@
 
     <script src="//cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js"></script>
     <script>
-        var baseUrl = "http://localhost";
+        var baseUrl = "http://127.0.0.1:8000";
     </script>
     <script src="../docs/js/tryitout-3.9.1.js"></script>
 
@@ -51,7 +51,7 @@
                             <li><a href="http://github.com/knuckleswtf/scribe">Documentation powered by Scribe ✍</a></li>
                     </ul>
             <ul class="toc-footer" id="last-updated">
-            <li>Last updated: September 1 2021</li>
+            <li>Last updated: September 3 2021</li>
         </ul>
 </div>
 <div class="page-wrapper">
@@ -85,16 +85,16 @@ You can switch the language used with the tabs at the top right (or from the nav
 
 
 <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/create-cart" \
+    "http://127.0.0.1:8000/api/create-cart" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"User_id\": 7
+    \"User_id\": 13
 }"
 </code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/create-cart"
+    "http://127.0.0.1:8000/api/create-cart"
 );
 
 const headers = {
@@ -103,7 +103,7 @@ const headers = {
 };
 
 let body = {
-    "User_id": 7
+    "User_id": 13
 }
 
 fetch(url, {
@@ -114,7 +114,26 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-create-cart">
-</span>
+            <blockquote>
+            <p>Example response (200, success):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: true,
+    &quot;errNum&quot;: 200,
+    &quot;msg&quot;: &quot;cart created&quot;,
+    &quot;cart details&quot;: {
+        &quot;user_id&quot;: &quot;3&quot;,
+        &quot;total_price&quot;: 0,
+        &quot;status&quot;: false,
+        &quot;updated_at&quot;: &quot;2021-09-02T13:04:33.000000Z&quot;,
+        &quot;created_at&quot;: &quot;2021-09-02T13:04:33.000000Z&quot;,
+        &quot;id&quot;: 9
+    }
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-POSTapi-create-cart" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-create-cart"></span>:
@@ -178,17 +197,17 @@ fetch(url, {
 
 
 <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/add-to-cart" \
+    "http://127.0.0.1:8000/api/add-to-cart" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"cart_id\": 16,
-    \"item_id\": 11
+    \"cart_id\": 5,
+    \"item_id\": 19
 }"
 </code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/add-to-cart"
+    "http://127.0.0.1:8000/api/add-to-cart"
 );
 
 const headers = {
@@ -197,8 +216,8 @@ const headers = {
 };
 
 let body = {
-    "cart_id": 16,
-    "item_id": 11
+    "cart_id": 5,
+    "item_id": 19
 }
 
 fetch(url, {
@@ -209,7 +228,26 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-add-to-cart">
-</span>
+            <blockquote>
+            <p>Example response (200, success):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: true,
+    &quot;errNum&quot;: 200,
+    &quot;msg&quot;: &quot;Item Added Successfully&quot;,
+    &quot;cart details&quot;: {
+        &quot;id&quot;: 5,
+        &quot;user_id&quot;: 3,
+        &quot;total_price&quot;: 66,
+        &quot;status&quot;: &quot;false&quot;,
+        &quot;created_at&quot;: &quot;2021-08-19T09:51:01.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2021-09-02T12:30:43.000000Z&quot;
+    }
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-POSTapi-add-to-cart" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-add-to-cart"></span>:
@@ -281,17 +319,17 @@ fetch(url, {
 
 
 <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/remove-from-cart" \
+    "http://127.0.0.1:8000/api/remove-from-cart" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"cart_id\": 18,
-    \"item_id\": 16
+    \"cart_id\": 2,
+    \"item_id\": 11
 }"
 </code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/remove-from-cart"
+    "http://127.0.0.1:8000/api/remove-from-cart"
 );
 
 const headers = {
@@ -300,8 +338,8 @@ const headers = {
 };
 
 let body = {
-    "cart_id": 18,
-    "item_id": 16
+    "cart_id": 2,
+    "item_id": 11
 }
 
 fetch(url, {
@@ -368,9 +406,471 @@ fetch(url, {
                data-endpoint="POSTapi-remove-from-cart"
                data-component="body" required  hidden>
     <br>
-<p>The id of the item that needs to be removed</p>        </p>
+<p>The id of the item that needs to be removed</p>
+<p>@response scenario=success {
+&quot;status&quot;: true,
+&quot;errNum&quot;: 200,
+&quot;msg&quot;: &quot;Item Removed Successfully&quot;,
+&quot;cart details&quot;: {
+&quot;id&quot;: 5,
+&quot;user_id&quot;: 3,
+&quot;total_price&quot;: 54,
+&quot;status&quot;: &quot;false&quot;,
+&quot;created_at&quot;: &quot;2021-08-19T09:51:01.000000Z&quot;,
+&quot;updated_at&quot;: &quot;2021-09-02T12:51:23.000000Z&quot;
+}
+}</p>        </p>
     
     </form>
+
+            <h2 id="cart-management-POSTapi-view-cart">List cart items</h2>
+
+<p>
+</p>
+
+<p>lists all items in the cart and their quantity</p>
+
+<span id="example-requests-POSTapi-view-cart">
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request POST \
+    "http://127.0.0.1:8000/api/view-cart" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"cart_id\": 2
+}"
+</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/view-cart"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "cart_id": 2
+}
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre>
+</span>
+
+<span id="example-responses-POSTapi-view-cart">
+</span>
+<span id="execution-results-POSTapi-view-cart" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-view-cart"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-view-cart"></code></pre>
+</span>
+<span id="execution-error-POSTapi-view-cart" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-view-cart"></code></pre>
+</span>
+<form id="form-POSTapi-view-cart" data-method="POST"
+      data-path="api/view-cart"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-view-cart', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-view-cart"
+                    onclick="tryItOut('POSTapi-view-cart');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-view-cart"
+                    onclick="cancelTryOut('POSTapi-view-cart');" hidden>Cancel
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-view-cart" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/view-cart</code></b>
+        </p>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>cart_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="cart_id"
+               data-endpoint="POSTapi-view-cart"
+               data-component="body" required  hidden>
+    <br>
+<p>The id of the cart that will be modified</p>
+<p>@response scenario=success {
+&quot;status&quot;: true,
+&quot;response&quot;: 200,
+&quot;msg&quot;: &quot;Items retrieved&quot;,
+&quot;cart items&quot;: [
+{
+&quot;quantity&quot;: 2,
+&quot;item&quot;: [
+{
+&quot;id&quot;: 1,
+&quot;item_name&quot;: &quot;pizza&quot;,
+&quot;category_id&quot;: 1,
+&quot;rating&quot;: 0,
+&quot;price&quot;: &quot;15.00&quot;,
+&quot;offer&quot;: null,
+&quot;offer_end_date&quot;: null,
+&quot;created_at&quot;: null,
+&quot;updated_at&quot;: null
+}
+]
+}
+}</p>        </p>
+    
+    </form>
+
+        <h1 id="complaints-management">Complaints Management</h1>
+
+    <p>APIs for adding or removing specific complaint, in addition to showing all the complaints found in the system</p>
+
+            <h2 id="complaints-management-POSTapi-add-complaint">Add complaint</h2>
+
+<p>
+</p>
+
+<p>This endpoint allows you to add complaint to specific item in the order.</p>
+
+<span id="example-requests-POSTapi-add-complaint">
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request POST \
+    "http://127.0.0.1:8000/api/add-complaint" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"item_id\": 6,
+    \"user_id\": 17,
+    \"complaint\": \"non\"
+}"
+</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/add-complaint"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "item_id": 6,
+    "user_id": 17,
+    "complaint": "non"
+}
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre>
+</span>
+
+<span id="example-responses-POSTapi-add-complaint">
+            <blockquote>
+            <p>Example response (200, success):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+ &quot;status&quot;: true,
+ &quot;response&quot;: 200
+ &quot;data&quot;: The whole complaint after adding it
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-add-complaint" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-add-complaint"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-add-complaint"></code></pre>
+</span>
+<span id="execution-error-POSTapi-add-complaint" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-add-complaint"></code></pre>
+</span>
+<form id="form-POSTapi-add-complaint" data-method="POST"
+      data-path="api/add-complaint"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-add-complaint', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-add-complaint"
+                    onclick="tryItOut('POSTapi-add-complaint');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-add-complaint"
+                    onclick="cancelTryOut('POSTapi-add-complaint');" hidden>Cancel
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-add-complaint" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/add-complaint</code></b>
+        </p>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>item_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="item_id"
+               data-endpoint="POSTapi-add-complaint"
+               data-component="body" required  hidden>
+    <br>
+<p>to place the complaint to that specfic item</p>        </p>
+                <p>
+            <b><code>user_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="user_id"
+               data-endpoint="POSTapi-add-complaint"
+               data-component="body" required  hidden>
+    <br>
+<p>to make sure that we know who wrote the complaint</p>        </p>
+                <p>
+            <b><code>complaint</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="complaint"
+               data-endpoint="POSTapi-add-complaint"
+               data-component="body" required  hidden>
+    <br>
+<p>the complaint statement</p>        </p>
+    
+    </form>
+
+            <h2 id="complaints-management-POSTapi-remove-complaint">Remove complaint</h2>
+
+<p>
+</p>
+
+<p>This endpoint allows you to remove complaint from specific item in the order.</p>
+
+<span id="example-requests-POSTapi-remove-complaint">
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request POST \
+    "http://127.0.0.1:8000/api/remove-complaint" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"item_id\": 3,
+    \"user_id\": 19,
+    \"complaint\": \"quo\"
+}"
+</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/remove-complaint"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "item_id": 3,
+    "user_id": 19,
+    "complaint": "quo"
+}
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre>
+</span>
+
+<span id="example-responses-POSTapi-remove-complaint">
+            <blockquote>
+            <p>Example response (200, success):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: true,
+    &quot;response&quot;: 200
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-remove-complaint" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-remove-complaint"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-remove-complaint"></code></pre>
+</span>
+<span id="execution-error-POSTapi-remove-complaint" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-remove-complaint"></code></pre>
+</span>
+<form id="form-POSTapi-remove-complaint" data-method="POST"
+      data-path="api/remove-complaint"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-remove-complaint', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-remove-complaint"
+                    onclick="tryItOut('POSTapi-remove-complaint');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-remove-complaint"
+                    onclick="cancelTryOut('POSTapi-remove-complaint');" hidden>Cancel
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-remove-complaint" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/remove-complaint</code></b>
+        </p>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>item_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="item_id"
+               data-endpoint="POSTapi-remove-complaint"
+               data-component="body" required  hidden>
+    <br>
+<p>to place the complaint to that specfic item</p>        </p>
+                <p>
+            <b><code>user_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="user_id"
+               data-endpoint="POSTapi-remove-complaint"
+               data-component="body" required  hidden>
+    <br>
+<p>to make sure that we know who wrote the complaint</p>        </p>
+                <p>
+            <b><code>complaint</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="complaint"
+               data-endpoint="POSTapi-remove-complaint"
+               data-component="body" required  hidden>
+    <br>
+<p>The complaint statement</p>        </p>
+    
+    </form>
+
+            <h2 id="complaints-management-POSTapi-show-complaints">Show all the complaints found in the system.</h2>
+
+<p>
+</p>
+
+<p>This endpoint allows you to see all the complaints found in the system.</p>
+
+<span id="example-requests-POSTapi-show-complaints">
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request POST \
+    "http://127.0.0.1:8000/api/show-complaints" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/show-complaints"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+</span>
+
+<span id="example-responses-POSTapi-show-complaints">
+            <blockquote>
+            <p>Example response (200, success):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+ complaints
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-show-complaints" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-show-complaints"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-show-complaints"></code></pre>
+</span>
+<span id="execution-error-POSTapi-show-complaints" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-show-complaints"></code></pre>
+</span>
+<form id="form-POSTapi-show-complaints" data-method="POST"
+      data-path="api/show-complaints"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-show-complaints', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-show-complaints"
+                    onclick="tryItOut('POSTapi-show-complaints');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-show-complaints"
+                    onclick="cancelTryOut('POSTapi-show-complaints');" hidden>Cancel
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-show-complaints" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/show-complaints</code></b>
+        </p>
+                    </form>
 
         <h1 id="endpoints">Endpoints</h1>
 
@@ -388,12 +888,12 @@ fetch(url, {
 
 
 <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/register" \
+    --get "http://127.0.0.1:8000/api/register" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/register"
+    "http://127.0.0.1:8000/api/register"
 );
 
 const headers = {
@@ -481,20 +981,20 @@ access-control-allow-origin: *
 
 
 <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/register" \
+    "http://127.0.0.1:8000/api/register" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"first_name\": \"et\",
-    \"last_name\": \"ex\",
-    \"email\": \"voluptatem\",
-    \"password\": \"hic\",
-    \"password_confirmation\": \"ut\"
+    \"first_name\": \"aut\",
+    \"last_name\": \"eligendi\",
+    \"email\": \"iste\",
+    \"password\": \"qui\",
+    \"password_confirmation\": \"sed\"
 }"
 </code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/register"
+    "http://127.0.0.1:8000/api/register"
 );
 
 const headers = {
@@ -503,11 +1003,11 @@ const headers = {
 };
 
 let body = {
-    "first_name": "et",
-    "last_name": "ex",
-    "email": "voluptatem",
-    "password": "hic",
-    "password_confirmation": "ut"
+    "first_name": "aut",
+    "last_name": "eligendi",
+    "email": "iste",
+    "password": "qui",
+    "password_confirmation": "sed"
 }
 
 fetch(url, {
@@ -632,12 +1132,12 @@ fetch(url, {
 
 
 <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/login" \
+    --get "http://127.0.0.1:8000/api/login" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/login"
+    "http://127.0.0.1:8000/api/login"
 );
 
 const headers = {
@@ -725,18 +1225,18 @@ access-control-allow-origin: *
 
 
 <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/login" \
+    "http://127.0.0.1:8000/api/login" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"email\": \"laboriosam\",
-    \"password\": \"a\",
-    \"remember\": false
+    \"email\": \"beatae\",
+    \"password\": \"consequatur\",
+    \"remember\": true
 }"
 </code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/login"
+    "http://127.0.0.1:8000/api/login"
 );
 
 const headers = {
@@ -745,9 +1245,9 @@ const headers = {
 };
 
 let body = {
-    "email": "laboriosam",
-    "password": "a",
-    "remember": false
+    "email": "beatae",
+    "password": "consequatur",
+    "remember": true
 }
 
 fetch(url, {
@@ -858,12 +1358,12 @@ fetch(url, {
 
 
 <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/forgot-password" \
+    --get "http://127.0.0.1:8000/api/forgot-password" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/forgot-password"
+    "http://127.0.0.1:8000/api/forgot-password"
 );
 
 const headers = {
@@ -954,7 +1454,7 @@ need to show to the user. Finally, we'll send out a proper response.</p>
 
 
 <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/forgot-password" \
+    "http://127.0.0.1:8000/api/forgot-password" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -963,7 +1463,7 @@ need to show to the user. Finally, we'll send out a proper response.</p>
 </code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/forgot-password"
+    "http://127.0.0.1:8000/api/forgot-password"
 );
 
 const headers = {
@@ -1057,12 +1557,12 @@ fetch(url, {
 
 
 <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/reset-password/adipisci" \
+    --get "http://127.0.0.1:8000/api/reset-password/maiores" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/reset-password/adipisci"
+    "http://127.0.0.1:8000/api/reset-password/maiores"
 );
 
 const headers = {
@@ -1162,19 +1662,19 @@ database. Otherwise we will parse the error and return the response.</p>
 
 
 <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/reset-password" \
+    "http://127.0.0.1:8000/api/reset-password" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"token\": \"id\",
-    \"emai\": \"libero\",
-    \"password\": \"non\",
-    \"password_confirmation\": \"tenetur\"
+    \"token\": \"veniam\",
+    \"emai\": \"placeat\",
+    \"password\": \"voluptatem\",
+    \"password_confirmation\": \"eveniet\"
 }"
 </code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/reset-password"
+    "http://127.0.0.1:8000/api/reset-password"
 );
 
 const headers = {
@@ -1183,10 +1683,10 @@ const headers = {
 };
 
 let body = {
-    "token": "id",
-    "emai": "libero",
-    "password": "non",
-    "password_confirmation": "tenetur"
+    "token": "veniam",
+    "emai": "placeat",
+    "password": "voluptatem",
+    "password_confirmation": "eveniet"
 }
 
 fetch(url, {
@@ -1297,12 +1797,12 @@ fetch(url, {
 
 
 <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/verify-email" \
+    --get "http://127.0.0.1:8000/api/verify-email" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/verify-email"
+    "http://127.0.0.1:8000/api/verify-email"
 );
 
 const headers = {
@@ -1397,12 +1897,12 @@ access-control-allow-origin: *
 
 
 <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/verify-email/quisquam/quaerat" \
+    --get "http://127.0.0.1:8000/api/verify-email/dolore/qui" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/verify-email/quisquam/quaerat"
+    "http://127.0.0.1:8000/api/verify-email/dolore/qui"
 );
 
 const headers = {
@@ -1507,12 +2007,12 @@ fetch(url, {
 
 
 <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/email/verification-notification" \
+    "http://127.0.0.1:8000/api/email/verification-notification" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/email/verification-notification"
+    "http://127.0.0.1:8000/api/email/verification-notification"
 );
 
 const headers = {
@@ -1600,12 +2100,12 @@ fetch(url, {
 
 
 <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/logout" \
+    "http://127.0.0.1:8000/api/logout" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/logout"
+    "http://127.0.0.1:8000/api/logout"
 );
 
 const headers = {
@@ -1682,12 +2182,12 @@ fetch(url, {
 
 
 <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/admin/login" \
+    --get "http://127.0.0.1:8000/api/admin/login" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/admin/login"
+    "http://127.0.0.1:8000/api/admin/login"
 );
 
 const headers = {
@@ -1776,17 +2276,17 @@ access-control-allow-origin: *
 
 
 <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/admin/login" \
+    "http://127.0.0.1:8000/api/admin/login" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
     \"email\": \"totam\",
-    \"password\": \"minus\"
+    \"password\": \"non\"
 }"
 </code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/admin/login"
+    "http://127.0.0.1:8000/api/admin/login"
 );
 
 const headers = {
@@ -1796,7 +2296,7 @@ const headers = {
 
 let body = {
     "email": "totam",
-    "password": "minus"
+    "password": "non"
 }
 
 fetch(url, {
@@ -1897,12 +2397,12 @@ fetch(url, {
 
 
 <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/admin/admins" \
+    --get "http://127.0.0.1:8000/api/admin/admins" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/admin/admins"
+    "http://127.0.0.1:8000/api/admin/admins"
 );
 
 const headers = {
@@ -2000,12 +2500,12 @@ fetch(url, {
 
 
 <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/admin/admins/15" \
+    --get "http://127.0.0.1:8000/api/admin/admins/13" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/admin/admins/15"
+    "http://127.0.0.1:8000/api/admin/admins/13"
 );
 
 const headers = {
@@ -2111,12 +2611,12 @@ fetch(url, {
 
 
 <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/admin/register" \
+    --get "http://127.0.0.1:8000/api/admin/register" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/admin/register"
+    "http://127.0.0.1:8000/api/admin/register"
 );
 
 const headers = {
@@ -2203,20 +2703,20 @@ access-control-allow-origin: *
 
 
 <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/admin/register" \
+    "http://127.0.0.1:8000/api/admin/register" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"email\": \"amet\",
-    \"username\": \"excepturi\",
-    \"password\": \"aut\",
-    \"password_confirmation\": \"sunt\",
-    \"superadmin\": true
+    \"email\": \"suscipit\",
+    \"username\": \"quis\",
+    \"password\": \"repellendus\",
+    \"password_confirmation\": \"minus\",
+    \"superadmin\": false
 }"
 </code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/admin/register"
+    "http://127.0.0.1:8000/api/admin/register"
 );
 
 const headers = {
@@ -2225,11 +2725,11 @@ const headers = {
 };
 
 let body = {
-    "email": "amet",
-    "username": "excepturi",
-    "password": "aut",
-    "password_confirmation": "sunt",
-    "superadmin": true
+    "email": "suscipit",
+    "username": "quis",
+    "password": "repellendus",
+    "password_confirmation": "minus",
+    "superadmin": false
 }
 
 fetch(url, {
@@ -2365,12 +2865,12 @@ fetch(url, {
 
 
 <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/admin/logout" \
+    "http://127.0.0.1:8000/api/admin/logout" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/admin/logout"
+    "http://127.0.0.1:8000/api/admin/logout"
 );
 
 const headers = {
@@ -2447,16 +2947,16 @@ fetch(url, {
 
 
 <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/admin/updateadmin/12" \
+    "http://127.0.0.1:8000/api/admin/updateadmin/13" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"superadmin\": false
+    \"superadmin\": true
 }"
 </code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/admin/updateadmin/12"
+    "http://127.0.0.1:8000/api/admin/updateadmin/13"
 );
 
 const headers = {
@@ -2465,7 +2965,7 @@ const headers = {
 };
 
 let body = {
-    "superadmin": false
+    "superadmin": true
 }
 
 fetch(url, {
@@ -2589,12 +3089,12 @@ fetch(url, {
 
 
 <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/admin/removeadmin/7" \
+    "http://127.0.0.1:8000/api/admin/removeadmin/6" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/admin/removeadmin/7"
+    "http://127.0.0.1:8000/api/admin/removeadmin/6"
 );
 
 const headers = {
@@ -2695,16 +3195,16 @@ fetch(url, {
 
 
 <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/admin/addcategory" \
+    "http://127.0.0.1:8000/api/admin/addcategory" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"category_name\": \"sit\"
+    \"category_name\": \"et\"
 }"
 </code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/admin/addcategory"
+    "http://127.0.0.1:8000/api/admin/addcategory"
 );
 
 const headers = {
@@ -2713,7 +3213,7 @@ const headers = {
 };
 
 let body = {
-    "category_name": "sit"
+    "category_name": "et"
 }
 
 fetch(url, {
@@ -2811,12 +3311,12 @@ fetch(url, {
 
 
 <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/admin/removecategory/1" \
+    "http://127.0.0.1:8000/api/admin/removecategory/18" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/admin/removecategory/1"
+    "http://127.0.0.1:8000/api/admin/removecategory/18"
 );
 
 const headers = {
@@ -2917,16 +3417,16 @@ fetch(url, {
 
 
 <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/admin/updatecategory/6" \
+    "http://127.0.0.1:8000/api/admin/updatecategory/15" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"category_name\": \"beatae\"
+    \"category_name\": \"maiores\"
 }"
 </code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/admin/updatecategory/6"
+    "http://127.0.0.1:8000/api/admin/updatecategory/15"
 );
 
 const headers = {
@@ -2935,7 +3435,7 @@ const headers = {
 };
 
 let body = {
-    "category_name": "beatae"
+    "category_name": "maiores"
 }
 
 fetch(url, {
@@ -3049,18 +3549,18 @@ fetch(url, {
 
 
 <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/admin/additem" \
+    "http://127.0.0.1:8000/api/admin/additem" \
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
-    --form "item_name=molestias" \
-    --form "category_id=9" \
-    --form "price=excepturi" \
-    --form "offer=sequi" \
-    --form "offer_end_date=occaecati" \
-    --form "file_path=@C:\Users\zeyad\AppData\Local\Temp\php30EC.tmp" </code></pre>
+    --form "item_name=ipsum" \
+    --form "category_id=12" \
+    --form "price=natus" \
+    --form "offer=tempora" \
+    --form "offer_end_date=deleniti" \
+    --form "file_path=@C:\Users\Joe Dillon\AppData\Local\Temp\phpE922.tmp" </code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/admin/additem"
+    "http://127.0.0.1:8000/api/admin/additem"
 );
 
 const headers = {
@@ -3069,11 +3569,11 @@ const headers = {
 };
 
 const body = new FormData();
-body.append('item_name', 'molestias');
-body.append('category_id', '9');
-body.append('price', 'excepturi');
-body.append('offer', 'sequi');
-body.append('offer_end_date', 'occaecati');
+body.append('item_name', 'ipsum');
+body.append('category_id', '12');
+body.append('price', 'natus');
+body.append('offer', 'tempora');
+body.append('offer_end_date', 'deleniti');
 body.append('file_path', document.querySelector('input[name="file_path"]').files[0]);
 
 fetch(url, {
@@ -3211,12 +3711,12 @@ fetch(url, {
 
 
 <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/admin/removeitem/16" \
+    "http://127.0.0.1:8000/api/admin/removeitem/19" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/admin/removeitem/16"
+    "http://127.0.0.1:8000/api/admin/removeitem/19"
 );
 
 const headers = {
@@ -3317,12 +3817,12 @@ fetch(url, {
 
 
 <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/admin/updateitem/13" \
+    "http://127.0.0.1:8000/api/admin/updateitem/16" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/admin/updateitem/13"
+    "http://127.0.0.1:8000/api/admin/updateitem/16"
 );
 
 const headers = {
@@ -3431,12 +3931,12 @@ fetch(url, {
 
 
 <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/admin/verify-email" \
+    --get "http://127.0.0.1:8000/api/admin/verify-email" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/admin/verify-email"
+    "http://127.0.0.1:8000/api/admin/verify-email"
 );
 
 const headers = {
@@ -3531,12 +4031,12 @@ access-control-allow-origin: *
 
 
 <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/admin/verify-email/harum/qui" \
+    --get "http://127.0.0.1:8000/api/admin/verify-email/non/accusantium" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/admin/verify-email/harum/qui"
+    "http://127.0.0.1:8000/api/admin/verify-email/non/accusantium"
 );
 
 const headers = {
@@ -3648,12 +4148,12 @@ access-control-allow-origin: *
 
 
 <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/admin/email/verification-notification" \
+    "http://127.0.0.1:8000/api/admin/email/verification-notification" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/admin/email/verification-notification"
+    "http://127.0.0.1:8000/api/admin/email/verification-notification"
 );
 
 const headers = {
@@ -3718,24 +4218,24 @@ fetch(url, {
         </p>
                 </form>
 
-            <h2 id="endpoints-GETapi-show">getting all orders in database</h2>
+            <h2 id="endpoints-GETapi-admin-show">getting all orders in database</h2>
 
 <p>
 </p>
 
 
 
-<span id="example-requests-GETapi-show">
+<span id="example-requests-GETapi-admin-show">
 <blockquote>Example request:</blockquote>
 
 
 <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/show" \
+    --get "http://127.0.0.1:8000/api/admin/show" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/show"
+    "http://127.0.0.1:8000/api/admin/show"
 );
 
 const headers = {
@@ -3749,7 +4249,7 @@ fetch(url, {
 }).then(response =&gt; response.json());</code></pre>
 </span>
 
-<span id="example-responses-GETapi-show">
+<span id="example-responses-GETapi-admin-show">
             <blockquote>
             <p>Example response (200):</p>
         </blockquote>
@@ -3782,65 +4282,65 @@ fetch(url, {
 *},</code>
  </pre>
     </span>
-<span id="execution-results-GETapi-show" hidden>
+<span id="execution-results-GETapi-admin-show" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-GETapi-show"></span>:
+                id="execution-response-status-GETapi-admin-show"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-show"></code></pre>
+    <pre class="json"><code id="execution-response-content-GETapi-admin-show"></code></pre>
 </span>
-<span id="execution-error-GETapi-show" hidden>
+<span id="execution-error-GETapi-admin-show" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-show"></code></pre>
+    <pre><code id="execution-error-message-GETapi-admin-show"></code></pre>
 </span>
-<form id="form-GETapi-show" data-method="GET"
-      data-path="api/show"
+<form id="form-GETapi-admin-show" data-method="GET"
+      data-path="api/admin/show"
       data-authed="0"
       data-hasfiles="0"
       data-isarraybody="0"
       data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-show', this);">
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-admin-show', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-show"
-                    onclick="tryItOut('GETapi-show');">Try it out ⚡
+                    id="btn-tryout-GETapi-admin-show"
+                    onclick="tryItOut('GETapi-admin-show');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-show"
-                    onclick="cancelTryOut('GETapi-show');" hidden>Cancel
+                    id="btn-canceltryout-GETapi-admin-show"
+                    onclick="cancelTryOut('GETapi-admin-show');" hidden>Cancel
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-show" hidden>Send Request 💥
+                    id="btn-executetryout-GETapi-admin-show" hidden>Send Request 💥
             </button>
             </h3>
             <p>
             <small class="badge badge-green">GET</small>
-            <b><code>api/show</code></b>
+            <b><code>api/admin/show</code></b>
         </p>
                     </form>
 
-            <h2 id="endpoints-GETapi-search">get all the orders of a specific user</h2>
+            <h2 id="endpoints-GETapi-admin-search">get all the orders of a specific user</h2>
 
 <p>
 </p>
 
 
 
-<span id="example-requests-GETapi-search">
+<span id="example-requests-GETapi-admin-search">
 <blockquote>Example request:</blockquote>
 
 
 <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/search" \
+    --get "http://127.0.0.1:8000/api/admin/search" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/search"
+    "http://127.0.0.1:8000/api/admin/search"
 );
 
 const headers = {
@@ -3854,9 +4354,9 @@ fetch(url, {
 }).then(response =&gt; response.json());</code></pre>
 </span>
 
-<span id="example-responses-GETapi-search">
+<span id="example-responses-GETapi-admin-search">
             <blockquote>
-            <p>Example response (200):</p>
+            <p>Example response (401):</p>
         </blockquote>
                 <details class="annotation">
             <summary>
@@ -3864,773 +4364,74 @@ fetch(url, {
             </summary>
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
-x-ratelimit-limit: 60
-x-ratelimit-remaining: 54
-access-control-allow-origin: *
- </code></pre>
-        </details>         <pre>
-
-<code class="language-json">[
-    {
-        &quot;id&quot;: 1,
-        &quot;user_id&quot;: 10,
-        &quot;price&quot;: &quot;20.00&quot;,
-        &quot;type_of_delivery&quot;: &quot;delivery&quot;,
-        &quot;created_at&quot;: null,
-        &quot;updated_at&quot;: null,
-        &quot;rating&quot;: &quot;5.00&quot;,
-        &quot;Feedback&quot;: &quot;good&quot;
-    },
-    {
-        &quot;id&quot;: 2,
-        &quot;user_id&quot;: 10,
-        &quot;price&quot;: &quot;20.00&quot;,
-        &quot;type_of_delivery&quot;: &quot;delivery&quot;,
-        &quot;created_at&quot;: null,
-        &quot;updated_at&quot;: null,
-        &quot;rating&quot;: &quot;5.00&quot;,
-        &quot;Feedback&quot;: &quot;good&quot;
-    },
-    {
-        &quot;id&quot;: 3,
-        &quot;user_id&quot;: 22,
-        &quot;price&quot;: &quot;20.00&quot;,
-        &quot;type_of_delivery&quot;: &quot;delivery&quot;,
-        &quot;created_at&quot;: null,
-        &quot;updated_at&quot;: null,
-        &quot;rating&quot;: &quot;5.00&quot;,
-        &quot;Feedback&quot;: &quot;good&quot;
-    },
-    {
-        &quot;id&quot;: 4,
-        &quot;user_id&quot;: 22,
-        &quot;price&quot;: &quot;20.00&quot;,
-        &quot;type_of_delivery&quot;: &quot;delivery&quot;,
-        &quot;created_at&quot;: null,
-        &quot;updated_at&quot;: null,
-        &quot;rating&quot;: &quot;5.00&quot;,
-        &quot;Feedback&quot;: &quot;good&quot;
-    }
-]</code>
- </pre>
-    </span>
-<span id="execution-results-GETapi-search" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-GETapi-search"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-search"></code></pre>
-</span>
-<span id="execution-error-GETapi-search" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-search"></code></pre>
-</span>
-<form id="form-GETapi-search" data-method="GET"
-      data-path="api/search"
-      data-authed="0"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-search', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-search"
-                    onclick="tryItOut('GETapi-search');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-search"
-                    onclick="cancelTryOut('GETapi-search');" hidden>Cancel
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-search" hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-green">GET</small>
-            <b><code>api/search</code></b>
-        </p>
-                    </form>
-
-            <h2 id="endpoints-GETapi-total">get the total number of orders</h2>
-
-<p>
-</p>
-
-
-
-<span id="example-requests-GETapi-total">
-<blockquote>Example request:</blockquote>
-
-
-<pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/total" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre>
-
-<pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/total"
-);
-
-const headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "GET",
-    headers,
-}).then(response =&gt; response.json());</code></pre>
-</span>
-
-<span id="example-responses-GETapi-total">
-            <blockquote>
-            <p>Example response (200):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary>
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">content-type: text/html; charset=UTF-8
-cache-control: no-cache, private
-x-ratelimit-limit: 60
-x-ratelimit-remaining: 53
-access-control-allow-origin: *
- </code></pre>
-        </details>         <pre>
-
-<code class="language-json">4</code>
- </pre>
-    </span>
-<span id="execution-results-GETapi-total" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-GETapi-total"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-total"></code></pre>
-</span>
-<span id="execution-error-GETapi-total" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-total"></code></pre>
-</span>
-<form id="form-GETapi-total" data-method="GET"
-      data-path="api/total"
-      data-authed="0"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-total', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-total"
-                    onclick="tryItOut('GETapi-total');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-total"
-                    onclick="cancelTryOut('GETapi-total');" hidden>Cancel
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-total" hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-green">GET</small>
-            <b><code>api/total</code></b>
-        </p>
-                    </form>
-
-            <h2 id="endpoints-GETapi-piechart">GET api/piechart</h2>
-
-<p>
-</p>
-
-
-
-<span id="example-requests-GETapi-piechart">
-<blockquote>Example request:</blockquote>
-
-
-<pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/piechart" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre>
-
-<pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/piechart"
-);
-
-const headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "GET",
-    headers,
-}).then(response =&gt; response.json());</code></pre>
-</span>
-
-<span id="example-responses-GETapi-piechart">
-            <blockquote>
-            <p>Example response (500):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary>
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-x-ratelimit-limit: 60
-x-ratelimit-remaining: 52
 access-control-allow-origin: *
  </code></pre>
         </details>         <pre>
 
 <code class="language-json">{
-    &quot;message&quot;: &quot;SQLSTATE[42S02]: Base table or view not found: 1146 Table 'laravel.item' doesn't exist (SQL: SELECT count(item_id)as item_id,item.item_name FROM orderitem join item on orderitem.item_id=item.id group by item.item_name)&quot;,
-    &quot;exception&quot;: &quot;Illuminate\\Database\\QueryException&quot;,
-    &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php&quot;,
-    &quot;line&quot;: 692,
-    &quot;trace&quot;: [
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php&quot;,
-            &quot;line&quot;: 652,
-            &quot;function&quot;: &quot;runQueryCallback&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Database\\Connection&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php&quot;,
-            &quot;line&quot;: 360,
-            &quot;function&quot;: &quot;run&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Database\\Connection&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\DatabaseManager.php&quot;,
-            &quot;line&quot;: 388,
-            &quot;function&quot;: &quot;select&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Database\\Connection&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Facades\\Facade.php&quot;,
-            &quot;line&quot;: 261,
-            &quot;function&quot;: &quot;__call&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Database\\DatabaseManager&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\app\\Http\\Controllers\\showcontroller.php&quot;,
-            &quot;line&quot;: 76,
-            &quot;function&quot;: &quot;__callStatic&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Support\\Facades\\Facade&quot;,
-            &quot;type&quot;: &quot;::&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Controller.php&quot;,
-            &quot;line&quot;: 54,
-            &quot;function&quot;: &quot;piechart&quot;,
-            &quot;class&quot;: &quot;App\\Http\\Controllers\\showcontroller&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ControllerDispatcher.php&quot;,
-            &quot;line&quot;: 45,
-            &quot;function&quot;: &quot;callAction&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Controller&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php&quot;,
-            &quot;line&quot;: 261,
-            &quot;function&quot;: &quot;dispatch&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\ControllerDispatcher&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php&quot;,
-            &quot;line&quot;: 204,
-            &quot;function&quot;: &quot;runController&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Route&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php&quot;,
-            &quot;line&quot;: 695,
-            &quot;function&quot;: &quot;run&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Route&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php&quot;,
-            &quot;line&quot;: 128,
-            &quot;function&quot;: &quot;Illuminate\\Routing\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Router&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\SubstituteBindings.php&quot;,
-            &quot;line&quot;: 50,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php&quot;,
-            &quot;line&quot;: 167,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Middleware\\SubstituteBindings&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\ThrottleRequests.php&quot;,
-            &quot;line&quot;: 127,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\ThrottleRequests.php&quot;,
-            &quot;line&quot;: 103,
-            &quot;function&quot;: &quot;handleRequest&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Middleware\\ThrottleRequests&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\ThrottleRequests.php&quot;,
-            &quot;line&quot;: 55,
-            &quot;function&quot;: &quot;handleRequestUsingNamedLimiter&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Middleware\\ThrottleRequests&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php&quot;,
-            &quot;line&quot;: 167,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Middleware\\ThrottleRequests&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php&quot;,
-            &quot;line&quot;: 103,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php&quot;,
-            &quot;line&quot;: 697,
-            &quot;function&quot;: &quot;then&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php&quot;,
-            &quot;line&quot;: 672,
-            &quot;function&quot;: &quot;runRouteWithinStack&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Router&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php&quot;,
-            &quot;line&quot;: 636,
-            &quot;function&quot;: &quot;runRoute&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Router&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php&quot;,
-            &quot;line&quot;: 625,
-            &quot;function&quot;: &quot;dispatchToRoute&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Router&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php&quot;,
-            &quot;line&quot;: 166,
-            &quot;function&quot;: &quot;dispatch&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Router&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php&quot;,
-            &quot;line&quot;: 128,
-            &quot;function&quot;: &quot;Illuminate\\Foundation\\Http\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Kernel&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php&quot;,
-            &quot;line&quot;: 21,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull.php&quot;,
-            &quot;line&quot;: 31,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php&quot;,
-            &quot;line&quot;: 167,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php&quot;,
-            &quot;line&quot;: 21,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TrimStrings.php&quot;,
-            &quot;line&quot;: 40,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php&quot;,
-            &quot;line&quot;: 167,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\TrimStrings&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php&quot;,
-            &quot;line&quot;: 27,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php&quot;,
-            &quot;line&quot;: 167,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php&quot;,
-            &quot;line&quot;: 86,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php&quot;,
-            &quot;line&quot;: 167,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\fruitcake\\laravel-cors\\src\\HandleCors.php&quot;,
-            &quot;line&quot;: 52,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php&quot;,
-            &quot;line&quot;: 167,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Fruitcake\\Cors\\HandleCors&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\fideloper\\proxy\\src\\TrustProxies.php&quot;,
-            &quot;line&quot;: 57,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php&quot;,
-            &quot;line&quot;: 167,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Fideloper\\Proxy\\TrustProxies&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php&quot;,
-            &quot;line&quot;: 103,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php&quot;,
-            &quot;line&quot;: 141,
-            &quot;function&quot;: &quot;then&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php&quot;,
-            &quot;line&quot;: 110,
-            &quot;function&quot;: &quot;sendRequestThroughRouter&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Kernel&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php&quot;,
-            &quot;line&quot;: 287,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Kernel&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php&quot;,
-            &quot;line&quot;: 275,
-            &quot;function&quot;: &quot;callLaravelOrLumenRoute&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php&quot;,
-            &quot;line&quot;: 86,
-            &quot;function&quot;: &quot;makeApiCall&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php&quot;,
-            &quot;line&quot;: 44,
-            &quot;function&quot;: &quot;makeResponseCall&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php&quot;,
-            &quot;line&quot;: 34,
-            &quot;function&quot;: &quot;makeResponseCallIfConditionsPass&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Extractor.php&quot;,
-            &quot;line&quot;: 225,
-            &quot;function&quot;: &quot;__invoke&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Extractor.php&quot;,
-            &quot;line&quot;: 182,
-            &quot;function&quot;: &quot;iterateThroughStrategies&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Extractor&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Extractor.php&quot;,
-            &quot;line&quot;: 116,
-            &quot;function&quot;: &quot;fetchResponses&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Extractor&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\knuckleswtf\\scribe\\src\\GroupedEndpoints\\GroupedEndpointsFromApp.php&quot;,
-            &quot;line&quot;: 118,
-            &quot;function&quot;: &quot;processRoute&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Extractor&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\knuckleswtf\\scribe\\src\\GroupedEndpoints\\GroupedEndpointsFromApp.php&quot;,
-            &quot;line&quot;: 75,
-            &quot;function&quot;: &quot;extractEndpointsInfoFromLaravelApp&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\knuckleswtf\\scribe\\src\\GroupedEndpoints\\GroupedEndpointsFromApp.php&quot;,
-            &quot;line&quot;: 51,
-            &quot;function&quot;: &quot;extractEndpointsInfoAndWriteToDisk&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\knuckleswtf\\scribe\\src\\Commands\\GenerateDocumentation.php&quot;,
-            &quot;line&quot;: 39,
-            &quot;function&quot;: &quot;get&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php&quot;,
-            &quot;line&quot;: 36,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\Commands\\GenerateDocumentation&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php&quot;,
-            &quot;line&quot;: 40,
-            &quot;function&quot;: &quot;Illuminate\\Container\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Container\\BoundMethod&quot;,
-            &quot;type&quot;: &quot;::&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php&quot;,
-            &quot;line&quot;: 93,
-            &quot;function&quot;: &quot;unwrapIfClosure&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Container\\Util&quot;,
-            &quot;type&quot;: &quot;::&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php&quot;,
-            &quot;line&quot;: 37,
-            &quot;function&quot;: &quot;callBoundMethod&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Container\\BoundMethod&quot;,
-            &quot;type&quot;: &quot;::&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php&quot;,
-            &quot;line&quot;: 651,
-            &quot;function&quot;: &quot;call&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Container\\BoundMethod&quot;,
-            &quot;type&quot;: &quot;::&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php&quot;,
-            &quot;line&quot;: 136,
-            &quot;function&quot;: &quot;call&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Container\\Container&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\symfony\\console\\Command\\Command.php&quot;,
-            &quot;line&quot;: 299,
-            &quot;function&quot;: &quot;execute&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Console\\Command&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php&quot;,
-            &quot;line&quot;: 121,
-            &quot;function&quot;: &quot;run&quot;,
-            &quot;class&quot;: &quot;Symfony\\Component\\Console\\Command\\Command&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\symfony\\console\\Application.php&quot;,
-            &quot;line&quot;: 978,
-            &quot;function&quot;: &quot;run&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Console\\Command&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\symfony\\console\\Application.php&quot;,
-            &quot;line&quot;: 295,
-            &quot;function&quot;: &quot;doRunCommand&quot;,
-            &quot;class&quot;: &quot;Symfony\\Component\\Console\\Application&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\symfony\\console\\Application.php&quot;,
-            &quot;line&quot;: 167,
-            &quot;function&quot;: &quot;doRun&quot;,
-            &quot;class&quot;: &quot;Symfony\\Component\\Console\\Application&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Application.php&quot;,
-            &quot;line&quot;: 92,
-            &quot;function&quot;: &quot;run&quot;,
-            &quot;class&quot;: &quot;Symfony\\Component\\Console\\Application&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php&quot;,
-            &quot;line&quot;: 129,
-            &quot;function&quot;: &quot;run&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Console\\Application&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\artisan&quot;,
-            &quot;line&quot;: 37,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Console\\Kernel&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        }
-    ]
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
 }</code>
  </pre>
     </span>
-<span id="execution-results-GETapi-piechart" hidden>
+<span id="execution-results-GETapi-admin-search" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-GETapi-piechart"></span>:
+                id="execution-response-status-GETapi-admin-search"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-piechart"></code></pre>
+    <pre class="json"><code id="execution-response-content-GETapi-admin-search"></code></pre>
 </span>
-<span id="execution-error-GETapi-piechart" hidden>
+<span id="execution-error-GETapi-admin-search" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-piechart"></code></pre>
+    <pre><code id="execution-error-message-GETapi-admin-search"></code></pre>
 </span>
-<form id="form-GETapi-piechart" data-method="GET"
-      data-path="api/piechart"
+<form id="form-GETapi-admin-search" data-method="GET"
+      data-path="api/admin/search"
       data-authed="0"
       data-hasfiles="0"
       data-isarraybody="0"
       data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-piechart', this);">
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-admin-search', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-piechart"
-                    onclick="tryItOut('GETapi-piechart');">Try it out ⚡
+                    id="btn-tryout-GETapi-admin-search"
+                    onclick="tryItOut('GETapi-admin-search');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-piechart"
-                    onclick="cancelTryOut('GETapi-piechart');" hidden>Cancel
+                    id="btn-canceltryout-GETapi-admin-search"
+                    onclick="cancelTryOut('GETapi-admin-search');" hidden>Cancel
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-piechart" hidden>Send Request 💥
+                    id="btn-executetryout-GETapi-admin-search" hidden>Send Request 💥
             </button>
             </h3>
             <p>
             <small class="badge badge-green">GET</small>
-            <b><code>api/piechart</code></b>
+            <b><code>api/admin/search</code></b>
         </p>
                     </form>
 
-            <h2 id="endpoints-GETapi-sort">get the 4 most selling item</h2>
+            <h2 id="endpoints-GETapi-admin-total">get the total number of orders</h2>
 
 <p>
 </p>
 
 
 
-<span id="example-requests-GETapi-sort">
+<span id="example-requests-GETapi-admin-total">
 <blockquote>Example request:</blockquote>
 
 
 <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/sort" \
+    --get "http://127.0.0.1:8000/api/admin/total" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/sort"
+    "http://127.0.0.1:8000/api/admin/total"
 );
 
 const headers = {
@@ -4644,9 +4445,9 @@ fetch(url, {
 }).then(response =&gt; response.json());</code></pre>
 </span>
 
-<span id="example-responses-GETapi-sort">
+<span id="example-responses-GETapi-admin-total">
             <blockquote>
-            <p>Example response (200):</p>
+            <p>Example response (401):</p>
         </blockquote>
                 <details class="annotation">
             <summary>
@@ -4654,648 +4455,351 @@ fetch(url, {
             </summary>
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
-x-ratelimit-limit: 60
-x-ratelimit-remaining: 51
-access-control-allow-origin: *
- </code></pre>
-        </details>         <pre>
-
-<code class="language-json">[
-    {
-        &quot;item_name&quot;: &quot;Little Bacon Cheeseburger&quot;
-    },
-    {
-        &quot;item_name&quot;: &quot;Veggie Sandwich&quot;
-    },
-    {
-        &quot;item_name&quot;: &quot;Cheese Veggie Sandwich&quot;
-    }
-]</code>
- </pre>
-    </span>
-<span id="execution-results-GETapi-sort" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-GETapi-sort"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-sort"></code></pre>
-</span>
-<span id="execution-error-GETapi-sort" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-sort"></code></pre>
-</span>
-<form id="form-GETapi-sort" data-method="GET"
-      data-path="api/sort"
-      data-authed="0"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-sort', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-sort"
-                    onclick="tryItOut('GETapi-sort');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-sort"
-                    onclick="cancelTryOut('GETapi-sort');" hidden>Cancel
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-sort" hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-green">GET</small>
-            <b><code>api/sort</code></b>
-        </p>
-                    </form>
-
-            <h2 id="endpoints-GETapi-add">Invoke the controller method.</h2>
-
-<p>
-</p>
-
-
-
-<span id="example-requests-GETapi-add">
-<blockquote>Example request:</blockquote>
-
-
-<pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/add" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre>
-
-<pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/add"
-);
-
-const headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "GET",
-    headers,
-}).then(response =&gt; response.json());</code></pre>
-</span>
-
-<span id="example-responses-GETapi-add">
-            <blockquote>
-            <p>Example response (500):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary>
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-x-ratelimit-limit: 60
-x-ratelimit-remaining: 50
 access-control-allow-origin: *
  </code></pre>
         </details>         <pre>
 
 <code class="language-json">{
-    &quot;message&quot;: &quot;View [table] not found.&quot;,
-    &quot;exception&quot;: &quot;InvalidArgumentException&quot;,
-    &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\View\\FileViewFinder.php&quot;,
-    &quot;line&quot;: 137,
-    &quot;trace&quot;: [
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\View\\FileViewFinder.php&quot;,
-            &quot;line&quot;: 79,
-            &quot;function&quot;: &quot;findInPaths&quot;,
-            &quot;class&quot;: &quot;Illuminate\\View\\FileViewFinder&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Factory.php&quot;,
-            &quot;line&quot;: 138,
-            &quot;function&quot;: &quot;find&quot;,
-            &quot;class&quot;: &quot;Illuminate\\View\\FileViewFinder&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ResponseFactory.php&quot;,
-            &quot;line&quot;: 85,
-            &quot;function&quot;: &quot;make&quot;,
-            &quot;class&quot;: &quot;Illuminate\\View\\Factory&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ViewController.php&quot;,
-            &quot;line&quot;: 37,
-            &quot;function&quot;: &quot;view&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\ResponseFactory&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Controller.php&quot;,
-            &quot;line&quot;: 54,
-            &quot;function&quot;: &quot;__invoke&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\ViewController&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ControllerDispatcher.php&quot;,
-            &quot;line&quot;: 45,
-            &quot;function&quot;: &quot;callAction&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Controller&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php&quot;,
-            &quot;line&quot;: 261,
-            &quot;function&quot;: &quot;dispatch&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\ControllerDispatcher&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php&quot;,
-            &quot;line&quot;: 204,
-            &quot;function&quot;: &quot;runController&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Route&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php&quot;,
-            &quot;line&quot;: 695,
-            &quot;function&quot;: &quot;run&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Route&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php&quot;,
-            &quot;line&quot;: 128,
-            &quot;function&quot;: &quot;Illuminate\\Routing\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Router&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\SubstituteBindings.php&quot;,
-            &quot;line&quot;: 50,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php&quot;,
-            &quot;line&quot;: 167,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Middleware\\SubstituteBindings&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\ThrottleRequests.php&quot;,
-            &quot;line&quot;: 127,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\ThrottleRequests.php&quot;,
-            &quot;line&quot;: 103,
-            &quot;function&quot;: &quot;handleRequest&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Middleware\\ThrottleRequests&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\ThrottleRequests.php&quot;,
-            &quot;line&quot;: 55,
-            &quot;function&quot;: &quot;handleRequestUsingNamedLimiter&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Middleware\\ThrottleRequests&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php&quot;,
-            &quot;line&quot;: 167,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Middleware\\ThrottleRequests&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php&quot;,
-            &quot;line&quot;: 103,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php&quot;,
-            &quot;line&quot;: 697,
-            &quot;function&quot;: &quot;then&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php&quot;,
-            &quot;line&quot;: 672,
-            &quot;function&quot;: &quot;runRouteWithinStack&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Router&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php&quot;,
-            &quot;line&quot;: 636,
-            &quot;function&quot;: &quot;runRoute&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Router&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php&quot;,
-            &quot;line&quot;: 625,
-            &quot;function&quot;: &quot;dispatchToRoute&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Router&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php&quot;,
-            &quot;line&quot;: 166,
-            &quot;function&quot;: &quot;dispatch&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Router&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php&quot;,
-            &quot;line&quot;: 128,
-            &quot;function&quot;: &quot;Illuminate\\Foundation\\Http\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Kernel&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php&quot;,
-            &quot;line&quot;: 21,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull.php&quot;,
-            &quot;line&quot;: 31,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php&quot;,
-            &quot;line&quot;: 167,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php&quot;,
-            &quot;line&quot;: 21,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TrimStrings.php&quot;,
-            &quot;line&quot;: 40,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php&quot;,
-            &quot;line&quot;: 167,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\TrimStrings&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php&quot;,
-            &quot;line&quot;: 27,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php&quot;,
-            &quot;line&quot;: 167,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php&quot;,
-            &quot;line&quot;: 86,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php&quot;,
-            &quot;line&quot;: 167,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\fruitcake\\laravel-cors\\src\\HandleCors.php&quot;,
-            &quot;line&quot;: 52,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php&quot;,
-            &quot;line&quot;: 167,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Fruitcake\\Cors\\HandleCors&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\fideloper\\proxy\\src\\TrustProxies.php&quot;,
-            &quot;line&quot;: 57,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php&quot;,
-            &quot;line&quot;: 167,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Fideloper\\Proxy\\TrustProxies&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php&quot;,
-            &quot;line&quot;: 103,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php&quot;,
-            &quot;line&quot;: 141,
-            &quot;function&quot;: &quot;then&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php&quot;,
-            &quot;line&quot;: 110,
-            &quot;function&quot;: &quot;sendRequestThroughRouter&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Kernel&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php&quot;,
-            &quot;line&quot;: 287,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Kernel&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php&quot;,
-            &quot;line&quot;: 275,
-            &quot;function&quot;: &quot;callLaravelOrLumenRoute&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php&quot;,
-            &quot;line&quot;: 86,
-            &quot;function&quot;: &quot;makeApiCall&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php&quot;,
-            &quot;line&quot;: 44,
-            &quot;function&quot;: &quot;makeResponseCall&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php&quot;,
-            &quot;line&quot;: 34,
-            &quot;function&quot;: &quot;makeResponseCallIfConditionsPass&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Extractor.php&quot;,
-            &quot;line&quot;: 225,
-            &quot;function&quot;: &quot;__invoke&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Extractor.php&quot;,
-            &quot;line&quot;: 182,
-            &quot;function&quot;: &quot;iterateThroughStrategies&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Extractor&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Extractor.php&quot;,
-            &quot;line&quot;: 116,
-            &quot;function&quot;: &quot;fetchResponses&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Extractor&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\knuckleswtf\\scribe\\src\\GroupedEndpoints\\GroupedEndpointsFromApp.php&quot;,
-            &quot;line&quot;: 118,
-            &quot;function&quot;: &quot;processRoute&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Extractor&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\knuckleswtf\\scribe\\src\\GroupedEndpoints\\GroupedEndpointsFromApp.php&quot;,
-            &quot;line&quot;: 75,
-            &quot;function&quot;: &quot;extractEndpointsInfoFromLaravelApp&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\knuckleswtf\\scribe\\src\\GroupedEndpoints\\GroupedEndpointsFromApp.php&quot;,
-            &quot;line&quot;: 51,
-            &quot;function&quot;: &quot;extractEndpointsInfoAndWriteToDisk&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\knuckleswtf\\scribe\\src\\Commands\\GenerateDocumentation.php&quot;,
-            &quot;line&quot;: 39,
-            &quot;function&quot;: &quot;get&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php&quot;,
-            &quot;line&quot;: 36,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\Commands\\GenerateDocumentation&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php&quot;,
-            &quot;line&quot;: 40,
-            &quot;function&quot;: &quot;Illuminate\\Container\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Container\\BoundMethod&quot;,
-            &quot;type&quot;: &quot;::&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php&quot;,
-            &quot;line&quot;: 93,
-            &quot;function&quot;: &quot;unwrapIfClosure&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Container\\Util&quot;,
-            &quot;type&quot;: &quot;::&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php&quot;,
-            &quot;line&quot;: 37,
-            &quot;function&quot;: &quot;callBoundMethod&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Container\\BoundMethod&quot;,
-            &quot;type&quot;: &quot;::&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php&quot;,
-            &quot;line&quot;: 651,
-            &quot;function&quot;: &quot;call&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Container\\BoundMethod&quot;,
-            &quot;type&quot;: &quot;::&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php&quot;,
-            &quot;line&quot;: 136,
-            &quot;function&quot;: &quot;call&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Container\\Container&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\symfony\\console\\Command\\Command.php&quot;,
-            &quot;line&quot;: 299,
-            &quot;function&quot;: &quot;execute&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Console\\Command&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php&quot;,
-            &quot;line&quot;: 121,
-            &quot;function&quot;: &quot;run&quot;,
-            &quot;class&quot;: &quot;Symfony\\Component\\Console\\Command\\Command&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\symfony\\console\\Application.php&quot;,
-            &quot;line&quot;: 978,
-            &quot;function&quot;: &quot;run&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Console\\Command&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\symfony\\console\\Application.php&quot;,
-            &quot;line&quot;: 295,
-            &quot;function&quot;: &quot;doRunCommand&quot;,
-            &quot;class&quot;: &quot;Symfony\\Component\\Console\\Application&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\symfony\\console\\Application.php&quot;,
-            &quot;line&quot;: 167,
-            &quot;function&quot;: &quot;doRun&quot;,
-            &quot;class&quot;: &quot;Symfony\\Component\\Console\\Application&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Application.php&quot;,
-            &quot;line&quot;: 92,
-            &quot;function&quot;: &quot;run&quot;,
-            &quot;class&quot;: &quot;Symfony\\Component\\Console\\Application&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php&quot;,
-            &quot;line&quot;: 129,
-            &quot;function&quot;: &quot;run&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Console\\Application&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;C:\\Users\\zeyad\\Desktop\\newwwwwwwwwwwwwwwww\\restaurant-development\\artisan&quot;,
-            &quot;line&quot;: 37,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Console\\Kernel&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        }
-    ]
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
 }</code>
  </pre>
     </span>
-<span id="execution-results-GETapi-add" hidden>
+<span id="execution-results-GETapi-admin-total" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-GETapi-add"></span>:
+                id="execution-response-status-GETapi-admin-total"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-add"></code></pre>
+    <pre class="json"><code id="execution-response-content-GETapi-admin-total"></code></pre>
 </span>
-<span id="execution-error-GETapi-add" hidden>
+<span id="execution-error-GETapi-admin-total" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-add"></code></pre>
+    <pre><code id="execution-error-message-GETapi-admin-total"></code></pre>
 </span>
-<form id="form-GETapi-add" data-method="GET"
-      data-path="api/add"
+<form id="form-GETapi-admin-total" data-method="GET"
+      data-path="api/admin/total"
       data-authed="0"
       data-hasfiles="0"
       data-isarraybody="0"
       data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-add', this);">
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-admin-total', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-add"
-                    onclick="tryItOut('GETapi-add');">Try it out ⚡
+                    id="btn-tryout-GETapi-admin-total"
+                    onclick="tryItOut('GETapi-admin-total');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-add"
-                    onclick="cancelTryOut('GETapi-add');" hidden>Cancel
+                    id="btn-canceltryout-GETapi-admin-total"
+                    onclick="cancelTryOut('GETapi-admin-total');" hidden>Cancel
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-add" hidden>Send Request 💥
+                    id="btn-executetryout-GETapi-admin-total" hidden>Send Request 💥
             </button>
             </h3>
             <p>
             <small class="badge badge-green">GET</small>
-            <b><code>api/add</code></b>
+            <b><code>api/admin/total</code></b>
         </p>
                     </form>
 
-            <h2 id="endpoints-POSTapi-add">create a new table with the state</h2>
+            <h2 id="endpoints-GETapi-admin-piechart">GET api/admin/piechart</h2>
 
 <p>
 </p>
 
 
 
-<span id="example-requests-POSTapi-add">
+<span id="example-requests-GETapi-admin-piechart">
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request GET \
+    --get "http://127.0.0.1:8000/api/admin/piechart" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/admin/piechart"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+</span>
+
+<span id="example-responses-GETapi-admin-piechart">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-admin-piechart" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-admin-piechart"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-admin-piechart"></code></pre>
+</span>
+<span id="execution-error-GETapi-admin-piechart" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-admin-piechart"></code></pre>
+</span>
+<form id="form-GETapi-admin-piechart" data-method="GET"
+      data-path="api/admin/piechart"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-admin-piechart', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-admin-piechart"
+                    onclick="tryItOut('GETapi-admin-piechart');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-admin-piechart"
+                    onclick="cancelTryOut('GETapi-admin-piechart');" hidden>Cancel
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-admin-piechart" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/admin/piechart</code></b>
+        </p>
+                    </form>
+
+            <h2 id="endpoints-GETapi-admin-sort">get the 4 most selling item</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-admin-sort">
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request GET \
+    --get "http://127.0.0.1:8000/api/admin/sort" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/admin/sort"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+</span>
+
+<span id="example-responses-GETapi-admin-sort">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-admin-sort" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-admin-sort"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-admin-sort"></code></pre>
+</span>
+<span id="execution-error-GETapi-admin-sort" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-admin-sort"></code></pre>
+</span>
+<form id="form-GETapi-admin-sort" data-method="GET"
+      data-path="api/admin/sort"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-admin-sort', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-admin-sort"
+                    onclick="tryItOut('GETapi-admin-sort');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-admin-sort"
+                    onclick="cancelTryOut('GETapi-admin-sort');" hidden>Cancel
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-admin-sort" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/admin/sort</code></b>
+        </p>
+                    </form>
+
+            <h2 id="endpoints-GETapi-admin-add">Invoke the controller method.</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-admin-add">
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request GET \
+    --get "http://127.0.0.1:8000/api/admin/add" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/admin/add"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+</span>
+
+<span id="example-responses-GETapi-admin-add">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-admin-add" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-admin-add"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-admin-add"></code></pre>
+</span>
+<span id="execution-error-GETapi-admin-add" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-admin-add"></code></pre>
+</span>
+<form id="form-GETapi-admin-add" data-method="GET"
+      data-path="api/admin/add"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-admin-add', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-admin-add"
+                    onclick="tryItOut('GETapi-admin-add');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-admin-add"
+                    onclick="cancelTryOut('GETapi-admin-add');" hidden>Cancel
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-admin-add" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/admin/add</code></b>
+        </p>
+                    </form>
+
+            <h2 id="endpoints-POSTapi-admin-add">create a new table with the state</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-POSTapi-admin-add">
 <blockquote>Example request:</blockquote>
 
 
 <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/add" \
+    "http://127.0.0.1:8000/api/admin/add" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"table\": \"voluptatem\"
+    \"table\": \"voluptatibus\"
 }"
 </code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/add"
+    "http://127.0.0.1:8000/api/admin/add"
 );
 
 const headers = {
@@ -5304,7 +4808,7 @@ const headers = {
 };
 
 let body = {
-    "table": "voluptatem"
+    "table": "voluptatibus"
 }
 
 fetch(url, {
@@ -5314,77 +4818,77 @@ fetch(url, {
 }).then(response =&gt; response.json());</code></pre>
 </span>
 
-<span id="example-responses-POSTapi-add">
+<span id="example-responses-POSTapi-admin-add">
 </span>
-<span id="execution-results-POSTapi-add" hidden>
+<span id="execution-results-POSTapi-admin-add" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-POSTapi-add"></span>:
+                id="execution-response-status-POSTapi-admin-add"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi-add"></code></pre>
+    <pre class="json"><code id="execution-response-content-POSTapi-admin-add"></code></pre>
 </span>
-<span id="execution-error-POSTapi-add" hidden>
+<span id="execution-error-POSTapi-admin-add" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi-add"></code></pre>
+    <pre><code id="execution-error-message-POSTapi-admin-add"></code></pre>
 </span>
-<form id="form-POSTapi-add" data-method="POST"
-      data-path="api/add"
+<form id="form-POSTapi-admin-add" data-method="POST"
+      data-path="api/admin/add"
       data-authed="0"
       data-hasfiles="0"
       data-isarraybody="0"
       data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('POSTapi-add', this);">
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-admin-add', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-add"
-                    onclick="tryItOut('POSTapi-add');">Try it out ⚡
+                    id="btn-tryout-POSTapi-admin-add"
+                    onclick="tryItOut('POSTapi-admin-add');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-add"
-                    onclick="cancelTryOut('POSTapi-add');" hidden>Cancel
+                    id="btn-canceltryout-POSTapi-admin-add"
+                    onclick="cancelTryOut('POSTapi-admin-add');" hidden>Cancel
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-add" hidden>Send Request 💥
+                    id="btn-executetryout-POSTapi-admin-add" hidden>Send Request 💥
             </button>
             </h3>
             <p>
             <small class="badge badge-black">POST</small>
-            <b><code>api/add</code></b>
+            <b><code>api/admin/add</code></b>
         </p>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <p>
             <b><code>table</code></b>&nbsp;&nbsp;<small>state</small>     <i>optional</i> &nbsp;
                 <input type="text"
                name="table"
-               data-endpoint="POSTapi-add"
+               data-endpoint="POSTapi-admin-add"
                data-component="body"  hidden>
     <br>
 <p>string required The state of the table to which the table will be added</p>        </p>
     
     </form>
 
-            <h2 id="endpoints-GETapi-list">shows all the tables with their state</h2>
+            <h2 id="endpoints-GETapi-admin-list">shows all the tables with their state</h2>
 
 <p>
 </p>
 
 
 
-<span id="example-requests-GETapi-list">
+<span id="example-requests-GETapi-admin-list">
 <blockquote>Example request:</blockquote>
 
 
 <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/list" \
+    --get "http://127.0.0.1:8000/api/admin/list" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/list"
+    "http://127.0.0.1:8000/api/admin/list"
 );
 
 const headers = {
@@ -5398,9 +4902,9 @@ fetch(url, {
 }).then(response =&gt; response.json());</code></pre>
 </span>
 
-<span id="example-responses-GETapi-list">
+<span id="example-responses-GETapi-admin-list">
             <blockquote>
-            <p>Example response (200):</p>
+            <p>Example response (401):</p>
         </blockquote>
                 <details class="annotation">
             <summary>
@@ -5408,81 +4912,74 @@ fetch(url, {
             </summary>
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
-x-ratelimit-limit: 60
-x-ratelimit-remaining: 49
 access-control-allow-origin: *
  </code></pre>
         </details>         <pre>
 
-<code class="language-json">[
-    {
-        &quot;id&quot;: 1,
-        &quot;state&quot;: &quot;avaliable&quot;,
-        &quot;created_at&quot;: &quot;2021-09-01T19:11:41.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2021-09-01T19:13:01.000000Z&quot;
-    }
-]</code>
+<code class="language-json">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
  </pre>
     </span>
-<span id="execution-results-GETapi-list" hidden>
+<span id="execution-results-GETapi-admin-list" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-GETapi-list"></span>:
+                id="execution-response-status-GETapi-admin-list"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-list"></code></pre>
+    <pre class="json"><code id="execution-response-content-GETapi-admin-list"></code></pre>
 </span>
-<span id="execution-error-GETapi-list" hidden>
+<span id="execution-error-GETapi-admin-list" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-list"></code></pre>
+    <pre><code id="execution-error-message-GETapi-admin-list"></code></pre>
 </span>
-<form id="form-GETapi-list" data-method="GET"
-      data-path="api/list"
+<form id="form-GETapi-admin-list" data-method="GET"
+      data-path="api/admin/list"
       data-authed="0"
       data-hasfiles="0"
       data-isarraybody="0"
       data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-list', this);">
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-admin-list', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-list"
-                    onclick="tryItOut('GETapi-list');">Try it out ⚡
+                    id="btn-tryout-GETapi-admin-list"
+                    onclick="tryItOut('GETapi-admin-list');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-list"
-                    onclick="cancelTryOut('GETapi-list');" hidden>Cancel
+                    id="btn-canceltryout-GETapi-admin-list"
+                    onclick="cancelTryOut('GETapi-admin-list');" hidden>Cancel
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-list" hidden>Send Request 💥
+                    id="btn-executetryout-GETapi-admin-list" hidden>Send Request 💥
             </button>
             </h3>
             <p>
             <small class="badge badge-green">GET</small>
-            <b><code>api/list</code></b>
+            <b><code>api/admin/list</code></b>
         </p>
                     </form>
 
-            <h2 id="endpoints-GETapi-update--id-">select the wanted table to change it&#039;s state</h2>
+            <h2 id="endpoints-GETapi-admin-update--id-">select the wanted table to change it&#039;s state</h2>
 
 <p>
 </p>
 
 
 
-<span id="example-requests-GETapi-update--id-">
+<span id="example-requests-GETapi-admin-update--id-">
 <blockquote>Example request:</blockquote>
 
 
 <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/update/12" \
+    --get "http://127.0.0.1:8000/api/admin/update/12" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/update/12"
+    "http://127.0.0.1:8000/api/admin/update/12"
 );
 
 const headers = {
@@ -5496,98 +4993,98 @@ fetch(url, {
 }).then(response =&gt; response.json());</code></pre>
 </span>
 
-<span id="example-responses-GETapi-update--id-">
+<span id="example-responses-GETapi-admin-update--id-">
             <blockquote>
-            <p>Example response (200):</p>
+            <p>Example response (401):</p>
         </blockquote>
                 <details class="annotation">
             <summary>
                 <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
             </summary>
-            <pre><code class="language-http">content-type: text/html; charset=UTF-8
-cache-control: no-cache, private
-x-ratelimit-limit: 60
-x-ratelimit-remaining: 48
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
 access-control-allow-origin: *
  </code></pre>
         </details>         <pre>
 
-<code class="language-json"></code>
+<code class="language-json">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
  </pre>
     </span>
-<span id="execution-results-GETapi-update--id-" hidden>
+<span id="execution-results-GETapi-admin-update--id-" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-GETapi-update--id-"></span>:
+                id="execution-response-status-GETapi-admin-update--id-"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-update--id-"></code></pre>
+    <pre class="json"><code id="execution-response-content-GETapi-admin-update--id-"></code></pre>
 </span>
-<span id="execution-error-GETapi-update--id-" hidden>
+<span id="execution-error-GETapi-admin-update--id-" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-update--id-"></code></pre>
+    <pre><code id="execution-error-message-GETapi-admin-update--id-"></code></pre>
 </span>
-<form id="form-GETapi-update--id-" data-method="GET"
-      data-path="api/update/{id}"
+<form id="form-GETapi-admin-update--id-" data-method="GET"
+      data-path="api/admin/update/{id}"
       data-authed="0"
       data-hasfiles="0"
       data-isarraybody="0"
       data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-update--id-', this);">
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-admin-update--id-', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-update--id-"
-                    onclick="tryItOut('GETapi-update--id-');">Try it out ⚡
+                    id="btn-tryout-GETapi-admin-update--id-"
+                    onclick="tryItOut('GETapi-admin-update--id-');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-update--id-"
-                    onclick="cancelTryOut('GETapi-update--id-');" hidden>Cancel
+                    id="btn-canceltryout-GETapi-admin-update--id-"
+                    onclick="cancelTryOut('GETapi-admin-update--id-');" hidden>Cancel
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-update--id-" hidden>Send Request 💥
+                    id="btn-executetryout-GETapi-admin-update--id-" hidden>Send Request 💥
             </button>
             </h3>
             <p>
             <small class="badge badge-green">GET</small>
-            <b><code>api/update/{id}</code></b>
+            <b><code>api/admin/update/{id}</code></b>
         </p>
                     <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
                     <p>
                 <b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
                 <input type="number"
                name="id"
-               data-endpoint="GETapi-update--id-"
+               data-endpoint="GETapi-admin-update--id-"
                data-component="url" required  hidden>
     <br>
 <p>The ID of the selected table</p>            </p>
                     </form>
 
-            <h2 id="endpoints-POSTapi-update">update the table state</h2>
+            <h2 id="endpoints-POSTapi-admin-update">update the table state</h2>
 
 <p>
 </p>
 
 
 
-<span id="example-requests-POSTapi-update">
+<span id="example-requests-POSTapi-admin-update">
 <blockquote>Example request:</blockquote>
 
 
 <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/update" \
+    "http://127.0.0.1:8000/api/admin/update" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"id\": \"minus\",
-    \"state\": \"et\"
+    \"id\": \"non\",
+    \"state\": \"debitis\"
 }"
 </code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/update"
+    "http://127.0.0.1:8000/api/admin/update"
 );
 
 const headers = {
@@ -5596,8 +5093,8 @@ const headers = {
 };
 
 let body = {
-    "id": "minus",
-    "state": "et"
+    "id": "non",
+    "state": "debitis"
 }
 
 fetch(url, {
@@ -5607,53 +5104,53 @@ fetch(url, {
 }).then(response =&gt; response.json());</code></pre>
 </span>
 
-<span id="example-responses-POSTapi-update">
+<span id="example-responses-POSTapi-admin-update">
 </span>
-<span id="execution-results-POSTapi-update" hidden>
+<span id="execution-results-POSTapi-admin-update" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-POSTapi-update"></span>:
+                id="execution-response-status-POSTapi-admin-update"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi-update"></code></pre>
+    <pre class="json"><code id="execution-response-content-POSTapi-admin-update"></code></pre>
 </span>
-<span id="execution-error-POSTapi-update" hidden>
+<span id="execution-error-POSTapi-admin-update" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi-update"></code></pre>
+    <pre><code id="execution-error-message-POSTapi-admin-update"></code></pre>
 </span>
-<form id="form-POSTapi-update" data-method="POST"
-      data-path="api/update"
+<form id="form-POSTapi-admin-update" data-method="POST"
+      data-path="api/admin/update"
       data-authed="0"
       data-hasfiles="0"
       data-isarraybody="0"
       data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('POSTapi-update', this);">
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-admin-update', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-update"
-                    onclick="tryItOut('POSTapi-update');">Try it out ⚡
+                    id="btn-tryout-POSTapi-admin-update"
+                    onclick="tryItOut('POSTapi-admin-update');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-update"
-                    onclick="cancelTryOut('POSTapi-update');" hidden>Cancel
+                    id="btn-canceltryout-POSTapi-admin-update"
+                    onclick="cancelTryOut('POSTapi-admin-update');" hidden>Cancel
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-update" hidden>Send Request 💥
+                    id="btn-executetryout-POSTapi-admin-update" hidden>Send Request 💥
             </button>
             </h3>
             <p>
             <small class="badge badge-black">POST</small>
-            <b><code>api/update</code></b>
+            <b><code>api/admin/update</code></b>
         </p>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <p>
             <b><code>id</code></b>&nbsp;&nbsp;<small>of</small>     <i>optional</i> &nbsp;
                 <input type="text"
                name="id"
-               data-endpoint="POSTapi-update"
+               data-endpoint="POSTapi-admin-update"
                data-component="body"  hidden>
     <br>
 <p>the table</p>        </p>
@@ -5661,10 +5158,298 @@ fetch(url, {
             <b><code>state</code></b>&nbsp;&nbsp;<small>the</small>     <i>optional</i> &nbsp;
                 <input type="text"
                name="state"
-               data-endpoint="POSTapi-update"
+               data-endpoint="POSTapi-admin-update"
                data-component="body"  hidden>
     <br>
 <p>new wanted state to update</p>        </p>
+    
+    </form>
+
+            <h2 id="endpoints-POSTapi-store">Store a newly created resource in storage.</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-POSTapi-store">
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request POST \
+    "http://127.0.0.1:8000/api/store" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/store"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+</span>
+
+<span id="example-responses-POSTapi-store">
+</span>
+<span id="execution-results-POSTapi-store" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-store"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-store"></code></pre>
+</span>
+<span id="execution-error-POSTapi-store" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-store"></code></pre>
+</span>
+<form id="form-POSTapi-store" data-method="POST"
+      data-path="api/store"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-store', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-store"
+                    onclick="tryItOut('POSTapi-store');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-store"
+                    onclick="cancelTryOut('POSTapi-store');" hidden>Cancel
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-store" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/store</code></b>
+        </p>
+                    </form>
+
+            <h2 id="endpoints-DELETEapi-destroy">Remove the specified resource from storage.</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-DELETEapi-destroy">
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request DELETE \
+    "http://127.0.0.1:8000/api/destroy" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/destroy"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+</span>
+
+<span id="example-responses-DELETEapi-destroy">
+</span>
+<span id="execution-results-DELETEapi-destroy" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-DELETEapi-destroy"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-DELETEapi-destroy"></code></pre>
+</span>
+<span id="execution-error-DELETEapi-destroy" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-DELETEapi-destroy"></code></pre>
+</span>
+<form id="form-DELETEapi-destroy" data-method="DELETE"
+      data-path="api/destroy"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('DELETEapi-destroy', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-DELETEapi-destroy"
+                    onclick="tryItOut('DELETEapi-destroy');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-DELETEapi-destroy"
+                    onclick="cancelTryOut('DELETEapi-destroy');" hidden>Cancel
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-DELETEapi-destroy" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-red">DELETE</small>
+            <b><code>api/destroy</code></b>
+        </p>
+                    </form>
+
+        <h1 id="item-management">Item Management</h1>
+
+    <p>APIs for placing item feedback and rating</p>
+
+            <h2 id="item-management-POSTapi-review-iteam">Add item Feedback Rating to the order.</h2>
+
+<p>
+</p>
+
+<p>This endpoint allows user to add feedback and rating to a special item.</p>
+<p>The user can add feedback and rating to any item he want.
+The user can add more than feedback and rating to different item</p>
+<aside class="notice">the user add feedback and rating to many different item</aside>
+
+<span id="example-requests-POSTapi-review-iteam">
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request POST \
+    "http://127.0.0.1:8000/api/review-iteam" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"U_id\": 16,
+    \"feedback\": \"sed\",
+    \"rating\": 266.05,
+    \"It_id\": 9
+}"
+</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/review-iteam"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "U_id": 16,
+    "feedback": "sed",
+    "rating": 266.05,
+    "It_id": 9
+}
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre>
+</span>
+
+<span id="example-responses-POSTapi-review-iteam">
+            <blockquote>
+            <p>Example response (200, success):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: true,
+    &quot;response&quot;: 200
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-review-iteam" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-review-iteam"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-review-iteam"></code></pre>
+</span>
+<span id="execution-error-POSTapi-review-iteam" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-review-iteam"></code></pre>
+</span>
+<form id="form-POSTapi-review-iteam" data-method="POST"
+      data-path="api/review-iteam"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-review-iteam', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-review-iteam"
+                    onclick="tryItOut('POSTapi-review-iteam');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-review-iteam"
+                    onclick="cancelTryOut('POSTapi-review-iteam');" hidden>Cancel
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-review-iteam" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/review-iteam</code></b>
+        </p>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>U_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="U_id"
+               data-endpoint="POSTapi-review-iteam"
+               data-component="body" required  hidden>
+    <br>
+<p>use to know the user</p>        </p>
+                <p>
+            <b><code>feedback</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="feedback"
+               data-endpoint="POSTapi-review-iteam"
+               data-component="body" required  hidden>
+    <br>
+<p>that is the feedback that the user want to get to the item</p>        </p>
+                <p>
+            <b><code>rating</code></b>&nbsp;&nbsp;<small>number</small>  &nbsp;
+                <input type="number"
+               name="rating"
+               data-endpoint="POSTapi-review-iteam"
+               data-component="body" required  hidden>
+    <br>
+<p>that is the rate that the user want to get to the item</p>        </p>
+                <p>
+            <b><code>It_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="It_id"
+               data-endpoint="POSTapi-review-iteam"
+               data-component="body" required  hidden>
+    <br>
+<p>use to know the item</p>        </p>
     
     </form>
 
@@ -5684,17 +5469,17 @@ fetch(url, {
 
 
 <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/place-order" \
+    "http://127.0.0.1:8000/api/place-order" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"cartID\": 1,
+    \"cartID\": 4,
     \"deliveryType\": 2
 }"
 </code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/place-order"
+    "http://127.0.0.1:8000/api/place-order"
 );
 
 const headers = {
@@ -5703,7 +5488,7 @@ const headers = {
 };
 
 let body = {
-    "cartID": 1,
+    "cartID": 4,
     "deliveryType": 2
 }
 
@@ -5715,7 +5500,26 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-place-order">
-</span>
+            <blockquote>
+            <p>Example response (200, success):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: true,
+    &quot;errNum&quot;: 200,
+    &quot;msg&quot;: &quot;Order placed&quot;,
+    &quot;order details&quot;: {
+        &quot;user_id&quot;: 3,
+        &quot;price&quot;: 0,
+        &quot;type_of_delivery&quot;: &quot;In Restaurant&quot;,
+        &quot;updated_at&quot;: &quot;2021-09-02T13:05:53.000000Z&quot;,
+        &quot;created_at&quot;: &quot;2021-09-02T13:05:53.000000Z&quot;,
+        &quot;id&quot;: 11
+    }
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-POSTapi-place-order" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-place-order"></span>:
@@ -5772,6 +5576,836 @@ fetch(url, {
                data-component="body" required  hidden>
     <br>
 <p>A number between 0-3 to specify the type of delivery from the list ['To Home', 'To Car', 'In Restaurant', 'Take Away'].</p>        </p>
+    
+    </form>
+
+            <h2 id="order-management-POSTapi-order-history">History of the order.</h2>
+
+<p>
+</p>
+
+<p>This endpoint allows user to see all his order history.</p>
+<p>Enable user to see all his old orders as if his want to take the same order again</p>
+<aside class="notice">when the user want to see his histroy he can see it</aside>
+
+<span id="example-requests-POSTapi-order-history">
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request POST \
+    "http://127.0.0.1:8000/api/order-history" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"user_id\": 17
+}"
+</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/order-history"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "user_id": 17
+}
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre>
+</span>
+
+<span id="example-responses-POSTapi-order-history">
+            <blockquote>
+            <p>Example response (200, success):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">[
+    {
+        &quot;price&quot;: &quot;54.00&quot;,
+        &quot;type_of_delivery&quot;: &quot;To Home&quot;,
+        &quot;rating&quot;: null,
+        &quot;Feedback&quot;: null
+    },
+    {
+        &quot;price&quot;: &quot;15.00&quot;,
+        &quot;type_of_delivery&quot;: &quot;To Home&quot;,
+        &quot;rating&quot;: null,
+        &quot;Feedback&quot;: null
+    },
+    {
+        &quot;price&quot;: &quot;23.00&quot;,
+        &quot;type_of_delivery&quot;: &quot;In Restaurant&quot;,
+        &quot;rating&quot;: null,
+        &quot;Feedback&quot;: null
+    }
+]</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-order-history" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-order-history"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-order-history"></code></pre>
+</span>
+<span id="execution-error-POSTapi-order-history" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-order-history"></code></pre>
+</span>
+<form id="form-POSTapi-order-history" data-method="POST"
+      data-path="api/order-history"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-order-history', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-order-history"
+                    onclick="tryItOut('POSTapi-order-history');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-order-history"
+                    onclick="cancelTryOut('POSTapi-order-history');" hidden>Cancel
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-order-history" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/order-history</code></b>
+        </p>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>user_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="user_id"
+               data-endpoint="POSTapi-order-history"
+               data-component="body" required  hidden>
+    <br>
+<p>to know the user that we will get his data</p>        </p>
+    
+    </form>
+
+            <h2 id="order-management-POSTapi-feedback">Add Feedback to the order.</h2>
+
+<p>
+</p>
+
+<p>This endpoint allows user to add feedback to his order.</p>
+<p>the user can put a feedback about the order that he paid</p>
+<aside class="notice">The user add a feedback to an order </aside>
+
+<span id="example-requests-POSTapi-feedback">
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request POST \
+    "http://127.0.0.1:8000/api/feedback" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"order_id\": 4,
+    \"feedback\": \"esse\"
+}"
+</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/feedback"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "order_id": 4,
+    "feedback": "esse"
+}
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre>
+</span>
+
+<span id="example-responses-POSTapi-feedback">
+            <blockquote>
+            <p>Example response (200, success):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: true,
+    &quot;response&quot;: 200
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-feedback" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-feedback"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-feedback"></code></pre>
+</span>
+<span id="execution-error-POSTapi-feedback" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-feedback"></code></pre>
+</span>
+<form id="form-POSTapi-feedback" data-method="POST"
+      data-path="api/feedback"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-feedback', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-feedback"
+                    onclick="tryItOut('POSTapi-feedback');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-feedback"
+                    onclick="cancelTryOut('POSTapi-feedback');" hidden>Cancel
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-feedback" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/feedback</code></b>
+        </p>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>order_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="order_id"
+               data-endpoint="POSTapi-feedback"
+               data-component="body" required  hidden>
+    <br>
+<p>to know the order that will take feedback</p>        </p>
+                <p>
+            <b><code>feedback</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="feedback"
+               data-endpoint="POSTapi-feedback"
+               data-component="body" required  hidden>
+    <br>
+<p>that is the feedback that the user want to get to the order</p>        </p>
+    
+    </form>
+
+            <h2 id="order-management-POSTapi-rating">Add Rating to the order.</h2>
+
+<p>
+</p>
+
+<p>This endpoint allows user to add rate to his order.</p>
+<p>the user can put a rate about the order that he paid</p>
+<aside class="notice">The user add a rate to an order </aside>
+
+<span id="example-requests-POSTapi-rating">
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request POST \
+    "http://127.0.0.1:8000/api/rating" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"order_id\": 10,
+    \"rate\": 3
+}"
+</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/rating"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "order_id": 10,
+    "rate": 3
+}
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre>
+</span>
+
+<span id="example-responses-POSTapi-rating">
+            <blockquote>
+            <p>Example response (200, success):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: true,
+    &quot;response&quot;: 200
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-rating" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-rating"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-rating"></code></pre>
+</span>
+<span id="execution-error-POSTapi-rating" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-rating"></code></pre>
+</span>
+<form id="form-POSTapi-rating" data-method="POST"
+      data-path="api/rating"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-rating', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-rating"
+                    onclick="tryItOut('POSTapi-rating');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-rating"
+                    onclick="cancelTryOut('POSTapi-rating');" hidden>Cancel
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-rating" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/rating</code></b>
+        </p>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>order_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="order_id"
+               data-endpoint="POSTapi-rating"
+               data-component="body" required  hidden>
+    <br>
+<p>to know the order that will take rate</p>        </p>
+                <p>
+            <b><code>rate</code></b>&nbsp;&nbsp;<small>number</small>  &nbsp;
+                <input type="number"
+               name="rate"
+               data-endpoint="POSTapi-rating"
+               data-component="body" required  hidden>
+    <br>
+<p>that is the feedback that the user want to get to the order</p>        </p>
+    
+    </form>
+
+            <h2 id="order-management-POSTapi-add-comment">Add additional comment</h2>
+
+<p>
+</p>
+
+<p>This endpoint allows you to add additional comment to the order.</p>
+<p>The user can add additional comment to the order
+Ex: The customer wants the food spicy.</p>
+
+<span id="example-requests-POSTapi-add-comment">
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request POST \
+    "http://127.0.0.1:8000/api/add-comment" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"id\": 19,
+    \"additional_comment\": \"laudantium\"
+}"
+</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/add-comment"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "id": 19,
+    "additional_comment": "laudantium"
+}
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre>
+</span>
+
+<span id="example-responses-POSTapi-add-comment">
+            <blockquote>
+            <p>Example response (200, success):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+ &quot;status&quot;: true,
+ &quot;response&quot;: 200,
+ &quot;data&quot;: The whole order with the additional comment added to it
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-add-comment" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-add-comment"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-add-comment"></code></pre>
+</span>
+<span id="execution-error-POSTapi-add-comment" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-add-comment"></code></pre>
+</span>
+<form id="form-POSTapi-add-comment" data-method="POST"
+      data-path="api/add-comment"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-add-comment', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-add-comment"
+                    onclick="tryItOut('POSTapi-add-comment');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-add-comment"
+                    onclick="cancelTryOut('POSTapi-add-comment');" hidden>Cancel
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-add-comment" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/add-comment</code></b>
+        </p>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
+                <input type="number"
+               name="id"
+               data-endpoint="POSTapi-add-comment"
+               data-component="body"  hidden>
+    <br>
+<p>required, the id to get the order that we want to add the additional comment to it</p>        </p>
+                <p>
+            <b><code>additional_comment</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="additional_comment"
+               data-endpoint="POSTapi-add-comment"
+               data-component="body"  hidden>
+    <br>
+<p>required, the additional comment statment that the user has entered</p>        </p>
+    
+    </form>
+
+        <h1 id="address-management">address Management</h1>
+
+    <p>APIs for adding new address or updating old one for customers</p>
+
+            <h2 id="address-management-POSTapi-add-addresses">Add address</h2>
+
+<p>
+</p>
+
+<p>This endpoint allows you to add address to the order.</p>
+<p>The user can add favourite address to facilitate the usage for him
+and also can add multiple addresses in his account</p>
+<aside class="notice">when the user add new address it takes place of the old one</aside>
+
+<span id="example-requests-POSTapi-add-addresses">
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request POST \
+    "http://127.0.0.1:8000/api/add-addresses" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"user_id\": 8,
+    \"location\": \"beatae\",
+    \"favourite_location\": \"doloribus\"
+}"
+</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/add-addresses"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "user_id": 8,
+    "location": "beatae",
+    "favourite_location": "doloribus"
+}
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre>
+</span>
+
+<span id="example-responses-POSTapi-add-addresses">
+            <blockquote>
+            <p>Example response (200, success):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+ &quot;status&quot;: true,
+ &quot;response&quot;: 200
+ &quot;data&quot;: The user details id,user_id,favourite_location,location after assigning his new location and favourite location
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-add-addresses" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-add-addresses"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-add-addresses"></code></pre>
+</span>
+<span id="execution-error-POSTapi-add-addresses" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-add-addresses"></code></pre>
+</span>
+<form id="form-POSTapi-add-addresses" data-method="POST"
+      data-path="api/add-addresses"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-add-addresses', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-add-addresses"
+                    onclick="tryItOut('POSTapi-add-addresses');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-add-addresses"
+                    onclick="cancelTryOut('POSTapi-add-addresses');" hidden>Cancel
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-add-addresses" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/add-addresses</code></b>
+        </p>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>user_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="user_id"
+               data-endpoint="POSTapi-add-addresses"
+               data-component="body" required  hidden>
+    <br>
+<p>to assign the address to him</p>        </p>
+                <p>
+            <b><code>location</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="location"
+               data-endpoint="POSTapi-add-addresses"
+               data-component="body" required  hidden>
+    <br>
+<p>The new address that the user wants to add</p>        </p>
+                <p>
+            <b><code>favourite_location</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="favourite_location"
+               data-endpoint="POSTapi-add-addresses"
+               data-component="body" required  hidden>
+    <br>
+<p>The new favourite address if the user wanted to add one</p>        </p>
+    
+    </form>
+
+            <h2 id="address-management-POSTapi-add-fav-addresses">Add favourite address</h2>
+
+<p>
+</p>
+
+<p>This endpoint allows you to add favourite address to the order.</p>
+<p>The user can add favourite address to facilitate the usage for him</p>
+<aside class="notice">when the user add new favourite address it takes place of the old one</aside>
+
+<span id="example-requests-POSTapi-add-fav-addresses">
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request POST \
+    "http://127.0.0.1:8000/api/add-fav-addresses" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"user_id\": 3,
+    \"favourite_location\": \"ea\"
+}"
+</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/add-fav-addresses"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "user_id": 3,
+    "favourite_location": "ea"
+}
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre>
+</span>
+
+<span id="example-responses-POSTapi-add-fav-addresses">
+            <blockquote>
+            <p>Example response (200, success):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+ &quot;status&quot;: true,
+ &quot;response&quot;: 200
+ &quot;data&quot;: The user details id,user_id,favourite_location,location after updating his favourite address
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-add-fav-addresses" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-add-fav-addresses"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-add-fav-addresses"></code></pre>
+</span>
+<span id="execution-error-POSTapi-add-fav-addresses" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-add-fav-addresses"></code></pre>
+</span>
+<form id="form-POSTapi-add-fav-addresses" data-method="POST"
+      data-path="api/add-fav-addresses"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-add-fav-addresses', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-add-fav-addresses"
+                    onclick="tryItOut('POSTapi-add-fav-addresses');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-add-fav-addresses"
+                    onclick="cancelTryOut('POSTapi-add-fav-addresses');" hidden>Cancel
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-add-fav-addresses" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/add-fav-addresses</code></b>
+        </p>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>user_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="user_id"
+               data-endpoint="POSTapi-add-fav-addresses"
+               data-component="body" required  hidden>
+    <br>
+<p>to assign the address to him</p>        </p>
+                <p>
+            <b><code>favourite_location</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="favourite_location"
+               data-endpoint="POSTapi-add-fav-addresses"
+               data-component="body" required  hidden>
+    <br>
+<p>The new favourite address that the user wants to add</p>        </p>
+    
+    </form>
+
+            <h2 id="address-management-POSTapi-add-another-addresses">Add another address</h2>
+
+<p>
+</p>
+
+<p>This endpoint allows you to add another address to the order differ from the old one he ordered by.</p>
+<p>The user can add another address to facilitate the usage for him</p>
+<aside class="notice">when the user add new another address it takes place of the old one</aside>
+
+<span id="example-requests-POSTapi-add-another-addresses">
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request POST \
+    "http://127.0.0.1:8000/api/add-another-addresses" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"user_id\": 15,
+    \"location\": \"architecto\"
+}"
+</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/add-another-addresses"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "user_id": 15,
+    "location": "architecto"
+}
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre>
+</span>
+
+<span id="example-responses-POSTapi-add-another-addresses">
+            <blockquote>
+            <p>Example response (200, success):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+ &quot;status&quot;: true,
+ &quot;response&quot;: 200,
+ &quot;data&quot;: The user details id,user_id,favourite_location,location after updating his address
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-add-another-addresses" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-add-another-addresses"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-add-another-addresses"></code></pre>
+</span>
+<span id="execution-error-POSTapi-add-another-addresses" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-add-another-addresses"></code></pre>
+</span>
+<form id="form-POSTapi-add-another-addresses" data-method="POST"
+      data-path="api/add-another-addresses"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-add-another-addresses', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-add-another-addresses"
+                    onclick="tryItOut('POSTapi-add-another-addresses');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-add-another-addresses"
+                    onclick="cancelTryOut('POSTapi-add-another-addresses');" hidden>Cancel
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-add-another-addresses" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/add-another-addresses</code></b>
+        </p>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>user_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="user_id"
+               data-endpoint="POSTapi-add-another-addresses"
+               data-component="body" required  hidden>
+    <br>
+<p>to assign the address to him</p>        </p>
+                <p>
+            <b><code>location</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="location"
+               data-endpoint="POSTapi-add-another-addresses"
+               data-component="body" required  hidden>
+    <br>
+<p>The new address that the user wants to add</p>        </p>
     
     </form>
 

@@ -9,9 +9,17 @@ class Order extends Model
 {
     use HasFactory;
 
-    public function user(){
+    protected $table = "orders";
+    protected $fillable = [
+        'price',
+        'type_of_delivery',
+        'rating',
+        'Feedback',
+        'additional_comment'
+    ];
+
+    public function user()
+    {
         return $this->belongsTo('App\User');
-        
     }
-    public $table = "orders";
 }

@@ -8,7 +8,7 @@ use Faker\Factory as Faker;
 
 class AddressSeeder extends Seeder
 {
-    
+
     /**
      * Run the database seeds.
      *
@@ -17,14 +17,12 @@ class AddressSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create();
-        for ($x = 0; $x <= 10; $x++)
-        {
+        for ($x = 0; $x <= 10; $x++) {
             DB::table('address')->insert([
-                'user_id'=> $x + 1,
-                "location" => $faker->address ,
+                'user_id' => $x + 1,
+                "location" => $faker->address,
+                "favourite_location" => $faker->address
             ]);
         }
-        
-            
     }
 }

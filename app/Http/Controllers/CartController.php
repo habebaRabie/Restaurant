@@ -21,7 +21,19 @@ class CartController extends Controller
      * Create a new cart to place items in
      *
      * @bodyParam User_id int required The ID of the user who's account is associated with this cart
-     *
+     * @response scenario=success {
+     *   "status": true,
+     *   "errNum": 200,
+     *   "msg": "cart created",
+     *   "cart details": {
+     *       "user_id": "3",
+     *       "total_price": 0,
+     *        "status": false,
+     *        "updated_at": "2021-09-02T13:04:33.000000Z",
+     *        "created_at": "2021-09-02T13:04:33.000000Z",
+     *        "id": 9
+     *    }
+     *}
      */
     public function createCart(Request $request)
     {
@@ -49,6 +61,19 @@ class CartController extends Controller
      *
      * @bodyParam item_id int required The id of the item that needs to be added
      *
+     * @response scenario=success {
+     *  "status": true,
+     *  "errNum": 200,
+     *  "msg": "Item Added Successfully",
+     *  "cart details": {
+     *      "id": 5,
+     *      "user_id": 3,
+     *      "total_price": 66,
+     *      "status": "false",
+     *      "created_at": "2021-08-19T09:51:01.000000Z",
+     *      "updated_at": "2021-09-02T12:30:43.000000Z"
+     *  }
+     *}
      */
     public function addToCart(Request $request)
     {
@@ -68,7 +93,7 @@ class CartController extends Controller
         return response()->json([
             'status' => true,
             'errNum' => 200,
-            'msg' => 'Items Added Successfuly',
+            'msg' => 'Item Added Successfully',
             'cart details' => $cart,
         ]);
     }
@@ -82,6 +107,20 @@ class CartController extends Controller
      * @bodyParam cart_id int required The id of the cart that will be modified
      *
      * @bodyParam item_id int required The id of the item that needs to be removed
+     *
+     *  @response scenario=success {
+     *    "status": true,
+     *    "errNum": 200,
+     *    "msg": "Item Removed Successfully",
+     *    "cart details": {
+     *        "id": 5,
+     *        "user_id": 3,
+     *        "total_price": 54,
+     *        "status": "false",
+     *        "created_at": "2021-08-19T09:51:01.000000Z",
+     *        "updated_at": "2021-09-02T12:51:23.000000Z"
+     *    }
+     *}
      *
      */
     public function removeFromCart(Request $request)
@@ -107,8 +146,67 @@ class CartController extends Controller
             return response()->json([
                 'status' => true,
                 'errNum' => 200,
-                'msg' => 'Item removed Successfuly',
+                'msg' => 'Item Removed Successfully',
                 'cart details' => $cart,
+            ]);
+        }
+    }
+
+
+    /**
+     * List cart items
+     *
+     * lists all items in the cart and their quantity
+     *
+     * @bodyParam cart_id int required The id of the cart that will be modified
+     *
+     *
+     *  @response scenario=success {
+     *  "status": true,
+     *  "response": 200,
+     *  "msg": "Items retrieved",
+     *  "cart items": [
+     *   {
+     *      "quantity": 2,
+     *     "item": [
+     *        {
+     *            "id": 1,
+     *            "item_name": "pizza",
+     *            "category_id": 1,
+     *            "rating": 0,
+     *            "price": "15.00",
+     *            "offer": null,
+     *            "offer_end_date": null,
+     *            "created_at": null,
+     *            "updated_at": null
+     *           }
+     *       ]
+     *   }
+     * }
+     *
+     */
+    public function listCartItems(Request $request)
+    {
+        $cartID = $request->cart_id;
+        $itemsID = DB::select('select * from cartitems where cart_id = ?', [$cartID]);
+        if ($itemsID != NULL) {
+            $items = [];
+            foreach ($itemsID as $item) {
+                $lItem = item::where('id', '=', $item->item_id)->get();
+                $lquant = $item->quantity;
+                array_push($items, ['item' => $lItem, 'quantity' => $lquant]);
+            }
+            return response()->json([
+                'status' => true,
+                'errNum' => 200,
+                'msg' => 'Items retrieved',
+                'cart items' => $items,
+            ]);
+        } else {
+            return response()->json([
+                'status' => false,
+                'errNum' => 200,
+                'msg' => 'no items in cart',
             ]);
         }
     }

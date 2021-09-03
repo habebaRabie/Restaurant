@@ -5,7 +5,7 @@ info:
   version: 1.0.0
 servers:
   -
-    url: 'http://localhost'
+    url: 'http://127.0.0.1:8000'
 paths:
   /api/create-cart:
     post:
@@ -26,7 +26,43 @@ paths:
           example: application/json
           schema:
             type: string
-      responses: {  }
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: true
+                  errNum: 200
+                  msg: 'cart created'
+                  'cart details':
+                    user_id: '3'
+                    total_price: 0
+                    status: false
+                    updated_at: '2021-09-02T13:04:33.000000Z'
+                    created_at: '2021-09-02T13:04:33.000000Z'
+                    id: 9
+                properties:
+                  status:
+                    type: boolean
+                    example: true
+                  errNum:
+                    type: integer
+                    example: 200
+                  msg:
+                    type: string
+                    example: 'cart created'
+                  'cart details':
+                    type: object
+                    example:
+                      user_id: '3'
+                      total_price: 0
+                      status: false
+                      updated_at: '2021-09-02T13:04:33.000000Z'
+                      created_at: '2021-09-02T13:04:33.000000Z'
+                      id: 9
       tags:
         - 'Cart Management'
       requestBody:
@@ -39,7 +75,7 @@ paths:
                 User_id:
                   type: integer
                   description: 'The ID of the user who''s account is associated with this cart'
-                  example: 7
+                  example: 13
               required:
                 - User_id
       security: []
@@ -62,7 +98,43 @@ paths:
           example: application/json
           schema:
             type: string
-      responses: {  }
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: true
+                  errNum: 200
+                  msg: 'Item Added Successfully'
+                  'cart details':
+                    id: 5
+                    user_id: 3
+                    total_price: 66
+                    status: 'false'
+                    created_at: '2021-08-19T09:51:01.000000Z'
+                    updated_at: '2021-09-02T12:30:43.000000Z'
+                properties:
+                  status:
+                    type: boolean
+                    example: true
+                  errNum:
+                    type: integer
+                    example: 200
+                  msg:
+                    type: string
+                    example: 'Item Added Successfully'
+                  'cart details':
+                    type: object
+                    example:
+                      id: 5
+                      user_id: 3
+                      total_price: 66
+                      status: 'false'
+                      created_at: '2021-08-19T09:51:01.000000Z'
+                      updated_at: '2021-09-02T12:30:43.000000Z'
       tags:
         - 'Cart Management'
       requestBody:
@@ -75,11 +147,11 @@ paths:
                 cart_id:
                   type: integer
                   description: 'The id of the cart to which the item will be added'
-                  example: 16
+                  example: 5
                 item_id:
                   type: integer
                   description: 'The id of the item that needs to be added'
-                  example: 11
+                  example: 19
               required:
                 - cart_id
                 - item_id
@@ -116,14 +188,195 @@ paths:
                 cart_id:
                   type: integer
                   description: 'The id of the cart that will be modified'
-                  example: 18
+                  example: 2
                 item_id:
                   type: integer
-                  description: 'The id of the item that needs to be removed'
-                  example: 16
+                  description: "The id of the item that needs to be removed\n\n @response scenario=success {\n   \"status\": true,\n   \"errNum\": 200,\n   \"msg\": \"Item Removed Successfully\",\n   \"cart details\": {\n       \"id\": 5,\n       \"user_id\": 3,\n       \"total_price\": 54,\n       \"status\": \"false\",\n       \"created_at\": \"2021-08-19T09:51:01.000000Z\",\n       \"updated_at\": \"2021-09-02T12:51:23.000000Z\"\n   }\n}"
+                  example: 11
               required:
                 - cart_id
                 - item_id
+      security: []
+  /api/view-cart:
+    post:
+      summary: 'List cart items'
+      description: 'lists all items in the cart and their quantity'
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - 'Cart Management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                cart_id:
+                  type: integer
+                  description: "The id of the cart that will be modified\n\n\n @response scenario=success {\n \"status\": true,\n \"response\": 200,\n \"msg\": \"Items retrieved\",\n \"cart items\": [\n  {\n     \"quantity\": 2,\n    \"item\": [\n       {\n           \"id\": 1,\n           \"item_name\": \"pizza\",\n           \"category_id\": 1,\n           \"rating\": 0,\n           \"price\": \"15.00\",\n           \"offer\": null,\n           \"offer_end_date\": null,\n           \"created_at\": null,\n           \"updated_at\": null\n          }\n      ]\n  }\n}"
+                  example: 2
+              required:
+                - cart_id
+      security: []
+  /api/add-complaint:
+    post:
+      summary: 'Add complaint'
+      description: 'This endpoint allows you to add complaint to specific item in the order.'
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: success
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n \"status\": true,\n \"response\": 200\n \"data\": The whole complaint after adding it\n}"
+      tags:
+        - 'Complaints Management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                item_id:
+                  type: integer
+                  description: 'to place the complaint to that specfic item'
+                  example: 6
+                user_id:
+                  type: integer
+                  description: 'to make sure that we know who wrote the complaint'
+                  example: 17
+                complaint:
+                  type: string
+                  description: 'the complaint statement'
+                  example: non
+              required:
+                - item_id
+                - user_id
+                - complaint
+      security: []
+  /api/remove-complaint:
+    post:
+      summary: 'Remove complaint'
+      description: 'This endpoint allows you to remove complaint from specific item in the order.'
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: true
+                  response: 200
+                properties:
+                  status:
+                    type: boolean
+                    example: true
+                  response:
+                    type: integer
+                    example: 200
+      tags:
+        - 'Complaints Management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                item_id:
+                  type: integer
+                  description: 'to place the complaint to that specfic item'
+                  example: 3
+                user_id:
+                  type: integer
+                  description: 'to make sure that we know who wrote the complaint'
+                  example: 19
+                complaint:
+                  type: string
+                  description: 'The complaint statement'
+                  example: quo
+              required:
+                - item_id
+                - user_id
+                - complaint
+      security: []
+  /api/show-complaints:
+    post:
+      summary: 'Show all the complaints found in the system.'
+      description: 'This endpoint allows you to see all the complaints found in the system.'
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: success
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n complaints\n}"
+      tags:
+        - 'Complaints Management'
       security: []
   /api/register:
     get:
@@ -223,23 +476,23 @@ paths:
                 first_name:
                   type: string
                   description: ''
-                  example: et
+                  example: aut
                 last_name:
                   type: string
                   description: ''
-                  example: ex
+                  example: eligendi
                 email:
                   type: string
                   description: ''
-                  example: voluptatem
+                  example: iste
                 password:
                   type: string
                   description: ''
-                  example: hic
+                  example: qui
                 password_confirmation:
                   type: string
                   description: ''
-                  example: ut
+                  example: sed
               required:
                 - first_name
                 - last_name
@@ -329,15 +582,15 @@ paths:
                 email:
                   type: string
                   description: ''
-                  example: laboriosam
+                  example: beatae
                 password:
                   type: string
                   description: ''
-                  example: a
+                  example: consequatur
                 remember:
                   type: boolean
                   description: ''
-                  example: false
+                  example: true
               required:
                 - email
                 - password
@@ -459,7 +712,7 @@ paths:
         in: path
         name: token
         description: ''
-        example: adipisci
+        example: maiores
         required: true
         schema:
           type: string
@@ -515,19 +768,19 @@ paths:
                 token:
                   type: mixed
                   description: ''
-                  example: id
+                  example: veniam
                 emai:
                   type: string
                   description: ''
-                  example: libero
+                  example: placeat
                 password:
                   type: string
                   description: ''
-                  example: non
+                  example: voluptatem
                 password_confirmation:
                   type: string
                   description: ''
-                  example: tenetur
+                  example: eveniet
               required:
                 - token
                 - emai
@@ -611,7 +864,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the verify email.'
-        example: quisquam
+        example: dolore
         required: true
         schema:
           type: string
@@ -619,7 +872,7 @@ paths:
         in: path
         name: hash
         description: ''
-        example: quaerat
+        example: qui
         required: true
         schema:
           type: string
@@ -769,7 +1022,7 @@ paths:
                 password:
                   type: string
                   description: ''
-                  example: minus
+                  example: non
               required:
                 - email
                 - password
@@ -886,7 +1139,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the admin'
-        example: 15
+        example: 13
         required: true
         schema:
           type: integer
@@ -972,23 +1225,23 @@ paths:
                 email:
                   type: string
                   description: ''
-                  example: amet
+                  example: suscipit
                 username:
                   type: string
                   description: ''
-                  example: excepturi
+                  example: quis
                 password:
                   type: string
                   description: ''
-                  example: aut
+                  example: repellendus
                 password_confirmation:
                   type: string
                   description: ''
-                  example: sunt
+                  example: minus
                 superadmin:
                   type: boolean
                   description: ''
-                  example: true
+                  example: false
               required:
                 - email
                 - username
@@ -1081,14 +1334,14 @@ paths:
                 superadmin:
                   type: boolean
                   description: ''
-                  example: false
+                  example: true
       security: []
     parameters:
       -
         in: path
         name: id
         description: 'The ID of the admin'
-        example: 12
+        example: 13
         required: true
         schema:
           type: integer
@@ -1146,7 +1399,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the admin'
-        example: 7
+        example: 6
         required: true
         schema:
           type: integer
@@ -1208,7 +1461,7 @@ paths:
                 category_name:
                   type: required
                   description: 'string and must be unique'
-                  example: sit
+                  example: et
       security: []
   '/api/admin/removecategory/{id}':
     post:
@@ -1264,7 +1517,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the category'
-        example: 1
+        example: 18
         required: true
         schema:
           type: integer
@@ -1333,14 +1586,14 @@ paths:
                 category_name:
                   type: string
                   description: 'and must be unique'
-                  example: beatae
+                  example: maiores
       security: []
     parameters:
       -
         in: path
         name: id
         description: 'The ID of the category'
-        example: 6
+        example: 15
         required: true
         schema:
           type: integer
@@ -1402,23 +1655,23 @@ paths:
                 item_name:
                   type: string
                   description: 'and must be unique with 40 chrachters at maximum'
-                  example: molestias
+                  example: ipsum
                 category_id:
                   type: integer
                   description: 'and it must exist'
-                  example: 9
+                  example: 12
                 price:
                   type: decimal
                   description: ''
-                  example: excepturi
+                  example: natus
                 offer:
                   type: decimal
                   description: 'if there was an offer_end_date'
-                  example: sequi
+                  example: tempora
                 offer_end_date:
                   type: datetime
                   description: 'if there was an offer'
-                  example: occaecati
+                  example: deleniti
                 file_path:
                   type: string
                   format: binary
@@ -1484,7 +1737,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the item'
-        example: 16
+        example: 19
         required: true
         schema:
           type: integer
@@ -1549,7 +1802,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the item'
-        example: 13
+        example: 16
         required: true
         schema:
           type: integer
@@ -1626,7 +1879,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the verify email.'
-        example: harum
+        example: non
         required: true
         schema:
           type: string
@@ -1634,7 +1887,7 @@ paths:
         in: path
         name: hash
         description: ''
-        example: qui
+        example: accusantium
         required: true
         schema:
           type: string
@@ -1660,7 +1913,7 @@ paths:
       responses: {  }
       tags:
         - Endpoints
-  /api/show:
+  /api/admin/show:
     get:
       summary: 'getting all orders in database'
       description: ''
@@ -1690,7 +1943,7 @@ paths:
       tags:
         - Endpoints
       security: []
-  /api/search:
+  /api/admin/search:
     get:
       summary: 'get all the orders of a specific user'
       description: ''
@@ -1710,55 +1963,22 @@ paths:
           schema:
             type: string
       responses:
-        200:
+        401:
           description: ''
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  type: object
+                type: object
                 example:
-                  -
-                    id: 1
-                    user_id: 10
-                    price: '20.00'
-                    type_of_delivery: delivery
-                    created_at: null
-                    updated_at: null
-                    rating: '5.00'
-                    Feedback: good
-                  -
-                    id: 2
-                    user_id: 10
-                    price: '20.00'
-                    type_of_delivery: delivery
-                    created_at: null
-                    updated_at: null
-                    rating: '5.00'
-                    Feedback: good
-                  -
-                    id: 3
-                    user_id: 22
-                    price: '20.00'
-                    type_of_delivery: delivery
-                    created_at: null
-                    updated_at: null
-                    rating: '5.00'
-                    Feedback: good
-                  -
-                    id: 4
-                    user_id: 22
-                    price: '20.00'
-                    type_of_delivery: delivery
-                    created_at: null
-                    updated_at: null
-                    rating: '5.00'
-                    Feedback: good
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
       tags:
         - Endpoints
       security: []
-  /api/total:
+  /api/admin/total:
     get:
       summary: 'get the total number of orders'
       description: ''
@@ -1778,17 +1998,22 @@ paths:
           schema:
             type: string
       responses:
-        200:
+        401:
           description: ''
           content:
             application/json:
               schema:
-                type: integer
-                example: 4
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
       tags:
         - Endpoints
       security: []
-  /api/piechart:
+  /api/admin/piechart:
     get:
       summary: ''
       description: ''
@@ -1808,844 +2033,22 @@ paths:
           schema:
             type: string
       responses:
-        500:
+        401:
           description: ''
           content:
             application/json:
               schema:
                 type: object
                 example:
-                  message: 'SQLSTATE[42S02]: Base table or view not found: 1146 Table ''laravel.item'' doesn''t exist (SQL: SELECT count(item_id)as item_id,item.item_name FROM orderitem join item on orderitem.item_id=item.id group by item.item_name)'
-                  exception: Illuminate\Database\QueryException
-                  file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Database\Connection.php'
-                  line: 692
-                  trace:
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Database\Connection.php'
-                      line: 652
-                      function: runQueryCallback
-                      class: Illuminate\Database\Connection
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Database\Connection.php'
-                      line: 360
-                      function: run
-                      class: Illuminate\Database\Connection
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Database\DatabaseManager.php'
-                      line: 388
-                      function: select
-                      class: Illuminate\Database\Connection
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Support\Facades\Facade.php'
-                      line: 261
-                      function: __call
-                      class: Illuminate\Database\DatabaseManager
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\app\Http\Controllers\showcontroller.php'
-                      line: 76
-                      function: __callStatic
-                      class: Illuminate\Support\Facades\Facade
-                      type: '::'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Routing\Controller.php'
-                      line: 54
-                      function: piechart
-                      class: App\Http\Controllers\showcontroller
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Routing\ControllerDispatcher.php'
-                      line: 45
-                      function: callAction
-                      class: Illuminate\Routing\Controller
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Routing\Route.php'
-                      line: 261
-                      function: dispatch
-                      class: Illuminate\Routing\ControllerDispatcher
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Routing\Route.php'
-                      line: 204
-                      function: runController
-                      class: Illuminate\Routing\Route
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
-                      line: 695
-                      function: run
-                      class: Illuminate\Routing\Route
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                      line: 128
-                      function: 'Illuminate\Routing\{closure}'
-                      class: Illuminate\Routing\Router
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Routing\Middleware\SubstituteBindings.php'
-                      line: 50
-                      function: 'Illuminate\Pipeline\{closure}'
-                      class: Illuminate\Pipeline\Pipeline
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                      line: 167
-                      function: handle
-                      class: Illuminate\Routing\Middleware\SubstituteBindings
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php'
-                      line: 127
-                      function: 'Illuminate\Pipeline\{closure}'
-                      class: Illuminate\Pipeline\Pipeline
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php'
-                      line: 103
-                      function: handleRequest
-                      class: Illuminate\Routing\Middleware\ThrottleRequests
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php'
-                      line: 55
-                      function: handleRequestUsingNamedLimiter
-                      class: Illuminate\Routing\Middleware\ThrottleRequests
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                      line: 167
-                      function: handle
-                      class: Illuminate\Routing\Middleware\ThrottleRequests
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                      line: 103
-                      function: 'Illuminate\Pipeline\{closure}'
-                      class: Illuminate\Pipeline\Pipeline
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
-                      line: 697
-                      function: then
-                      class: Illuminate\Pipeline\Pipeline
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
-                      line: 672
-                      function: runRouteWithinStack
-                      class: Illuminate\Routing\Router
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
-                      line: 636
-                      function: runRoute
-                      class: Illuminate\Routing\Router
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
-                      line: 625
-                      function: dispatchToRoute
-                      class: Illuminate\Routing\Router
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php'
-                      line: 166
-                      function: dispatch
-                      class: Illuminate\Routing\Router
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                      line: 128
-                      function: 'Illuminate\Foundation\Http\{closure}'
-                      class: Illuminate\Foundation\Http\Kernel
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php'
-                      line: 21
-                      function: 'Illuminate\Pipeline\{closure}'
-                      class: Illuminate\Pipeline\Pipeline
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull.php'
-                      line: 31
-                      function: handle
-                      class: Illuminate\Foundation\Http\Middleware\TransformsRequest
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                      line: 167
-                      function: handle
-                      class: Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php'
-                      line: 21
-                      function: 'Illuminate\Pipeline\{closure}'
-                      class: Illuminate\Pipeline\Pipeline
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TrimStrings.php'
-                      line: 40
-                      function: handle
-                      class: Illuminate\Foundation\Http\Middleware\TransformsRequest
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                      line: 167
-                      function: handle
-                      class: Illuminate\Foundation\Http\Middleware\TrimStrings
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ValidatePostSize.php'
-                      line: 27
-                      function: 'Illuminate\Pipeline\{closure}'
-                      class: Illuminate\Pipeline\Pipeline
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                      line: 167
-                      function: handle
-                      class: Illuminate\Foundation\Http\Middleware\ValidatePostSize
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance.php'
-                      line: 86
-                      function: 'Illuminate\Pipeline\{closure}'
-                      class: Illuminate\Pipeline\Pipeline
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                      line: 167
-                      function: handle
-                      class: Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\fruitcake\laravel-cors\src\HandleCors.php'
-                      line: 52
-                      function: 'Illuminate\Pipeline\{closure}'
-                      class: Illuminate\Pipeline\Pipeline
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                      line: 167
-                      function: handle
-                      class: Fruitcake\Cors\HandleCors
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\fideloper\proxy\src\TrustProxies.php'
-                      line: 57
-                      function: 'Illuminate\Pipeline\{closure}'
-                      class: Illuminate\Pipeline\Pipeline
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                      line: 167
-                      function: handle
-                      class: Fideloper\Proxy\TrustProxies
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                      line: 103
-                      function: 'Illuminate\Pipeline\{closure}'
-                      class: Illuminate\Pipeline\Pipeline
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php'
-                      line: 141
-                      function: then
-                      class: Illuminate\Pipeline\Pipeline
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php'
-                      line: 110
-                      function: sendRequestThroughRouter
-                      class: Illuminate\Foundation\Http\Kernel
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
-                      line: 287
-                      function: handle
-                      class: Illuminate\Foundation\Http\Kernel
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
-                      line: 275
-                      function: callLaravelOrLumenRoute
-                      class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
-                      line: 86
-                      function: makeApiCall
-                      class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
-                      line: 44
-                      function: makeResponseCall
-                      class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
-                      line: 34
-                      function: makeResponseCallIfConditionsPass
-                      class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\knuckleswtf\scribe\src\Extracting\Extractor.php'
-                      line: 225
-                      function: __invoke
-                      class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\knuckleswtf\scribe\src\Extracting\Extractor.php'
-                      line: 182
-                      function: iterateThroughStrategies
-                      class: Knuckles\Scribe\Extracting\Extractor
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\knuckleswtf\scribe\src\Extracting\Extractor.php'
-                      line: 116
-                      function: fetchResponses
-                      class: Knuckles\Scribe\Extracting\Extractor
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\knuckleswtf\scribe\src\GroupedEndpoints\GroupedEndpointsFromApp.php'
-                      line: 118
-                      function: processRoute
-                      class: Knuckles\Scribe\Extracting\Extractor
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\knuckleswtf\scribe\src\GroupedEndpoints\GroupedEndpointsFromApp.php'
-                      line: 75
-                      function: extractEndpointsInfoFromLaravelApp
-                      class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\knuckleswtf\scribe\src\GroupedEndpoints\GroupedEndpointsFromApp.php'
-                      line: 51
-                      function: extractEndpointsInfoAndWriteToDisk
-                      class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\knuckleswtf\scribe\src\Commands\GenerateDocumentation.php'
-                      line: 39
-                      function: get
-                      class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php'
-                      line: 36
-                      function: handle
-                      class: Knuckles\Scribe\Commands\GenerateDocumentation
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Container\Util.php'
-                      line: 40
-                      function: 'Illuminate\Container\{closure}'
-                      class: Illuminate\Container\BoundMethod
-                      type: '::'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php'
-                      line: 93
-                      function: unwrapIfClosure
-                      class: Illuminate\Container\Util
-                      type: '::'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php'
-                      line: 37
-                      function: callBoundMethod
-                      class: Illuminate\Container\BoundMethod
-                      type: '::'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Container\Container.php'
-                      line: 651
-                      function: call
-                      class: Illuminate\Container\BoundMethod
-                      type: '::'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Console\Command.php'
-                      line: 136
-                      function: call
-                      class: Illuminate\Container\Container
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\symfony\console\Command\Command.php'
-                      line: 299
-                      function: execute
-                      class: Illuminate\Console\Command
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Console\Command.php'
-                      line: 121
-                      function: run
-                      class: Symfony\Component\Console\Command\Command
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\symfony\console\Application.php'
-                      line: 978
-                      function: run
-                      class: Illuminate\Console\Command
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\symfony\console\Application.php'
-                      line: 295
-                      function: doRunCommand
-                      class: Symfony\Component\Console\Application
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\symfony\console\Application.php'
-                      line: 167
-                      function: doRun
-                      class: Symfony\Component\Console\Application
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Console\Application.php'
-                      line: 92
-                      function: run
-                      class: Symfony\Component\Console\Application
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Foundation\Console\Kernel.php'
-                      line: 129
-                      function: run
-                      class: Illuminate\Console\Application
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\artisan'
-                      line: 37
-                      function: handle
-                      class: Illuminate\Foundation\Console\Kernel
-                      type: '->'
+                  message: Unauthenticated.
                 properties:
                   message:
                     type: string
-                    example: 'SQLSTATE[42S02]: Base table or view not found: 1146 Table ''laravel.item'' doesn''t exist (SQL: SELECT count(item_id)as item_id,item.item_name FROM orderitem join item on orderitem.item_id=item.id group by item.item_name)'
-                  exception:
-                    type: string
-                    example: Illuminate\Database\QueryException
-                  file:
-                    type: string
-                    example: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Database\Connection.php'
-                  line:
-                    type: integer
-                    example: 692
-                  trace:
-                    type: array
-                    example:
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Database\Connection.php'
-                        line: 652
-                        function: runQueryCallback
-                        class: Illuminate\Database\Connection
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Database\Connection.php'
-                        line: 360
-                        function: run
-                        class: Illuminate\Database\Connection
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Database\DatabaseManager.php'
-                        line: 388
-                        function: select
-                        class: Illuminate\Database\Connection
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Support\Facades\Facade.php'
-                        line: 261
-                        function: __call
-                        class: Illuminate\Database\DatabaseManager
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\app\Http\Controllers\showcontroller.php'
-                        line: 76
-                        function: __callStatic
-                        class: Illuminate\Support\Facades\Facade
-                        type: '::'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Routing\Controller.php'
-                        line: 54
-                        function: piechart
-                        class: App\Http\Controllers\showcontroller
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Routing\ControllerDispatcher.php'
-                        line: 45
-                        function: callAction
-                        class: Illuminate\Routing\Controller
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Routing\Route.php'
-                        line: 261
-                        function: dispatch
-                        class: Illuminate\Routing\ControllerDispatcher
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Routing\Route.php'
-                        line: 204
-                        function: runController
-                        class: Illuminate\Routing\Route
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
-                        line: 695
-                        function: run
-                        class: Illuminate\Routing\Route
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                        line: 128
-                        function: 'Illuminate\Routing\{closure}'
-                        class: Illuminate\Routing\Router
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Routing\Middleware\SubstituteBindings.php'
-                        line: 50
-                        function: 'Illuminate\Pipeline\{closure}'
-                        class: Illuminate\Pipeline\Pipeline
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                        line: 167
-                        function: handle
-                        class: Illuminate\Routing\Middleware\SubstituteBindings
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php'
-                        line: 127
-                        function: 'Illuminate\Pipeline\{closure}'
-                        class: Illuminate\Pipeline\Pipeline
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php'
-                        line: 103
-                        function: handleRequest
-                        class: Illuminate\Routing\Middleware\ThrottleRequests
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php'
-                        line: 55
-                        function: handleRequestUsingNamedLimiter
-                        class: Illuminate\Routing\Middleware\ThrottleRequests
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                        line: 167
-                        function: handle
-                        class: Illuminate\Routing\Middleware\ThrottleRequests
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                        line: 103
-                        function: 'Illuminate\Pipeline\{closure}'
-                        class: Illuminate\Pipeline\Pipeline
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
-                        line: 697
-                        function: then
-                        class: Illuminate\Pipeline\Pipeline
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
-                        line: 672
-                        function: runRouteWithinStack
-                        class: Illuminate\Routing\Router
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
-                        line: 636
-                        function: runRoute
-                        class: Illuminate\Routing\Router
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
-                        line: 625
-                        function: dispatchToRoute
-                        class: Illuminate\Routing\Router
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php'
-                        line: 166
-                        function: dispatch
-                        class: Illuminate\Routing\Router
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                        line: 128
-                        function: 'Illuminate\Foundation\Http\{closure}'
-                        class: Illuminate\Foundation\Http\Kernel
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php'
-                        line: 21
-                        function: 'Illuminate\Pipeline\{closure}'
-                        class: Illuminate\Pipeline\Pipeline
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull.php'
-                        line: 31
-                        function: handle
-                        class: Illuminate\Foundation\Http\Middleware\TransformsRequest
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                        line: 167
-                        function: handle
-                        class: Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php'
-                        line: 21
-                        function: 'Illuminate\Pipeline\{closure}'
-                        class: Illuminate\Pipeline\Pipeline
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TrimStrings.php'
-                        line: 40
-                        function: handle
-                        class: Illuminate\Foundation\Http\Middleware\TransformsRequest
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                        line: 167
-                        function: handle
-                        class: Illuminate\Foundation\Http\Middleware\TrimStrings
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ValidatePostSize.php'
-                        line: 27
-                        function: 'Illuminate\Pipeline\{closure}'
-                        class: Illuminate\Pipeline\Pipeline
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                        line: 167
-                        function: handle
-                        class: Illuminate\Foundation\Http\Middleware\ValidatePostSize
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance.php'
-                        line: 86
-                        function: 'Illuminate\Pipeline\{closure}'
-                        class: Illuminate\Pipeline\Pipeline
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                        line: 167
-                        function: handle
-                        class: Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\fruitcake\laravel-cors\src\HandleCors.php'
-                        line: 52
-                        function: 'Illuminate\Pipeline\{closure}'
-                        class: Illuminate\Pipeline\Pipeline
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                        line: 167
-                        function: handle
-                        class: Fruitcake\Cors\HandleCors
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\fideloper\proxy\src\TrustProxies.php'
-                        line: 57
-                        function: 'Illuminate\Pipeline\{closure}'
-                        class: Illuminate\Pipeline\Pipeline
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                        line: 167
-                        function: handle
-                        class: Fideloper\Proxy\TrustProxies
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                        line: 103
-                        function: 'Illuminate\Pipeline\{closure}'
-                        class: Illuminate\Pipeline\Pipeline
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php'
-                        line: 141
-                        function: then
-                        class: Illuminate\Pipeline\Pipeline
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php'
-                        line: 110
-                        function: sendRequestThroughRouter
-                        class: Illuminate\Foundation\Http\Kernel
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
-                        line: 287
-                        function: handle
-                        class: Illuminate\Foundation\Http\Kernel
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
-                        line: 275
-                        function: callLaravelOrLumenRoute
-                        class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
-                        line: 86
-                        function: makeApiCall
-                        class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
-                        line: 44
-                        function: makeResponseCall
-                        class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
-                        line: 34
-                        function: makeResponseCallIfConditionsPass
-                        class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\knuckleswtf\scribe\src\Extracting\Extractor.php'
-                        line: 225
-                        function: __invoke
-                        class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\knuckleswtf\scribe\src\Extracting\Extractor.php'
-                        line: 182
-                        function: iterateThroughStrategies
-                        class: Knuckles\Scribe\Extracting\Extractor
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\knuckleswtf\scribe\src\Extracting\Extractor.php'
-                        line: 116
-                        function: fetchResponses
-                        class: Knuckles\Scribe\Extracting\Extractor
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\knuckleswtf\scribe\src\GroupedEndpoints\GroupedEndpointsFromApp.php'
-                        line: 118
-                        function: processRoute
-                        class: Knuckles\Scribe\Extracting\Extractor
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\knuckleswtf\scribe\src\GroupedEndpoints\GroupedEndpointsFromApp.php'
-                        line: 75
-                        function: extractEndpointsInfoFromLaravelApp
-                        class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\knuckleswtf\scribe\src\GroupedEndpoints\GroupedEndpointsFromApp.php'
-                        line: 51
-                        function: extractEndpointsInfoAndWriteToDisk
-                        class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\knuckleswtf\scribe\src\Commands\GenerateDocumentation.php'
-                        line: 39
-                        function: get
-                        class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php'
-                        line: 36
-                        function: handle
-                        class: Knuckles\Scribe\Commands\GenerateDocumentation
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Container\Util.php'
-                        line: 40
-                        function: 'Illuminate\Container\{closure}'
-                        class: Illuminate\Container\BoundMethod
-                        type: '::'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php'
-                        line: 93
-                        function: unwrapIfClosure
-                        class: Illuminate\Container\Util
-                        type: '::'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php'
-                        line: 37
-                        function: callBoundMethod
-                        class: Illuminate\Container\BoundMethod
-                        type: '::'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Container\Container.php'
-                        line: 651
-                        function: call
-                        class: Illuminate\Container\BoundMethod
-                        type: '::'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Console\Command.php'
-                        line: 136
-                        function: call
-                        class: Illuminate\Container\Container
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\symfony\console\Command\Command.php'
-                        line: 299
-                        function: execute
-                        class: Illuminate\Console\Command
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Console\Command.php'
-                        line: 121
-                        function: run
-                        class: Symfony\Component\Console\Command\Command
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\symfony\console\Application.php'
-                        line: 978
-                        function: run
-                        class: Illuminate\Console\Command
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\symfony\console\Application.php'
-                        line: 295
-                        function: doRunCommand
-                        class: Symfony\Component\Console\Application
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\symfony\console\Application.php'
-                        line: 167
-                        function: doRun
-                        class: Symfony\Component\Console\Application
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Console\Application.php'
-                        line: 92
-                        function: run
-                        class: Symfony\Component\Console\Application
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Foundation\Console\Kernel.php'
-                        line: 129
-                        function: run
-                        class: Illuminate\Console\Application
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\artisan'
-                        line: 37
-                        function: handle
-                        class: Illuminate\Foundation\Console\Kernel
-                        type: '->'
-                    items:
-                      type: object
+                    example: Unauthenticated.
       tags:
         - Endpoints
       security: []
-  /api/sort:
+  /api/admin/sort:
     get:
       summary: 'get the 4 most selling item'
       description: ''
@@ -2665,25 +2068,22 @@ paths:
           schema:
             type: string
       responses:
-        200:
+        401:
           description: ''
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  type: object
+                type: object
                 example:
-                  -
-                    item_name: 'Little Bacon Cheeseburger'
-                  -
-                    item_name: 'Veggie Sandwich'
-                  -
-                    item_name: 'Cheese Veggie Sandwich'
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
       tags:
         - Endpoints
       security: []
-  /api/add:
+  /api/admin/add:
     get:
       summary: 'Invoke the controller method.'
       description: ''
@@ -2703,828 +2103,18 @@ paths:
           schema:
             type: string
       responses:
-        500:
+        401:
           description: ''
           content:
             application/json:
               schema:
                 type: object
                 example:
-                  message: 'View [table] not found.'
-                  exception: InvalidArgumentException
-                  file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\View\FileViewFinder.php'
-                  line: 137
-                  trace:
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\View\FileViewFinder.php'
-                      line: 79
-                      function: findInPaths
-                      class: Illuminate\View\FileViewFinder
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\View\Factory.php'
-                      line: 138
-                      function: find
-                      class: Illuminate\View\FileViewFinder
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Routing\ResponseFactory.php'
-                      line: 85
-                      function: make
-                      class: Illuminate\View\Factory
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Routing\ViewController.php'
-                      line: 37
-                      function: view
-                      class: Illuminate\Routing\ResponseFactory
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Routing\Controller.php'
-                      line: 54
-                      function: __invoke
-                      class: Illuminate\Routing\ViewController
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Routing\ControllerDispatcher.php'
-                      line: 45
-                      function: callAction
-                      class: Illuminate\Routing\Controller
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Routing\Route.php'
-                      line: 261
-                      function: dispatch
-                      class: Illuminate\Routing\ControllerDispatcher
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Routing\Route.php'
-                      line: 204
-                      function: runController
-                      class: Illuminate\Routing\Route
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
-                      line: 695
-                      function: run
-                      class: Illuminate\Routing\Route
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                      line: 128
-                      function: 'Illuminate\Routing\{closure}'
-                      class: Illuminate\Routing\Router
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Routing\Middleware\SubstituteBindings.php'
-                      line: 50
-                      function: 'Illuminate\Pipeline\{closure}'
-                      class: Illuminate\Pipeline\Pipeline
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                      line: 167
-                      function: handle
-                      class: Illuminate\Routing\Middleware\SubstituteBindings
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php'
-                      line: 127
-                      function: 'Illuminate\Pipeline\{closure}'
-                      class: Illuminate\Pipeline\Pipeline
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php'
-                      line: 103
-                      function: handleRequest
-                      class: Illuminate\Routing\Middleware\ThrottleRequests
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php'
-                      line: 55
-                      function: handleRequestUsingNamedLimiter
-                      class: Illuminate\Routing\Middleware\ThrottleRequests
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                      line: 167
-                      function: handle
-                      class: Illuminate\Routing\Middleware\ThrottleRequests
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                      line: 103
-                      function: 'Illuminate\Pipeline\{closure}'
-                      class: Illuminate\Pipeline\Pipeline
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
-                      line: 697
-                      function: then
-                      class: Illuminate\Pipeline\Pipeline
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
-                      line: 672
-                      function: runRouteWithinStack
-                      class: Illuminate\Routing\Router
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
-                      line: 636
-                      function: runRoute
-                      class: Illuminate\Routing\Router
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
-                      line: 625
-                      function: dispatchToRoute
-                      class: Illuminate\Routing\Router
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php'
-                      line: 166
-                      function: dispatch
-                      class: Illuminate\Routing\Router
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                      line: 128
-                      function: 'Illuminate\Foundation\Http\{closure}'
-                      class: Illuminate\Foundation\Http\Kernel
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php'
-                      line: 21
-                      function: 'Illuminate\Pipeline\{closure}'
-                      class: Illuminate\Pipeline\Pipeline
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull.php'
-                      line: 31
-                      function: handle
-                      class: Illuminate\Foundation\Http\Middleware\TransformsRequest
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                      line: 167
-                      function: handle
-                      class: Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php'
-                      line: 21
-                      function: 'Illuminate\Pipeline\{closure}'
-                      class: Illuminate\Pipeline\Pipeline
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TrimStrings.php'
-                      line: 40
-                      function: handle
-                      class: Illuminate\Foundation\Http\Middleware\TransformsRequest
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                      line: 167
-                      function: handle
-                      class: Illuminate\Foundation\Http\Middleware\TrimStrings
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ValidatePostSize.php'
-                      line: 27
-                      function: 'Illuminate\Pipeline\{closure}'
-                      class: Illuminate\Pipeline\Pipeline
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                      line: 167
-                      function: handle
-                      class: Illuminate\Foundation\Http\Middleware\ValidatePostSize
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance.php'
-                      line: 86
-                      function: 'Illuminate\Pipeline\{closure}'
-                      class: Illuminate\Pipeline\Pipeline
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                      line: 167
-                      function: handle
-                      class: Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\fruitcake\laravel-cors\src\HandleCors.php'
-                      line: 52
-                      function: 'Illuminate\Pipeline\{closure}'
-                      class: Illuminate\Pipeline\Pipeline
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                      line: 167
-                      function: handle
-                      class: Fruitcake\Cors\HandleCors
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\fideloper\proxy\src\TrustProxies.php'
-                      line: 57
-                      function: 'Illuminate\Pipeline\{closure}'
-                      class: Illuminate\Pipeline\Pipeline
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                      line: 167
-                      function: handle
-                      class: Fideloper\Proxy\TrustProxies
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                      line: 103
-                      function: 'Illuminate\Pipeline\{closure}'
-                      class: Illuminate\Pipeline\Pipeline
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php'
-                      line: 141
-                      function: then
-                      class: Illuminate\Pipeline\Pipeline
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php'
-                      line: 110
-                      function: sendRequestThroughRouter
-                      class: Illuminate\Foundation\Http\Kernel
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
-                      line: 287
-                      function: handle
-                      class: Illuminate\Foundation\Http\Kernel
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
-                      line: 275
-                      function: callLaravelOrLumenRoute
-                      class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
-                      line: 86
-                      function: makeApiCall
-                      class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
-                      line: 44
-                      function: makeResponseCall
-                      class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
-                      line: 34
-                      function: makeResponseCallIfConditionsPass
-                      class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\knuckleswtf\scribe\src\Extracting\Extractor.php'
-                      line: 225
-                      function: __invoke
-                      class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\knuckleswtf\scribe\src\Extracting\Extractor.php'
-                      line: 182
-                      function: iterateThroughStrategies
-                      class: Knuckles\Scribe\Extracting\Extractor
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\knuckleswtf\scribe\src\Extracting\Extractor.php'
-                      line: 116
-                      function: fetchResponses
-                      class: Knuckles\Scribe\Extracting\Extractor
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\knuckleswtf\scribe\src\GroupedEndpoints\GroupedEndpointsFromApp.php'
-                      line: 118
-                      function: processRoute
-                      class: Knuckles\Scribe\Extracting\Extractor
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\knuckleswtf\scribe\src\GroupedEndpoints\GroupedEndpointsFromApp.php'
-                      line: 75
-                      function: extractEndpointsInfoFromLaravelApp
-                      class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\knuckleswtf\scribe\src\GroupedEndpoints\GroupedEndpointsFromApp.php'
-                      line: 51
-                      function: extractEndpointsInfoAndWriteToDisk
-                      class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\knuckleswtf\scribe\src\Commands\GenerateDocumentation.php'
-                      line: 39
-                      function: get
-                      class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php'
-                      line: 36
-                      function: handle
-                      class: Knuckles\Scribe\Commands\GenerateDocumentation
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Container\Util.php'
-                      line: 40
-                      function: 'Illuminate\Container\{closure}'
-                      class: Illuminate\Container\BoundMethod
-                      type: '::'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php'
-                      line: 93
-                      function: unwrapIfClosure
-                      class: Illuminate\Container\Util
-                      type: '::'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php'
-                      line: 37
-                      function: callBoundMethod
-                      class: Illuminate\Container\BoundMethod
-                      type: '::'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Container\Container.php'
-                      line: 651
-                      function: call
-                      class: Illuminate\Container\BoundMethod
-                      type: '::'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Console\Command.php'
-                      line: 136
-                      function: call
-                      class: Illuminate\Container\Container
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\symfony\console\Command\Command.php'
-                      line: 299
-                      function: execute
-                      class: Illuminate\Console\Command
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Console\Command.php'
-                      line: 121
-                      function: run
-                      class: Symfony\Component\Console\Command\Command
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\symfony\console\Application.php'
-                      line: 978
-                      function: run
-                      class: Illuminate\Console\Command
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\symfony\console\Application.php'
-                      line: 295
-                      function: doRunCommand
-                      class: Symfony\Component\Console\Application
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\symfony\console\Application.php'
-                      line: 167
-                      function: doRun
-                      class: Symfony\Component\Console\Application
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Console\Application.php'
-                      line: 92
-                      function: run
-                      class: Symfony\Component\Console\Application
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Foundation\Console\Kernel.php'
-                      line: 129
-                      function: run
-                      class: Illuminate\Console\Application
-                      type: '->'
-                    -
-                      file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\artisan'
-                      line: 37
-                      function: handle
-                      class: Illuminate\Foundation\Console\Kernel
-                      type: '->'
+                  message: Unauthenticated.
                 properties:
                   message:
                     type: string
-                    example: 'View [table] not found.'
-                  exception:
-                    type: string
-                    example: InvalidArgumentException
-                  file:
-                    type: string
-                    example: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\View\FileViewFinder.php'
-                  line:
-                    type: integer
-                    example: 137
-                  trace:
-                    type: array
-                    example:
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\View\FileViewFinder.php'
-                        line: 79
-                        function: findInPaths
-                        class: Illuminate\View\FileViewFinder
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\View\Factory.php'
-                        line: 138
-                        function: find
-                        class: Illuminate\View\FileViewFinder
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Routing\ResponseFactory.php'
-                        line: 85
-                        function: make
-                        class: Illuminate\View\Factory
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Routing\ViewController.php'
-                        line: 37
-                        function: view
-                        class: Illuminate\Routing\ResponseFactory
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Routing\Controller.php'
-                        line: 54
-                        function: __invoke
-                        class: Illuminate\Routing\ViewController
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Routing\ControllerDispatcher.php'
-                        line: 45
-                        function: callAction
-                        class: Illuminate\Routing\Controller
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Routing\Route.php'
-                        line: 261
-                        function: dispatch
-                        class: Illuminate\Routing\ControllerDispatcher
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Routing\Route.php'
-                        line: 204
-                        function: runController
-                        class: Illuminate\Routing\Route
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
-                        line: 695
-                        function: run
-                        class: Illuminate\Routing\Route
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                        line: 128
-                        function: 'Illuminate\Routing\{closure}'
-                        class: Illuminate\Routing\Router
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Routing\Middleware\SubstituteBindings.php'
-                        line: 50
-                        function: 'Illuminate\Pipeline\{closure}'
-                        class: Illuminate\Pipeline\Pipeline
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                        line: 167
-                        function: handle
-                        class: Illuminate\Routing\Middleware\SubstituteBindings
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php'
-                        line: 127
-                        function: 'Illuminate\Pipeline\{closure}'
-                        class: Illuminate\Pipeline\Pipeline
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php'
-                        line: 103
-                        function: handleRequest
-                        class: Illuminate\Routing\Middleware\ThrottleRequests
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php'
-                        line: 55
-                        function: handleRequestUsingNamedLimiter
-                        class: Illuminate\Routing\Middleware\ThrottleRequests
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                        line: 167
-                        function: handle
-                        class: Illuminate\Routing\Middleware\ThrottleRequests
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                        line: 103
-                        function: 'Illuminate\Pipeline\{closure}'
-                        class: Illuminate\Pipeline\Pipeline
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
-                        line: 697
-                        function: then
-                        class: Illuminate\Pipeline\Pipeline
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
-                        line: 672
-                        function: runRouteWithinStack
-                        class: Illuminate\Routing\Router
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
-                        line: 636
-                        function: runRoute
-                        class: Illuminate\Routing\Router
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
-                        line: 625
-                        function: dispatchToRoute
-                        class: Illuminate\Routing\Router
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php'
-                        line: 166
-                        function: dispatch
-                        class: Illuminate\Routing\Router
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                        line: 128
-                        function: 'Illuminate\Foundation\Http\{closure}'
-                        class: Illuminate\Foundation\Http\Kernel
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php'
-                        line: 21
-                        function: 'Illuminate\Pipeline\{closure}'
-                        class: Illuminate\Pipeline\Pipeline
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull.php'
-                        line: 31
-                        function: handle
-                        class: Illuminate\Foundation\Http\Middleware\TransformsRequest
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                        line: 167
-                        function: handle
-                        class: Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php'
-                        line: 21
-                        function: 'Illuminate\Pipeline\{closure}'
-                        class: Illuminate\Pipeline\Pipeline
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TrimStrings.php'
-                        line: 40
-                        function: handle
-                        class: Illuminate\Foundation\Http\Middleware\TransformsRequest
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                        line: 167
-                        function: handle
-                        class: Illuminate\Foundation\Http\Middleware\TrimStrings
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ValidatePostSize.php'
-                        line: 27
-                        function: 'Illuminate\Pipeline\{closure}'
-                        class: Illuminate\Pipeline\Pipeline
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                        line: 167
-                        function: handle
-                        class: Illuminate\Foundation\Http\Middleware\ValidatePostSize
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance.php'
-                        line: 86
-                        function: 'Illuminate\Pipeline\{closure}'
-                        class: Illuminate\Pipeline\Pipeline
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                        line: 167
-                        function: handle
-                        class: Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\fruitcake\laravel-cors\src\HandleCors.php'
-                        line: 52
-                        function: 'Illuminate\Pipeline\{closure}'
-                        class: Illuminate\Pipeline\Pipeline
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                        line: 167
-                        function: handle
-                        class: Fruitcake\Cors\HandleCors
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\fideloper\proxy\src\TrustProxies.php'
-                        line: 57
-                        function: 'Illuminate\Pipeline\{closure}'
-                        class: Illuminate\Pipeline\Pipeline
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                        line: 167
-                        function: handle
-                        class: Fideloper\Proxy\TrustProxies
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
-                        line: 103
-                        function: 'Illuminate\Pipeline\{closure}'
-                        class: Illuminate\Pipeline\Pipeline
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php'
-                        line: 141
-                        function: then
-                        class: Illuminate\Pipeline\Pipeline
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php'
-                        line: 110
-                        function: sendRequestThroughRouter
-                        class: Illuminate\Foundation\Http\Kernel
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
-                        line: 287
-                        function: handle
-                        class: Illuminate\Foundation\Http\Kernel
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
-                        line: 275
-                        function: callLaravelOrLumenRoute
-                        class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
-                        line: 86
-                        function: makeApiCall
-                        class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
-                        line: 44
-                        function: makeResponseCall
-                        class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
-                        line: 34
-                        function: makeResponseCallIfConditionsPass
-                        class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\knuckleswtf\scribe\src\Extracting\Extractor.php'
-                        line: 225
-                        function: __invoke
-                        class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\knuckleswtf\scribe\src\Extracting\Extractor.php'
-                        line: 182
-                        function: iterateThroughStrategies
-                        class: Knuckles\Scribe\Extracting\Extractor
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\knuckleswtf\scribe\src\Extracting\Extractor.php'
-                        line: 116
-                        function: fetchResponses
-                        class: Knuckles\Scribe\Extracting\Extractor
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\knuckleswtf\scribe\src\GroupedEndpoints\GroupedEndpointsFromApp.php'
-                        line: 118
-                        function: processRoute
-                        class: Knuckles\Scribe\Extracting\Extractor
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\knuckleswtf\scribe\src\GroupedEndpoints\GroupedEndpointsFromApp.php'
-                        line: 75
-                        function: extractEndpointsInfoFromLaravelApp
-                        class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\knuckleswtf\scribe\src\GroupedEndpoints\GroupedEndpointsFromApp.php'
-                        line: 51
-                        function: extractEndpointsInfoAndWriteToDisk
-                        class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\knuckleswtf\scribe\src\Commands\GenerateDocumentation.php'
-                        line: 39
-                        function: get
-                        class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php'
-                        line: 36
-                        function: handle
-                        class: Knuckles\Scribe\Commands\GenerateDocumentation
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Container\Util.php'
-                        line: 40
-                        function: 'Illuminate\Container\{closure}'
-                        class: Illuminate\Container\BoundMethod
-                        type: '::'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php'
-                        line: 93
-                        function: unwrapIfClosure
-                        class: Illuminate\Container\Util
-                        type: '::'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php'
-                        line: 37
-                        function: callBoundMethod
-                        class: Illuminate\Container\BoundMethod
-                        type: '::'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Container\Container.php'
-                        line: 651
-                        function: call
-                        class: Illuminate\Container\BoundMethod
-                        type: '::'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Console\Command.php'
-                        line: 136
-                        function: call
-                        class: Illuminate\Container\Container
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\symfony\console\Command\Command.php'
-                        line: 299
-                        function: execute
-                        class: Illuminate\Console\Command
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Console\Command.php'
-                        line: 121
-                        function: run
-                        class: Symfony\Component\Console\Command\Command
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\symfony\console\Application.php'
-                        line: 978
-                        function: run
-                        class: Illuminate\Console\Command
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\symfony\console\Application.php'
-                        line: 295
-                        function: doRunCommand
-                        class: Symfony\Component\Console\Application
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\symfony\console\Application.php'
-                        line: 167
-                        function: doRun
-                        class: Symfony\Component\Console\Application
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Console\Application.php'
-                        line: 92
-                        function: run
-                        class: Symfony\Component\Console\Application
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\vendor\laravel\framework\src\Illuminate\Foundation\Console\Kernel.php'
-                        line: 129
-                        function: run
-                        class: Illuminate\Console\Application
-                        type: '->'
-                      -
-                        file: 'C:\Users\zeyad\Desktop\newwwwwwwwwwwwwwwww\restaurant-development\artisan'
-                        line: 37
-                        function: handle
-                        class: Illuminate\Foundation\Console\Kernel
-                        type: '->'
-                    items:
-                      type: object
+                    example: Unauthenticated.
       tags:
         - Endpoints
       security: []
@@ -3559,9 +2149,9 @@ paths:
                 table:
                   type: state
                   description: 'string required The state of the table to which the table will be added'
-                  example: voluptatem
+                  example: voluptatibus
       security: []
-  /api/list:
+  /api/admin/list:
     get:
       summary: 'shows all the tables with their state'
       description: ''
@@ -3581,24 +2171,22 @@ paths:
           schema:
             type: string
       responses:
-        200:
+        401:
           description: ''
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  type: object
+                type: object
                 example:
-                  -
-                    id: 1
-                    state: avaliable
-                    created_at: '2021-09-01T19:11:41.000000Z'
-                    updated_at: '2021-09-01T19:13:01.000000Z'
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
       tags:
         - Endpoints
       security: []
-  '/api/update/{id}':
+  '/api/admin/update/{id}':
     get:
       summary: 'select the wanted table to change it''s state'
       description: ''
@@ -3618,13 +2206,18 @@ paths:
           schema:
             type: string
       responses:
-        200:
+        401:
           description: ''
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
-                example: ''
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
       tags:
         - Endpoints
       security: []
@@ -3637,7 +2230,7 @@ paths:
         required: true
         schema:
           type: integer
-  /api/update:
+  /api/admin/update:
     post:
       summary: 'update the table state'
       description: ''
@@ -3669,11 +2262,124 @@ paths:
                 id:
                   type: of
                   description: 'the table'
-                  example: minus
+                  example: non
                 state:
                   type: the
                   description: 'new wanted state to update'
-                  example: et
+                  example: debitis
+      security: []
+  /api/store:
+    post:
+      summary: 'Store a newly created resource in storage.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  /api/destroy:
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  /api/review-iteam:
+    post:
+      summary: 'Add item Feedback Rating to the order.'
+      description: "This endpoint allows user to add feedback and rating to a special item.\n\nThe user can add feedback and rating to any item he want.\nThe user can add more than feedback and rating to different item\n\n<aside class=\"notice\">the user add feedback and rating to many different item</aside>"
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: true
+                  response: 200
+                properties:
+                  status:
+                    type: boolean
+                    example: true
+                  response:
+                    type: integer
+                    example: 200
+      tags:
+        - 'Item Management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                U_id:
+                  type: integer
+                  description: 'use to know the user'
+                  example: 16
+                feedback:
+                  type: string
+                  description: 'that is the feedback that the user want to get to the item'
+                  example: sed
+                rating:
+                  type: number
+                  description: 'that is the rate that the user want to get to the item'
+                  example: 266.05
+                It_id:
+                  type: integer
+                  description: 'use to know the item'
+                  example: 9
+              required:
+                - U_id
+                - feedback
+                - rating
+                - It_id
       security: []
   /api/place-order:
     post:
@@ -3694,7 +2400,43 @@ paths:
           example: application/json
           schema:
             type: string
-      responses: {  }
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: true
+                  errNum: 200
+                  msg: 'Order placed'
+                  'order details':
+                    user_id: 3
+                    price: 0
+                    type_of_delivery: 'In Restaurant'
+                    updated_at: '2021-09-02T13:05:53.000000Z'
+                    created_at: '2021-09-02T13:05:53.000000Z'
+                    id: 11
+                properties:
+                  status:
+                    type: boolean
+                    example: true
+                  errNum:
+                    type: integer
+                    example: 200
+                  msg:
+                    type: string
+                    example: 'Order placed'
+                  'order details':
+                    type: object
+                    example:
+                      user_id: 3
+                      price: 0
+                      type_of_delivery: 'In Restaurant'
+                      updated_at: '2021-09-02T13:05:53.000000Z'
+                      created_at: '2021-09-02T13:05:53.000000Z'
+                      id: 11
       tags:
         - 'Order Management'
       requestBody:
@@ -3707,7 +2449,7 @@ paths:
                 cartID:
                   type: integer
                   description: 'The id of a valid cart to use for the order'
-                  example: 1
+                  example: 4
                 deliveryType:
                   type: integer
                   description: 'A number between 0-3 to specify the type of delivery from the list [''To Home'', ''To Car'', ''In Restaurant'', ''Take Away''].'
@@ -3716,13 +2458,390 @@ paths:
                 - cartID
                 - deliveryType
       security: []
+  /api/order-history:
+    post:
+      summary: 'History of the order.'
+      description: "This endpoint allows user to see all his order history.\n\nEnable user to see all his old orders as if his want to take the same order again\n\n<aside class=\"notice\">when the user want to see his histroy he can see it</aside>"
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                example:
+                  -
+                    price: '54.00'
+                    type_of_delivery: 'To Home'
+                    rating: null
+                    Feedback: null
+                  -
+                    price: '15.00'
+                    type_of_delivery: 'To Home'
+                    rating: null
+                    Feedback: null
+                  -
+                    price: '23.00'
+                    type_of_delivery: 'In Restaurant'
+                    rating: null
+                    Feedback: null
+      tags:
+        - 'Order Management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: integer
+                  description: 'to know the user that we will get his data'
+                  example: 17
+              required:
+                - user_id
+      security: []
+  /api/feedback:
+    post:
+      summary: 'Add Feedback to the order.'
+      description: "This endpoint allows user to add feedback to his order.\n\nthe user can put a feedback about the order that he paid\n\n<aside class=\"notice\">The user add a feedback to an order </aside>"
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: true
+                  response: 200
+                properties:
+                  status:
+                    type: boolean
+                    example: true
+                  response:
+                    type: integer
+                    example: 200
+      tags:
+        - 'Order Management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                order_id:
+                  type: integer
+                  description: 'to know the order that will take feedback'
+                  example: 4
+                feedback:
+                  type: string
+                  description: 'that is the feedback that the user want to get to the order'
+                  example: esse
+              required:
+                - order_id
+                - feedback
+      security: []
+  /api/rating:
+    post:
+      summary: 'Add Rating to the order.'
+      description: "This endpoint allows user to add rate to his order.\n\nthe user can put a rate about the order that he paid\n\n<aside class=\"notice\">The user add a rate to an order </aside>"
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: true
+                  response: 200
+                properties:
+                  status:
+                    type: boolean
+                    example: true
+                  response:
+                    type: integer
+                    example: 200
+      tags:
+        - 'Order Management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                order_id:
+                  type: integer
+                  description: 'to know the order that will take rate'
+                  example: 10
+                rate:
+                  type: number
+                  description: 'that is the feedback that the user want to get to the order'
+                  example: !!float 3
+              required:
+                - order_id
+                - rate
+      security: []
+  /api/add-comment:
+    post:
+      summary: 'Add additional comment'
+      description: "This endpoint allows you to add additional comment to the order.\n\nThe user can add additional comment to the order\nEx: The customer wants the food spicy."
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: success
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n \"status\": true,\n \"response\": 200,\n \"data\": The whole order with the additional comment added to it\n}"
+      tags:
+        - 'Order Management'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                  description: 'required, the id to get the order that we want to add the additional comment to it'
+                  example: 19
+                additional_comment:
+                  type: string
+                  description: 'required, the additional comment statment that the user has entered'
+                  example: laudantium
+      security: []
+  /api/add-addresses:
+    post:
+      summary: 'Add address'
+      description: "This endpoint allows you to add address to the order.\n\nThe user can add favourite address to facilitate the usage for him\nand also can add multiple addresses in his account\n\n<aside class=\"notice\">when the user add new address it takes place of the old one</aside>"
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: success
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n \"status\": true,\n \"response\": 200\n \"data\": The user details id,user_id,favourite_location,location after assigning his new location and favourite location\n}"
+      tags:
+        - 'address Management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: integer
+                  description: 'to assign the address to him'
+                  example: 8
+                location:
+                  type: string
+                  description: 'The new address that the user wants to add'
+                  example: beatae
+                favourite_location:
+                  type: string
+                  description: 'The new favourite address if the user wanted to add one'
+                  example: doloribus
+              required:
+                - user_id
+                - location
+                - favourite_location
+      security: []
+  /api/add-fav-addresses:
+    post:
+      summary: 'Add favourite address'
+      description: "This endpoint allows you to add favourite address to the order.\n\nThe user can add favourite address to facilitate the usage for him\n\n<aside class=\"notice\">when the user add new favourite address it takes place of the old one</aside>"
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: success
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n \"status\": true,\n \"response\": 200\n \"data\": The user details id,user_id,favourite_location,location after updating his favourite address\n}"
+      tags:
+        - 'address Management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: integer
+                  description: 'to assign the address to him'
+                  example: 3
+                favourite_location:
+                  type: string
+                  description: 'The new favourite address that the user wants to add'
+                  example: ea
+              required:
+                - user_id
+                - favourite_location
+      security: []
+  /api/add-another-addresses:
+    post:
+      summary: 'Add another address'
+      description: "This endpoint allows you to add another address to the order differ from the old one he ordered by.\n\nThe user can add another address to facilitate the usage for him\n\n<aside class=\"notice\">when the user add new another address it takes place of the old one</aside>"
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: success
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n \"status\": true,\n \"response\": 200,\n \"data\": The user details id,user_id,favourite_location,location after updating his address\n}"
+      tags:
+        - 'address Management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: integer
+                  description: 'to assign the address to him'
+                  example: 15
+                location:
+                  type: string
+                  description: 'The new address that the user wants to add'
+                  example: architecto
+              required:
+                - user_id
+                - location
+      security: []
 tags:
   -
     name: 'Cart Management'
     description: "\nAPIs for Creating and using carts"
   -
+    name: 'Complaints Management'
+    description: "\nAPIs for adding or removing specific complaint, in addition to showing all the complaints found in the system"
+  -
     name: Endpoints
     description: ''
   -
+    name: 'Item Management'
+    description: "\nAPIs for placing item feedback and rating"
+  -
     name: 'Order Management'
     description: "\nAPIs for placing orders and modifying them"
+  -
+    name: 'address Management'
+    description: "\nAPIs for adding new address or updating old one for customers"

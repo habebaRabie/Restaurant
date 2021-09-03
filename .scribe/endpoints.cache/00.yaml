@@ -23,9 +23,27 @@ endpoints:
         name: User_id
         description: 'The ID of the user who''s account is associated with this cart'
         required: true
-        example: 7
+        example: 13
         type: integer
-    responses: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+            "status": true,
+            "errNum": 200,
+            "msg": "cart created",
+            "cart details": {
+                "user_id": "3",
+                "total_price": 0,
+                 "status": false,
+                 "updated_at": "2021-09-02T13:04:33.000000Z",
+                 "created_at": "2021-09-02T13:04:33.000000Z",
+                 "id": 9
+             }
+          }
+        headers: []
+        description: '200, success'
     responseFields: []
   -
     httpMethods:
@@ -45,15 +63,33 @@ endpoints:
         name: cart_id
         description: 'The id of the cart to which the item will be added'
         required: true
-        example: 16
+        example: 5
         type: integer
       item_id:
         name: item_id
         description: 'The id of the item that needs to be added'
         required: true
-        example: 11
+        example: 19
         type: integer
-    responses: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+           "status": true,
+           "errNum": 200,
+           "msg": "Item Added Successfully",
+           "cart details": {
+               "id": 5,
+               "user_id": 3,
+               "total_price": 66,
+               "status": "false",
+               "created_at": "2021-08-19T09:51:01.000000Z",
+               "updated_at": "2021-09-02T12:30:43.000000Z"
+           }
+          }
+        headers: []
+        description: '200, success'
     responseFields: []
   -
     httpMethods:
@@ -73,13 +109,75 @@ endpoints:
         name: cart_id
         description: 'The id of the cart that will be modified'
         required: true
-        example: 18
+        example: 2
         type: integer
       item_id:
         name: item_id
-        description: 'The id of the item that needs to be removed'
+        description: |-
+          The id of the item that needs to be removed
+
+           @response scenario=success {
+             "status": true,
+             "errNum": 200,
+             "msg": "Item Removed Successfully",
+             "cart details": {
+                 "id": 5,
+                 "user_id": 3,
+                 "total_price": 54,
+                 "status": "false",
+                 "created_at": "2021-08-19T09:51:01.000000Z",
+                 "updated_at": "2021-09-02T12:51:23.000000Z"
+             }
+          }
         required: true
-        example: 16
+        example: 11
+        type: integer
+    responses: []
+    responseFields: []
+  -
+    httpMethods:
+      - POST
+    uri: api/view-cart
+    metadata:
+      title: 'List cart items'
+      description: 'lists all items in the cart and their quantity'
+      authenticated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters:
+      cart_id:
+        name: cart_id
+        description: |-
+          The id of the cart that will be modified
+
+
+           @response scenario=success {
+           "status": true,
+           "response": 200,
+           "msg": "Items retrieved",
+           "cart items": [
+            {
+               "quantity": 2,
+              "item": [
+                 {
+                     "id": 1,
+                     "item_name": "pizza",
+                     "category_id": 1,
+                     "rating": 0,
+                     "price": "15.00",
+                     "offer": null,
+                     "offer_end_date": null,
+                     "created_at": null,
+                     "updated_at": null
+                    }
+                ]
+            }
+          }
+        required: true
+        example: 2
         type: integer
     responses: []
     responseFields: []
