@@ -52,6 +52,8 @@ Route::post('/email/verification-notification', [EmailVerificationNotificationCo
 
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
                 ->name('logout');
+
+Route::get('/my-profile',[AuthenticatedSessionController::class, 'user_profile']);
 });
 
 
