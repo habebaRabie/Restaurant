@@ -30,6 +30,9 @@ require __DIR__ . '/adminapi.php';
 
 Route::group(['middleware' => ['auth:api']], function () {
 
+
+
+
     //cart endpoints
     Route::post('/create-cart', 'App\Http\Controllers\CartController@createCart');
     Route::post('/add-to-cart', 'App\Http\Controllers\CartController@addToCart');
@@ -42,8 +45,7 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::post('/order-history', [App\Http\Controllers\OrdersController::class, 'History'])->name('History');
     Route::post('/feedback', [App\Http\Controllers\OrdersController::class, 'add_feedback'])->name('add_feedback');
     Route::post('/rating', [App\Http\Controllers\OrdersController::class, 'add_Rating'])->name('add_Rating');
-    Route::post('/review-iteam', [App\Http\Controllers\It_FeedController::class, 'Add_item_F_R'])->name('Add_item_F_R');
-
+    
     Route::post('/add-comment', [App\Http\Controllers\CommentController::class, 'addComment'])->name('addComment');
 
 
@@ -61,4 +63,9 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::post('/add-addresses', [App\Http\Controllers\AddressController::class, 'addAddresses'])->name('addAddresses');
     Route::post('/add-fav-addresses', [App\Http\Controllers\AddressController::class, 'addFavouriteAddress'])->name('addFavouriteAddress');
     Route::post('/add-another-addresses', [App\Http\Controllers\AddressController::class, 'addAnotherAddress'])->name('addAnotherAddress');
+
+    //item endpoints
+    Route::post('/review-iteam', [App\Http\Controllers\It_FeedController::class, 'Add_item_F_R'])->name('Add_item_F_R');
+    Route::post('/All-Items', [App\Http\Controllers\ItemController::class, 'GetItem'])->name('GetItem');
+
 });
