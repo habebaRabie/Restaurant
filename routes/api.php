@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CustomerPageController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\showcontroller;
@@ -21,9 +22,6 @@ use App\Http\Controllers\showcontroller;
     return $request->user();
 });*/
 
-Route::get('/', function () {
-    return response()->json(['This is the home page'],201);
-});
 
 require __DIR__ . '/auth.php';
 
@@ -69,5 +67,8 @@ Route::group(['middleware' => ['auth:api']], function () {
     //item endpoints
     Route::post('/review-iteam', [App\Http\Controllers\It_FeedController::class, 'Add_item_F_R'])->name('Add_item_F_R');
     Route::post('/All-Items', [App\Http\Controllers\ItemController::class, 'GetItem'])->name('GetItem');
+    
+
+Route::view('/CustomerPage', "CustomerPage") ;
 
 });
