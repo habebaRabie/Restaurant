@@ -21,7 +21,9 @@ use App\Http\Controllers\showcontroller;
     return $request->user();
 });*/
 
-
+Route::get('/', function () {
+    return response()->json(['This is the home page'],201);
+});
 
 require __DIR__ . '/auth.php';
 

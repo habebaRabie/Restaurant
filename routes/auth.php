@@ -33,6 +33,7 @@ Route::get('/reset-password/{token}', [NewPasswordController::class, 'create'])
 
 Route::post('/reset-password', [NewPasswordController::class, 'store'])
     ->name('password.update');
+
  
 });
 
