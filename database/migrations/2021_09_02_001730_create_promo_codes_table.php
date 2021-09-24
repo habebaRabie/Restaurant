@@ -19,8 +19,10 @@ class CreatePromoCodesTable extends Migration
             $table -> string('type');
             $table -> integer('value')->nullable();
             $table -> integer('precent_off')->nullable();
-            $table -> date('start_date');
             $table -> date('end_date');
+            $table->integer('no_users');
+            $table->integer('count_uses');
+            $table->boolean('active')->default(0);
             $table->timestamps();
         });
     }
