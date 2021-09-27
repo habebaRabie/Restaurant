@@ -47,6 +47,10 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::post('/rating', [App\Http\Controllers\OrdersController::class, 'add_Rating'])->name('add_Rating');
     
     Route::post('/add-comment', [App\Http\Controllers\CommentController::class, 'addComment'])->name('addComment');
+    Route::post('/addneworder', 'App\Http\Controllers\OrdersController@AddNewOrder');
+    Route::post('/updateorder/{id}', 'App\Http\Controllers\OrdersController@updateorder');
+    Route::post('/removeorder/{id}', 'App\Http\Controllers\OrdersController@DeleteOrder');
+    Route::post('/addtoorder', 'App\Http\Controllers\OrdersController@addOrderItem');
 
 
     //promocode endpoints

@@ -29,6 +29,7 @@ class AdminController extends Controller
  * }
  * @response 401 scenario="the user isn't a superadmin" {"message":"unauthorized"}
 */
+
     function GetAdmins(){
         $admin = Auth::user();
 

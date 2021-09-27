@@ -17,11 +17,8 @@ class DatabaseSeeder extends Seeder
 
         
     $this->call(UserSeeder::class);
-    $this->call(PromoSeeder::class);
     $this->call(AdminSeeder::class);
     $this->call(CategorySeeder::class);
-    
-    $this->call(AddressSeeder::class);
     $this->call(ItemSeeder::class);
 
 

@@ -36,6 +36,72 @@ class OrdersController extends Controller
      *   }
      *}
      */
+    public function addOrderItem(Request $request)
+    {
+        $item = new item;
+        $item = item::FindorFail($request["item_id"]);
+        
+
+        $result = DB::table('orderitem')->insert([
+            "order_id"  =>  $request["order_id"],
+            "quantity" => $request["quantity"],
+            "price" => $item["price"] * $request["quantity"],
+            "item_id" => $request["item_id"]
+        ]);
+            
+    }
+
+
+    function UpdateOrder($id , Request $request){
+
+        $result = Order::FindorFail($id)
+              ->update(
+                $request->all()
+              );
+        
+        if ($result == 1){
+            return "Order is Updated succesfully";
+        }
+        else{
+            return "Order is not updated";
+        }
+    
+    }
+    public function AddNewOrder(Request $request)
+    {
+        
+
+        
+        $delivery_type = $request->deliveryType;
+        $typesOfDelivery = ['To Home', 'To Car', 'In Restaurant', 'Take Away'];
+        if ($delivery_type > 3) {
+            return response()->json([
+                'status' => false,
+                'errNum' => 404,
+                'msg' => 'Type not found'
+            ]);
+        } else {
+            $order = new Order;
+          
+            $order->user_id=auth()->user()->id;
+
+            $order-> price = $request ->input('price');
+            $order->type_of_delivery = "In Restaurant";
+            
+            $order->save();
+            $this->OrderId = $order->id;
+           
+
+            
+            return $order;
+            
+            
+        }
+    }
+    function DeleteOrder($id){
+        
+        $result = Order::FindorFail($id)->delete();
+    }
     public function placeOrder(Request $request)
     {
         $cartID = $request->cartID;
@@ -71,6 +137,7 @@ class OrdersController extends Controller
             ]);
         }
     }
+   
 
     /**
      * History of the order.

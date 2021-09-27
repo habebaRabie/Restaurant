@@ -21,7 +21,7 @@ class ItemSeeder extends Seeder
         DB::table('items')->insert([
 
             'item_name' => $faker->foodName(),
-            'category_id'=>1,
+            'category_id'=>2,
             'rating'=>rand(0 , 5),
             'price'=>rand(100 , 200),
             'offer'=>rand(50,99),
