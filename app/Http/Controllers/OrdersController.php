@@ -176,10 +176,10 @@ class OrdersController extends Controller
     public function History(Request $request)
     {
         $user_id = $request->user_id;
-        $history = order::select('price', 'type_of_delivery', 'rating', 'Feedback')->where("user_id", $user_id)->get()->all();
+        $order_id = order::select('id')->where("user_id", $user_id)->first()->id;
+        $history = DB::table('orderitem')->where('order_id',$order_id)->get()->all();
         return response()->json($history);
     }
-
     /**
      *  Add Feedback to the order.
      *
