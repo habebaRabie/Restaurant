@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\cart;
-
+use Illuminate\Support\Facades\DB;
 /**
  * @group  Order Management
  *
@@ -176,9 +176,17 @@ class OrdersController extends Controller
     public function History(Request $request)
     {
         $user_id = $request->user_id;
-        $order_id = order::select('id')->where("user_id", $user_id)->first()->id;
-        $history = DB::table('orderitem')->where('order_id',$order_id)->get()->all();
-        return response()->json($history);
+        $order_id = order::select('id')->where('user_id', $user_id)->get()->all();
+        //echo $order_id;
+        $history = [];
+        foreach ($order_id as $order)
+        {
+            $key=$order['id'];
+            
+           $history[] = DB::table('orderitem')->where('order_id',$key)->get()->all();
+        }
+        
+  return response()->json($history);
     }
     /**
      *  Add Feedback to the order.
