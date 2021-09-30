@@ -44,8 +44,7 @@ Route::group(['middleware' => ['auth:api']], function () {
 
     //order endpoints
     Route::post('/place-order', 'App\Http\Controllers\OrdersController@placeOrder');
-    Route::post('/order-history', [App\Http\Controllers\OrdersController::class, 'History'])->name('History');
-    Route::post('/feedback', [App\Http\Controllers\OrdersController::class, 'add_feedback'])->name('add_feedback');
+   Route::post('/feedback', [App\Http\Controllers\OrdersController::class, 'add_feedback'])->name('add_feedback');
     Route::post('/rating', [App\Http\Controllers\OrdersController::class, 'add_Rating'])->name('add_Rating');
     
     Route::post('/add-comment', [App\Http\Controllers\CommentController::class, 'addComment'])->name('addComment');
