@@ -51,7 +51,7 @@ class ItemController extends Controller
      */
     public function GetItem(Request $request)
     {
-        $item = item::select('item_name','rating','price','offer','offer_end_date')->get()->all();
+        $item = item::select('id' , 'item_name','rating','price','offer','offer_end_date')->get()->all();
         return response()->json($item);
     }
 }

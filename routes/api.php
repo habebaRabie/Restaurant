@@ -27,6 +27,8 @@ require __DIR__ . '/auth.php';
 
 require __DIR__ . '/adminapi.php';
 
+Route::get('/All-Items', [App\Http\Controllers\ItemController::class, 'GetItem'])->name('GetItem');
+
 
 Route::group(['middleware' => ['auth:api']], function () {
 
@@ -72,7 +74,6 @@ Route::group(['middleware' => ['auth:api']], function () {
 
     //item endpoints
     Route::post('/review-iteam', [App\Http\Controllers\It_FeedController::class, 'Add_item_F_R'])->name('Add_item_F_R');
-    Route::post('/All-Items', [App\Http\Controllers\ItemController::class, 'GetItem'])->name('GetItem');
     
 
 Route::view('/CustomerPage', "CustomerPage") ;
