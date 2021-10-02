@@ -69,15 +69,19 @@ class PromoCodeController extends Controller
         }
       
     if($coupon->active==1 && $coupon->count_uses <= $coupon->no_users){
+       
+       
+        $total = $request['total'];
+        $discount = (($coupon -> precent_off)/100) * $total;
         $total=cart::select('select total_price from cart');
         session()->put('PromoCode',[
-    
+           
             'name'=>$coupon->code ,
            'discount'=>$coupon->discount($total)
         ]);
         $coupon->count_uses++;
         $coupon->save();
-        return response()->json('success_message,Coupon has been applied!');
+        return response()->json($discount);
     }
     
     return response()->json('Invalid coupon code. Please try again.');

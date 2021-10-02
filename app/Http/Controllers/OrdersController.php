@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\cart;
+use App\Models\item;
+
 use Illuminate\Support\Facades\DB;
 /**
  * @group  Order Management
@@ -38,9 +40,9 @@ class OrdersController extends Controller
      */
     public function addOrderItem(Request $request)
     {
+       
         $item = new item;
         $item = item::FindorFail($request["item_id"]);
-        
 
         $result = DB::table('orderitem')->insert([
             "order_id"  =>  $request["order_id"],
@@ -48,6 +50,7 @@ class OrdersController extends Controller
             "price" => $item["price"] * $request["quantity"],
             "item_id" => $request["item_id"]
         ]);
+       
             
     }
 

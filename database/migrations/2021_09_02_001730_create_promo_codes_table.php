@@ -22,7 +22,7 @@ class CreatePromoCodesTable extends Migration
             $table -> date('end_date');
             $table->integer('no_users');
             $table->integer('count_uses');
-            $table->boolean('active')->default(0);
+            $table->boolean('active')->default(1);
             $table->timestamps();
         });
     }

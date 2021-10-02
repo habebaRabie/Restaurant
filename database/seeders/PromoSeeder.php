@@ -16,18 +16,20 @@ class PromoSeeder extends Seeder
     public function run()
     {
         PromoCode::create([
-            'code' => 'ABC123',
-            'type'=> 'fixed',
-            'value'=> 30,
-            'start_date' =>'2021-8-16',
-            'end_date' =>'2021-8-16',
-          ]);
-          PromoCode::create([
-            'code' => 'BC123',
+            'code' => 'A123',
             'type'=> 'precent_off',
             'precent_off'=> 30,
-            'start_date' =>'2021-8-16',
-            'end_date' =>'2021-9-27',
+            
+            'end_date' =>'2022-8-16',
+            'active'=>1
+          ]);
+          PromoCode::create([
+            'code' => 'B123',
+            'type'=> 'precent_off',
+            'precent_off'=> 30,
+            'no_users' => 10,
+            'end_date' =>'2022-9-27',
+            'active'=>1
           ]);
       }
            
