@@ -78,12 +78,19 @@ class AddressController extends Controller
     {
         $userID = $request->user_id;
         $favouriteLocation = $request->favourite_location;
+        $userAddress = address::where("user_id", $userID) ->first();
 
-        $userAddress = address::where("user_id", $userID)
-            ->first();
-        // $userAddress = address::find($id);
-        $userAddress->favourite_location = $favouriteLocation;
-        $userAddress->save();
+        if($userAddress !=null){
+            $userAddress->user_id = $userID;
+            $userAddress->favourite_location = $favouriteLocation;
+            $userAddress->save();
+        }
+        else{
+            $userAddress = new address;
+            $userAddress->user_id = $userID;
+            $userAddress->favourite_location = $favouriteLocation;
+            $userAddress->save();
+        }
 
         return response()->json([
             'status' => true,
@@ -115,17 +122,26 @@ class AddressController extends Controller
     public function addAnotherAddress(Request $request)
     {
         $userID = $request->user_id;
-        $Location = $request->location;
+        $location = $request->location;
+        $userAddress = address::where("user_id", $userID) ->first();
 
-        $userAddress = address::where("user_id", $userID)
-            ->first();
-        $userAddress->location = $Location;
-        $userAddress->save();
+        if($userAddress !=null){
+            $userAddress->user_id = $userID;
+            $userAddress->location = $location;
+            $userAddress->save();
+        }
+        else{
+            $userAddress = new address;
+            $userAddress->user_id = $userID;
+            $userAddress->location = $location;
+            $userAddress->save();
+        }
 
         return response()->json([
             'status' => true,
             'response' => 200,
             'data' => $userAddress
         ]);
+        
     }
 }
