@@ -178,10 +178,6 @@ class OrdersController extends Controller
      */
     public function History(Request $request)
     {
-        
-
-
-
         $user_id = $request->user_id;
 
         $history = DB::select('SELECT orders.id,items.item_name, orderitem.quantity, orders.price, orders.type_of_delivery
