@@ -178,18 +178,17 @@ class OrdersController extends Controller
      */
     public function History(Request $request)
     {
-        $user_id = $request->user_id;
-        $order_id = order::select('id')->where('user_id', $user_id)->get()->all();
-        //echo $order_id;
-        $history = [];
-        foreach ($order_id as $order)
-        {
-            $key=$order['id'];
-            
-           $history[] = DB::table('orderitem')->where('order_id',$key)->get()->all();
-        }
         
-  return response()->json($history);
+
+
+
+        $user_id = $request->user_id;
+
+        $history = DB::select('SELECT orders.id,items.item_name, orderitem.quantity, orders.price, orders.type_of_delivery
+        FROM items INNER JOIN orders INNER JOIN orderitem 
+        WHERE items.id= orderitem.item_id AND orders.id = orderitem.order_id AND orders.user_id = ? ORDER BY orders.id', [$user_id]);
+
+        return response()->json($history);
     }
     /**
      *  Add Feedback to the order.
