@@ -32,8 +32,6 @@ class AdminSeeder extends Seeder
             'email'=>$faker->email,
             'password' => Hash::make("12345678"),
             'superadmin' => $result
-
-
         ]);
     }
     }
