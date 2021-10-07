@@ -251,22 +251,43 @@ class OrdersController extends Controller
      * }
      *
      */
+    // public function add_Rating(Request $request)
+    // {
+    //     $order_id = $request->id;
+    //     $rate = $request->rating;
+    //     $about_rating = order::where("id",  $order_id)->where('rating', NULL)->get('rating')->first();
+
+    //     if ($about_rating != null) {
+    //         $Order = order::find($order_id);
+    //         $Order->rating = $rate;
+    //         $Order->save();
+    //         return response()->json([
+    //             'status' => true,
+    //             'response' => 200,
+    //         ]);
+    //     } else {
+    //         return response()->json("Order has already been rated");
+    //     }
+    // }
+
     public function add_Rating(Request $request)
     {
         $order_id = $request->id;
         $rate = $request->rating;
-        $about_rating = order::where("id",  $order_id)->where('rating', NULL)->get('rating')->first();
+        $feedback = $request->Feedback;
+        $about_rating = order::where("id",  $order_id)->where('rating', NULL)->where('Feedback', NULL)->get('rating')->first();
 
         if ($about_rating != null) {
             $Order = order::find($order_id);
             $Order->rating = $rate;
+            $Order->Feedback = $feedback;
             $Order->save();
             return response()->json([
                 'status' => true,
                 'response' => 200,
             ]);
         } else {
-            return response()->json("Order has already been rated");
+            return response()->json("Order has already been rated and have feedback");
         }
     }
 }
