@@ -25,6 +25,7 @@ Route::group(['middleware' => 'guest:admin-api', 'prefix' =>'admin'], function()
     Route::post('/login', [AuthenticatedSessionController::class, 'store_admin']);
     
 
+
 });
 
 
@@ -32,7 +33,9 @@ Route::group(['middleware' => 'guest:admin-api', 'prefix' =>'admin'], function()
 Route::group(['middleware' => 'auth:admin-api', 'prefix' =>'admin'], function(){
     
     
-    
+    Route::post('additem' , 'App\Http\Controllers\AdminController@AddItem' );
+    Route::get('categories' , 'App\Http\Controllers\AdminController@GetCategories');
+    Route::post('/create', [App\Http\Controllers\PromoCodeController::class, 'create'])->name('create');
     Route::get('/admins/{id}', [AdminController::class, 'GetAdminsById']);
     Route::get('/register', [RegisteredUserController::class, 'create_admin'])->name('admin.register');
     Route::post('/register', [RegisteredUserController::class, 'store_admin']);
@@ -42,7 +45,7 @@ Route::group(['middleware' => 'auth:admin-api', 'prefix' =>'admin'], function(){
     Route::post('addcategory' , 'App\Http\Controllers\AdminController@AddCategory' );
     Route::post('removecategory/{id}' , 'App\Http\Controllers\AdminController@DeleteCategory');
     Route::post('updatecategory/{id}' , 'App\Http\Controllers\AdminController@UpdateCategory');
-    Route::post('additem' , 'App\Http\Controllers\AdminController@AddItem' );
+    
     Route::post('removeitem/{id}' , 'App\Http\Controllers\AdminController@DeleteItem');
     Route::post('updateitem/{id}' , 'App\Http\Controllers\AdminController@UpdateItem');
     Route::get('show',[showcontroller::class,'show']);

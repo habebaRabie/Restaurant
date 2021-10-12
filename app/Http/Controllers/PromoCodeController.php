@@ -39,13 +39,13 @@ class PromoCodeController extends Controller
         $promocode->code = $request->code;
         $promocode->type = $request->type;
         $promocode->value = $request->value;
-        $promocode->persent_off = $request->persent_off;
+        $promocode->precent_off = $request->precent_off;
         $promocode->end_date = $request->end_date;
         $promocode->no_users = $request->no_users;
-        $promocode->count_uses = $request->count_uses;
+        $promocode->count_uses = 0;
         $promocode->active = $request->active;
         $promocode->save();
-        return response()->json(' promocode created successfully.');
+        return response()->json('promocode created successfully.');
     }
 
  /**

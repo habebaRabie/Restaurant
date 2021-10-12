@@ -55,7 +55,7 @@ Route::group(['middleware' => ['auth:api']], function () {
 
 
     //promocode endpoints
-    Route::post('/create', [App\Http\Controllers\PromoCodeController::class, 'create'])->name('create');
+   
     Route::post('/store', [App\Http\Controllers\PromoCodeController::class, 'store'])->name('store');
     Route::post('/update', [App\Http\Controllers\PromoCodeController::class, 'update'])->name('update');
     Route::delete('/destroy', [App\Http\Controllers\PromoCodeController::class, 'destroy'])->name('destroy');
