@@ -72,7 +72,7 @@ class PromoCodeController extends Controller
        
        
         $total = $request['total'];
-        $discount = (($coupon -> precent_off)/100) * $total;
+        $discount =$total - (($coupon -> precent_off)/100) * $total;
         $total=cart::select('select total_price from cart');
         session()->put('PromoCode',[
            

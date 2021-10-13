@@ -17,8 +17,8 @@ class PromoCode extends Model
     {
         if ($this->type == 'fixed') {
             return $this->value;
-        } elseif ($this->type == 'percent_off') {
-            return round(($this->percent_off / 100) * $total);
+        } elseif ($this->type == 'precent_off') {
+            return round(($this->precent_off / 100) * $total);
         } else {
             return 0;
         }

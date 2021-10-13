@@ -89,7 +89,7 @@ class OrdersController extends Controller
             $order->user_id=auth()->user()->id;
 
             $order-> price = $request ->input('price');
-            $order->type_of_delivery = "In Restaurant";
+            $order->type_of_delivery = $request -> input('type_of_delivery');
             
             $order->save();
             $this->OrderId = $order->id;
